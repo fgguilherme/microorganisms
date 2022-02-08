@@ -71,7 +71,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     Element.update(req.body, {
-      where: { id: id }
+      where: {iddominio: id }
     })
       .then(num => {
         if (num == 1) {

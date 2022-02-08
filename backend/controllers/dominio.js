@@ -96,7 +96,7 @@ exports.delete = (req, res) => {
     const id = req.params.id;
 
     Element.destroy({
-      where: { id: id }
+      where: {iddominio: id }
     })
       .then(num => {
         if (num == 1) {

@@ -4,27 +4,27 @@ var router = require("express").Router();
 module.exports = app => {
     var _genero = require("../controllers/genero");
 
-/////////genero
+///////// genero
 
-  // Create a new Tutorial
+  // Create a new gereno
   router.post("/", _genero.create);
 
-  // Retrieve all _genero
+  // Retrieve all gereno
   router.get("/", _genero.findAll);
 
-  // Retrieve all published _genero
+  // Retrieve all published gereno
   router.get("/search", _genero.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single gereno with id
   router.get("/:id", _genero.findOne);
 
-  // Update a Tutorial with id
+  // Update a gereno with id
   router.put("/:id", _genero.update);
 
-  // Delete a Tutorial with id
+  // Delete a gereno with id
   router.delete("/:id", _genero.delete);
 
-  // Delete all _genero
+  // Delete all gereno
   router.delete("/", _genero.deleteAll);
 
 

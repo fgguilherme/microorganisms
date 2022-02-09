@@ -4,7 +4,7 @@ var router = require("express").Router();
 module.exports = app => {
     var _familia = require("../controllers/familia");
 
-/////////familia
+///////// familia
 
   // Create a new familia
   router.post("/", _familia.create);

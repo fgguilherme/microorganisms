@@ -6,25 +6,25 @@ module.exports = app => {
 
 /////////familia
 
-  // Create a new Tutorial
+  // Create a new familia
   router.post("/", _familia.create);
 
-  // Retrieve all _familia
+  // Retrieve all familia
   router.get("/", _familia.findAll);
 
-  // Retrieve all published _familia
+  // Retrieve all published familia
   router.get("/search", _familia.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single familia with id
   router.get("/:id", _familia.findOne);
 
-  // Update a Tutorial with id
+  // Update a familia with id
   router.put("/:id", _familia.update);
 
-  // Delete a Tutorial with id
+  // Delete a familia with id
   router.delete("/:id", _familia.delete);
 
-  // Delete all _familia
+  // Delete all familia
   router.delete("/", _familia.deleteAll);
 
 

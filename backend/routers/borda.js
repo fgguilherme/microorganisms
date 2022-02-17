@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////borda
 
-  // Create a new Tutorial
+  // Create a new borda
   router.post("/", _borda.create);
 
   // Retrieve all _borda
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _borda
   router.get("/search", _borda.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single borda with id
   router.get("/:id", _borda.findOne);
 
-  // Update a Tutorial with id
+  // Update a borda with id
   router.put("/:id", _borda.update);
 
-  // Delete a Tutorial with id
+  // Delete a borda with id
   router.delete("/:id", _borda.delete);
 
   // Delete all _borda

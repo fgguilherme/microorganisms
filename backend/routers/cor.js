@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////cor
 
-  // Create a new Tutorial
+  // Create a new cor
   router.post("/", _cor.create);
 
   // Retrieve all _cor
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _cor
   router.get("/search", _cor.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single cor with id
   router.get("/:id", _cor.findOne);
 
-  // Update a Tutorial with id
+  // Update a cor with id
   router.put("/:id", _cor.update);
 
-  // Delete a Tutorial with id
+  // Delete a cor with id
   router.delete("/:id", _cor.delete);
 
   // Delete all _cor

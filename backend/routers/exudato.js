@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////exudato
 
-  // Create a new Tutorial
+  // Create a new exudato
   router.post("/", _exudato.create);
 
   // Retrieve all _exudato
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _exudato
   router.get("/search", _exudato.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single exudato with id
   router.get("/:id", _exudato.findOne);
 
-  // Update a Tutorial with id
+  // Update a exudato with id
   router.put("/:id", _exudato.update);
 
-  // Delete a Tutorial with id
+  // Delete a exudato with id
   router.delete("/:id", _exudato.delete);
 
   // Delete all _exudato

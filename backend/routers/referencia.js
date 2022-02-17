@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////referencia
 
-  // Create a new Tutorial
+  // Create a new referencia
   router.post("/", _referencia.create);
 
   // Retrieve all _referencia
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _referencia
   router.get("/search", _referencia.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single referencia with id
   router.get("/:id", _referencia.findOne);
 
-  // Update a Tutorial with id
+  // Update a referencia with id
   router.put("/:id", _referencia.update);
 
-  // Delete a Tutorial with id
+  // Delete a referencia with id
   router.delete("/:id", _referencia.delete);
 
   // Delete all _referencia

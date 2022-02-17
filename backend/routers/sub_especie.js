@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////sub_especie
 
-  // Create a new Tutorial
+  // Create a new sub_especie
   router.post("/", _sub_especie.create);
 
   // Retrieve all _sub_especie
@@ -15,19 +15,19 @@ module.exports = app => {
   // Retrieve all published _sub_especie
   router.get("/search", _sub_especie.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single sub_especie with id
   router.get("/:id", _sub_especie.findOne);
 
-  // Update a Tutorial with id
+  // Update a sub_especie with id
   router.put("/:id", _sub_especie.update);
 
-  // Delete a Tutorial with id
+  // Delete a sub_especie with id
   router.delete("/:id", _sub_especie.delete);
 
   // Delete all _sub_especie
   router.delete("/", _sub_especie.deleteAll);
 
 
-  app.use('/api/subesp', router);
+  app.use('/api/sub_especie', router);
 
 }

@@ -71,7 +71,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     Element.update(req.body, {
-      where: { id: id }
+      where: {idvariedade: id }
     })
       .then(num => {
         if (num == 1) {
@@ -96,7 +96,7 @@ exports.delete = (req, res) => {
     const id = req.params.id;
 
     Element.destroy({
-      where: { id: id }
+      where: {idvariedade: id }
     })
       .then(num => {
         if (num == 1) {
@@ -135,7 +135,7 @@ exports.deleteAll = (req, res) => {
 
 // Find all published Elements
 exports.findAllParam = (req, res) => {
-    var p = req.params.search;
+    var p = req.query;
     Element.findAll({ where: p })
     .then(data => {
       res.send(data);

@@ -4,7 +4,7 @@ var router = require("express").Router();
 module.exports = app => {
     var _habitat_ani = require("../controllers/habitat_ani");
 
-  // Create a new Tutorial
+  // Create a new habitat_ani
   router.post("/", _habitat_ani.create);
 
   // Retrieve all _habitat_ani
@@ -13,13 +13,13 @@ module.exports = app => {
   // Retrieve all published _habitat_ani
   router.get("/search", _habitat_ani.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single habitat_ani with id
   router.get("/:id", _habitat_ani.findOne);
 
-  // Update a Tutorial with id
+  // Update a habitat_ani with id
   router.put("/:id", _habitat_ani.update);
 
-  // Delete a Tutorial with id
+  // Delete a habitat_ani with id
   router.delete("/:id", _habitat_ani.delete);
 
   // Delete all _habitat_ani

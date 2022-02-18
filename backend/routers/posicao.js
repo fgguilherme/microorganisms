@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////posicao
 
-  // Create a new Tutorial
+  // Create a new posicao
   router.post("/", _posicao.create);
 
   // Retrieve all _posicao
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _posicao
   router.get("/search", _posicao.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single posicao with id
   router.get("/:id", _posicao.findOne);
 
-  // Update a Tutorial with id
+  // Update a posicao with id
   router.put("/:id", _posicao.update);
 
-  // Delete a Tutorial with id
+  // Delete a posicao with id
   router.delete("/:id", _posicao.delete);
 
   // Delete all _posicao

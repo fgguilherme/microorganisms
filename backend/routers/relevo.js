@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////relevo
 
-  // Create a new Tutorial
+  // Create a new relevo
   router.post("/", _relevo.create);
 
   // Retrieve all _relevo
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _relevo
   router.get("/search", _relevo.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single relevo with id
   router.get("/:id", _relevo.findOne);
 
-  // Update a Tutorial with id
+  // Update a relevo with id
   router.put("/:id", _relevo.update);
 
-  // Delete a Tutorial with id
+  // Delete a relevo with id
   router.delete("/:id", _relevo.delete);
 
   // Delete all _relevo

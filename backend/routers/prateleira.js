@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////prateleira
 
-  // Create a new Tutorial
+  // Create a new prateleira
   router.post("/", _prateleira.create);
 
   // Retrieve all _prateleira
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _prateleira
   router.get("/search", _prateleira.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single prateleira with id
   router.get("/:id", _prateleira.findOne);
 
-  // Update a Tutorial with id
+  // Update a prateleira with id
   router.put("/:id", _prateleira.update);
 
-  // Delete a Tutorial with id
+  // Delete a prateleira with id
   router.delete("/:id", _prateleira.delete);
 
   // Delete all _prateleira

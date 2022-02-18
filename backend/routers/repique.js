@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////repique
 
-  // Create a new Tutorial
+  // Create a new repique
   router.post("/", _repique.create);
 
   // Retrieve all _repique
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _repique
   router.get("/search", _repique.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single repique with id
   router.get("/:id", _repique.findOne);
 
-  // Update a Tutorial with id
+  // Update a repique with id
   router.put("/:id", _repique.update);
 
-  // Delete a Tutorial with id
+  // Delete a repique with id
   router.delete("/:id", _repique.delete);
 
   // Delete all _repique

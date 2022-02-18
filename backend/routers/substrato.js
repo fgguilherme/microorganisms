@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////substrato
 
-  // Create a new Tutorial
+  // Create a new substrato
   router.post("/", _substrato.create);
 
   // Retrieve all _substrato
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _substrato
   router.get("/search", _substrato.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single substrato with id
   router.get("/:id", _substrato.findOne);
 
-  // Update a Tutorial with id
+  // Update a substrato with id
   router.put("/:id", _substrato.update);
 
-  // Delete a Tutorial with id
+  // Delete a substrato with id
   router.delete("/:id", _substrato.delete);
 
   // Delete all _substrato

@@ -4,7 +4,7 @@ var router = require("express").Router();
 module.exports = app => {
     var _anexos = require("../controllers/anexos");
 
-  // Create a new Tutorial
+  // Create a new anexos
   router.post("/", _anexos.create);
 
   // Retrieve all _anexos
@@ -13,13 +13,13 @@ module.exports = app => {
   // Retrieve all published _anexos
   router.get("/search", _anexos.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single anexos with id
   router.get("/:id", _anexos.findOne);
 
-  // Update a Tutorial with id
+  // Update a anexos with id
   router.put("/:id", _anexos.update);
 
-  // Delete a Tutorial with id
+  // Delete a anexos with id
   router.delete("/:id", _anexos.delete);
 
   // Delete all _anexos

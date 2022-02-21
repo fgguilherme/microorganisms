@@ -39,4 +39,5 @@ module.exports = app => {
   require("./variedade")(app);
   require("./microorganismo_has_anexos")(app);
   require("./microorganismo_has_carac_micromorfologica")(app);
+  require("./microorganismo_has_imagem_macro")(app);
 }

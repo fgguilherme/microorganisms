@@ -37,4 +37,5 @@ module.exports = app => {
   require("./textura")(app);
   require("./unidade")(app);
   require("./variedade")(app);
+  require("./microorganismo_has_anexos")(app);
 }

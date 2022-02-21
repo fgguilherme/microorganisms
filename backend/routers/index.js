@@ -41,4 +41,5 @@ module.exports = app => {
   require("./microorganismo_has_carac_micromorfologica")(app);
   require("./microorganismo_has_imagem_macro")(app);
   require("./microorganismo_has_imagem_micro")(app);
+  require("./microorganismo_has_metodo_preservacao")(app);
 }

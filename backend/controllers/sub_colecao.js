@@ -6,7 +6,7 @@ exports.create = (req, res) => {
   // Validate request
   if (!req.body.sub_colecao) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "Content missing mandatory data!"
     });
     return;
   }

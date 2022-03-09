@@ -4,9 +4,9 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Element
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.especie) {
+  if (!req.body.especie || !req.body.autor || !req.body.genero_idgenero) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "Content missing mandatory data!"
     });
     return;
   }

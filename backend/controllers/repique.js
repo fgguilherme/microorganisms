@@ -1,31 +1,147 @@
 const db = require("../models");
 const Element = db.models.repique;
+const ElementreRerencia = db.models.repique;
+const ElementreHasRerencia = db.models.idrepique_has_repique;
+const ElementreImagem = db.models.imagem;
+const ElementreHasImagem = db.models.repique_has_imagem;
+const ElementreRepique = db.models.repique;
+const ElementreHasRepique = db.models.repique_has_repique;
 const Op = db.Sequelize.Op;
 // Create and Save a new Element
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   // Validate request
-  if (!req.body.disponivel) {
+  if (!req.body.microorganismo_idmicroorganismo || !req.body.unidade_idunidade || !req.body.grupo_pesquisa_idgrupo_pesquisa || !req.body.comentarios || !req.body.disponivel || !req.body.posicao_idposicao || !req.body.data || !req.body.idreferencia || !req.body.idimagem|| !req.body.idrepique) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "Content missing mandatory data!"
     });
     return;
   }
+  if(req.body.idreferencia){
+    
+    const id = req.body.idreferencia;
 
+    const referencia = await ElementreRerencia.findByPk(id)
+
+    if(referencia == null){
+      res.status(400).send({
+        message: "invalid Referencia!"
+      });
+      return;
+    }
+  }
+  if(req.body.idimagem){
+    
+    const id = req.body.idimagem;
+
+    const imagem = await ElementreImagem.findByPk(id)
+
+    if(imagem == null){
+      res.status(400).send({
+        message: "invalid Imagem!"
+      });
+      return;
+    }
+  }
+  if(req.body.idrepique){
+    
+    const id = req.body.idrepique;
+
+    const repique = await ElementreRepique.findByPk(id)
+
+    if(repique == null){
+      res.status(400).send({
+        message: "invalid Repique!"
+      });
+      return;
+    }
+  }
   // Create a Element
   const element = req.body;
-  console.log(req.body)
+  var needWait = 0;
+  //console.log(req.body)
 
   // Save Element in the database
   Element.create(element)
     .then(data => {
-      res.send(data);
+    
+      console.log("*********")
+      console.log(data.dataValues)
+      console.log("*********")
+
+      if(req.body.idreferencia){
+        console.log("has_referencia")
+        needWait ++;
+        var elementreHasRerencia = {
+          "idreferencia": req.body.idreferencia,
+          "repique_idrepique":data.dataValues.idrepique
+        } 
+        ElementreHasRerencia.create(elementreHasRerencia)
+        .then(d => {
+          console.log("done_referencia")
+          needWait --;
+          if(needWait == 0){
+            res.send(data);
+          }
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "err001"
+          });
+        });
+      }
+      if(req.body.idimagem){
+        console.log("has_imagem")
+        needWait ++;
+        var elementreHasImagem = {
+          "idimagem": req.body.idimagem,
+          "repique_idrepique":data.dataValues.idrepique
+        } 
+        ElementreHasImagem.create(elementreHasImagem)
+        .then(d => {
+          console.log("done_imagem")
+          needWait --;
+          if(needWait == 0){
+            res.send(data);
+          }
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "err002"
+          });
+        });
+      }
+      if(req.body.idrepique){
+        console.log("has_repique")
+        needWait ++;
+        var elementreHasRepique = {
+          "idrepique": req.body.idrepique,
+          "repique_idrepique":data.dataValues.idrepique
+        } 
+        ElementreHasRepique.create(elementreHasRepique)
+        .then(d => {
+          console.log("done_repique")
+          needWait --;
+          if(needWait == 0){
+            res.send(data);
+          }
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "err003"
+          });
+        });
+      }
+    
     })
     .catch(err => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while creating the Element."
       });
-    });
+    })
 };
 
 // Retrieve all Elements from the database.

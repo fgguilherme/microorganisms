@@ -15,7 +15,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Element
 exports.create = async (req, res) => {
   // Validate request
-  if (!req.bady.idmicroorganismo || !req.bady.variedade_idvariedade || !req.bady.status || !req.bady.referencia_taxa || !req.bady.data_reg_col_orig || !req.bady.cod_orig || !req.bady.hist_orig || !req.bady.pesquisador_coleta || !req.bady.origem_geo || !req.bady.lat || !req.bady.lon || !req.bady.datum || !req.bady.precisao || !req.bady.coment_orig || !req.bady.data_isol || !req.bady.pesquisador_isolamento || !req.bady.info_isolamento || !req.bady.data_ident || !req.bady.pesquisador_ident || !req.bady.data_preserv || !req.bady.pesquisador_preserv || !req.bady.coment_isolamento || !req.bady.cor_colonia || !req.bady.textura_idtextura || !req.bady.borda_idborda || !req.bady.relevo_idrelevo || !req.bady.exudato_idexudato || !req.bady.cor_exudato || !req.bady.pigmento_idpigmento || !req.bady.cor_pigmento || !req.bady.temp_crescimento || !req.bady.referencia_temp || !req.bady.laboratorio_mol || !req.bady.data_mol || !req.bady.cod_mol || !req.bady.sequencia_mol || !req.bady.meta_mol || !req.bady.habitat_idhabitat || !req.bady.metodo_preservacao_idmetodo_preservacao || !req.bady.carac_micromorfologica_idcarac_micromorfologica || !req.bady.imagem_idimagem || !req.bady.anexos_idanexos) {
+  if (!req.bady.variedade_idvariedade || !req.bady.status || !req.bady.referencia_taxa || !req.bady.data_reg_col_orig || !req.bady.cod_orig || !req.bady.hist_orig || !req.bady.pesquisador_coleta || !req.bady.origem_geo || !req.bady.lat || !req.bady.lon || !req.bady.datum || !req.bady.precisao || !req.bady.coment_orig || !req.bady.data_isol || !req.bady.pesquisador_isolamento || !req.bady.info_isolamento || !req.bady.data_ident || !req.bady.pesquisador_ident || !req.bady.data_preserv || !req.bady.pesquisador_preserv || !req.bady.coment_isolamento || !req.bady.cor_colonia || !req.bady.textura_idtextura || !req.bady.borda_idborda || !req.bady.relevo_idrelevo || !req.bady.exudato_idexudato || !req.bady.cor_exudato || !req.bady.pigmento_idpigmento || !req.bady.cor_pigmento || !req.bady.temp_crescimento || !req.bady.referencia_temp || !req.bady.laboratorio_mol || !req.bady.data_mol || !req.bady.cod_mol || !req.bady.sequencia_mol || !req.bady.meta_mol || !req.bady.habitat_idhabitat || !req.bady.metodo_preservacao_idmetodo_preservacao || !req.bady.carac_micromorfologica_idcarac_micromorfologica || !req.bady.imagem_idimagem || !req.bady.anexos_idanexos) {
     res.status(400).send({
       message: "Content missing mandatory data!"
     });
@@ -168,6 +168,27 @@ exports.create = async (req, res) => {
           res.status(500).send({
             message:
               err.message || "err004"
+          });
+        });
+    };
+    if (req.body.microorganismo_has_anexos) {
+      console.log("has anexos");
+      needWait++;
+      var elementHasAnexos = {
+        "microorganismo_has_anexos": req.body.microorganismo_has_anexos,
+        "microorganismo_idmicroorganismo": data.dataValues.idmicroorganismo
+      }
+      ElementHas_anexos.create(elementHasAnexos).then(d => {
+        console.log("done_anexos");
+        needWait--;
+        if (needWait == 0) {
+          res.send(data);
+        }
+      })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "err005"
           });
         });
     };

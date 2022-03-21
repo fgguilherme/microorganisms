@@ -15,15 +15,15 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Element
 exports.create = async (req, res) => {
   // Validate request
-  if (!req.bady.variedade_idvariedade || !req.bady.status || !req.bady.referencia_taxa || !req.bady.data_reg_col_orig || !req.bady.cod_orig || !req.bady.hist_orig || !req.bady.pesquisador_coleta || !req.bady.origem_geo || !req.bady.lat || !req.bady.lon || !req.bady.datum || !req.bady.precisao || !req.bady.coment_orig || !req.bady.data_isol || !req.bady.pesquisador_isolamento || !req.bady.info_isolamento || !req.bady.data_ident || !req.bady.pesquisador_ident || !req.bady.data_preserv || !req.bady.pesquisador_preserv || !req.bady.coment_isolamento || !req.bady.cor_colonia || !req.bady.textura_idtextura || !req.bady.borda_idborda || !req.bady.relevo_idrelevo || !req.bady.exudato_idexudato || !req.bady.cor_exudato || !req.bady.pigmento_idpigmento || !req.bady.cor_pigmento || !req.bady.temp_crescimento || !req.bady.referencia_temp || !req.bady.laboratorio_mol || !req.bady.data_mol || !req.bady.cod_mol || !req.bady.sequencia_mol || !req.bady.meta_mol || !req.bady.habitat_idhabitat || !req.bady.metodo_preservacao_idmetodo_preservacao || !req.bady.carac_micromorfologica_idcarac_micromorfologica || !req.bady.imagem_idimagem || !req.bady.anexos_idanexos) {
+  if (!req.body.variedade_idvariedade || !req.body.status || !req.body.referencia_taxa || !req.body.data_reg_col_orig || !req.body.cod_orig || !req.body.hist_orig || !req.body.pesquisador_coleta || !req.body.origem_geo || !req.body.lat || !req.body.lon || !req.body.datum || !req.body.precisao || !req.body.coment_orig || !req.body.data_isol || !req.body.pesquisador_isolamento || !req.body.info_isolamento || !req.body.data_ident || !req.body.pesquisador_ident || !req.body.data_preserv || !req.body.pesquisador_preserv || !req.body.coment_isolamento || !req.body.cor_colonia || !req.body.textura_idtextura || !req.body.borda_idborda || !req.body.relevo_idrelevo || !req.body.exudato_idexudato || !req.body.cor_exudato || !req.body.pigmento_idpigmento || !req.body.cor_pigmento || !req.body.temp_crescimento || !req.body.referencia_temp || !req.body.laboratorio_mol || !req.body.data_mol || !req.body.cod_mol || !req.body.sequencia_mol || !req.body.meta_mol || !req.body.habitat_idhabitat || !req.body.metodo_preservacao_idmetodo_preservacao || !req.body.carac_micromorfologica_idcarac_micromorfologica || !req.body.imagem_idimagem || !req.body.anexos_idanexos) {
     res.status(400).send({
       message: "Content missing mandatory data!"
     });
     return;
   }
-  if (req.bady.metodo_preservacao_idmetodo_preservacao) {
+  if (req.body.metodo_preservacao_idmetodo_preservacao) {
 
-    const id = req.bady.metodo_preservacao_idmetodo_preservacao;
+    const id = req.body.metodo_preservacao_idmetodo_preservacao;
 
     const metodo_preservacao = await ElementMetodo_preservacao.findByPk(id)
 
@@ -34,9 +34,9 @@ exports.create = async (req, res) => {
       return;
     }
   }
-  if (req.bady.carac_micromorfologica_idcarac_micromorfologica) {
+  if (req.body.carac_micromorfologica_idcarac_micromorfologica) {
 
-    const id = req.bady.carac_micromorfologica_idcarac_micromorfologica;
+    const id = req.body.carac_micromorfologica_idcarac_micromorfologica;
 
     const carac_micromorfologica = await ElementCarac_micromorfologica.findByPk(id)
 
@@ -47,9 +47,9 @@ exports.create = async (req, res) => {
       return;
     }
   }
-  if (req.bady.imagem_idimagem) {
+  if (req.body.imagem_idimagem) {
 
-    const id = req.bady.imagem_idimagem;
+    const id = req.body.imagem_idimagem;
 
     const imagem = await ElementImagem.findByPk(id)
 
@@ -60,13 +60,13 @@ exports.create = async (req, res) => {
       return;
     }
   }
-  if (req.bady.anexos_idanexos) {
+  if (req.body.anexos_idanexos) {
 
-    const id = req.bady.anexos_idanexos;
+    const id = req.body.anexos_idanexos;
 
     const anexos = await ElementAnexos.findByPk(id)
 
-    if (imagem == null) {
+    if (anexos == null) {
       res.status(400).send({
         message: "Invalid attachments!"
       });
@@ -100,7 +100,7 @@ exports.create = async (req, res) => {
           if (needWait == 0) {
             res.send(data);
           }
-      })
+        })
         .catch(err => {
           res.status(500).send({
             message:
@@ -192,14 +192,19 @@ exports.create = async (req, res) => {
           });
         });
     };
+    if (needWait == 0) {
+      res.send(data);
+    }
   })
-  .catch(err => {
-    res.status(500).send({
-      message:
-        err.message || "Some error occurred while creating the Element."
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Element."
+      });
     });
-  });
 };
+
+
 
 // Retrieve all Elements from the database.
 exports.findAll = (req, res) => {

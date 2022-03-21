@@ -58,7 +58,7 @@ exports.create = async (req, res) => {
   // Create a Element
   const element = req.body;
   var needWait = 0;
-  //console.log(req.body)
+  console.log(req.body)
 
   // Save Element in the database
   Element.create(element)
@@ -89,7 +89,7 @@ exports.create = async (req, res) => {
               err.message || "err001"
           });
         });
-      }
+      };
       if(req.body.idimagem){
         console.log("has_imagem")
         needWait ++;
@@ -111,7 +111,7 @@ exports.create = async (req, res) => {
               err.message || "err002"
           });
         });
-      }
+      };
       if(req.body.idrepique){
         console.log("has_repique")
         needWait ++;
@@ -133,6 +133,9 @@ exports.create = async (req, res) => {
               err.message || "err003"
           });
         });
+      };
+      if (needWait == 0) {
+        res.send(data);
       }
     
     })

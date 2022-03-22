@@ -80,11 +80,12 @@ exports.create = async (req, res) => {
   console.log(req.body)
 
   // Save Element in the database
-  Element.create(element).then(data => {
+  Element.create(element)
+  .then(data => {
 
-    console.log("-----------");
+    console.log("------------");
     console.log(data.dataValues);
-    console.log("-----------");
+    console.log("------------");
 
     if (req.body.metodo_preservacao_idmetodo_preservacao) {
       console.log("has Metodo_preservacao");

@@ -143,6 +143,8 @@ export default function MicroContent(props) {
   const [subespecieList, setSubespecieList] = useState([]);
   const [variedadeList, setVariedadeList] = useState([]);
   const [referenciaList, setReferenciaList] = useState([]);
+
+  
   const [pesquisadorList, setPesquisadorList] = useState([]);
   const [hospAnList, setHospAnList] = useState([]);
   const [hospVegList, setHospVegList] = useState([]);
@@ -202,7 +204,6 @@ export default function MicroContent(props) {
 
   useEffect(() => {
     // console.log("CUEN 1");
-    // console.log(dominio)
     const fetchData = async () => {
       if (dominio.iddominio) {
         axios.get("http://127.0.0.1:8080/api/reino/search", {
@@ -225,141 +226,207 @@ export default function MicroContent(props) {
   }, [dominio]);
 
   useEffect(() => {
-    console.log("CUEN 1");
+    // console.log("CUEN 1");
     const fetchData = async () => {
-      if (reino != null) {
-        setFiloList([
-          {
-            filo: "Ascomycota",
-            idFilo: "0001",
-          },
-        ]);
+      if (reino.idreino) {
+        axios.get("http://127.0.0.1:8080/api/filo/search", {
+          params: {
+            "reino_idreino": reino.idreino
+            }})
+        .then(response => {
+          console.log(response.data);
+          setFiloList(response.data);
+        }, error => {
+          console.log(error);
+        });
+      }
+      else{
+        setFiloList([])
+        setFilo(null)
       }
     };
     fetchData();
   }, [reino]);
 
   useEffect(() => {
-    console.log("CUEN 1");
+    // console.log("CUEN 1");
     const fetchData = async () => {
-      if (filo.idFilo) {
-        setClasseList([
-          {
-            classe: "Dothideomycetes",
-            idClasse: "0001",
-          },
-        ]);
+      if (filo.idfilo) {
+        axios.get("http://127.0.0.1:8080/api/classe/search", {
+          params: {
+            "filo_idfilo": filo.idfilo
+            }})
+        .then(response => {
+          console.log(response.data);
+          setClasseList(response.data);
+        }, error => {
+          console.log(error);
+        });
+      }
+      else{
+        setClasseList([])
+        setClasse(null)
       }
     };
     fetchData();
   }, [filo]);
 
   useEffect(() => {
-    console.log("CUEN 1");
+    // console.log("CUEN 1");
     const fetchData = async () => {
-      if (classe.idClasse) {
-        setOrdemList([
-          {
-            ordem: "Dothideomycetes",
-            idOrdem: "0001",
-          },
-        ]);
+      if (classe.idclasse) {
+        axios.get("http://127.0.0.1:8080/api/ordem/search", {
+          params: {
+            "classe_idclasse": classe.idclasse
+            }})
+        .then(response => {
+          console.log(response.data);
+          setOrdemList(response.data);
+        }, error => {
+          console.log(error);
+        });
+      }
+      else{
+        setOrdemList([])
+        setOrdem(null)
       }
     };
     fetchData();
   }, [classe]);
 
   useEffect(() => {
-    console.log("CUEN 1");
+    // console.log("CUEN 1");
     const fetchData = async () => {
-      if (ordem.idOrdem) {
-        setFamiliaList([
-          {
-            familia: "Dothideomycetes",
-            idFamilia: "0001",
-          },
-        ]);
+      if (ordem.idordem) {
+        axios.get("http://127.0.0.1:8080/api/familia/search", {
+          params: {
+            "ordem_idordem": ordem.idordem
+            }})
+        .then(response => {
+          console.log(response.data);
+          setFamiliaList(response.data);
+        }, error => {
+          console.log(error);
+        });
+      }
+      else{
+        setFamiliaList([])
+        setFamilia(null)
       }
     };
     fetchData();
   }, [ordem]);
 
   useEffect(() => {
-    console.log("CUEN 1");
+    // console.log("CUEN 1");
     const fetchData = async () => {
-      if (familia.idFamilia) {
-        setGeneroList([
-          {
-            genero: "Dothideomycetes",
-            idGenero: "0001",
-          },
-        ]);
+      if (familia.idfamilia) {
+        axios.get("http://127.0.0.1:8080/api/genero/search", {
+          params: {
+            "familia_idfamilia": familia.idfamilia
+            }})
+        .then(response => {
+          console.log(response.data);
+          setGeneroList(response.data);
+        }, error => {
+          console.log(error);
+        });
+      }
+      else{
+        setGeneroList([])
+        setGenero(null)
       }
     };
     fetchData();
   }, [familia]);
 
   useEffect(() => {
-    console.log("CUEN 1");
+    // console.log("CUEN 1");
     const fetchData = async () => {
-      if (genero.idGenero) {
-        setEspecieList([
-          {
-            especie: "Aspergillus niger - (Jacq.) P. Kumm. 1871",
-            nome: "Aspergillus niger",
-            autor: "(Jacq.) P. Kumm. 1871",
-            idEspecie: "0001",
-          },
-        ]);
+      if (genero.idgenero) {
+        axios.get("http://127.0.0.1:8080/api/especie/search", {
+          params: {
+            "genero_idgenero": genero.idgenero
+            }})
+        .then(response => {
+          console.log(response.data);
+          setEspecieList(response.data);
+        }, error => {
+          console.log(error);
+        });
+      }
+      else{
+        setEspecieList([])
+        setEspecie(null)
       }
     };
     fetchData();
   }, [genero]);
 
   useEffect(() => {
-    console.log("CUEN 1");
+    // console.log("CUEN 1");
     const fetchData = async () => {
-      if (especie.idEspecie) {
-        setSubespecieList([
-          {
-            subespecie: "Pleurotus purpureo-olivaceus - (Jacq.) P. Kumm. 1871",
-            nome: "Pleurotus purpureo-olivaceus",
-            autor: "(Jacq.) P. Kumm. 1871",
-            idSubespecie: "0001",
-          },
-        ]);
+      if (especie.idespecie) {
+        axios.get("http://127.0.0.1:8080/api/sub_especie/search", {
+          params: {
+            "especie_idespecie": especie.idespecie
+            }})
+        .then(response => {
+          console.log(response.data);
+          setSubespecieList(response.data);
+        }, error => {
+          console.log(error);
+        });
+      }
+      else{
+        setSubespecieList([])
+        setSubespecie(null)
       }
     };
     fetchData();
   }, [especie]);
 
   useEffect(() => {
-    console.log("CUEN 1");
+    // console.log("CUEN 1");
     const fetchData = async () => {
-      if (subespecie.idSubespecie) {
-        setVariedadeList([
-          {
-            variedade: "Pleurotus purpureo-olivaceus - (Jacq.) P. Kumm. 1871",
-            nome: "Pleurotus purpureo-olivaceus",
-            autor: "(Jacq.) P. Kumm. 1871",
-            idVariedade: "0001",
-          },
-        ]);
+      if (subespecie.idsubespecie) {
+        axios.get("http://127.0.0.1:8080/api/variedade/search", {
+          params: {
+            "subespecie_idsubespecie": subespecie.idsubespecie
+            }})
+        .then(response => {
+          console.log(response.data);
+          setVariedadeList(response.data);
+        }, error => {
+          console.log(error);
+        });
+      }
+      else{
+        setVariedadeList([])
+        setVariedade(null)
       }
     };
     fetchData();
   }, [subespecie]);
 
   useEffect(() => {
-    console.log("CUEN 1");
+    // console.log("CUEN 1");
     const fetchData = async () => {
-      if (variedade.idVariedade) {
-        setReferenciaList([
-          {
-            referencia: "Fungi",
-            idReferencia: "0001",
-          },
-        ]);
+      if (variedade.idvariedade) {
+        axios.get("http://127.0.0.1:8080/api/referencia/search", {
+          params: {
+            "variedade_idvariedade": variedade.idvariedade
+            }})
+        .then(response => {
+          console.log(response.data);
+          setReferenciaList(response.data);
+        }, error => {
+          console.log(error);
+        });
+      }
+      else{
+        setReferenciaList([])
+        setReferencia(null)
       }
     };
     fetchData();

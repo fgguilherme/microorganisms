@@ -484,6 +484,104 @@ export default function MicroContent(props) {
         console.log(error);
       });
     }
+    if (persist === true && tmpState === "filo" && reino.idreino > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        filo: itemValue,
+        reino_idreino: reino.idreino
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "classe" && filo.idfilo > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        classe: itemValue,
+        filo_idfilo: filo.idfilo
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "ordem" && classe.idclasse > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        ordem: itemValue,
+        classe_idclasse: classe.idclasse
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "familia" && ordem.idordem > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        familia: itemValue,
+        ordem_idordem: ordem.idordem
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "genero" && familia.idfamilia > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        genero: itemValue,
+        familia_idfamilia: familia.idfamilia
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "especie" && genero.idgenero > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        especie: itemValue,
+        genero_idgenero: genero.idgenero
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "subespecie" && especie.idespecie > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        subespecie: itemValue,
+        especie_idespecie: especie.idespecie
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "variedade" && subespecie.idsubespecie > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        variedade: itemValue,
+        subespecie_idsubespecie: subespecie.idsubespecie
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "referencia"){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        referencia: itemValue,
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
     setIsOpen(false);
   }
   //END DEFAULT MODAL

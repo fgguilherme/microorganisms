@@ -37,4 +37,11 @@ module.exports = app => {
   require("./textura")(app);
   require("./unidade")(app);
   require("./variedade")(app);
+  require("./microorganismo_has_anexos")(app);
+  require("./microorganismo_has_carac_micromorfologica")(app);
+  require("./microorganismo_has_imagem_macro")(app);
+  require("./microorganismo_has_imagem_micro")(app);
+  require("./microorganismo_has_metodo_preservacao")(app);
+  require("./repique_has_imagem")(app);
+  require("./repique_has_referencia")(app);
 }

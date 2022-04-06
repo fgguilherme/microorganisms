@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////unidade
 
-  // Create a new Tutorial
+  // Create a new unidade
   router.post("/", _unidade.create);
 
   // Retrieve all _unidade
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _unidade
   router.get("/search", _unidade.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single unidade with id
   router.get("/:id", _unidade.findOne);
 
-  // Update a Tutorial with id
+  // Update a unidade with id
   router.put("/:id", _unidade.update);
 
-  // Delete a Tutorial with id
+  // Delete a unidade with id
   router.delete("/:id", _unidade.delete);
 
   // Delete all _unidade

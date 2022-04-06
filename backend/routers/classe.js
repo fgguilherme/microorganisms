@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////classe
 
-  // Create a new Tutorial
+  // Create a new classe
   router.post("/", _classe.create);
 
   // Retrieve all _classe
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _classe
   router.get("/search", _classe.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single classe with id
   router.get("/:id", _classe.findOne);
 
-  // Update a Tutorial with id
+  // Update a classe with id
   router.put("/:id", _classe.update);
 
-  // Delete a Tutorial with id
+  // Delete a classe with id
   router.delete("/:id", _classe.delete);
 
   // Delete all _classe

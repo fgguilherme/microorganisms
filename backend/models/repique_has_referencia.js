@@ -1,6 +1,12 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('repique_has_referencia', {
+    idrepique_has_referencia: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
     repique_idrepique: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -29,6 +35,7 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
+          { name: "idrepique_has_referencia" },
           { name: "repique_idrepique" },
           { name: "referencia_idreferencia" },
         ]

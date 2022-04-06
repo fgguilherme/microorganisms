@@ -4,27 +4,27 @@ var router = require("express").Router();
 module.exports = app => {
     var _ordem = require("../controllers/ordem");
 
-/////////ordem
+///////// Ordem
 
-  // Create a new Tutorial
+  // Create a new ordem
   router.post("/", _ordem.create);
 
-  // Retrieve all _ordem
+  // Retrieve all ordem
   router.get("/", _ordem.findAll);
 
-  // Retrieve all published _ordem
+  // Retrieve all published ordem
   router.get("/search", _ordem.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single ordem with id
   router.get("/:id", _ordem.findOne);
 
-  // Update a Tutorial with id
+  // Update a ordem with id
   router.put("/:id", _ordem.update);
 
-  // Delete a Tutorial with id
+  // Delete a ordem with id
   router.delete("/:id", _ordem.delete);
 
-  // Delete all _ordem
+  // Delete all ordem
   router.delete("/", _ordem.deleteAll);
 
 

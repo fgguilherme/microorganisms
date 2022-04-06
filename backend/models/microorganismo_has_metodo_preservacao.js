@@ -1,6 +1,12 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('microorganismo_has_metodo_preservacao', {
+    idmicroorganismo_has_metodo_preservacao: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
     microorganismo_idmicroorganismo: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -29,6 +35,7 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
+          { name: "idmicroorganismo_has_metodo_preservacao" },
           { name: "microorganismo_idmicroorganismo" },
           { name: "metodo_preservacao_idmetodo_preservacao" },
         ]

@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////textura
 
-  // Create a new Tutorial
+  // Create a new textura
   router.post("/", _textura.create);
 
   // Retrieve all _textura
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _textura
   router.get("/search", _textura.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single textura with id
   router.get("/:id", _textura.findOne);
 
-  // Update a Tutorial with id
+  // Update a textura with id
   router.put("/:id", _textura.update);
 
-  // Delete a Tutorial with id
+  // Delete a textura with id
   router.delete("/:id", _textura.delete);
 
   // Delete all _textura

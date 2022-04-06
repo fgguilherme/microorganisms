@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////pigmento
 
-  // Create a new Tutorial
+  // Create a new pigmento
   router.post("/", _pigmento.create);
 
   // Retrieve all _pigmento
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _pigmento
   router.get("/search", _pigmento.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single pigmento with id
   router.get("/:id", _pigmento.findOne);
 
-  // Update a Tutorial with id
+  // Update a pigmento with id
   router.put("/:id", _pigmento.update);
 
-  // Delete a Tutorial with id
+  // Delete a pigmento with id
   router.delete("/:id", _pigmento.delete);
 
   // Delete all _pigmento

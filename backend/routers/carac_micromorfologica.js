@@ -2,32 +2,32 @@ const models = require("../models").models;
 
 var router = require("express").Router();
 module.exports = app => {
-    var _carac = require("../controllers/carac_micromorfologica");
+    var _carac_micromorfologica = require("../controllers/carac_micromorfologica");
 
 /////////carac
 
-  // Create a new Tutorial
-  router.post("/", _carac.create);
+  // Create a new carac_micromorfologica
+  router.post("/", _carac_micromorfologica.create);
 
-  // Retrieve all _carac
-  router.get("/", _carac.findAll);
+  // Retrieve all carac_micromorfologica
+  router.get("/", _carac_micromorfologica.findAll);
 
-  // Retrieve all published _carac
-  router.get("/search", _carac.findAllParam);
+  // Retrieve all published carac_micromorfologica
+  router.get("/search", _carac_micromorfologica.findAllParam);
 
-  // Retrieve a single Tutorial with id
-  router.get("/:id", _carac.findOne);
+  // Retrieve a single carac_micromorfologica with id
+  router.get("/:id", _carac_micromorfologica.findOne);
 
-  // Update a Tutorial with id
-  router.put("/:id", _carac.update);
+  // Update a carac_micromorfologica with id
+  router.put("/:id", _carac_micromorfologica.update);
 
-  // Delete a Tutorial with id
-  router.delete("/:id", _carac.delete);
+  // Delete a carac_micromorfologica with id
+  router.delete("/:id", _carac_micromorfologica.delete);
 
-  // Delete all _carac
-  router.delete("/", _carac.deleteAll);
+  // Delete all carac_micromorfologica
+  router.delete("/", _carac_micromorfologica.deleteAll);
 
 
-  app.use('/api/caracmicro', router);
+  app.use('/api/carac_micromorfologica', router);
 
 }

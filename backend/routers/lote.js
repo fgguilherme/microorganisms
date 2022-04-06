@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////lote
 
-  // Create a new Tutorial
+  // Create a new lote
   router.post("/", _lote.create);
 
   // Retrieve all _lote
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _lote
   router.get("/search", _lote.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single lote with id
   router.get("/:id", _lote.findOne);
 
-  // Update a Tutorial with id
+  // Update a lote with id
   router.put("/:id", _lote.update);
 
-  // Delete a Tutorial with id
+  // Delete a lote with id
   router.delete("/:id", _lote.delete);
 
   // Delete all _lote

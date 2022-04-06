@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////DOMINIO
 
-  // Create a new Tutorial
+  // Create a new dominio
   router.post("/", _dominio.create);
 
   // Retrieve all _dominio
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _dominio
   router.get("/search", _dominio.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single dominio with id
   router.get("/:id", _dominio.findOne);
 
-  // Update a Tutorial with id
+  // Update a dominio with id
   router.put("/:id", _dominio.update);
 
-  // Delete a Tutorial with id
+  // Delete a dominio with id
   router.delete("/:id", _dominio.delete);
 
   // Delete all _dominio

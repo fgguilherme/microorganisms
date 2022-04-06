@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////armario
 
-  // Create a new Tutorial
+  // Create a new armario
   router.post("/", _armario.create);
 
   // Retrieve all _armario
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _armario
   router.get("/search", _armario.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single armario with id
   router.get("/:id", _armario.findOne);
 
-  // Update a Tutorial with id
+  // Update a armario with id
   router.put("/:id", _armario.update);
 
-  // Delete a Tutorial with id
+  // Delete a armario with id
   router.delete("/:id", _armario.delete);
 
   // Delete all _armario

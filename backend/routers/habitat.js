@@ -4,7 +4,7 @@ var router = require("express").Router();
 module.exports = app => {
     var _habitat = require("../controllers/habitat");
 
-  // Create a new Tutorial
+  // Create a new habitat
   router.post("/", _habitat.create);
 
   // Retrieve all _habitat
@@ -13,13 +13,13 @@ module.exports = app => {
   // Retrieve all published _habitat
   router.get("/search", _habitat.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single habitat with id
   router.get("/:id", _habitat.findOne);
 
-  // Update a Tutorial with id
+  // Update a habitat with id
   router.put("/:id", _habitat.update);
 
-  // Delete a Tutorial with id
+  // Delete a habitat with id
   router.delete("/:id", _habitat.delete);
 
   // Delete all _habitat

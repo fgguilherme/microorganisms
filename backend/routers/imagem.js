@@ -6,7 +6,7 @@ module.exports = app => {
 
 /////////imagem
 
-  // Create a new Tutorial
+  // Create a new imagem
   router.post("/", _imagem.create);
 
   // Retrieve all _imagem
@@ -15,13 +15,13 @@ module.exports = app => {
   // Retrieve all published _imagem
   router.get("/search", _imagem.findAllParam);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single imagem with id
   router.get("/:id", _imagem.findOne);
 
-  // Update a Tutorial with id
+  // Update a imagem with id
   router.put("/:id", _imagem.update);
 
-  // Delete a Tutorial with id
+  // Delete a imagem with id
   router.delete("/:id", _imagem.delete);
 
   // Delete all _imagem

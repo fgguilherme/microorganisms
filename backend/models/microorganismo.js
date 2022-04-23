@@ -100,18 +100,6 @@ module.exports = function(sequelize, DataTypes) {
         key: 'idpesquisador'
       }
     },
-    data_preserv: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
-    },
-    pesquisador_preserv: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
-      references: {
-        model: 'pesquisador',
-        key: 'idpesquisador'
-      }
-    },
     coment_isolamento: {
       type: DataTypes.STRING(45),
       allowNull: true
@@ -278,13 +266,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "pesquisador_ident" },
-        ]
-      },
-      {
-        name: "fk_microorganismo_pesquisador4_idx",
-        using: "BTREE",
-        fields: [
-          { name: "pesquisador_preserv" },
         ]
       },
       {

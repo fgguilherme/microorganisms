@@ -15,7 +15,7 @@ exports.create = async (req, res) => {
     !req.body.comentarios ||
     !req.body.disponivel ||
     !req.body.posicao_idposicao ||
-    !req.body.data ||
+    !req.body.data_issue ||
     !req.body.idreferencia ||
     !req.body.idimagem
   ) {

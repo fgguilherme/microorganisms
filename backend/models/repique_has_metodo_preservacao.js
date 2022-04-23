@@ -1,19 +1,19 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('microorganismo_has_metodo_preservacao', {
-    idmicroorganismo_has_metodo_preservacao: {
+  return sequelize.define('repique_has_metodo_preservacao', {
+    idrepique_has_metodo_preservacao: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    microorganismo_idmicroorganismo: {
+    repique_idrepique: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'microorganismo',
-        key: 'idmicroorganismo'
+        model: 'repique',
+        key: 'idrepique'
       }
     },
     metodo_preservacao_idmetodo_preservacao: {
@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'microorganismo_has_metodo_preservacao',
+    tableName: 'repique_has_metodo_preservacao',
     timestamps: false,
     indexes: [
       {
@@ -35,23 +35,23 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "idmicroorganismo_has_metodo_preservacao" },
-          { name: "microorganismo_idmicroorganismo" },
+          { name: "idrepique_has_metodo_preservacao" },
           { name: "metodo_preservacao_idmetodo_preservacao" },
+          { name: "repique_idrepique" },
         ]
       },
       {
-        name: "fk_microorganismo_has_metodo_preservacao_metodo_preservacao_idx",
+        name: "fk_repique_has_metodo_preservacao_metodo_preservacao1_idx",
         using: "BTREE",
         fields: [
           { name: "metodo_preservacao_idmetodo_preservacao" },
         ]
       },
       {
-        name: "fk_microorganismo_has_metodo_preservacao_microorganismo1_idx",
+        name: "fk_repique_has_metodo_preservacao_repique1_idx",
         using: "BTREE",
         fields: [
-          { name: "microorganismo_idmicroorganismo" },
+          { name: "repique_idrepique" },
         ]
       },
     ]

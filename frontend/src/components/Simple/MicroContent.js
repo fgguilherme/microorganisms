@@ -5,7 +5,7 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import axios from "axios";
 // components
-
+const baseurl = "http://localhost:8080"
 const customStyles = {
   content: {
     top: "50%",
@@ -132,7 +132,7 @@ export default function MicroContent(props) {
   const [status, setStatus] = useState([]);
   const [unidade, setUnidade] = useState([]);
   const [doacao, setDoacao] = useState([]);
- 
+
   const [dominioList, setDominioList] = useState([]);
   const [reinoList, setReinoList] = useState([]);
   const [filoList, setFiloList] = useState([]);
@@ -145,7 +145,7 @@ export default function MicroContent(props) {
   const [variedadeList, setVariedadeList] = useState([]);
   const [referenciaList, setReferenciaList] = useState([]);
 
-  
+
   const [pesquisadorList, setPesquisadorList] = useState([]);
   const [hospAnList, setHospAnList] = useState([]);
   const [hospVegList, setHospVegList] = useState([]);
@@ -189,36 +189,60 @@ export default function MicroContent(props) {
 
   useEffect(() => {
     // console.log(dominioList.length);
-    if(dominioList.length === 0){
-      axios.get("http://127.0.0.1:8080/api/dominio")
-      .then(response => {
-        console.log(response.data);
-        setDominioList(response.data);
-        if(dominio.iddominio){
-          setDominio(null);
-        }
-      }, error => {
-        console.log(error);
-      });
+    if (dominioList.length === 0) {
+      axios.get(baseurl+"/api/dominio")
+        .then(response => {
+          console.log(response.data);
+          setDominioList(response.data);
+          if (dominio.iddominio) {
+            setDominio(null);
+          }
+        }, error => {
+          console.log(error);
+        });
     }
-}, [])
+    // console.log(referenciaList.length);
+    if (referenciaList.length === 0) {
+      axios.get(baseurl+"/api/referencia")
+        .then(response => {
+          console.log(response.data);
+          setReferenciaList(response.data);
+          if (referencia.idreferencia) {
+            setReferencia(null);
+          }
+        }, error => {
+          console.log(error);
+        });
+    }
+    // console.log(pesquisadorList.length);
+    if (pesquisadorList.length === 0) {
+      axios.get(baseurl+"/api/pesquisador")
+        .then(response => {
+          console.log(response.data);
+          setPesquisadorList(response.data);
+        }, error => {
+          console.log(error);
+        });
+    }
+  }, [])
 
   useEffect(() => {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (dominio.iddominio) {
-        axios.get("http://127.0.0.1:8080/api/reino/search", {
+        axios.get(baseurl+"/api/reino/search", {
           params: {
             "dominio_iddominio": dominio.iddominio
-            }})
-        .then(response => {
-          console.log(response.data);
-          setReinoList(response.data);
-        }, error => {
-          console.log(error);
-        });
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setReinoList(response.data);
+          }, error => {
+            console.log(error);
+          });
       }
-      else{
+      else {
         setReinoList([])
         setReino(null)
       }
@@ -230,18 +254,19 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (reino?.idreino) {
-        axios.get("http://127.0.0.1:8080/api/filo/search", {
+        axios.get(baseurl+"/api/filo/search", {
           params: {
             "reino_idreino": reino.idreino
-            }})
-        .then(response => {
-          console.log(response.data);
-          setFiloList(response.data);
-        }, error => {
-          console.log(error);
-        });
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setFiloList(response.data);
+          }, error => {
+            console.log(error);
+          });
       }
-      else{
+      else {
         setFiloList([])
         setFilo(null)
       }
@@ -253,18 +278,19 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (filo?.idfilo) {
-        axios.get("http://127.0.0.1:8080/api/classe/search", {
+        axios.get(baseurl+"/api/classe/search", {
           params: {
             "filo_idfilo": filo.idfilo
-            }})
-        .then(response => {
-          console.log(response.data);
-          setClasseList(response.data);
-        }, error => {
-          console.log(error);
-        });
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setClasseList(response.data);
+          }, error => {
+            console.log(error);
+          });
       }
-      else{
+      else {
         setClasseList([])
         setClasse(null)
       }
@@ -276,18 +302,19 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (classe?.idclasse) {
-        axios.get("http://127.0.0.1:8080/api/ordem/search", {
+        axios.get(baseurl+"/api/ordem/search", {
           params: {
             "classe_idclasse": classe.idclasse
-            }})
-        .then(response => {
-          console.log(response.data);
-          setOrdemList(response.data);
-        }, error => {
-          console.log(error);
-        });
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setOrdemList(response.data);
+          }, error => {
+            console.log(error);
+          });
       }
-      else{
+      else {
         setOrdemList([])
         setOrdem(null)
       }
@@ -299,18 +326,19 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (ordem?.idordem) {
-        axios.get("http://127.0.0.1:8080/api/familia/search", {
+        axios.get(baseurl+"/api/familia/search", {
           params: {
             "ordem_idordem": ordem.idordem
-            }})
-        .then(response => {
-          console.log(response.data);
-          setFamiliaList(response.data);
-        }, error => {
-          console.log(error);
-        });
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setFamiliaList(response.data);
+          }, error => {
+            console.log(error);
+          });
       }
-      else{
+      else {
         setFamiliaList([])
         setFamilia(null)
       }
@@ -322,18 +350,19 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (familia?.idfamilia) {
-        axios.get("http://127.0.0.1:8080/api/genero/search", {
+        axios.get(baseurl+"/api/genero/search", {
           params: {
             "familia_idfamilia": familia.idfamilia
-            }})
-        .then(response => {
-          console.log(response.data);
-          setGeneroList(response.data);
-        }, error => {
-          console.log(error);
-        });
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setGeneroList(response.data);
+          }, error => {
+            console.log(error);
+          });
       }
-      else{
+      else {
         setGeneroList([])
         setGenero(null)
       }
@@ -345,18 +374,19 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (genero?.idgenero) {
-        axios.get("http://127.0.0.1:8080/api/especie/search", {
+        axios.get(baseurl+"/api/especie/search", {
           params: {
             "genero_idgenero": genero.idgenero
-            }})
-        .then(response => {
-          console.log(response.data);
-          setEspecieList(response.data);
-        }, error => {
-          console.log(error);
-        });
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setEspecieList(response.data);
+          }, error => {
+            console.log(error);
+          });
       }
-      else{
+      else {
         setEspecieList([])
         setEspecie(null)
       }
@@ -368,18 +398,19 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (especie?.idespecie) {
-        axios.get("http://127.0.0.1:8080/api/sub_especie/search", {
+        axios.get(baseurl+"/api/sub_especie/search", {
           params: {
             "especie_idespecie": especie.idespecie
-            }})
-        .then(response => {
-          console.log(response.data);
-          setSub_especieList(response.data);
-        }, error => {
-          console.log(error);
-        });
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setSub_especieList(response.data);
+          }, error => {
+            console.log(error);
+          });
       }
-      else{
+      else {
         setSub_especieList([])
         setSub_especie(null)
       }
@@ -391,18 +422,19 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (sub_especie?.idsub_especie) {
-        axios.get("http://127.0.0.1:8080/api/variedade/search", {
+        axios.get(baseurl+"/api/variedade/search", {
           params: {
             "sub_especie_idsub_especie": sub_especie.idsub_especie
-            }})
-        .then(response => {
-          console.log(response.data);
-          setVariedadeList(response.data);
-        }, error => {
-          console.log(error);
-        });
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setVariedadeList(response.data);
+          }, error => {
+            console.log(error);
+          });
       }
-      else{
+      else {
         setVariedadeList([])
         setVariedade(null)
       }
@@ -411,36 +443,57 @@ export default function MicroContent(props) {
   }, [sub_especie]);
 
   useEffect(() => {
-    // console.log("CUEN 1");
-    const fetchData = async () => {
-      if (variedade?.idvariedade) {
-        axios.get("http://127.0.0.1:8080/api/referencia/search", {
-          params: {
-            "variedade_idvariedade": variedade.idvariedade
-            }})
-        .then(response => {
-          console.log(response.data);
-          setReferenciaList(response.data);
-        }, error => {
-          console.log(error);
-        });
-      }
-      else{
-        setReferenciaList([])
-        setReferencia(null)
-      }
-    };
-    fetchData();
-  }, [variedade]);
-
-  useEffect(() => {
     console.log(habitat);
-    if(habitat?.idHabitat <= 2){
+    if (habitat?.idHabitat <= 2) {
       console.log("Vegetal")
-    } else if(habitat.idHabitat > 3){
+      // console.log("CUEN 1");
+      const fetchData = async () => {
+        axios.get(baseurl+"/api/habitat_veg/search", {
+          params: {
+            "isAnimal": "0"
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setHospVeg(response.data);
+          }, error => {
+            console.log(error);
+          });
+          axios.get(baseurl+"/api/substrato/search")
+            .then(response => {
+              console.log(response.data);
+              setSubstratoList(response.data);
+            }, error => {
+              console.log(error);
+            });
+      };
+      fetchData();
+    } else if (habitat?.idHabitat > 3) {
       console.log("outros")
-    }else{
+    } else if (habitat?.idHabitat === 3){
       console.log("animal")
+      // console.log("CUEN 1");
+      const fetchData = async () => {
+        axios.get(baseurl+"/api/habitat_ani/search", {
+          params: {
+            "isAnimal": "1"
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setHospAnList(response.data);
+          }, error => {
+            console.log(error);
+          });
+          axios.get(baseurl+"/api/sitio/")
+            .then(response => {
+              console.log(response.data);
+              setSitioAnatList(response.data);
+            }, error => {
+              console.log(error);
+            });
+      };
+      fetchData();
     }
   }, [habitat]);
 
@@ -464,125 +517,252 @@ export default function MicroContent(props) {
 
   function closeModal(persist) {
     console.log(tmpState)
-    if (persist === true && tmpState === "dominio"){
-      axios.post('http://localhost:8080/api/'+tmpState, {
+    if (persist === true && tmpState === "dominio") {
+      axios.post(baseurl+ '/api/' + tmpState, {
         dominio: itemValue,
       })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"/api/dominio")
+            .then(response => {
+              console.log(response.data);
+              setDominioList(response.data);
+              if (dominio.iddominio) {
+                setDominio(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
     }
-    if (persist === true && tmpState === "reino" && dominio.iddominio > 0){
-      axios.post('http://localhost:8080/api/'+tmpState, {
+    if (persist === true && tmpState === "reino" && dominio.iddominio > 0) {
+      axios.post(baseurl+ '/api/' + tmpState, {
         reino: itemValue,
         dominio_iddominio: dominio.iddominio
       })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          if (dominio.iddominio) {
+            axios.get(baseurl+"/api/reino/search", {
+              params: {
+                "dominio_iddominio": dominio.iddominio
+              }
+            })
+              .then(response => {
+                console.log(response.data);
+                setReinoList(response.data);
+              }, error => {
+                console.log(error);
+              });
+          }
+        }, (error) => {
+          console.log(error);
+        });
     }
-    if (persist === true && tmpState === "filo" && reino.idreino > 0){
-      axios.post('http://localhost:8080/api/'+tmpState, {
+    if (persist === true && tmpState === "filo" && reino.idreino > 0) {
+      axios.post(baseurl+ '/api/' + tmpState, {
         filo: itemValue,
         reino_idreino: reino.idreino
       })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          if (reino?.idreino) {
+            axios.get(baseurl+"/api/filo/search", {
+              params: {
+                "reino_idreino": reino.idreino
+              }
+            })
+              .then(response => {
+                console.log(response.data);
+                setFiloList(response.data);
+              }, error => {
+                console.log(error);
+              });
+          }
+        }, (error) => {
+          console.log(error);
+        });
     }
-    if (persist === true && tmpState === "classe" && filo.idfilo > 0){
-      axios.post('http://localhost:8080/api/'+tmpState, {
+    if (persist === true && tmpState === "classe" && filo.idfilo > 0) {
+      axios.post(baseurl+ '/api/' + tmpState, {
         classe: itemValue,
         filo_idfilo: filo.idfilo
       })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          if (filo?.idfilo) {
+            axios.get(baseurl+"/api/classe/search", {
+              params: {
+                "filo_idfilo": filo.idfilo
+              }
+            })
+              .then(response => {
+                console.log(response.data);
+                setClasseList(response.data);
+              }, error => {
+                console.log(error);
+              });
+          }
+        }, (error) => {
+          console.log(error);
+        });
     }
-    if (persist === true && tmpState === "ordem" && classe.idclasse > 0){
-      axios.post('http://localhost:8080/api/'+tmpState, {
+    if (persist === true && tmpState === "ordem" && classe.idclasse > 0) {
+      axios.post(baseurl+ '/api/' + tmpState, {
         ordem: itemValue,
         classe_idclasse: classe.idclasse
       })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          if (classe?.idclasse) {
+            axios.get(baseurl+"/api/ordem/search", {
+              params: {
+                "classe_idclasse": classe.idclasse
+              }
+            })
+              .then(response => {
+                console.log(response.data);
+                setOrdemList(response.data);
+              }, error => {
+                console.log(error);
+              });
+          }
+        }, (error) => {
+          console.log(error);
+        });
     }
-    if (persist === true && tmpState === "familia" && ordem.idordem > 0){
-      axios.post('http://localhost:8080/api/'+tmpState, {
+    if (persist === true && tmpState === "familia" && ordem.idordem > 0) {
+      axios.post(baseurl+ '/api/' + tmpState, {
         familia: itemValue,
         ordem_idordem: ordem.idordem
       })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          if (ordem?.idordem) {
+            axios.get(baseurl+"/api/familia/search", {
+              params: {
+                "ordem_idordem": ordem.idordem
+              }
+            })
+              .then(response => {
+                console.log(response.data);
+                setFamiliaList(response.data);
+              }, error => {
+                console.log(error);
+              });
+          }
+        }, (error) => {
+          console.log(error);
+        });
     }
-    if (persist === true && tmpState === "genero" && familia.idfamilia > 0){
-      axios.post('http://localhost:8080/api/'+tmpState, {
+    if (persist === true && tmpState === "genero" && familia.idfamilia > 0) {
+      axios.post(baseurl+ '/api/' + tmpState, {
         genero: itemValue,
         familia_idfamilia: familia.idfamilia
       })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          if (familia?.idfamilia) {
+            axios.get(baseurl+"/api/genero/search", {
+              params: {
+                "familia_idfamilia": familia.idfamilia
+              }
+            })
+              .then(response => {
+                console.log(response.data);
+                setGeneroList(response.data);
+              }, error => {
+                console.log(error);
+              });
+          }
+        }, (error) => {
+          console.log(error);
+        });
       console.log(itemValue);
     }
-    if (persist === true && tmpState === "especie" && genero.idgenero > 0){
-      axios.post('http://localhost:8080/api/'+tmpState, {
+    if (persist === true && tmpState === "especie" && genero.idgenero > 0) {
+      axios.post(baseurl+ '/api/' + tmpState, {
         especie: itemValue,
-        genero_idgenero: genero.idgenero        
+        genero_idgenero: genero.idgenero
       })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          if (genero?.idgenero) {
+            axios.get(baseurl+"/api/especie/search", {
+              params: {
+                "genero_idgenero": genero.idgenero
+              }
+            })
+              .then(response => {
+                console.log(response.data);
+                setEspecieList(response.data);
+              }, error => {
+                console.log(error);
+              });
+          }
+        }, (error) => {
+          console.log(error);
+        });
     }
-    if (persist === true && tmpState === "sub_especie" && especie.idespecie > 0){
-      axios.post('http://localhost:8080/api/'+tmpState, {
+    if (persist === true && tmpState === "sub_especie" && especie.idespecie > 0) {
+      axios.post(baseurl+ '/api/' + tmpState, {
         sub_especie: itemValue,
         especie_idespecie: especie.idespecie
       })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          if (especie?.idespecie) {
+            axios.get(baseurl+"/api/sub_especie/search", {
+              params: {
+                "especie_idespecie": especie.idespecie
+              }
+            })
+              .then(response => {
+                console.log(response.data);
+                setSub_especieList(response.data);
+              }, error => {
+                console.log(error);
+              });
+          }
+        }, (error) => {
+          console.log(error);
+        });
     }
-    if (persist === true && tmpState === "variedade" && sub_especie.idsub_especie > 0){
-      axios.post('http://localhost:8080/api/'+tmpState, {
+    if (persist === true && tmpState === "variedade" && sub_especie.idsub_especie > 0) {
+      axios.post(baseurl+ '/api/' + tmpState, {
         variedade: itemValue,
         sub_especie_idsub_especie: sub_especie.idsub_especie
       })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          if (sub_especie?.idsub_especie) {
+            axios.get(baseurl+"/api/variedade/search", {
+              params: {
+                "sub_especie_idsub_especie": sub_especie.idsub_especie
+              }
+            })
+              .then(response => {
+                console.log(response.data);
+                setVariedadeList(response.data);
+              }, error => {
+                console.log(error);
+              });
+          }
+        }, (error) => {
+          console.log(error);
+        });
     }
-    if (persist === true && tmpState === "referencia"){
-      axios.post('http://localhost:8080/api/'+tmpState, {
+    if (persist === true && tmpState === "referencia") {
+      axios.post(baseurl+ '/api/' + tmpState, {
         referencia: itemValue,
       })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
     }
     setIsOpen(false);
   }
@@ -636,6 +816,7 @@ export default function MicroContent(props) {
       {/* MODAL DEFAULT */}
       <Modal
         isOpen={modalIsOpen}
+        ariaHideApp={false}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
@@ -660,7 +841,7 @@ export default function MicroContent(props) {
                     disabled={props.showOnly}
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    // value={itemValue}
+                  // value={itemValue}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -1232,7 +1413,7 @@ export default function MicroContent(props) {
                             defaultValue={familia}
                             onChange={setFamilia}
                             getOptionLabel={(options) => options["familia"]}
-                            getOptionValue={(options) => options["idFamilia"]}
+                            getOptionValue={(options) => options["idfamilia"]}
                           />
                           {props.showOnly === false ? (
                             <>
@@ -1275,7 +1456,7 @@ export default function MicroContent(props) {
                             defaultValue={genero}
                             onChange={setGenero}
                             getOptionLabel={(options) => options["genero"]}
-                            getOptionValue={(options) => options["idGenero"]}
+                            getOptionValue={(options) => options["idgenero"]}
                           />
                           {props.showOnly === false ? (
                             <>
@@ -1318,7 +1499,7 @@ export default function MicroContent(props) {
                             defaultValue={especie}
                             onChange={setEspecie}
                             getOptionLabel={(options) => options["especie"]}
-                            getOptionValue={(options) => options["idEspecie"]}
+                            getOptionValue={(options) => options["idespecie"]}
                           />
                           {props.showOnly === false ? (
                             <>
@@ -1368,8 +1549,7 @@ export default function MicroContent(props) {
                             defaultValue={sub_especie}
                             onChange={setSub_especie}
                             getOptionLabel={(options) => options["sub_especie"]}
-                            getOptionValue={(options) =>
-                              options["idSub_especie"]
+                            getOptionValue={(options) => options["idsub_especie"]
                             }
                           />
                           {/* <select
@@ -1434,7 +1614,7 @@ export default function MicroContent(props) {
                             defaultValue={variedade}
                             onChange={setVariedade}
                             getOptionLabel={(options) => options["variedade"]}
-                            getOptionValue={(options) => options["idVariedade"]}
+                            getOptionValue={(options) => options["idvariedade"]}
                           />
                           {props.showOnly === false ? (
                             <>
@@ -1489,8 +1669,7 @@ export default function MicroContent(props) {
                             isMulti
                             onChange={setReferencia}
                             getOptionLabel={(options) => options["referencia"]}
-                            getOptionValue={(options) =>
-                              options["idReferencia"]
+                            getOptionValue={(options) => options["idreferencia"]
                             }
                           />
                           {props.showOnly === false ? (
@@ -1536,7 +1715,7 @@ export default function MicroContent(props) {
                             defaultValue={status}
                             onChange={setStatus}
                             getOptionLabel={(options) => options["status"]}
-                            getOptionValue={(options) => options["idStatus"]}
+                            getOptionValue={(options) => options["idstatus"]}
                           />
                         </div>
                       </div>
@@ -1622,10 +1801,8 @@ export default function MicroContent(props) {
                             options={pesquisadorList}
                             defaultValue={coletor}
                             onChange={setColetor}
-                            getOptionLabel={(options) => options["pesquisador"]}
-                            getOptionValue={(options) =>
-                              options["idPesquisador"]
-                            }
+                            getOptionLabel={(options) => options["nome"]+" - "+options["email"]+" - "+options["instituicao"]}
+                            getOptionValue={(options) => options["idpesquisador"]}
                           />
                           {props.showOnly === false ? (
                             <>
@@ -1683,258 +1860,258 @@ export default function MicroContent(props) {
                         </div>
                       </div>
                       {habitat.idHabitat <= 2 ? (
-                        
+
                         <>
-                        <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Hospedeiro vegetal (Espécie)
-                            {/* ARTIGO -  */}
-                          </label>
-
-                          <Select
-                            className="w-8/12"
-                            isDisabled={props.showOnly}
-                            searchable={true}
-                            placeholder={"Select an option"}
-                            options={hospVegList}
-                            defaultValue={hospVeg}
-                            isMulti
-                            onChange={setHospVeg}
-                            getOptionLabel={(options) => options["hospedeiro"]}
-                            getOptionValue={(options) =>
-                              options["idHospedeiro"]
-                            }
-                          />
-                          {props.showOnly === false ? (
-                            <>
-                              <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={() => {
-                                  openModal("Hospedeiro vegetal", "");
-                                }}
+                          <div className="w-full lg:w-6/12 px-4">
+                            <div className="relative w-full mb-3">
+                              <label
+                                className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                htmlFor="grid-password"
                               >
-                                <i className="fas fa-plus"></i>
-                              </button>
-                              <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={() => {
-                                  openModal("Hospedeiro vegetal", "");
-                                }}
+                                Hospedeiro vegetal (Espécie)
+                                {/* ARTIGO -  */}
+                              </label>
+
+                              <Select
+                                className="w-8/12"
+                                isDisabled={props.showOnly}
+                                searchable={true}
+                                placeholder={"Select an option"}
+                                options={hospVegList}
+                                defaultValue={hospVeg}
+                                isMulti
+                                onChange={setHospVeg}
+                                getOptionLabel={(options) => options["hospedeiro"]}
+                                getOptionValue={(options) =>
+                                  options["idHospedeiro"]
+                                }
+                              />
+                              {props.showOnly === false ? (
+                                <>
+                                  <button
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={() => {
+                                      openModal("Hospedeiro vegetal", "");
+                                    }}
+                                  >
+                                    <i className="fas fa-plus"></i>
+                                  </button>
+                                  <button
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={() => {
+                                      openModal("Hospedeiro vegetal", "");
+                                    }}
+                                  >
+                                    <i className="fas fa-pencil-alt" />
+                                  </button>
+                                </>
+                              ) : null}
+                            </div>
+                          </div>
+
+                          <div className="w-full lg:w-6/12 px-4">
+                            <div className="relative w-full mb-3">
+                              <label
+                                className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                htmlFor="grid-password"
                               >
-                                <i className="fas fa-pencil-alt" />
-                              </button>
-                            </>
-                          ) : null}
-                        </div>
-                      </div>
+                                Substrato
+                                {/* ARTIGO -  */}
+                              </label>
 
-                      <div className="w-full lg:w-6/12 px-4">
-                      <div className="relative w-full mb-3">
-                        <label
-                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          Substrato
-                          {/* ARTIGO -  */}
-                        </label>
+                              <Select
+                                className="w-8/12"
+                                isDisabled={props.showOnly}
+                                searchable={true}
+                                placeholder={"Select an option"}
+                                options={substratoList}
+                                defaultValue={substrato}
+                                isMulti
+                                onChange={setSubstrato}
+                                getOptionLabel={(options) => options["substrato"]}
+                                getOptionValue={(options) =>
+                                  options["idSubstrato"]
+                                }
+                              />
+                              {props.showOnly === false ? (
+                                <>
+                                  <button
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={() => {
+                                      openModal("Substrato", "");
+                                    }}
+                                  >
+                                    <i className="fas fa-plus"></i>
+                                  </button>
+                                  <button
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={() => {
+                                      openModal("Substrato", "Coco");
+                                    }}
+                                  >
+                                    <i className="fas fa-pencil-alt" />
+                                  </button>
+                                </>
+                              ) : null}
+                            </div>
+                          </div>
 
-                        <Select
-                          className="w-8/12"
-                          isDisabled={props.showOnly}
-                          searchable={true}
-                          placeholder={"Select an option"}
-                          options={substratoList}
-                          defaultValue={substrato}
-                          isMulti
-                          onChange={setSubstrato}
-                          getOptionLabel={(options) => options["substrato"]}
-                          getOptionValue={(options) =>
-                            options["idSubstrato"]
-                          }
-                        />
-                        {props.showOnly === false ? (
-                          <>
-                            <button
-                              className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                              type="button"
-                              onClick={() => {
-                                openModal("Substrato", "");
-                              }}
-                            >
-                              <i className="fas fa-plus"></i>
-                            </button>
-                            <button
-                              className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                              type="button"
-                              onClick={() => {
-                                openModal("Substrato", "Coco");
-                              }}
-                            >
-                              <i className="fas fa-pencil-alt" />
-                            </button>
-                          </>
-                        ) : null}
-                      </div>
-                      </div>
+                          <div className="w-full lg:w-4/12 px-4">
+                            <div className="relative w-full mb-3">
+                              <label
+                                className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                htmlFor="grid-password"
+                              >
+                                Registro da Exsicata do Hospedeiro
+                              </label>
+                              <input
+                                disabled={props.showOnly}
+                                type="email"
+                                className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                defaultValue=""
+                              />
+                            </div>
+                          </div>
 
-                      <div className="w-full lg:w-4/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Registro da Exsicata do Hospedeiro
-                          </label>
-                          <input
-                            disabled={props.showOnly}
-                            type="email"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
-                          />
-                        </div>
-                      </div>
+                          <div className="w-full lg:w-4/12 px-4">
+                            <div className="relative w-full mb-3">
+                              <label
+                                className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                htmlFor="grid-password"
+                              >
+                                Herbário do depósito do hospedeiro
+                              </label>
+                              <input
+                                disabled={props.showOnly}
+                                type="email"
+                                className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                defaultValue=""
+                              />
+                            </div>
+                          </div>
 
-                      <div className="w-full lg:w-4/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Herbário do depósito do hospedeiro
-                          </label>
-                          <input
-                            disabled={props.showOnly}
-                            type="email"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
-                          />
-                        </div>
-                      </div>
-
-                      <div className="w-full lg:w-4/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Código original do herbário
-                          </label>
-                          <input
-                            disabled={props.showOnly}
-                            type="email"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
-                          />
-                        </div>
-                      </div>
-                      </>
+                          <div className="w-full lg:w-4/12 px-4">
+                            <div className="relative w-full mb-3">
+                              <label
+                                className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                htmlFor="grid-password"
+                              >
+                                Código original do herbário
+                              </label>
+                              <input
+                                disabled={props.showOnly}
+                                type="email"
+                                className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                defaultValue=""
+                              />
+                            </div>
+                          </div>
+                        </>
                       ) : null}
                       {habitat.idHabitat === 3 ? (
                         <>
-                        <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Hospedeiro animal (Espécie)
-                            {/* ARTIGO -  */}
-                          </label>
-
-                          <Select
-                            className="w-8/12"
-                            isDisabled={props.showOnly}
-                            searchable={true}
-                            placeholder={"Select an option"}
-                            options={hospAnList}
-                            defaultValue={hospAn}
-                            isMulti
-                            onChange={setHospAn}
-                            getOptionLabel={(options) => options["hospedeiro"]}
-                            getOptionValue={(options) =>
-                              options["idHospedeiro"]
-                            }
-                          />
-                          {props.showOnly === false ? (
-                            <>
-                              <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={() => {
-                                  openModal("Hospedeiro animal", "");
-                                }}
+                          <div className="w-full lg:w-6/12 px-4">
+                            <div className="relative w-full mb-3">
+                              <label
+                                className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                htmlFor="grid-password"
                               >
-                                <i className="fas fa-plus"></i>
-                              </button>
-                              <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={() => {
-                                  openModal("Hospedeiro animal", "");
-                                }}
+                                Hospedeiro animal (Espécie)
+                                {/* ARTIGO -  */}
+                              </label>
+
+                              <Select
+                                className="w-8/12"
+                                isDisabled={props.showOnly}
+                                searchable={true}
+                                placeholder={"Select an option"}
+                                options={hospAnList}
+                                defaultValue={hospAn}
+                                isMulti
+                                onChange={setHospAn}
+                                getOptionLabel={(options) => options["hospedeiro"]}
+                                getOptionValue={(options) =>
+                                  options["idHospedeiro"]
+                                }
+                              />
+                              {props.showOnly === false ? (
+                                <>
+                                  <button
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={() => {
+                                      openModal("Hospedeiro animal", "");
+                                    }}
+                                  >
+                                    <i className="fas fa-plus"></i>
+                                  </button>
+                                  <button
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={() => {
+                                      openModal("Hospedeiro animal", "");
+                                    }}
+                                  >
+                                    <i className="fas fa-pencil-alt" />
+                                  </button>
+                                </>
+                              ) : null}
+                            </div>
+                          </div>
+
+                          <div className="w-full lg:w-6/12 px-4">
+                            <div className="relative w-full mb-3">
+                              <label
+                                className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                htmlFor="grid-password"
                               >
-                                <i className="fas fa-pencil-alt" />
-                              </button>
-                            </>
-                          ) : null}
-                        </div>
-                      </div>
+                                Sítio anatômico
+                                {/* ARTIGO -  */}
+                              </label>
 
-                      <div className="w-full lg:w-6/12 px-4">
-                      <div className="relative w-full mb-3">
-                        <label
-                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          Sítio anatômico
-                          {/* ARTIGO -  */}
-                        </label>
-
-                        <Select
-                          className="w-8/12"
-                          isDisabled={props.showOnly}
-                          searchable={true}
-                          placeholder={"Select an option"}
-                          options={sitioAnatList}
-                          defaultValue={sitioAnat}
-                          isMulti
-                          onChange={setSitioAnat}
-                          getOptionLabel={(options) => options["sitio"]}
-                          getOptionValue={(options) =>
-                            options["idSitio"]
-                          }
-                        />
-                        {props.showOnly === false ? (
-                          <>
-                            <button
-                              className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                              type="button"
-                              onClick={() => {
-                                openModal("Sítio anatômico", "");
-                              }}
-                            >
-                              <i className="fas fa-plus"></i>
-                            </button>
-                            <button
-                              className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                              type="button"
-                              onClick={() => {
-                                openModal("Sítio anatômico", "Coco");
-                              }}
-                            >
-                              <i className="fas fa-pencil-alt" />
-                            </button>
-                          </>
-                        ) : null}
-                      </div>
-                      </div>
-                      </>
+                              <Select
+                                className="w-8/12"
+                                isDisabled={props.showOnly}
+                                searchable={true}
+                                placeholder={"Select an option"}
+                                options={sitioAnatList}
+                                defaultValue={sitioAnat}
+                                isMulti
+                                onChange={setSitioAnat}
+                                getOptionLabel={(options) => options["sitio"]}
+                                getOptionValue={(options) =>
+                                  options["idSitio"]
+                                }
+                              />
+                              {props.showOnly === false ? (
+                                <>
+                                  <button
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={() => {
+                                      openModal("Sítio anatômico", "");
+                                    }}
+                                  >
+                                    <i className="fas fa-plus"></i>
+                                  </button>
+                                  <button
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={() => {
+                                      openModal("Sítio anatômico", "Coco");
+                                    }}
+                                  >
+                                    <i className="fas fa-pencil-alt" />
+                                  </button>
+                                </>
+                              ) : null}
+                            </div>
+                          </div>
+                        </>
                       ) : null}
                       <div className="w-full lg:w-12/12 px-4">
                         <div className="relative w-full mb-3">
@@ -2190,116 +2367,6 @@ export default function MicroContent(props) {
                                     "pesq1@uea.edu.br",
                                     "UEA",
                                   ]);
-                                }}
-                              >
-                                <i className="fas fa-pencil-alt" />
-                              </button>
-                            </>
-                          ) : null}
-                        </div>
-                      </div>
-                      <div className="w-full lg:w-3/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Data da preservação
-                          </label>
-                          <input
-                            disabled={props.showOnly}
-                            type="date"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          />
-                        </div>
-                      </div>
-                      <div className="w-full lg:w-9/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Responsável pela preservação
-                          </label>
-                          <Select
-                            className="w-8/12"
-                            isDisabled={props.showOnly}
-                            searchable={true}
-                            placeholder={"Select an option"}
-                            options={pesquisadorList}
-                            defaultValue={pesqPres}
-                            onChange={setPesqPres}
-                            getOptionLabel={(options) => options["pesquisador"]}
-                            getOptionValue={(options) =>
-                              options["idPesquisador"]
-                            }
-                          />
-                          {props.showOnly === false ? (
-                            <>
-                              <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={() => {
-                                  openPersonModal("Domínio", ["", "", ""]);
-                                }}
-                              >
-                                <i className="fas fa-plus"></i>
-                              </button>
-                              <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={() => {
-                                  openPersonModal("Domínio", [
-                                    "Pesquisador 1",
-                                    "pesq1@uea.edu.br",
-                                    "UEA",
-                                  ]);
-                                }}
-                              >
-                                <i className="fas fa-pencil-alt" />
-                              </button>
-                            </>
-                          ) : null}
-                        </div>
-                      </div>
-
-                      <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Método de Preservação
-                          </label>
-
-                          <Select
-                            className="w-8/12"
-                            isDisabled={props.showOnly}
-                            searchable={true}
-                            isMulti
-                            placeholder={"Select an option"}
-                            options={dominioList}
-                            defaultValue={dominio}
-                            onChange={setDominio}
-                            getOptionLabel={(options) => options["dominio"]}
-                            getOptionValue={(options) => options["idDominio"]}
-                          />
-                          {props.showOnly === false ? (
-                            <>
-                              <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={() => {
-                                  openModal("Método de Preservação", "");
-                                }}
-                              >
-                                <i className="fas fa-plus"></i>
-                              </button>
-                              <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={() => {
-                                  openModal("Método de Preservação", "Coco");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3265,6 +3332,116 @@ export default function MicroContent(props) {
                                 type="button"
                                 onClick={() => {
                                   openModal("Posição", "Coco");
+                                }}
+                              >
+                                <i className="fas fa-pencil-alt" />
+                              </button>
+                            </>
+                          ) : null}
+                        </div>
+                      </div>
+                      <div className="w-full lg:w-3/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Data da preservação
+                          </label>
+                          <input
+                            disabled={props.showOnly}
+                            type="date"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          />
+                        </div>
+                      </div>
+                      <div className="w-full lg:w-9/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Responsável pela preservação
+                          </label>
+                          <Select
+                            className="w-8/12"
+                            isDisabled={props.showOnly}
+                            searchable={true}
+                            placeholder={"Select an option"}
+                            options={pesquisadorList}
+                            defaultValue={pesqPres}
+                            onChange={setPesqPres}
+                            getOptionLabel={(options) => options["pesquisador"]}
+                            getOptionValue={(options) =>
+                              options["idPesquisador"]
+                            }
+                          />
+                          {props.showOnly === false ? (
+                            <>
+                              <button
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                type="button"
+                                onClick={() => {
+                                  openPersonModal("Domínio", ["", "", ""]);
+                                }}
+                              >
+                                <i className="fas fa-plus"></i>
+                              </button>
+                              <button
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                type="button"
+                                onClick={() => {
+                                  openPersonModal("Domínio", [
+                                    "Pesquisador 1",
+                                    "pesq1@uea.edu.br",
+                                    "UEA",
+                                  ]);
+                                }}
+                              >
+                                <i className="fas fa-pencil-alt" />
+                              </button>
+                            </>
+                          ) : null}
+                        </div>
+                      </div>
+
+                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Método de Preservação
+                          </label>
+
+                          <Select
+                            className="w-8/12"
+                            isDisabled={props.showOnly}
+                            searchable={true}
+                            isMulti
+                            placeholder={"Select an option"}
+                            options={dominioList}
+                            defaultValue={dominio}
+                            onChange={setDominio}
+                            getOptionLabel={(options) => options["dominio"]}
+                            getOptionValue={(options) => options["idDominio"]}
+                          />
+                          {props.showOnly === false ? (
+                            <>
+                              <button
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                type="button"
+                                onClick={() => {
+                                  openModal("Método de Preservação", "");
+                                }}
+                              >
+                                <i className="fas fa-plus"></i>
+                              </button>
+                              <button
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                type="button"
+                                onClick={() => {
+                                  openModal("Método de Preservação", "Coco");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />

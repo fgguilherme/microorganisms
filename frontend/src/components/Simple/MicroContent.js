@@ -122,7 +122,7 @@ export default function MicroContent(props) {
   const [familia, setFamilia] = useState([]);
   const [genero, setGenero] = useState([]);
   const [especie, setEspecie] = useState([]);
-  const [subespecie, setSubespecie] = useState([]);
+  const [sub_especie, setSub_especie] = useState([]);
   const [variedade, setVariedade] = useState([]);
   const [referencia, setReferencia] = useState([]);
   const [coletor, setColetor] = useState([]);
@@ -132,6 +132,7 @@ export default function MicroContent(props) {
   const [status, setStatus] = useState([]);
   const [unidade, setUnidade] = useState([]);
   const [doacao, setDoacao] = useState([]);
+ 
   const [dominioList, setDominioList] = useState([]);
   const [reinoList, setReinoList] = useState([]);
   const [filoList, setFiloList] = useState([]);
@@ -140,7 +141,7 @@ export default function MicroContent(props) {
   const [familiaList, setFamiliaList] = useState([]);
   const [generoList, setGeneroList] = useState([]);
   const [especieList, setEspecieList] = useState([]);
-  const [subespecieList, setSubespecieList] = useState([]);
+  const [sub_especieList, setSub_especieList] = useState([]);
   const [variedadeList, setVariedadeList] = useState([]);
   const [referenciaList, setReferenciaList] = useState([]);
 
@@ -187,7 +188,7 @@ export default function MicroContent(props) {
   const [laboratorio, setLaboratorio] = useState([]);
 
   useEffect(() => {
-    console.log(dominioList.length);
+    // console.log(dominioList.length);
     if(dominioList.length === 0){
       axios.get("http://127.0.0.1:8080/api/dominio")
       .then(response => {
@@ -228,7 +229,7 @@ export default function MicroContent(props) {
   useEffect(() => {
     // console.log("CUEN 1");
     const fetchData = async () => {
-      if (reino.idreino) {
+      if (reino?.idreino) {
         axios.get("http://127.0.0.1:8080/api/filo/search", {
           params: {
             "reino_idreino": reino.idreino
@@ -251,7 +252,7 @@ export default function MicroContent(props) {
   useEffect(() => {
     // console.log("CUEN 1");
     const fetchData = async () => {
-      if (filo.idfilo) {
+      if (filo?.idfilo) {
         axios.get("http://127.0.0.1:8080/api/classe/search", {
           params: {
             "filo_idfilo": filo.idfilo
@@ -274,7 +275,7 @@ export default function MicroContent(props) {
   useEffect(() => {
     // console.log("CUEN 1");
     const fetchData = async () => {
-      if (classe.idclasse) {
+      if (classe?.idclasse) {
         axios.get("http://127.0.0.1:8080/api/ordem/search", {
           params: {
             "classe_idclasse": classe.idclasse
@@ -297,7 +298,7 @@ export default function MicroContent(props) {
   useEffect(() => {
     // console.log("CUEN 1");
     const fetchData = async () => {
-      if (ordem.idordem) {
+      if (ordem?.idordem) {
         axios.get("http://127.0.0.1:8080/api/familia/search", {
           params: {
             "ordem_idordem": ordem.idordem
@@ -320,7 +321,7 @@ export default function MicroContent(props) {
   useEffect(() => {
     // console.log("CUEN 1");
     const fetchData = async () => {
-      if (familia.idfamilia) {
+      if (familia?.idfamilia) {
         axios.get("http://127.0.0.1:8080/api/genero/search", {
           params: {
             "familia_idfamilia": familia.idfamilia
@@ -343,7 +344,7 @@ export default function MicroContent(props) {
   useEffect(() => {
     // console.log("CUEN 1");
     const fetchData = async () => {
-      if (genero.idgenero) {
+      if (genero?.idgenero) {
         axios.get("http://127.0.0.1:8080/api/especie/search", {
           params: {
             "genero_idgenero": genero.idgenero
@@ -366,21 +367,21 @@ export default function MicroContent(props) {
   useEffect(() => {
     // console.log("CUEN 1");
     const fetchData = async () => {
-      if (especie.idespecie) {
+      if (especie?.idespecie) {
         axios.get("http://127.0.0.1:8080/api/sub_especie/search", {
           params: {
             "especie_idespecie": especie.idespecie
             }})
         .then(response => {
           console.log(response.data);
-          setSubespecieList(response.data);
+          setSub_especieList(response.data);
         }, error => {
           console.log(error);
         });
       }
       else{
-        setSubespecieList([])
-        setSubespecie(null)
+        setSub_especieList([])
+        setSub_especie(null)
       }
     };
     fetchData();
@@ -389,10 +390,10 @@ export default function MicroContent(props) {
   useEffect(() => {
     // console.log("CUEN 1");
     const fetchData = async () => {
-      if (subespecie.idsubespecie) {
+      if (sub_especie?.idsub_especie) {
         axios.get("http://127.0.0.1:8080/api/variedade/search", {
           params: {
-            "subespecie_idsubespecie": subespecie.idsubespecie
+            "sub_especie_idsub_especie": sub_especie.idsub_especie
             }})
         .then(response => {
           console.log(response.data);
@@ -407,12 +408,12 @@ export default function MicroContent(props) {
       }
     };
     fetchData();
-  }, [subespecie]);
+  }, [sub_especie]);
 
   useEffect(() => {
     // console.log("CUEN 1");
     const fetchData = async () => {
-      if (variedade.idvariedade) {
+      if (variedade?.idvariedade) {
         axios.get("http://127.0.0.1:8080/api/referencia/search", {
           params: {
             "variedade_idvariedade": variedade.idvariedade
@@ -434,7 +435,7 @@ export default function MicroContent(props) {
 
   useEffect(() => {
     console.log(habitat);
-    if(habitat.idHabitat <= 2){
+    if(habitat?.idHabitat <= 2){
       console.log("Vegetal")
     } else if(habitat.idHabitat > 3){
       console.log("outros")
@@ -484,6 +485,105 @@ export default function MicroContent(props) {
         console.log(error);
       });
     }
+    if (persist === true && tmpState === "filo" && reino.idreino > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        filo: itemValue,
+        reino_idreino: reino.idreino
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "classe" && filo.idfilo > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        classe: itemValue,
+        filo_idfilo: filo.idfilo
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "ordem" && classe.idclasse > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        ordem: itemValue,
+        classe_idclasse: classe.idclasse
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "familia" && ordem.idordem > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        familia: itemValue,
+        ordem_idordem: ordem.idordem
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "genero" && familia.idfamilia > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        genero: itemValue,
+        familia_idfamilia: familia.idfamilia
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+      console.log(itemValue);
+    }
+    if (persist === true && tmpState === "especie" && genero.idgenero > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        especie: itemValue,
+        genero_idgenero: genero.idgenero        
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "sub_especie" && especie.idespecie > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        sub_especie: itemValue,
+        especie_idespecie: especie.idespecie
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "variedade" && sub_especie.idsub_especie > 0){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        variedade: itemValue,
+        sub_especie_idsub_especie: sub_especie.idsub_especie
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    if (persist === true && tmpState === "referencia"){
+      axios.post('http://localhost:8080/api/'+tmpState, {
+        referencia: itemValue,
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
     setIsOpen(false);
   }
   //END DEFAULT MODAL
@@ -510,7 +610,7 @@ export default function MicroContent(props) {
 
   //END PERSON MODAL
 
-  //START AUTOR MODAL - ESPECIE/SUBESPECIE/VARIEDADE - TAXA
+  //START AUTOR MODAL - ESPECIE/SUB_ESPECIE/VARIEDADE - TAXA
   const [itemAutorName, setItemAutorName] = React.useState(["", ""]);
   const [itemAutorValue, setItemAutorValue] = React.useState(["", ""]);
   const [modalAutorIsOpen, setAutorIsOpen] = useState(false);
@@ -1166,7 +1266,6 @@ export default function MicroContent(props) {
                           >
                             Gênero
                           </label>
-
                           <Select
                             className="w-8/12"
                             isDisabled={props.showOnly}
@@ -1221,17 +1320,6 @@ export default function MicroContent(props) {
                             getOptionLabel={(options) => options["especie"]}
                             getOptionValue={(options) => options["idEspecie"]}
                           />
-                          {/* <select
-                            className="text-blueGray-600 text-xs font-bold mb-2 w-full"
-                            disabled={props.showOnly}
-                          >
-                            <option value="laranja">Laranja</option>
-                            <option value="limao">Limão</option>
-                            <option selected value="Aspergillus niger - (Jacq.) P. Kumm. 1871">
-                            Aspergillus niger - (Jacq.) P. Kumm. 1871
-                            </option>
-                            <option value="manga">Manga</option>
-                          </select> */}
                           {props.showOnly === false ? (
                             <>
                               <button
@@ -1253,9 +1341,7 @@ export default function MicroContent(props) {
                                   openAutorModal(
                                     ["Espécie", "Autor"],
                                     [
-                                      "Aspergillus niger",
-                                      "(Jacq.) P. Kumm. 1871",
-                                    ]
+                                      "", ""]
                                   );
                                 }}
                               >
@@ -1278,12 +1364,12 @@ export default function MicroContent(props) {
                             isDisabled={props.showOnly}
                             searchable={true}
                             placeholder={"Select an option"}
-                            options={subespecieList}
-                            defaultValue={subespecie}
-                            onChange={setSubespecie}
-                            getOptionLabel={(options) => options["subespecie"]}
+                            options={sub_especieList}
+                            defaultValue={sub_especie}
+                            onChange={setSub_especie}
+                            getOptionLabel={(options) => options["sub_especie"]}
                             getOptionValue={(options) =>
-                              options["idSubespecie"]
+                              options["idSub_especie"]
                             }
                           />
                           {/* <select

@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "http://localhost:4200"
 };
 
 app.use(cors());
@@ -20,14 +20,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./models");
-db.sequelize.sync().then(()=>{
-})
+// db.sequelize.sync().then(()=>{
+// })
 
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
-console.log("--------------------------------");
+
 require("./routers")(app);
 
 // set port, listen for requests

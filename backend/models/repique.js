@@ -48,8 +48,20 @@ module.exports = function(sequelize, DataTypes) {
         key: 'idposicao'
       }
     },
-    data: {
+    data_emission: {
       type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    pesquisador_preserv: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      references: {
+        model: 'pesquisador',
+        key: 'idpesquisador'
+      }
+    },
+    data_preserv: {
+      type: DataTypes.DATE,
       allowNull: true
     }
   }, {
@@ -99,6 +111,13 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "posicao_idposicao" },
+        ]
+      },
+      {
+        name: "fk_repique_pesquisador1_idx",
+        using: "BTREE",
+        fields: [
+          { name: "pesquisador_preserv" },
         ]
       },
     ]

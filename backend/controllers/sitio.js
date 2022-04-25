@@ -136,6 +136,7 @@ exports.deleteAll = (req, res) => {
 // Find all published Elements
 exports.findAllParam = (req, res) => {
     var p = req.query;
+    console.log(p)
     Element.findAll({ where: p })
     .then(data => {
       res.send(data);

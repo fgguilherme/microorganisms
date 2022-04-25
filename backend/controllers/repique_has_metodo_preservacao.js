@@ -1,10 +1,10 @@
 const db = require("../models");
-const Element = db.models.microorganismo_has_metodo_preservacao;
+const Element = db.models.repique_has_metodo_preservacao;
 const Op = db.Sequelize.Op;
 // Create and Save a new Element
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.microorganismo_idmicroorganismo || !req.body.metodo_preservacao_idmetodo_preservacao) {
+  if (!req.body.repique_idrepique || !req.body.metodo_preservacao_idmetodo_preservacao) {
     res.status(400).send({
       message: "Content missing mandatory data!"
     });
@@ -71,7 +71,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     Element.update(req.body, {
-      where: {idmicroorganismo_has_metodo_preservacao: id }
+      where: {idrepique_has_metodo_preservacao: id }
     })
       .then(num => {
         if (num == 1) {
@@ -96,7 +96,7 @@ exports.delete = (req, res) => {
     const id = req.params.id;
 
     Element.destroy({
-      where: {idmicroorganismo_has_metodo_preservacao: id }
+      where: {idrepique_has_metodo_preservacao: id }
     })
       .then(num => {
         if (num == 1) {

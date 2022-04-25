@@ -5,7 +5,7 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import axios from "axios";
 // components
-const baseurl = process.env.BASE_URL + "/api/"
+const baseurl = window.location.origin.toString() + "/api/"
 const customStyles = {
   content: {
     top: "50%",
@@ -111,7 +111,7 @@ export default function MicroContent(props) {
     initialTab = 6;
   }
   const [openTab, setOpenTab] = useState(initialTab);
-
+  
   //START DATA DECLARATION
 
   const [dominio, setDominio] = useState([]);
@@ -518,7 +518,7 @@ export default function MicroContent(props) {
   function closeModal(persist) {
     console.log(tmpState)
     if (persist === true && tmpState === "dominio") {
-      axios.post(baseurl+ '/api/' + tmpState, {
+      axios.post(baseurl+ tmpState, {
         dominio: itemValue,
       })
         .then((response) => {
@@ -538,7 +538,7 @@ export default function MicroContent(props) {
         });
     }
     if (persist === true && tmpState === "reino" && dominio.iddominio > 0) {
-      axios.post(baseurl+ '/api/' + tmpState, {
+      axios.post(baseurl+ tmpState, {
         reino: itemValue,
         dominio_iddominio: dominio.iddominio
       })
@@ -562,7 +562,7 @@ export default function MicroContent(props) {
         });
     }
     if (persist === true && tmpState === "filo" && reino.idreino > 0) {
-      axios.post(baseurl+ '/api/' + tmpState, {
+      axios.post(baseurl+ tmpState, {
         filo: itemValue,
         reino_idreino: reino.idreino
       })
@@ -586,7 +586,7 @@ export default function MicroContent(props) {
         });
     }
     if (persist === true && tmpState === "classe" && filo.idfilo > 0) {
-      axios.post(baseurl+ '/api/' + tmpState, {
+      axios.post(baseurl+ tmpState, {
         classe: itemValue,
         filo_idfilo: filo.idfilo
       })
@@ -610,7 +610,7 @@ export default function MicroContent(props) {
         });
     }
     if (persist === true && tmpState === "ordem" && classe.idclasse > 0) {
-      axios.post(baseurl+ '/api/' + tmpState, {
+      axios.post(baseurl+ tmpState, {
         ordem: itemValue,
         classe_idclasse: classe.idclasse
       })
@@ -634,7 +634,7 @@ export default function MicroContent(props) {
         });
     }
     if (persist === true && tmpState === "familia" && ordem.idordem > 0) {
-      axios.post(baseurl+ '/api/' + tmpState, {
+      axios.post(baseurl+ tmpState, {
         familia: itemValue,
         ordem_idordem: ordem.idordem
       })
@@ -658,7 +658,7 @@ export default function MicroContent(props) {
         });
     }
     if (persist === true && tmpState === "genero" && familia.idfamilia > 0) {
-      axios.post(baseurl+ '/api/' + tmpState, {
+      axios.post(baseurl+ tmpState, {
         genero: itemValue,
         familia_idfamilia: familia.idfamilia
       })
@@ -683,7 +683,7 @@ export default function MicroContent(props) {
       console.log(itemValue);
     }
     if (persist === true && tmpState === "especie" && genero.idgenero > 0) {
-      axios.post(baseurl+ '/api/' + tmpState, {
+      axios.post(baseurl+ tmpState, {
         especie: itemValue,
         genero_idgenero: genero.idgenero
       })
@@ -707,7 +707,7 @@ export default function MicroContent(props) {
         });
     }
     if (persist === true && tmpState === "sub_especie" && especie.idespecie > 0) {
-      axios.post(baseurl+ '/api/' + tmpState, {
+      axios.post(baseurl+ tmpState, {
         sub_especie: itemValue,
         especie_idespecie: especie.idespecie
       })
@@ -731,7 +731,7 @@ export default function MicroContent(props) {
         });
     }
     if (persist === true && tmpState === "variedade" && sub_especie.idsub_especie > 0) {
-      axios.post(baseurl+ '/api/' + tmpState, {
+      axios.post(baseurl+ tmpState, {
         variedade: itemValue,
         sub_especie_idsub_especie: sub_especie.idsub_especie
       })
@@ -755,7 +755,7 @@ export default function MicroContent(props) {
         });
     }
     if (persist === true && tmpState === "referencia") {
-      axios.post(baseurl+ '/api/' + tmpState, {
+      axios.post(baseurl+ tmpState, {
         referencia: itemValue,
       })
         .then((response) => {

@@ -1,0 +1,91 @@
+version: '3.8'
+
+x-common-variables: &common-variables
+  MYSQL_DATABASE: micro_collection
+  MYSQL_USER: micro_user
+  MYSQL_PASSWORD: micro_user
+  MYSQL_PORT: 3306
+  MYSQL_HOST: "db"
+  BASE_URL: "localhost:4200"
+
+services:
+  mysql_db:
+    image: mysql:latest
+    container_name: db
+    restart: always
+    environment:
+      <<: *common-variables
+      MYSQL_ROOT_PASSWORD: 168moc#GFG
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./backend/init_db.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      microcollection:
+
+  nginx:
+    depends_on:
+      - api
+      - client
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "4200:80"
+    networks:
+      microcollection:
+
+  api:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: "./backend"
+    depends_on:
+      - mysql_db
+    links:
+      - mysql_db
+    environment:
+      <<: *common-variables
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    networks:
+      microcollection:
+
+  client:
+    restart: always
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - api
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+    networks:
+      microcollection:
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    restart: always
+    links:
+      - mysql_db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 8081:80
+    networks:
+      microcollection:
+
+volumes:
+  dbdata:
+  minio_data:
+  
+networks:
+  microcollection:

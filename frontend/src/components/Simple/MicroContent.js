@@ -5,7 +5,7 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import axios from "axios";
 // components
-const baseurl = "http://localhost:8080"
+const baseurl = process.env.BASE_URL + "/api/"
 const customStyles = {
   content: {
     top: "50%",
@@ -190,7 +190,7 @@ export default function MicroContent(props) {
   useEffect(() => {
     // console.log(dominioList.length);
     if (dominioList.length === 0) {
-      axios.get(baseurl+"/api/dominio")
+      axios.get(baseurl+"dominio")
         .then(response => {
           console.log(response.data);
           setDominioList(response.data);
@@ -203,7 +203,7 @@ export default function MicroContent(props) {
     }
     // console.log(referenciaList.length);
     if (referenciaList.length === 0) {
-      axios.get(baseurl+"/api/referencia")
+      axios.get(baseurl+"referencia")
         .then(response => {
           console.log(response.data);
           setReferenciaList(response.data);
@@ -216,7 +216,7 @@ export default function MicroContent(props) {
     }
     // console.log(pesquisadorList.length);
     if (pesquisadorList.length === 0) {
-      axios.get(baseurl+"/api/pesquisador")
+      axios.get(baseurl+"pesquisador")
         .then(response => {
           console.log(response.data);
           setPesquisadorList(response.data);
@@ -230,7 +230,7 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (dominio.iddominio) {
-        axios.get(baseurl+"/api/reino/search", {
+        axios.get(baseurl+"reino/search", {
           params: {
             "dominio_iddominio": dominio.iddominio
           }
@@ -254,7 +254,7 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (reino?.idreino) {
-        axios.get(baseurl+"/api/filo/search", {
+        axios.get(baseurl+"filo/search", {
           params: {
             "reino_idreino": reino.idreino
           }
@@ -278,7 +278,7 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (filo?.idfilo) {
-        axios.get(baseurl+"/api/classe/search", {
+        axios.get(baseurl+"classe/search", {
           params: {
             "filo_idfilo": filo.idfilo
           }
@@ -302,7 +302,7 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (classe?.idclasse) {
-        axios.get(baseurl+"/api/ordem/search", {
+        axios.get(baseurl+"ordem/search", {
           params: {
             "classe_idclasse": classe.idclasse
           }
@@ -326,7 +326,7 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (ordem?.idordem) {
-        axios.get(baseurl+"/api/familia/search", {
+        axios.get(baseurl+"familia/search", {
           params: {
             "ordem_idordem": ordem.idordem
           }
@@ -350,7 +350,7 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (familia?.idfamilia) {
-        axios.get(baseurl+"/api/genero/search", {
+        axios.get(baseurl+"genero/search", {
           params: {
             "familia_idfamilia": familia.idfamilia
           }
@@ -374,7 +374,7 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (genero?.idgenero) {
-        axios.get(baseurl+"/api/especie/search", {
+        axios.get(baseurl+"especie/search", {
           params: {
             "genero_idgenero": genero.idgenero
           }
@@ -398,7 +398,7 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (especie?.idespecie) {
-        axios.get(baseurl+"/api/sub_especie/search", {
+        axios.get(baseurl+"sub_especie/search", {
           params: {
             "especie_idespecie": especie.idespecie
           }
@@ -422,7 +422,7 @@ export default function MicroContent(props) {
     // console.log("CUEN 1");
     const fetchData = async () => {
       if (sub_especie?.idsub_especie) {
-        axios.get(baseurl+"/api/variedade/search", {
+        axios.get(baseurl+"variedade/search", {
           params: {
             "sub_especie_idsub_especie": sub_especie.idsub_especie
           }
@@ -448,7 +448,7 @@ export default function MicroContent(props) {
       console.log("Vegetal")
       // console.log("CUEN 1");
       const fetchData = async () => {
-        axios.get(baseurl+"/api/habitat_veg/search", {
+        axios.get(baseurl+"habitat_veg/search", {
           params: {
             "isAnimal": "0"
           }
@@ -459,7 +459,7 @@ export default function MicroContent(props) {
           }, error => {
             console.log(error);
           });
-          axios.get(baseurl+"/api/substrato/search")
+          axios.get(baseurl+"substrato/search")
             .then(response => {
               console.log(response.data);
               setSubstratoList(response.data);
@@ -474,7 +474,7 @@ export default function MicroContent(props) {
       console.log("animal")
       // console.log("CUEN 1");
       const fetchData = async () => {
-        axios.get(baseurl+"/api/habitat_ani/search", {
+        axios.get(baseurl+"habitat_ani/search", {
           params: {
             "isAnimal": "1"
           }
@@ -485,7 +485,7 @@ export default function MicroContent(props) {
           }, error => {
             console.log(error);
           });
-          axios.get(baseurl+"/api/sitio/")
+          axios.get(baseurl+"sitio/")
             .then(response => {
               console.log(response.data);
               setSitioAnatList(response.data);
@@ -523,7 +523,7 @@ export default function MicroContent(props) {
       })
         .then((response) => {
           console.log(response);
-          axios.get(baseurl+"/api/dominio")
+          axios.get(baseurl+"dominio")
             .then(response => {
               console.log(response.data);
               setDominioList(response.data);
@@ -545,7 +545,7 @@ export default function MicroContent(props) {
         .then((response) => {
           console.log(response);
           if (dominio.iddominio) {
-            axios.get(baseurl+"/api/reino/search", {
+            axios.get(baseurl+"reino/search", {
               params: {
                 "dominio_iddominio": dominio.iddominio
               }
@@ -569,7 +569,7 @@ export default function MicroContent(props) {
         .then((response) => {
           console.log(response);
           if (reino?.idreino) {
-            axios.get(baseurl+"/api/filo/search", {
+            axios.get(baseurl+"filo/search", {
               params: {
                 "reino_idreino": reino.idreino
               }
@@ -593,7 +593,7 @@ export default function MicroContent(props) {
         .then((response) => {
           console.log(response);
           if (filo?.idfilo) {
-            axios.get(baseurl+"/api/classe/search", {
+            axios.get(baseurl+"classe/search", {
               params: {
                 "filo_idfilo": filo.idfilo
               }
@@ -617,7 +617,7 @@ export default function MicroContent(props) {
         .then((response) => {
           console.log(response);
           if (classe?.idclasse) {
-            axios.get(baseurl+"/api/ordem/search", {
+            axios.get(baseurl+"ordem/search", {
               params: {
                 "classe_idclasse": classe.idclasse
               }
@@ -641,7 +641,7 @@ export default function MicroContent(props) {
         .then((response) => {
           console.log(response);
           if (ordem?.idordem) {
-            axios.get(baseurl+"/api/familia/search", {
+            axios.get(baseurl+"familia/search", {
               params: {
                 "ordem_idordem": ordem.idordem
               }
@@ -665,7 +665,7 @@ export default function MicroContent(props) {
         .then((response) => {
           console.log(response);
           if (familia?.idfamilia) {
-            axios.get(baseurl+"/api/genero/search", {
+            axios.get(baseurl+"genero/search", {
               params: {
                 "familia_idfamilia": familia.idfamilia
               }
@@ -690,7 +690,7 @@ export default function MicroContent(props) {
         .then((response) => {
           console.log(response);
           if (genero?.idgenero) {
-            axios.get(baseurl+"/api/especie/search", {
+            axios.get(baseurl+"especie/search", {
               params: {
                 "genero_idgenero": genero.idgenero
               }
@@ -714,7 +714,7 @@ export default function MicroContent(props) {
         .then((response) => {
           console.log(response);
           if (especie?.idespecie) {
-            axios.get(baseurl+"/api/sub_especie/search", {
+            axios.get(baseurl+"sub_especie/search", {
               params: {
                 "especie_idespecie": especie.idespecie
               }
@@ -738,7 +738,7 @@ export default function MicroContent(props) {
         .then((response) => {
           console.log(response);
           if (sub_especie?.idsub_especie) {
-            axios.get(baseurl+"/api/variedade/search", {
+            axios.get(baseurl+"variedade/search", {
               params: {
                 "sub_especie_idsub_especie": sub_especie.idsub_especie
               }

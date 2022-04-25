@@ -6,11 +6,13 @@ x-common-variables: &common-variables
   MYSQL_PASSWORD: micro_user
   MYSQL_PORT: 3306
   MYSQL_HOST: "db"
+  BASE_URL: "localhost:4200"
 
 services:
   mysql_db:
-    image: mysql:8.0
+    image: mysql:latest
     container_name: db
+    restart: always
     environment:
       <<: *common-variables
       MYSQL_ROOT_PASSWORD: 168moc#GFG
@@ -66,23 +68,24 @@ services:
     networks:
       microcollection:
 
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   container_name: pma
-  #   restart: always
-  #   links:
-  #     - mysql_db
-  #   environment:
-  #     PMA_HOST: db
-  #     PMA_PORT: 3306
-  #     PMA_ARBITRARY: 1
-  #   ports:
-  #     - 8081:80
-  #   networks:
-  #     microcollection:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    restart: always
+    links:
+      - mysql_db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 8081:80
+    networks:
+      microcollection:
 
 volumes:
   dbdata:
+  minio_data:
   
 networks:
   microcollection:

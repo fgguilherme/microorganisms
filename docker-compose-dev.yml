@@ -31,21 +31,22 @@ services:
       dockerfile: Dockerfile
       context: ./nginx
     ports:
-      - "4200:80"
+      - "4100:80"
     networks:
       microcollection:
 
   api:
     restart: always
+    stdin_open: true
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-dev
       context: "./backend"
     depends_on:
       - mysql_db
     links:
       - mysql_db
     environment:
-      <<: *common-variables
+      - CHOKIDAR_USEPOLLING=true
     volumes:
       - /app/node_modules
       - ./backend:/app
@@ -60,7 +61,7 @@ services:
     depends_on:
       - api
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-dev
       context: ./frontend
     volumes:
       - /app/node_modules

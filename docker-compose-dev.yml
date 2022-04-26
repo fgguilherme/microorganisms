@@ -46,7 +46,7 @@ services:
     links:
       - mysql_db
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      <<: *common-variables
     volumes:
       - /app/node_modules
       - ./backend:/app

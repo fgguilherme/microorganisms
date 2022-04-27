@@ -682,78 +682,6 @@ export default function MicroContent(props) {
         });
       console.log(itemValue);
     }
-    if (persist === true && tmpState === "especie" && genero.idgenero > 0) {
-      axios.post(baseurl+ tmpState, {
-        especie: itemValue,
-        genero_idgenero: genero.idgenero
-      })
-        .then((response) => {
-          console.log(response);
-          if (genero?.idgenero) {
-            axios.get(baseurl+"especie/search", {
-              params: {
-                "genero_idgenero": genero.idgenero
-              }
-            })
-              .then(response => {
-                console.log(response.data);
-                setEspecieList(response.data);
-              }, error => {
-                console.log(error);
-              });
-          }
-        }, (error) => {
-          console.log(error);
-        });
-    }
-    if (persist === true && tmpState === "sub_especie" && especie.idespecie > 0) {
-      axios.post(baseurl+ tmpState, {
-        sub_especie: itemValue,
-        especie_idespecie: especie.idespecie
-      })
-        .then((response) => {
-          console.log(response);
-          if (especie?.idespecie) {
-            axios.get(baseurl+"sub_especie/search", {
-              params: {
-                "especie_idespecie": especie.idespecie
-              }
-            })
-              .then(response => {
-                console.log(response.data);
-                setSub_especieList(response.data);
-              }, error => {
-                console.log(error);
-              });
-          }
-        }, (error) => {
-          console.log(error);
-        });
-    }
-    if (persist === true && tmpState === "variedade" && sub_especie.idsub_especie > 0) {
-      axios.post(baseurl+ tmpState, {
-        variedade: itemValue,
-        sub_especie_idsub_especie: sub_especie.idsub_especie
-      })
-        .then((response) => {
-          console.log(response);
-          if (sub_especie?.idsub_especie) {
-            axios.get(baseurl+"variedade/search", {
-              params: {
-                "sub_especie_idsub_especie": sub_especie.idsub_especie
-              }
-            })
-              .then(response => {
-                console.log(response.data);
-                setVariedadeList(response.data);
-              }, error => {
-                console.log(error);
-              });
-          }
-        }, (error) => {
-          console.log(error);
-        });
-    }
     if (persist === true && tmpState === "referencia") {
       axios.post(baseurl+ tmpState, {
         referencia: itemValue,
@@ -770,13 +698,17 @@ export default function MicroContent(props) {
 
   //START PERSON MODAL
   const [itemPersonName, setItemPersonName] = React.useState(["", "", ""]);
-  const [itemPersonValue, setItemPersonValue] = React.useState(["", "", ""]);
+  const [itemPersonValueA, setItemPersonValueA] = React.useState("");
+  const [itemPersonValueB, setItemPersonValueB] = React.useState("");
+  const [itemPersonValueC, setItemPersonValueC] = React.useState("");
   const [modalPersonIsOpen, setPersonIsOpen] = useState(false);
 
   function openPersonModal(vartext, varval) {
     setPersonIsOpen(true);
-    setItemPersonName(["Pesquisador", "Email", "Instituição"]);
-    setItemPersonValue(varval);
+    setItemPersonName(vartext);
+    setItemPersonValueA(varval[0]);
+    setItemPersonValueB(varval[1]);
+    setItemPersonValueC(varval[2]);
   }
 
   function afterOpenPersonModal() {
@@ -785,6 +717,7 @@ export default function MicroContent(props) {
   }
 
   function closePersonModal(persist) {
+    console.log(itemPersonValueA,itemPersonValueB,itemPersonValueC)
     setPersonIsOpen(false);
   }
 
@@ -792,13 +725,15 @@ export default function MicroContent(props) {
 
   //START AUTOR MODAL - ESPECIE/SUB_ESPECIE/VARIEDADE - TAXA
   const [itemAutorName, setItemAutorName] = React.useState(["", ""]);
-  const [itemAutorValue, setItemAutorValue] = React.useState(["", ""]);
+  const [itemAutorValueA, setItemAutorValueA] = React.useState("");
+  const [itemAutorValueB, setItemAutorValueB] = React.useState("");
   const [modalAutorIsOpen, setAutorIsOpen] = useState(false);
 
   function openAutorModal(vartext, varval) {
     setAutorIsOpen(true);
-    setItemAutorName(["Espécie", "Autor"]);
-    setItemAutorValue(varval);
+    setItemAutorName(vartext);
+    setItemAutorValueA(varval[0]);
+    setItemAutorValueB(varval[1]);
   }
 
   function afterOpenAutorModal() {
@@ -807,6 +742,79 @@ export default function MicroContent(props) {
   }
 
   function closeAutorModal(persist) {
+    console.log(itemAutorValueA,itemAutorValueB)
+    // if (persist === true && tmpState === "especie" && genero.idgenero > 0) {
+    //   axios.post(baseurl+ tmpState, {
+    //     especie: itemValue,
+    //     genero_idgenero: genero.idgenero
+    //   })
+    //     .then((response) => {
+    //       console.log(response);
+    //       if (genero?.idgenero) {
+    //         axios.get(baseurl+"especie/search", {
+    //           params: {
+    //             "genero_idgenero": genero.idgenero
+    //           }
+    //         })
+    //           .then(response => {
+    //             console.log(response.data);
+    //             setEspecieList(response.data);
+    //           }, error => {
+    //             console.log(error);
+    //           });
+    //       }
+    //     }, (error) => {
+    //       console.log(error);
+    //     });
+    // }
+    // if (persist === true && tmpState === "sub_especie" && especie.idespecie > 0) {
+    //   axios.post(baseurl+ tmpState, {
+    //     sub_especie: itemValue,
+    //     especie_idespecie: especie.idespecie
+    //   })
+    //     .then((response) => {
+    //       console.log(response);
+    //       if (especie?.idespecie) {
+    //         axios.get(baseurl+"sub_especie/search", {
+    //           params: {
+    //             "especie_idespecie": especie.idespecie
+    //           }
+    //         })
+    //           .then(response => {
+    //             console.log(response.data);
+    //             setSub_especieList(response.data);
+    //           }, error => {
+    //             console.log(error);
+    //           });
+    //       }
+    //     }, (error) => {
+    //       console.log(error);
+    //     });
+    // }
+    // if (persist === true && tmpState === "variedade" && sub_especie.idsub_especie > 0) {
+    //   axios.post(baseurl+ tmpState, {
+    //     variedade: itemValue,
+    //     sub_especie_idsub_especie: sub_especie.idsub_especie
+    //   })
+    //     .then((response) => {
+    //       console.log(response);
+    //       if (sub_especie?.idsub_especie) {
+    //         axios.get(baseurl+"variedade/search", {
+    //           params: {
+    //             "sub_especie_idsub_especie": sub_especie.idsub_especie
+    //           }
+    //         })
+    //           .then(response => {
+    //             console.log(response.data);
+    //             setVariedadeList(response.data);
+    //           }, error => {
+    //             console.log(error);
+    //           });
+    //       }
+    //     }, (error) => {
+    //       console.log(error);
+    //     });
+    // }
     setAutorIsOpen(false);
   }
 
@@ -874,6 +882,7 @@ export default function MicroContent(props) {
         isOpen={modalPersonIsOpen}
         onAfterOpen={afterOpenPersonModal}
         onRequestClose={closePersonModal}
+        ariaHideApp={false}
         style={customStyles}
         contentLabel="Example Modal"
       >
@@ -892,8 +901,11 @@ export default function MicroContent(props) {
                   <input
                     disabled={props.showOnly}
                     type="text"
+                    onChange={(v) => {
+                      setItemPersonValueA(v.target.value);
+                    }}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    value={itemPersonValue[0]}
+                    value={itemPersonValueA}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -906,8 +918,11 @@ export default function MicroContent(props) {
                   <input
                     disabled={props.showOnly}
                     type="text"
+                    onChange={(v) => {
+                      setItemPersonValueB(v.target.value);
+                    }}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    value={itemPersonValue[1]}
+                    value={itemPersonValueB}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -920,8 +935,11 @@ export default function MicroContent(props) {
                   <input
                     disabled={props.showOnly}
                     type="text"
+                    onChange={(v) => {
+                      setItemPersonValueC(v.target.value);
+                    }}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    value={itemPersonValue[2]}
+                    value={itemPersonValueC}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -953,6 +971,7 @@ export default function MicroContent(props) {
       <Modal
         isOpen={modalAutorIsOpen}
         onAfterOpen={afterOpenAutorModal}
+        ariaHideApp={false}
         onRequestClose={closeAutorModal}
         style={customStyles}
         contentLabel="Example Modal"
@@ -972,8 +991,11 @@ export default function MicroContent(props) {
                   <input
                     disabled={props.showOnly}
                     type="text"
+                    onChange={(v) => {
+                      setItemAutorValueA(v.target.value);
+                    }}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    value={itemAutorValue[0]}
+                    value={itemAutorValueA}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -986,8 +1008,11 @@ export default function MicroContent(props) {
                   <input
                     disabled={props.showOnly}
                     type="text"
+                    onChange={(v) => {
+                      setItemAutorValueB(v.target.value);
+                    }}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    value={itemAutorValue[1]}
+                    value={itemAutorValueB}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -1810,7 +1835,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal("Domínio", ["", "", ""]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""]);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -1819,7 +1844,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal("Domínio", [
+                                  openPersonModal(["Nome","Email","Instituição"], [
                                     "Pesquisador 1",
                                     "pesq1@uea.edu.br",
                                     "UEA",
@@ -2273,7 +2298,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal("Domínio", ["", "", ""]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""]);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2282,7 +2307,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal("Domínio", [
+                                  openPersonModal(["Nome","Email","Instituição"], [
                                     "Pesquisador 1",
                                     "pesq1@uea.edu.br",
                                     "UEA",
@@ -2353,7 +2378,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal("Domínio", ["", "", ""]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""]);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2362,7 +2387,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal("Domínio", [
+                                  openPersonModal(["Nome","Email","Instituição"], [
                                     "Pesquisador 1",
                                     "pesq1@uea.edu.br",
                                     "UEA",
@@ -3382,7 +3407,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal("Domínio", ["", "", ""]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""]);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3391,7 +3416,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal("Domínio", [
+                                  openPersonModal(["Nome","Email","Instituição"], [
                                     "Pesquisador 1",
                                     "pesq1@uea.edu.br",
                                     "UEA",

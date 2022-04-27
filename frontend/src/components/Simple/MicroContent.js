@@ -682,6 +682,37 @@ export default function MicroContent(props) {
         });
       console.log(itemValue);
     }
+    if (persist === true && tmpState === "especie" && genero.idgenero > 0) {
+      axios
+        .post(baseurl + tmpState, {
+          especie: itemValue,
+          genero_idgenero: genero.idgenero,
+        })
+        .then(
+          (response) => {
+            console.log(response);
+            if (genero?.idgenero) {
+              axios.get(baseurl + "especie/search", {
+                  params: {
+                    genero_idgenero: genero.idgenero,
+                  },
+              })
+                .then(
+                  (response) => {
+                    console.log(response.data);
+                    setEspecieList(response.data);
+                  },
+                  (error) => {
+                    console.log(error);
+                  }
+                );
+            }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
     if (persist === true && tmpState === "referencia") {
       axios.post(baseurl+ tmpState, {
         referencia: itemValue,
@@ -728,12 +759,14 @@ export default function MicroContent(props) {
   const [itemAutorValueA, setItemAutorValueA] = React.useState("");
   const [itemAutorValueB, setItemAutorValueB] = React.useState("");
   const [modalAutorIsOpen, setAutorIsOpen] = useState(false);
+  const [tmpStateAutor, setTmpStateAutor] = React.useState("");
 
-  function openAutorModal(vartext, varval) {
+  function openAutorModal(vartext, varval,tmState) {
     setAutorIsOpen(true);
     setItemAutorName(vartext);
     setItemAutorValueA(varval[0]);
     setItemAutorValueB(varval[1]);
+    setTmpStateAutor(tmState);
   }
 
   function afterOpenAutorModal() {
@@ -743,56 +776,33 @@ export default function MicroContent(props) {
 
   function closeAutorModal(persist) {
     console.log(itemAutorValueA,itemAutorValueB)
-    // if (persist === true && tmpState === "especie" && genero.idgenero > 0) {
-    //   axios.post(baseurl+ tmpState, {
-    //     especie: itemValue,
-    //     genero_idgenero: genero.idgenero
-    //   })
-    //     .then((response) => {
-    //       console.log(response);
-    //       if (genero?.idgenero) {
-    //         axios.get(baseurl+"especie/search", {
-    //           params: {
-    //             "genero_idgenero": genero.idgenero
-    //           }
-    //         })
-    //           .then(response => {
-    //             console.log(response.data);
-    //             setEspecieList(response.data);
-    //           }, error => {
-    //             console.log(error);
-    //           });
-    //       }
-    //     }, (error) => {
-    //       console.log(error);
-    //     });
-    // }
-    // if (persist === true && tmpState === "sub_especie" && especie.idespecie > 0) {
-    //   axios.post(baseurl+ tmpState, {
-    //     sub_especie: itemValue,
-    //     especie_idespecie: especie.idespecie
-    //   })
-    //     .then((response) => {
-    //       console.log(response);
-    //       if (especie?.idespecie) {
-    //         axios.get(baseurl+"sub_especie/search", {
-    //           params: {
-    //             "especie_idespecie": especie.idespecie
-    //           }
-    //         })
-    //           .then(response => {
-    //             console.log(response.data);
-    //             setSub_especieList(response.data);
-    //           }, error => {
-    //             console.log(error);
-    //           });
-    //       }
-    //     }, (error) => {
-    //       console.log(error);
-    //     });
-    // }
-    // if (persist === true && tmpState === "variedade" && sub_especie.idsub_especie > 0) {
-    //   axios.post(baseurl+ tmpState, {
+    console.log(tmpStateAutor)
+     if (persist === true && tmpStateAutor === "sub_especie" && especie.idespecie > 0) {
+       axios.post(baseurl+ tmpStateAutor, {
+         sub_especie: itemAutorValueA,
+         especie_idespecie: especie.idespecie
+       })
+         .then((response) => {
+           console.log(response);
+           if (especie?.idespecie) {
+             axios.get(baseurl+"sub_especie/search", {
+               params: {
+                 "especie_idespecie": especie.idespecie
+               }
+             })
+               .then(response => {
+                 console.log(response.data);
+                 setSub_especieList(response.data);
+               }, error => {
+                 console.log(error);
+               });
+           }
+         }, (error) => {
+           console.log(error);
+         });
+     }
+    // if (persist === true && tmpStateAutor === "variedade" && sub_especie.idsub_especie > 0) {
+    //   axios.post(baseurl+ tmpStateAutor, {
     //     variedade: itemValue,
     //     sub_especie_idsub_especie: sub_especie.idsub_especie
     //   })
@@ -848,6 +858,7 @@ export default function MicroContent(props) {
                     }}
                     disabled={props.showOnly}
                     type="text"
+                    autoFocus
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   // value={itemValue}
                   />
@@ -901,6 +912,7 @@ export default function MicroContent(props) {
                   <input
                     disabled={props.showOnly}
                     type="text"
+                    autoFocus
                     onChange={(v) => {
                       setItemPersonValueA(v.target.value);
                     }}
@@ -991,6 +1003,7 @@ export default function MicroContent(props) {
                   <input
                     disabled={props.showOnly}
                     type="text"
+                    autoFocus
                     onChange={(v) => {
                       setItemAutorValueA(v.target.value);
                     }}
@@ -1523,7 +1536,7 @@ export default function MicroContent(props) {
                             options={especieList}
                             defaultValue={especie}
                             onChange={setEspecie}
-                            getOptionLabel={(options) => options["especie"]}
+                            getOptionLabel={(options) => options["especie"]+" - "+options["autor"]}
                             getOptionValue={(options) => options["idespecie"]}
                           />
                           {props.showOnly === false ? (
@@ -1534,7 +1547,7 @@ export default function MicroContent(props) {
                                 onClick={() => {
                                   openAutorModal(
                                     ["Espécie", "Autor"],
-                                    ["", ""]
+                                    ["", ""], "especie"
                                   );
                                 }}
                               >
@@ -1546,8 +1559,7 @@ export default function MicroContent(props) {
                                 onClick={() => {
                                   openAutorModal(
                                     ["Espécie", "Autor"],
-                                    [
-                                      "", ""]
+                                    ["", ""], "especie"
                                   );
                                 }}
                               >
@@ -1573,7 +1585,7 @@ export default function MicroContent(props) {
                             options={sub_especieList}
                             defaultValue={sub_especie}
                             onChange={setSub_especie}
-                            getOptionLabel={(options) => options["sub_especie"]}
+                            getOptionLabel={(options) => options["sub_especie"]+" - "+options["autor"]}
                             getOptionValue={(options) => options["idsub_especie"]
                             }
                           />
@@ -1595,8 +1607,8 @@ export default function MicroContent(props) {
                                 type="button"
                                 onClick={() => {
                                   openAutorModal(
-                                    ["Sub-Espécie", "Autor"],
-                                    ["", ""]
+                                    ["Sub_Espécie", "Autor"],
+                                    ["", ""], "sub_especie"
                                   );
                                 }}
                               >
@@ -1607,11 +1619,8 @@ export default function MicroContent(props) {
                                 type="button"
                                 onClick={() => {
                                   openAutorModal(
-                                    ["Sub-Espécie", "Autor"],
-                                    [
-                                      " Pleurotus purpureo-olivaceus",
-                                      "(Jacq.) P. Kumm. 1871",
-                                    ]
+                                    ["Sub_Espécie", "Autor"],
+                                    ["", ""], "sub_especie"
                                   );
                                 }}
                               >
@@ -1638,7 +1647,7 @@ export default function MicroContent(props) {
                             options={variedadeList}
                             defaultValue={variedade}
                             onChange={setVariedade}
-                            getOptionLabel={(options) => options["variedade"]}
+                            getOptionLabel={(options) => options["variedade"]+" - "+options["autor"]}
                             getOptionValue={(options) => options["idvariedade"]}
                           />
                           {props.showOnly === false ? (
@@ -1649,7 +1658,7 @@ export default function MicroContent(props) {
                                 onClick={() => {
                                   openAutorModal(
                                     ["Variedade", "Autor"],
-                                    ["", ""]
+                                    ["", ""], "variedade"
                                   );
                                 }}
                               >
@@ -1661,10 +1670,7 @@ export default function MicroContent(props) {
                                 onClick={() => {
                                   openAutorModal(
                                     ["Variedade", "Autor"],
-                                    [
-                                      "Pleurotus purpureo-olivaceus",
-                                      "(Jacq.) P. Kumm. 1871",
-                                    ]
+                                    ["", ""], "variedade"
                                   );
                                 }}
                               >

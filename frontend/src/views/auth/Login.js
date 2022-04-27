@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { GoogleLogin } from 'react-google-login';
 
 export default function Login() {
+  const handleLogin = (response) => {
+    console.log(response);
+  }
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -26,7 +30,16 @@ export default function Login() {
                     />
                     Github
                   </button> */}
-                  <button
+                  <GoogleLogin
+                      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                      redirectUri="http://localhost:4100/admin/m/tables"
+                      buttonText="Log in with Google"
+                      onSuccess={handleLogin}
+                      onFailure={handleLogin}
+                      isSignedIn={true}
+                      cookiePolicy={'single_host_origin'}
+                  />
+                  {/* <button
                     className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
                   >
@@ -36,7 +49,7 @@ export default function Login() {
                       src={require("assets/img/google.svg").default}
                     />
                     Google
-                  </button>
+                  </button> */}
                 </div>
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
               </div>

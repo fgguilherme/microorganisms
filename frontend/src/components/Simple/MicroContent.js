@@ -441,7 +441,7 @@ export default function MicroContent(props) {
     };
     fetchData();
   }, [sub_especie]);
-
+  
   useEffect(() => {
     console.log(habitat);
     if (habitat?.idHabitat <= 2) {
@@ -682,37 +682,6 @@ export default function MicroContent(props) {
         });
       console.log(itemValue);
     }
-    if (persist === true && tmpState === "especie" && genero.idgenero > 0) {
-      axios
-        .post(baseurl + tmpState, {
-          especie: itemValue,
-          genero_idgenero: genero.idgenero,
-        })
-        .then(
-          (response) => {
-            console.log(response);
-            if (genero?.idgenero) {
-              axios.get(baseurl + "especie/search", {
-                  params: {
-                    genero_idgenero: genero.idgenero,
-                  },
-              })
-                .then(
-                  (response) => {
-                    console.log(response.data);
-                    setEspecieList(response.data);
-                  },
-                  (error) => {
-                    console.log(error);
-                  }
-                );
-            }
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-    }
     if (persist === true && tmpState === "referencia") {
       axios.post(baseurl+ tmpState, {
         referencia: itemValue,
@@ -777,54 +746,87 @@ export default function MicroContent(props) {
   function closeAutorModal(persist) {
     console.log(itemAutorValueA,itemAutorValueB)
     console.log(tmpStateAutor)
-     if (persist === true && tmpStateAutor === "sub_especie" && especie.idespecie > 0) {
-       axios.post(baseurl+ tmpStateAutor, {
-         sub_especie: itemAutorValueA,
-         especie_idespecie: especie.idespecie
-       })
-         .then((response) => {
-           console.log(response);
-           if (especie?.idespecie) {
-             axios.get(baseurl+"sub_especie/search", {
-               params: {
-                 "especie_idespecie": especie.idespecie
-               }
-             })
-               .then(response => {
-                 console.log(response.data);
-                 setSub_especieList(response.data);
-               }, error => {
-                 console.log(error);
-               });
-           }
-         }, (error) => {
-           console.log(error);
-         });
-     }
-    // if (persist === true && tmpStateAutor === "variedade" && sub_especie.idsub_especie > 0) {
-    //   axios.post(baseurl+ tmpStateAutor, {
-    //     variedade: itemValue,
-    //     sub_especie_idsub_especie: sub_especie.idsub_especie
-    //   })
-    //     .then((response) => {
-    //       console.log(response);
-    //       if (sub_especie?.idsub_especie) {
-    //         axios.get(baseurl+"variedade/search", {
-    //           params: {
-    //             "sub_especie_idsub_especie": sub_especie.idsub_especie
-    //           }
-    //         })
-    //           .then(response => {
-    //             console.log(response.data);
-    //             setVariedadeList(response.data);
-    //           }, error => {
-    //             console.log(error);
-    //           });
-    //       }
-    //     }, (error) => {
-    //       console.log(error);
-    //     });
-    // }
+    if (persist === true && tmpStateAutor === "especie" && genero.idgenero > 0) {
+      axios.post(baseurl + tmpStateAutor, {
+          especie: itemAutorValueA,
+          autor: itemAutorValueB,
+          genero_idgenero: genero.idgenero,
+        })
+        .then(
+          (response) => {
+            console.log(response);
+            if (genero?.idgenero) {
+              axios.get(baseurl + "especie/search", {
+                  params: {
+                    genero_idgenero: genero.idgenero,
+                  },
+              })
+                .then(
+                  (response) => {
+                    console.log(response.data);
+                    setEspecieList(response.data);
+                  },
+                  (error) => {
+                    console.log(error);
+                  }
+                );
+            }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+    if (persist === true && tmpStateAutor === "sub_especie" && especie.idespecie > 0) {
+      axios.post(baseurl+ tmpStateAutor, {
+        sub_especie: itemAutorValueA,
+        autor: itemAutorValueB,
+        especie_idespecie: especie.idespecie
+      })
+        .then((response) => {
+          console.log(response);
+          if (especie?.idespecie) {
+            axios.get(baseurl+"sub_especie/search", {
+              params: {
+                "especie_idespecie": especie.idespecie
+              }
+            })
+              .then(response => {
+                console.log(response.data);
+                setSub_especieList(response.data);
+              }, error => {
+                console.log(error);
+              });
+          }
+        }, (error) => {
+          console.log(error);
+        });
+    }
+   if (persist === true && tmpStateAutor === "variedade" && sub_especie.idsub_especie > 0) {
+     axios.post(baseurl+ tmpStateAutor, {
+       variedade: itemAutorValueA,
+       autor: itemAutorValueB,
+       sub_especie_idsub_especie: sub_especie.idsub_especie
+     })
+       .then((response) => {
+         console.log(response);
+         if (sub_especie?.idsub_especie) {
+           axios.get(baseurl+"variedade/search", {
+             params: {
+               "sub_especie_idsub_especie": sub_especie.idsub_especie
+             }
+           })
+             .then(response => {
+               console.log(response.data);
+               setVariedadeList(response.data);
+             }, error => {
+               console.log(error);
+             });
+         }
+       }, (error) => {
+         console.log(error);
+       });
+   }
     setAutorIsOpen(false);
   }
 

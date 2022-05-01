@@ -448,14 +448,14 @@ export default function MicroContent(props) {
       console.log("Vegetal")
       // console.log("CUEN 1");
       const fetchData = async () => {
-        axios.get(baseurl+"habitat_veg/search", {
+        axios.get(baseurl+"hospedeiro/search", {
           params: {
             "isAnimal": "0"
           }
         })
           .then(response => {
             console.log(response.data);
-            setHospVeg(response.data);
+            setHospVegList(response.data);
           }, error => {
             console.log(error);
           });
@@ -474,7 +474,7 @@ export default function MicroContent(props) {
       console.log("animal")
       // console.log("CUEN 1");
       const fetchData = async () => {
-        axios.get(baseurl+"habitat_ani/search", {
+        axios.get(baseurl+"hospedeiro/search", {
           params: {
             "isAnimal": "1"
           }
@@ -692,6 +692,49 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+
+    if (persist === true && tmpState === "hospedeiro_veg") {
+      axios.post(baseurl+ "hospedeiro", {
+        hospedeiro: itemValue,
+        isAnimal: "0"
+      })
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    if (persist === true && tmpState === "hospedeiro_ani") {
+      axios.post(baseurl+ "hospedeiro", {
+        hospedeiro: itemValue,
+        isAnimal: "1"
+      })
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    if (persist === true && tmpState === "substrato") {
+      axios.post(baseurl+ tmpState, {
+        substrato: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    if (persist === true && tmpState === "sitio") {
+      axios.post(baseurl+ tmpState, {
+        sitio: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+    }
     setIsOpen(false);
   }
   //END DEFAULT MODAL
@@ -702,13 +745,15 @@ export default function MicroContent(props) {
   const [itemPersonValueB, setItemPersonValueB] = React.useState("");
   const [itemPersonValueC, setItemPersonValueC] = React.useState("");
   const [modalPersonIsOpen, setPersonIsOpen] = useState(false);
+  const [tmpStatePeson, setTmpStatePerson] = React.useState("");
 
-  function openPersonModal(vartext, varval) {
+  function openPersonModal(vartext, varval, tmpPersState) {
     setPersonIsOpen(true);
     setItemPersonName(vartext);
     setItemPersonValueA(varval[0]);
     setItemPersonValueB(varval[1]);
     setItemPersonValueC(varval[2]);
+    setTmpStatePerson(tmpPersState);
   }
 
   function afterOpenPersonModal() {
@@ -718,6 +763,25 @@ export default function MicroContent(props) {
 
   function closePersonModal(persist) {
     console.log(itemPersonValueA,itemPersonValueB,itemPersonValueC)
+    if (persist === true && tmpStatePeson === "pesquisador") {
+      axios.post(baseurl+ tmpStatePeson, {
+        nome: setItemPersonValueA,
+        email: setItemPersonValueB,
+        instituicao: setItemPersonValueC
+      })
+        .then((response) => {
+          console.log(response);
+            axios.get(baseurl+"pesquisador")
+              .then(response => {
+                console.log(response.data);
+                setPesquisadorList(response.data);
+              }, error => {
+                console.log(error);
+              });
+        }, (error) => {
+          console.log(error);
+        });
+    }
     setPersonIsOpen(false);
   }
 
@@ -1843,7 +1907,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -1852,11 +1916,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], [
-                                    "Pesquisador 1",
-                                    "pesq1@uea.edu.br",
-                                    "UEA",
-                                  ]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -1912,11 +1972,10 @@ export default function MicroContent(props) {
                                 placeholder={"Select an option"}
                                 options={hospVegList}
                                 defaultValue={hospVeg}
-                                isMulti
                                 onChange={setHospVeg}
                                 getOptionLabel={(options) => options["hospedeiro"]}
                                 getOptionValue={(options) =>
-                                  options["idHospedeiro"]
+                                  options["idhospedeiro"]
                                 }
                               />
                               {props.showOnly === false ? (
@@ -1925,7 +1984,7 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Hospedeiro vegetal", "");
+                                      openModal("Hospedeiro vegetal", "", "hospedeiro_veg");
                                     }}
                                   >
                                     <i className="fas fa-plus"></i>
@@ -1934,7 +1993,7 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Hospedeiro vegetal", "");
+                                      openModal("Hospedeiro vegetal", "", "hospedeiro");
                                     }}
                                   >
                                     <i className="fas fa-pencil-alt" />
@@ -1961,7 +2020,6 @@ export default function MicroContent(props) {
                                 placeholder={"Select an option"}
                                 options={substratoList}
                                 defaultValue={substrato}
-                                isMulti
                                 onChange={setSubstrato}
                                 getOptionLabel={(options) => options["substrato"]}
                                 getOptionValue={(options) =>
@@ -1974,7 +2032,7 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Substrato", "");
+                                      openModal("Substrato", "", "substrato");
                                     }}
                                   >
                                     <i className="fas fa-plus"></i>
@@ -1983,7 +2041,7 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Substrato", "Coco");
+                                      openModal("Substrato", "", "substrato");
                                     }}
                                   >
                                     <i className="fas fa-pencil-alt" />
@@ -2064,11 +2122,10 @@ export default function MicroContent(props) {
                                 placeholder={"Select an option"}
                                 options={hospAnList}
                                 defaultValue={hospAn}
-                                isMulti
                                 onChange={setHospAn}
                                 getOptionLabel={(options) => options["hospedeiro"]}
                                 getOptionValue={(options) =>
-                                  options["idHospedeiro"]
+                                  options["idhospedeiro"]
                                 }
                               />
                               {props.showOnly === false ? (
@@ -2077,7 +2134,7 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Hospedeiro animal", "");
+                                      openModal("Hospedeiro animal", "", "hospedeiro_ani");
                                     }}
                                   >
                                     <i className="fas fa-plus"></i>
@@ -2086,7 +2143,7 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Hospedeiro animal", "");
+                                      openModal("Hospedeiro animal", "","hospedeiro");
                                     }}
                                   >
                                     <i className="fas fa-pencil-alt" />
@@ -2113,7 +2170,6 @@ export default function MicroContent(props) {
                                 placeholder={"Select an option"}
                                 options={sitioAnatList}
                                 defaultValue={sitioAnat}
-                                isMulti
                                 onChange={setSitioAnat}
                                 getOptionLabel={(options) => options["sitio"]}
                                 getOptionValue={(options) =>
@@ -2126,7 +2182,7 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Sítio anatômico", "");
+                                      openModal("Sítio anatômico", "", "sitio");
                                     }}
                                   >
                                     <i className="fas fa-plus"></i>
@@ -2135,7 +2191,7 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Sítio anatômico", "Coco");
+                                      openModal("Sítio anatômico", "", "sitio");
                                     }}
                                   >
                                     <i className="fas fa-pencil-alt" />
@@ -2295,10 +2351,8 @@ export default function MicroContent(props) {
                             options={pesquisadorList}
                             defaultValue={pesqIsola}
                             onChange={setPesqIsola}
-                            getOptionLabel={(options) => options["pesquisador"]}
-                            getOptionValue={(options) =>
-                              options["idPesquisador"]
-                            }
+                            getOptionLabel={(options) => options["nome"]+" - "+options["email"]+" - "+options["instituicao"]}
+                            getOptionValue={(options) => options["idpesquisador"]}
                           />
                           {props.showOnly === false ? (
                             <>
@@ -2375,10 +2429,8 @@ export default function MicroContent(props) {
                             options={pesquisadorList}
                             defaultValue={pesqId}
                             onChange={setPesqId}
-                            getOptionLabel={(options) => options["pesquisador"]}
-                            getOptionValue={(options) =>
-                              options["idPesquisador"]
-                            }
+                            getOptionLabel={(options) => options["nome"]+" - "+options["email"]+" - "+options["instituicao"]}
+                            getOptionValue={(options) => options["idpesquisador"]}
                           />
                           {props.showOnly === false ? (
                             <>
@@ -3404,10 +3456,8 @@ export default function MicroContent(props) {
                             options={pesquisadorList}
                             defaultValue={pesqPres}
                             onChange={setPesqPres}
-                            getOptionLabel={(options) => options["pesquisador"]}
-                            getOptionValue={(options) =>
-                              options["idPesquisador"]
-                            }
+                            getOptionLabel={(options) => options["nome"]+" - "+options["email"]+" - "+options["instituicao"]}
+                            getOptionValue={(options) => options["idpesquisador"]}
                           />
                           {props.showOnly === false ? (
                             <>

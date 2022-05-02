@@ -224,6 +224,60 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    if (corList.length === 0) {
+      axios.get(baseurl+"cor")
+        .then(response => {
+          console.log(response.data);
+          setCorList(response.data);
+        }, error => {
+          console.log(error);
+        });
+    }
+    if (texturaList.length === 0) {
+      axios.get(baseurl+"textura")
+        .then(response => {
+          console.log(response.data);
+          setTexturaList(response.data);
+        }, error => {
+          console.log(error);
+        });
+    }
+    if (bordaList.length === 0) {
+      axios.get(baseurl+"borda")
+        .then(response => {
+          console.log(response.data);
+          setBordaList(response.data);
+        }, error => {
+          console.log(error);
+        });
+    }
+    if (relevoList.length === 0) {
+      axios.get(baseurl+"relevo")
+        .then(response => {
+          console.log(response.data);
+          setRelevoList(response.data);
+        }, error => {
+          console.log(error);
+        });
+    }
+    if (exudatoList.length === 0) {
+      axios.get(baseurl+"exudato")
+        .then(response => {
+          console.log(response.data);
+          setExudatoList(response.data);
+        }, error => {
+          console.log(error);
+        });
+    }
+    if (pigmentoList.length === 0) {
+      axios.get(baseurl+"pigmento")
+        .then(response => {
+          console.log(response.data);
+          setpigmentoList(response.data);
+        }, error => {
+          console.log(error);
+        });
+    }
   }, [])
 
   useEffect(() => {
@@ -735,6 +789,66 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    if (persist === true && tmpState === "cor") {
+      axios.post(baseurl+ tmpState, {
+        cor: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    if (persist === true && tmpState === "textura") {
+      axios.post(baseurl+ tmpState, {
+        textura: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    if (persist === true && tmpState === "borda") {
+      axios.post(baseurl+ tmpState, {
+        borda: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    if (persist === true && tmpState === "relevo") {
+      axios.post(baseurl+ tmpState, {
+        relevo: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    if (persist === true && tmpState === "exudato") {
+      axios.post(baseurl+ tmpState, {
+        exudato: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    if (persist === true && tmpState === "pigmento") {
+      axios.post(baseurl+ tmpState, {
+        pigmento: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+    }
     setIsOpen(false);
   }
   //END DEFAULT MODAL
@@ -747,13 +861,13 @@ export default function MicroContent(props) {
   const [modalPersonIsOpen, setPersonIsOpen] = useState(false);
   const [tmpStatePeson, setTmpStatePerson] = React.useState("");
 
-  function openPersonModal(vartext, varval, tmpPersState) {
+  function openPersonModal(vartext, varval, tmpState) {
     setPersonIsOpen(true);
     setItemPersonName(vartext);
     setItemPersonValueA(varval[0]);
     setItemPersonValueB(varval[1]);
     setItemPersonValueC(varval[2]);
-    setTmpStatePerson(tmpPersState);
+    setTmpStatePerson(tmpState);
   }
 
   function afterOpenPersonModal() {
@@ -763,11 +877,12 @@ export default function MicroContent(props) {
 
   function closePersonModal(persist) {
     console.log(itemPersonValueA,itemPersonValueB,itemPersonValueC)
+    console.log(tmpStatePeson);
     if (persist === true && tmpStatePeson === "pesquisador") {
       axios.post(baseurl+ tmpStatePeson, {
-        nome: setItemPersonValueA,
-        email: setItemPersonValueB,
-        instituicao: setItemPersonValueC
+        nome: itemPersonValueA,
+        email: itemPersonValueB,
+        instituicao: itemPersonValueC
       })
         .then((response) => {
           console.log(response);
@@ -1775,7 +1890,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Artigo", "");
+                                  openModal("Referência para temperatura", "", "referencia");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -1784,7 +1899,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Artigo", "Coco");
+                                  openModal("Referência para temperatura", "", "referencia");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2360,7 +2475,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2369,11 +2484,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], [
-                                    "Pesquisador 1",
-                                    "pesq1@uea.edu.br",
-                                    "UEA",
-                                  ]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2438,7 +2549,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2447,11 +2558,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], [
-                                    "Pesquisador 1",
-                                    "pesq1@uea.edu.br",
-                                    "UEA",
-                                  ]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2507,7 +2614,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Cor", "");
+                                  openModal("Cor", "", "cor");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2516,7 +2623,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Cor", "Coco");
+                                  openModal("Cor", "", "cor");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2551,7 +2658,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Textura", "");
+                                  openModal("Textura", "", "textura");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2560,7 +2667,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Textura", "Coco");
+                                  openModal("Textura", "", "textura");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2595,7 +2702,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Borda", "");
+                                  openModal("Borda", "", "borda");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2604,7 +2711,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Borda", "Coco");
+                                  openModal("Borda", "", "borda");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2639,7 +2746,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Relevo", "");
+                                  openModal("Relevo", "", "relevo");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2648,7 +2755,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Relevo", "Coco");
+                                  openModal("Relevo", "", "relevo");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2683,7 +2790,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Exudato", "");
+                                  openModal("Exudato", "", "exudato");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2692,7 +2799,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Exudato", "Coco");
+                                  openModal("Exudato", "", "exudato");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2727,7 +2834,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Cor", "");
+                                  openModal("Cor", "", "cor");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2736,7 +2843,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Cor", "Coco");
+                                  openModal("Cor", "", "cor");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2771,7 +2878,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Pigmento", "");
+                                  openModal("Pigmento", "", "pigmento");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2780,7 +2887,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Pigmento", "Coco");
+                                  openModal("Pigmento", "", "pigmento");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2815,7 +2922,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Cor", "");
+                                  openModal("Cor", "", "cor");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2824,7 +2931,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Cor", "Coco");
+                                  openModal("Cor", "", "cor");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2863,13 +2970,11 @@ export default function MicroContent(props) {
                             searchable={true}
                             placeholder={"Select an option"}
                             options={referenciaList}
-                            isMulti
                             defaultValue={refTemp}
+                            isMulti
                             onChange={setRefTemp}
                             getOptionLabel={(options) => options["referencia"]}
-                            getOptionValue={(options) =>
-                              options["idReferencia"]
-                            }
+                            getOptionValue={(options) => options["idReferencia"]}
                           />
                           {props.showOnly === false ? (
                             <>
@@ -2877,7 +2982,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Referência para temperatura", "");
+                                  openModal("Referência para temperatura", "", "referencia");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2886,10 +2991,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal(
-                                    "Referência para temperatura",
-                                    "Coco"
-                                  );
+                                  openModal("Referência para temperatura", "", "referencia");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />

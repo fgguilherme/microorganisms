@@ -269,6 +269,15 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    if (caracMicroList.length === 0) {
+      axios.get(baseurl+"carac_micromorfologica")
+        .then(response => {
+          console.log(response.data);
+          setCaracMicroList(response.data);
+        }, error => {
+          console.log(error);
+        });
+    }
     if (pigmentoList.length === 0) {
       axios.get(baseurl+"pigmento")
         .then(response => {
@@ -842,6 +851,16 @@ export default function MicroContent(props) {
     if (persist === true && tmpState === "pigmento") {
       axios.post(baseurl+ tmpState, {
         pigmento: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    if (persist === true && tmpState === "carac_micromorfologica") {
+      axios.post(baseurl+ tmpState, {
+        carac_micromorfologica: itemValue,
       })
         .then((response) => {
           console.log(response);
@@ -3015,15 +3034,10 @@ export default function MicroContent(props) {
                             searchable={true}
                             placeholder={"Select an option"}
                             options={caracMicroList}
-                            isMulti
                             defaultValue={caracMicro}
                             onChange={setCaracMicro}
-                            getOptionLabel={(options) =>
-                              options["caracterisrica"]
-                            }
-                            getOptionValue={(options) =>
-                              options["idCaracteristica"]
-                            }
+                            getOptionLabel={(options) => options["carac_micromorfologica"]}
+                            getOptionValue={(options) => options["idcarac_micromorfologica"]}
                           />
                           {props.showOnly === false ? (
                             <>
@@ -3032,9 +3046,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 onClick={() => {
                                   openModal(
-                                    "Caracteristicas micromorfológicas",
-                                    ""
-                                  );
+                                    "Caracteristicas micromorfológicas", "", "caract_micromofologica");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3044,9 +3056,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 onClick={() => {
                                   openModal(
-                                    "Caracteristicas micromorfológicas",
-                                    "Coco"
-                                  );
+                                    "Caracteristicas micromorfológicas", "", "caract_micromofologica");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />

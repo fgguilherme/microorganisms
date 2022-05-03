@@ -115,74 +115,97 @@ export default function MicroContent(props) {
   //START DATA DECLARATION
 
   const [dominio, setDominio] = useState([]);
+  const [dominioList, setDominioList] = useState([]);
+
   const [reino, setReino] = useState([]);
+  const [reinoList, setReinoList] = useState([]);
+
   const [filo, setFilo] = useState([]);
+  const [filoList, setFiloList] = useState([]);
+
   const [classe, setClasse] = useState([]);
+  const [classeList, setClasseList] = useState([]);
+
   const [ordem, setOrdem] = useState([]);
+  const [ordemList, setOrdemList] = useState([]);
+
   const [familia, setFamilia] = useState([]);
+  const [familiaList, setFamiliaList] = useState([]);
+
   const [genero, setGenero] = useState([]);
+  const [generoList, setGeneroList] = useState([]);
+
   const [especie, setEspecie] = useState([]);
+  const [especieList, setEspecieList] = useState([]);
+
   const [sub_especie, setSub_especie] = useState([]);
+  const [sub_especieList, setSub_especieList] = useState([]);
+
   const [variedade, setVariedade] = useState([]);
+  const [variedadeList, setVariedadeList] = useState([]);
+
   const [referencia, setReferencia] = useState([]);
-  const [coletor, setColetor] = useState([]);
+  const [refTemp, setRefTemp] = useState([]);
+  const [refAdd, setRefAdd] = useState([]);
+  const [referenciaList, setReferenciaList] = useState([]);
+    
+  const [pesqColeta, setPesqColeta] = useState([]);
   const [pesqIsola, setPesqIsola] = useState([]);
   const [pesqId, setPesqId] = useState([]);
   const [pesqPres, setPesqPres] = useState([]);
+  const [pesquisadorList, setPesquisadorList] = useState([]);
+
   const [status, setStatus] = useState([]);
   const [unidade, setUnidade] = useState([]);
   const [doacao, setDoacao] = useState([]);
-
-  const [dominioList, setDominioList] = useState([]);
-  const [reinoList, setReinoList] = useState([]);
-  const [filoList, setFiloList] = useState([]);
-  const [classeList, setClasseList] = useState([]);
-  const [ordemList, setOrdemList] = useState([]);
-  const [familiaList, setFamiliaList] = useState([]);
-  const [generoList, setGeneroList] = useState([]);
-  const [especieList, setEspecieList] = useState([]);
-  const [sub_especieList, setSub_especieList] = useState([]);
-  const [variedadeList, setVariedadeList] = useState([]);
-  const [referenciaList, setReferenciaList] = useState([]);
-
-
-  const [pesquisadorList, setPesquisadorList] = useState([]);
+  const [habitat, setHabitat] = useState([]);
+  
   const [hospAnList, setHospAnList] = useState([]);
   const [hospVegList, setHospVegList] = useState([]);
-  const [substratoList, setSubstratoList] = useState([]);
-  const [sitioAnatList, setSitioAnatList] = useState([]);
-  const [corList, setCorList] = useState([]);
-  const [texturaList, setTexturaList] = useState([]);
-  const [bordaList, setBordaList] = useState([]);
-  const [relevoList, setRelevoList] = useState([]);
-  const [exudatoList, setExudatoList] = useState([]);
-  const [pigmentoList, setpigmentoList] = useState([]);
-  const [caracMicroList, setCaracMicroList] = useState([]);
-  const [armarioList, setArmarioList] = useState([]);
-  const [prateleiraList, setprateleiraList] = useState([]);
-  const [loteList, setLoteList] = useState([]);
-  const [posicaoList, setPosicaoList] = useState([]);
-
-  const [corColonia, setCorColonia] = useState([]);
-  const [textura, setTextura] = useState([]);
-  const [borda, setBorda] = useState([]);
-  const [relevo, setRelevo] = useState([]);
-  const [exudato, setExudato] = useState([]);
-  const [corExu, setCorExu] = useState([]);
-  const [pigmento, setPigmento] = useState([]);
-  const [corPig, setCorPig] = useState([]);
-  const [refTemp, setRefTemp] = useState([]);
-  const [caracMicro, setCaracMicro] = useState([]);
-  const [armario, setArmario] = useState([]);
-  const [prateleira, setprateleira] = useState([]);
-  const [lote, setLote] = useState([]);
-  const [posicao, setPosicao] = useState([]);
-  const [refAdd, setRefAdd] = useState([]);
-  const [habitat, setHabitat] = useState([]);
   const [hospAn, setHospAn] = useState([]);
   const [hospVeg, setHospVeg] = useState([]);
+
+  const [substratoList, setSubstratoList] = useState([]);
   const [substrato, setSubstrato] = useState([]);
+
+  
+  const [corList, setCorList] = useState([]);
+  const [corColonia, setCorColonia] = useState([]);
+  const [corExu, setCorExu] = useState([]);
+  const [corPig, setCorPig] = useState([]);
+
+  const [texturaList, setTexturaList] = useState([]);
+  const [textura, setTextura] = useState([]);
+
+  const [bordaList, setBordaList] = useState([]);
+  const [borda, setBorda] = useState([]);
+
+  const [relevoList, setRelevoList] = useState([]);
+  const [relevo, setRelevo] = useState([]);
+
+  const [exudatoList, setExudatoList] = useState([]);
+  const [exudato, setExudato] = useState([]);
+
+  const [pigmentoList, setpigmentoList] = useState([]);
+  const [pigmento, setPigmento] = useState([]);
+
+  const [caracMicroList, setCaracMicroList] = useState([]);
+  const [caracMicro, setCaracMicro] = useState([]);
+
+  const [armarioList, setArmarioList] = useState([]);
+  const [armario, setArmario] = useState([]);
+
+  const [prateleiraList, setprateleiraList] = useState([]);
+  const [prateleira, setprateleira] = useState([]);
+
+  const [loteList, setLoteList] = useState([]);
+  const [lote, setLote] = useState([]);
+  
+  const [posicaoList, setPosicaoList] = useState([]);
+  const [posicao, setPosicao] = useState([]);
+  
   const [sitioAnat, setSitioAnat] = useState([]);
+  const [sitioAnatList, setSitioAnatList] = useState([]);
 
   const [labList, setLabList] = useState([]);
   const [laboratorio, setLaboratorio] = useState([]);
@@ -210,6 +233,12 @@ export default function MicroContent(props) {
           if (referencia.idreferencia) {
             setReferencia(null);
           }
+          if (refTemp.idreferencia) {
+            setRefTemp(null);
+          }
+          if (refAdd.idreferencia) {
+            setRefAdd(null);
+          }
         }, error => {
           console.log(error);
         });
@@ -220,6 +249,18 @@ export default function MicroContent(props) {
         .then(response => {
           console.log(response.data);
           setPesquisadorList(response.data);
+          if (pesqColeta.idpesquisador) {
+            setPesqColeta(null);
+          }
+          if (pesqIsola.idpesquisador) {
+            setPesqIsola(null);
+          }
+          if (pesqId.idpesquisador) {
+            setPesqId(null);
+          }
+          if (pesqPres.idpesquisador) {
+            setPesqPres(null);
+          }
         }, error => {
           console.log(error);
         });
@@ -229,6 +270,15 @@ export default function MicroContent(props) {
         .then(response => {
           console.log(response.data);
           setCorList(response.data);
+          if (corColonia.idcor) {
+            setCorColonia(null);
+          }
+          if (corExu.idcor) {
+            setCorExu(null);
+          }
+          if (corPig.idcor) {
+            setCorPig(null);
+          }
         }, error => {
           console.log(error);
         });
@@ -751,11 +801,19 @@ export default function MicroContent(props) {
       })
         .then((response) => {
           console.log(response);
+          if (referencia.idreferencia) {
+            setReferencia(null);
+          }
+          if (refTemp.idreferencia) {
+            setRefTemp(null);
+          }
+          if (refAdd.idreferencia) {
+            setRefAdd(null);
+          }
         }, (error) => {
           console.log(error);
         });
     }
-
     if (persist === true && tmpState === "hospedeiro_veg") {
       axios.post(baseurl+ "hospedeiro", {
         hospedeiro: itemValue,
@@ -794,6 +852,10 @@ export default function MicroContent(props) {
       })
         .then((response) => {
           console.log(response);
+          setSitioAnatList(response.data);
+            if (sitioAnat.idsitio) {
+              setSitioAnat(null);
+            }
         }, (error) => {
           console.log(error);
         });
@@ -804,6 +866,22 @@ export default function MicroContent(props) {
       })
         .then((response) => {
           console.log(response);
+          axios.get(baseurl+"cor")
+          .then(response => {
+            console.log(response.data);
+            setCorList(response.data);
+            if (corColonia.idcor) {
+              setCorColonia(null);
+            }
+            if (corExu.idcor) {
+              setCorExu(null);
+            }
+            if (corPig.idcor) {
+              setCorPig(null);
+            }
+          }, error => {
+            console.log(error);
+          });
         }, (error) => {
           console.log(error);
         });
@@ -909,6 +987,18 @@ export default function MicroContent(props) {
               .then(response => {
                 console.log(response.data);
                 setPesquisadorList(response.data);
+                if (pesqColeta.idpesquisador) {
+                  setPesqColeta(null);
+                }
+                if (pesqIsola.idpesquisador) {
+                  setPesqIsola(null);
+                }
+                if (pesqId.idpesquisador) {
+                  setPesqId(null);
+                }
+                if (pesqPres.idpesquisador) {
+                  setPesqPres(null);
+                }
               }, error => {
                 console.log(error);
               });
@@ -1909,7 +1999,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Referência para temperatura", "", "referencia");
+                                  openModal("Referências taxonômicas", "", "referencia");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -1918,7 +2008,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Referência para temperatura", "", "referencia");
+                                  openModal("Referências taxonômicas", "", "referencia");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2030,8 +2120,8 @@ export default function MicroContent(props) {
                             searchable={true}
                             placeholder={"Select an option"}
                             options={pesquisadorList}
-                            defaultValue={coletor}
-                            onChange={setColetor}
+                            defaultValue={pesqColeta}
+                            onChange={setPesqColeta}
                             getOptionLabel={(options) => options["nome"]+" - "+options["email"]+" - "+options["instituicao"]}
                             getOptionValue={(options) => options["idpesquisador"]}
                           />
@@ -2993,7 +3083,7 @@ export default function MicroContent(props) {
                             isMulti
                             onChange={setRefTemp}
                             getOptionLabel={(options) => options["referencia"]}
-                            getOptionValue={(options) => options["idReferencia"]}
+                            getOptionValue={(options) => options["idreferencia"]}
                           />
                           {props.showOnly === false ? (
                             <>
@@ -3037,7 +3127,7 @@ export default function MicroContent(props) {
                             defaultValue={caracMicro}
                             onChange={setCaracMicro}
                             getOptionLabel={(options) => options["carac_micromorfologica"]}
-                            getOptionValue={(options) => options["idcarac_micromorfologica"]}
+                            getOptionValue={(options) => options["idCarac_micromorfologica"]}
                           />
                           {props.showOnly === false ? (
                             <>
@@ -3046,7 +3136,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 onClick={() => {
                                   openModal(
-                                    "Caracteristicas micromorfológicas", "", "caract_micromofologica");
+                                    "Caracteristicas micromorfológicas", "", "carac_micromorfologica");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3056,7 +3146,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 onClick={() => {
                                   openModal(
-                                    "Caracteristicas micromorfológicas", "", "caract_micromofologica");
+                                    "Caracteristicas micromorfológicas", "", "carac_micromorfologica");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />

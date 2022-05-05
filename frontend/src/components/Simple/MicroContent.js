@@ -115,7 +115,7 @@ export default function MicroContent(props) {
   //START DATA DECLARATION
 
   const [dominio, setDominio] = useState([]);
-  const [dominioList, setDominioList] = useState([]);
+  const [dominioList, setDominioList] = useState([]); //0dominio
 
   const [reino, setReino] = useState([]);
   const [reinoList, setReinoList] = useState([]);
@@ -144,10 +144,10 @@ export default function MicroContent(props) {
   const [variedade, setVariedade] = useState([]);
   const [variedadeList, setVariedadeList] = useState([]);
 
-  const [referencia, setReferencia] = useState([]);
+  const [refTaxa, setRefTaxa] = useState([]);
   const [refTemp, setRefTemp] = useState([]);
   const [refAdd, setRefAdd] = useState([]);
-  const [referenciaList, setReferenciaList] = useState([]);
+  const [referenciaList, setReferenciaList] = useState([]); //0referencia
     
   const [pesqColeta, setPesqColeta] = useState([]);
   const [pesqIsola, setPesqIsola] = useState([]);
@@ -156,7 +156,10 @@ export default function MicroContent(props) {
   const [pesquisadorList, setPesquisadorList] = useState([]);
 
   const [status, setStatus] = useState([]);
+
   const [unidade, setUnidade] = useState([]);
+  const [unidadeList, setUnidadeList] = useState([]); //0unidade
+
   const [doacao, setDoacao] = useState([]);
   const [habitat, setHabitat] = useState([]);
   
@@ -169,27 +172,27 @@ export default function MicroContent(props) {
   const [substrato, setSubstrato] = useState([]);
 
   
-  const [corList, setCorList] = useState([]);
+  const [corList, setCorList] = useState([]); //0cor
   const [corColonia, setCorColonia] = useState([]);
   const [corExu, setCorExu] = useState([]);
   const [corPig, setCorPig] = useState([]);
 
-  const [texturaList, setTexturaList] = useState([]);
+  const [texturaList, setTexturaList] = useState([]); //0textura
   const [textura, setTextura] = useState([]);
 
-  const [bordaList, setBordaList] = useState([]);
+  const [bordaList, setBordaList] = useState([]); //0borda
   const [borda, setBorda] = useState([]);
 
-  const [relevoList, setRelevoList] = useState([]);
+  const [relevoList, setRelevoList] = useState([]); //0relevo
   const [relevo, setRelevo] = useState([]);
 
-  const [exudatoList, setExudatoList] = useState([]);
+  const [exudatoList, setExudatoList] = useState([]); //0exudato
   const [exudato, setExudato] = useState([]);
 
-  const [pigmentoList, setpigmentoList] = useState([]);
+  const [pigmentoList, setPigmentoList] = useState([]); //0pigmento
   const [pigmento, setPigmento] = useState([]);
 
-  const [caracMicroList, setCaracMicroList] = useState([]);
+  const [caracMicroList, setCaracMicroList] = useState([]); //0caracMicro
   const [caracMicro, setCaracMicro] = useState([]);
 
   const [armarioList, setArmarioList] = useState([]);
@@ -207,11 +210,17 @@ export default function MicroContent(props) {
   const [sitioAnat, setSitioAnat] = useState([]);
   const [sitioAnatList, setSitioAnatList] = useState([]);
 
-  const [labList, setLabList] = useState([]);
+  const [labList, setLabList] = useState([]); //0laboratorio
   const [laboratorio, setLaboratorio] = useState([]);
 
+  const [sub_colecao, setSub_colecao] = useState([]);
+  const [sub_colecaoList, setSub_colecaoList] = useState([]); //0sub_colecao
+
+  const [grupo_pesquisa, setGrupo_pesquisa] = useState([]);
+  const [grupo_pesquisaList, setGrupo_pesquisaList] = useState([]); //0grupo_pesquisa
+
   useEffect(() => {
-    // console.log(dominioList.length);
+    //0dominio
     if (dominioList.length === 0) {
       axios.get(baseurl+"dominio")
         .then(response => {
@@ -224,20 +233,33 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
-    // console.log(referenciaList.length);
+    //0grupo_pesquisa
+    if (grupo_pesquisaList.length === 0) {
+      axios.get(baseurl+"grupo_pesquisa")
+        .then(response => {
+          console.log(response.data);
+          setGrupo_pesquisaList(response.data);
+          if (grupo_pesquisa.idgrupo_pesquisa) {
+            setGrupo_pesquisa(null);
+          }
+        }, error => {
+          console.log(error);
+        });
+    }
+    //0referencia
     if (referenciaList.length === 0) {
       axios.get(baseurl+"referencia")
         .then(response => {
           console.log(response.data);
           setReferenciaList(response.data);
-          if (referencia.idreferencia) {
-            setReferencia(null);
+          if (refTaxa.idreferencia) {
+            setPesqColeta(null);
           }
           if (refTemp.idreferencia) {
-            setRefTemp(null);
+            setPesqIsola(null);
           }
           if (refAdd.idreferencia) {
-            setRefAdd(null);
+            setPesqId(null);
           }
         }, error => {
           console.log(error);
@@ -265,6 +287,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0cor
     if (corList.length === 0) {
       axios.get(baseurl+"cor")
         .then(response => {
@@ -283,56 +306,119 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0textura
     if (texturaList.length === 0) {
       axios.get(baseurl+"textura")
         .then(response => {
           console.log(response.data);
           setTexturaList(response.data);
+          if (textura.idtextura) {
+            setTextura(null);
+          }
         }, error => {
           console.log(error);
         });
     }
+    //0unidade
+    if (texturaList.length === 0) {
+      axios.get(baseurl+"unidade")
+        .then(response => {
+          console.log(response.data);
+          setUnidadeList(response.data);
+          if (unidade.idunidade) {
+            setUnidade(null);
+          }
+        }, error => {
+          console.log(error);
+        });
+    }
+    //0borda
     if (bordaList.length === 0) {
       axios.get(baseurl+"borda")
         .then(response => {
           console.log(response.data);
           setBordaList(response.data);
+          if (borda.idborda) {
+            setBorda(null);
+          }
         }, error => {
           console.log(error);
         });
     }
+    //0relevo
     if (relevoList.length === 0) {
       axios.get(baseurl+"relevo")
         .then(response => {
           console.log(response.data);
           setRelevoList(response.data);
+          if (relevo.idrelevo) {
+            setRelevo(null);
+          }
         }, error => {
           console.log(error);
         });
     }
+    //0exudato
     if (exudatoList.length === 0) {
       axios.get(baseurl+"exudato")
         .then(response => {
           console.log(response.data);
           setExudatoList(response.data);
+          if (exudato.idexudato) {
+            setExudato(null);
+          }
         }, error => {
           console.log(error);
         });
     }
+    //0caracMicro
     if (caracMicroList.length === 0) {
       axios.get(baseurl+"carac_micromorfologica")
         .then(response => {
           console.log(response.data);
           setCaracMicroList(response.data);
+          if (caracMicro.idcarac_micromorfologica) {
+            setCaracMicro(null);
+          }
         }, error => {
           console.log(error);
         });
     }
+    //0pigmento
     if (pigmentoList.length === 0) {
       axios.get(baseurl+"pigmento")
         .then(response => {
           console.log(response.data);
-          setpigmentoList(response.data);
+          setPigmentoList(response.data);
+          if (pigmento.idpigmento) {
+            setPigmento(null);
+          }
+        }, error => {
+          console.log(error);
+        });
+    }
+    //0laboratorio
+    if (labList.length === 0) {
+      axios.get(baseurl+"laboratorio")
+        .then(response => {
+          console.log(response.data);
+          setLabList(response.data);
+          if (laboratorio.idlaboratorio) {
+            setLaboratorio(null);
+          }
+        }, error => {
+          console.log(error);
+        });
+    }
+    //0sub_colecao
+    if (dominioList.length === 0) {
+      axios.get(baseurl+"sub_colecao")
+        .then(response => {
+          console.log(response.data);
+          setSub_colecaoList(response.data);
+          if (sub_colecao.idsub_colecao) {
+            setSub_colecao(null);
+          }
         }, error => {
           console.log(error);
         });
@@ -630,6 +716,7 @@ export default function MicroContent(props) {
 
   function closeModal(persist) {
     console.log(tmpState)
+    //0dominio
     if (persist === true && tmpState === "dominio") {
       axios.post(baseurl+ tmpState, {
         dominio: itemValue,
@@ -642,6 +729,27 @@ export default function MicroContent(props) {
               setDominioList(response.data);
               if (dominio.iddominio) {
                 setDominio(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    //0grupo_pesquisa
+    if (persist === true && tmpState === "grupo_pesquisa") {
+      axios.post(baseurl+ tmpState, {
+        grupo_pesquisa: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"grupo_pesquisa")
+            .then(response => {
+              console.log(response.data);
+              setGrupo_pesquisaList(response.data);
+              if (grupo_pesquisa.idgrupo_pesquisa) {
+                setGrupo_pesquisa(null);
               }
             }, error => {
               console.log(error);
@@ -801,15 +909,22 @@ export default function MicroContent(props) {
       })
         .then((response) => {
           console.log(response);
-          if (referencia.idreferencia) {
-            setReferencia(null);
-          }
-          if (refTemp.idreferencia) {
-            setRefTemp(null);
-          }
-          if (refAdd.idreferencia) {
-            setRefAdd(null);
-          }
+          axios.get(baseurl+"referencia")
+            .then(response => {
+              console.log(response.data);
+              setReferenciaList(response.data);
+              if (refTaxa.idreferencia) {
+                setRefTaxa(null);
+              }
+              if (refTemp.idreferencia) {
+                setRefTemp(null);
+              }
+              if (refAdd.idreferencia) {
+                setRefAdd(null);
+              }
+            }, error => {
+              console.log(error);
+            });
         }, (error) => {
           console.log(error);
         });
@@ -860,6 +975,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0cor
     if (persist === true && tmpState === "cor") {
       axios.post(baseurl+ tmpState, {
         cor: itemValue,
@@ -886,62 +1002,191 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0textura
     if (persist === true && tmpState === "textura") {
       axios.post(baseurl+ tmpState, {
         textura: itemValue,
       })
         .then((response) => {
           console.log(response);
+          axios.get(baseurl+"textura")
+            .then(response => {
+              console.log(response.data);
+              setTexturaList(response.data);
+              if (textura.idtextura) {
+                setTextura(null);
+              }
+            }, error => {
+              console.log(error);
+            });
         }, (error) => {
           console.log(error);
         });
     }
+    //0unidade
+    if (persist === true && tmpState === "unidade") {
+      axios.post(baseurl+ tmpState, {
+        unidade: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"unidade")
+            .then(response => {
+              console.log(response.data);
+              setUnidadeList(response.data);
+              if (unidade.idunidade) {
+                setUnidade(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    //0borda
     if (persist === true && tmpState === "borda") {
       axios.post(baseurl+ tmpState, {
         borda: itemValue,
       })
         .then((response) => {
           console.log(response);
+          axios.get(baseurl+"borda")
+            .then(response => {
+              console.log(response.data);
+              setBordaList(response.data);
+              if (borda.idborda) {
+                setBorda(null);
+              }
+            }, error => {
+              console.log(error);
+            });
         }, (error) => {
           console.log(error);
         });
     }
+    //0relevo
     if (persist === true && tmpState === "relevo") {
       axios.post(baseurl+ tmpState, {
         relevo: itemValue,
       })
         .then((response) => {
           console.log(response);
+          axios.get(baseurl+"relevo")
+            .then(response => {
+              console.log(response.data);
+              setRelevoList(response.data);
+              if (relevo.idrelevo) {
+                setRelevo(null);
+              }
+            }, error => {
+              console.log(error);
+            });
         }, (error) => {
           console.log(error);
         });
     }
+    //0exudato
     if (persist === true && tmpState === "exudato") {
       axios.post(baseurl+ tmpState, {
         exudato: itemValue,
       })
         .then((response) => {
           console.log(response);
+          axios.get(baseurl+"exudato")
+            .then(response => {
+              console.log(response.data);
+              setExudatoList(response.data);
+              if (exudato.idexudato) {
+                setExudato(null);
+              }
+            }, error => {
+              console.log(error);
+            });
         }, (error) => {
           console.log(error);
         });
     }
+    //0pigmento
     if (persist === true && tmpState === "pigmento") {
       axios.post(baseurl+ tmpState, {
         pigmento: itemValue,
       })
         .then((response) => {
           console.log(response);
+          axios.get(baseurl+"pigmento")
+            .then(response => {
+              console.log(response.data);
+              setPigmentoList(response.data);
+              if (pigmento.idpigmento) {
+                setPigmento(null);
+              }
+            }, error => {
+              console.log(error);
+            });
         }, (error) => {
           console.log(error);
         });
     }
+    //0caracMicro
     if (persist === true && tmpState === "carac_micromorfologica") {
       axios.post(baseurl+ tmpState, {
         carac_micromorfologica: itemValue,
       })
         .then((response) => {
           console.log(response);
+          axios.get(baseurl+"carac_micromorfologica")
+            .then(response => {
+              console.log(response.data);
+              setCaracMicroList(response.data);
+              if (caracMicro.idcarac_micromorfologica) {
+                setCaracMicro(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+    }
+        //0laboratorio
+    if (persist === true && tmpState === "laboratorio") {
+      axios.post(baseurl+ tmpState, {
+        laboratorio: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"laboratorio")
+            .then(response => {
+              console.log(response.data);
+              setLabList(response.data);
+              if (laboratorio.idlaboratorio) {
+                setLaboratorio(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    //0sub_colecao
+    if (persist === true && tmpState === "sub_colecao") {
+      axios.post(baseurl+ tmpState, {
+        sub_colecao: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"sub_colecao")
+            .then(response => {
+              console.log(response.data);
+              setSub_colecaoList(response.data);
+              if (sub_colecao.idsub_colecao) {
+                setSub_colecao(null);
+              }
+            }, error => {
+              console.log(error);
+            });
         }, (error) => {
           console.log(error);
         });
@@ -1524,6 +1769,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["iddominio"]}
                           />
                           {props.showOnly === false ? (
+                            //0dominio
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -1986,14 +2232,15 @@ export default function MicroContent(props) {
                             searchable={true}
                             placeholder={"Select an option"}
                             options={referenciaList}
-                            defaultValue={referencia}
+                            defaultValue={refTaxa}
                             isMulti
-                            onChange={setReferencia}
+                            onChange={setRefTaxa}
                             getOptionLabel={(options) => options["referencia"]}
                             getOptionValue={(options) => options["idreferencia"]
                             }
                           />
                           {props.showOnly === false ? (
+                            //0referencia
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2715,9 +2962,10 @@ export default function MicroContent(props) {
                             defaultValue={corColonia}
                             onChange={setCorColonia}
                             getOptionLabel={(options) => options["cor"]}
-                            getOptionValue={(options) => options["idCor"]}
+                            getOptionValue={(options) => options["idcor"]}
                           />
                           {props.showOnly === false ? (
+                            //0cor
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2749,7 +2997,6 @@ export default function MicroContent(props) {
                           >
                             Textura
                           </label>
-
                           <Select
                             className="w-8/12"
                             isDisabled={props.showOnly}
@@ -2759,9 +3006,10 @@ export default function MicroContent(props) {
                             defaultValue={textura}
                             onChange={setTextura}
                             getOptionLabel={(options) => options["textura"]}
-                            getOptionValue={(options) => options["idTextura"]}
+                            getOptionValue={(options) => options["idtextura"]}
                           />
                           {props.showOnly === false ? (
+                            //0textura
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2803,9 +3051,10 @@ export default function MicroContent(props) {
                             defaultValue={borda}
                             onChange={setBorda}
                             getOptionLabel={(options) => options["borda"]}
-                            getOptionValue={(options) => options["idBorda"]}
+                            getOptionValue={(options) => options["idborda"]}
                           />
                           {props.showOnly === false ? (
+                            //0borda
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2847,9 +3096,10 @@ export default function MicroContent(props) {
                             defaultValue={relevo}
                             onChange={setRelevo}
                             getOptionLabel={(options) => options["relevo"]}
-                            getOptionValue={(options) => options["idRelevo"]}
+                            getOptionValue={(options) => options["idrelevo"]}
                           />
                           {props.showOnly === false ? (
+                            //0relevo
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2891,9 +3141,10 @@ export default function MicroContent(props) {
                             defaultValue={exudato}
                             onChange={setExudato}
                             getOptionLabel={(options) => options["exudato"]}
-                            getOptionValue={(options) => options["idExudato"]}
+                            getOptionValue={(options) => options["idexudato"]}
                           />
                           {props.showOnly === false ? (
+                            //0exudato
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2935,9 +3186,10 @@ export default function MicroContent(props) {
                             defaultValue={corExu}
                             onChange={setCorExu}
                             getOptionLabel={(options) => options["cor"]}
-                            getOptionValue={(options) => options["idCor"]}
+                            getOptionValue={(options) => options["idcor"]}
                           />
                           {props.showOnly === false ? (
+                            //0cor
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2979,9 +3231,10 @@ export default function MicroContent(props) {
                             defaultValue={pigmento}
                             onChange={setPigmento}
                             getOptionLabel={(options) => options["pigmento"]}
-                            getOptionValue={(options) => options["idPigmento"]}
+                            getOptionValue={(options) => options["idpigmento"]}
                           />
                           {props.showOnly === false ? (
+                            //0pigmento
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -3023,9 +3276,10 @@ export default function MicroContent(props) {
                             defaultValue={corPig}
                             onChange={setCorPig}
                             getOptionLabel={(options) => options["cor"]}
-                            getOptionValue={(options) => options["idCor"]}
+                            getOptionValue={(options) => options["idcor"]}
                           />
                           {props.showOnly === false ? (
+                            //0cor
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -3086,6 +3340,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idreferencia"]}
                           />
                           {props.showOnly === false ? (
+                            //0referencia
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -3127,9 +3382,10 @@ export default function MicroContent(props) {
                             defaultValue={caracMicro}
                             onChange={setCaracMicro}
                             getOptionLabel={(options) => options["carac_micromorfologica"]}
-                            getOptionValue={(options) => options["idCarac_micromorfologica"]}
+                            getOptionValue={(options) => options["idcarac_micromorfologica"]}
                           />
                           {props.showOnly === false ? (
+                            //0caracMicro
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -3213,17 +3469,17 @@ export default function MicroContent(props) {
                             defaultValue={laboratorio}
                             onChange={setLaboratorio}
                             getOptionLabel={(options) => options["laboratorio"]}
-                            getOptionValue={(options) =>
-                              options["idLaboratorio"]
+                            getOptionValue={(options) => options["idlaboratorio"]
                             }
                           />
                           {props.showOnly === false ? (
+                            //0laboratorio
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Laboratório", "");
+                                  openModal("Laboratório", "", "laboratorio");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3232,7 +3488,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Laboratório", "Coco");
+                                  openModal("Laboratório", "", "laboratorio");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3336,19 +3592,20 @@ export default function MicroContent(props) {
                             isDisabled={props.showOnly}
                             searchable={true}
                             placeholder={"Select an option"}
-                            options={dominioList}
-                            defaultValue={dominio}
-                            onChange={setDominio}
-                            getOptionLabel={(options) => options["dominio"]}
-                            getOptionValue={(options) => options["idDominio"]}
+                            options={sub_colecaoList}
+                            defaultValue={sub_colecao}
+                            onChange={setSub_colecao}
+                            getOptionLabel={(options) => options["sub_colecao"]}
+                            getOptionValue={(options) => options["idsub_colecao"]}
                           />
                           {props.showOnly === false ? (
+                            //0sub_colecao
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Sub-Coleção", "");
+                                  openModal("Sub-Coleção", "", "sub_colecao");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3357,7 +3614,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Sub-Coleção", "Coco");
+                                  openModal("Sub-Coleção", "", "sub_colecao");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3380,19 +3637,21 @@ export default function MicroContent(props) {
                             isDisabled={props.showOnly}
                             searchable={true}
                             placeholder={"Select an option"}
-                            options={dominioList}
-                            defaultValue={dominio}
-                            onChange={setDominio}
-                            getOptionLabel={(options) => options["dominio"]}
-                            getOptionValue={(options) => options["idDominio"]}
+                            options={grupo_pesquisaList}
+                            defaultValue={grupo_pesquisa}
+                            onChange={setGrupo_pesquisa}
+                            getOptionLabel={(options) => options["grupo_pesquisa"]}
+                            getOptionValue={(options) => options["idgrupo_pesquisa"]}
                           />
                           {props.showOnly === false ? (
+                            //0grupo_pesquisa
+
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Grupo de pesquisa", "");
+                                  openModal("Grupo de pesquisa", "", "grupo_pesquisa");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3401,7 +3660,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Grupo de pesquisa", "Coco");
+                                  openModal("Grupo de pesquisa", "", "grupo_pesquisa");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3427,15 +3686,16 @@ export default function MicroContent(props) {
                             defaultValue={unidade}
                             onChange={setUnidade}
                             getOptionLabel={(options) => options["unidade"]}
-                            getOptionValue={(options) => options["idUnidade"]}
+                            getOptionValue={(options) => options["idunidade"]}
                           />
                           {props.showOnly === false ? (
+                            //0unidade
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Unidade", "");
+                                  openModal("Unidade", "", "unidade");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3444,7 +3704,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Unidade", "FP");
+                                  openModal("Unidade", "", "unidade");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3816,6 +4076,7 @@ export default function MicroContent(props) {
                             }
                           />
                           {props.showOnly === false ? (
+                            //0referencia
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"

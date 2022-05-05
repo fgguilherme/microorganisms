@@ -86,24 +86,24 @@ const doacaoList = [
   },
 ];
 
-const unidadeList = [
-  {
-    idUnidade: 0,
-    unidade: "TB",
-  },
-  {
-    idUnidade: 1,
-    unidade: "EP",
-  },
-  {
-    idUnidade: 2,
-    unidade: "FP",
-  },
-  {
-    idUnidade: 3,
-    unidade: "OT",
-  },
-];
+// const unidadeList = [
+//   {
+//     idUnidade: 0,
+//     unidade: "TB",
+//   },
+//   {
+//     idUnidade: 1,
+//     unidade: "EP",
+//   },
+//   {
+//     idUnidade: 2,
+//     unidade: "FP",
+//   },
+//   {
+//     idUnidade: 3,
+//     unidade: "OT",
+//   },
+// ];
 
 export default function MicroContent(props) {
   var initialTab = 1;
@@ -118,31 +118,31 @@ export default function MicroContent(props) {
   const [dominioList, setDominioList] = useState([]); //0dominio
 
   const [reino, setReino] = useState([]);
-  const [reinoList, setReinoList] = useState([]);
+  const [reinoList, setReinoList] = useState([]); //0reino
 
   const [filo, setFilo] = useState([]);
-  const [filoList, setFiloList] = useState([]);
+  const [filoList, setFiloList] = useState([]); //0filo
 
   const [classe, setClasse] = useState([]);
-  const [classeList, setClasseList] = useState([]);
+  const [classeList, setClasseList] = useState([]); //0classe
 
   const [ordem, setOrdem] = useState([]);
-  const [ordemList, setOrdemList] = useState([]);
+  const [ordemList, setOrdemList] = useState([]); //0ordem
 
   const [familia, setFamilia] = useState([]);
-  const [familiaList, setFamiliaList] = useState([]);
+  const [familiaList, setFamiliaList] = useState([]); //0familia
 
   const [genero, setGenero] = useState([]);
-  const [generoList, setGeneroList] = useState([]);
+  const [generoList, setGeneroList] = useState([]); //0genero
 
   const [especie, setEspecie] = useState([]);
-  const [especieList, setEspecieList] = useState([]);
+  const [especieList, setEspecieList] = useState([]); //0especie
 
   const [sub_especie, setSub_especie] = useState([]);
-  const [sub_especieList, setSub_especieList] = useState([]);
+  const [sub_especieList, setSub_especieList] = useState([]); //0sub_especie
 
   const [variedade, setVariedade] = useState([]);
-  const [variedadeList, setVariedadeList] = useState([]);
+  const [variedadeList, setVariedadeList] = useState([]); //0variedade
 
   const [refTaxa, setRefTaxa] = useState([]);
   const [refTemp, setRefTemp] = useState([]);
@@ -153,7 +153,7 @@ export default function MicroContent(props) {
   const [pesqIsola, setPesqIsola] = useState([]);
   const [pesqId, setPesqId] = useState([]);
   const [pesqPres, setPesqPres] = useState([]);
-  const [pesquisadorList, setPesquisadorList] = useState([]);
+  const [pesquisadorList, setPesquisadorList] = useState([]); //0pesquisador
 
   const [status, setStatus] = useState([]);
 
@@ -163,12 +163,14 @@ export default function MicroContent(props) {
   const [doacao, setDoacao] = useState([]);
   const [habitat, setHabitat] = useState([]);
   
-  const [hospAnList, setHospAnList] = useState([]);
-  const [hospVegList, setHospVegList] = useState([]);
+  const [hospAnList, setHospAnList] = useState([]); //0Animal
   const [hospAn, setHospAn] = useState([]);
-  const [hospVeg, setHospVeg] = useState([]);
 
-  const [substratoList, setSubstratoList] = useState([]);
+  const [hospVegList, setHospVegList] = useState([]); //0vegetal
+  const [hospVeg, setHospVeg] = useState([]);
+  
+
+  const [substratoList, setSubstratoList] = useState([]); //0substrato
   const [substrato, setSubstrato] = useState([]);
 
   
@@ -195,26 +197,26 @@ export default function MicroContent(props) {
   const [caracMicroList, setCaracMicroList] = useState([]); //0caracMicro
   const [caracMicro, setCaracMicro] = useState([]);
 
-  const [armarioList, setArmarioList] = useState([]);
-  const [armario, setArmario] = useState([]);
-
-  const [prateleiraList, setprateleiraList] = useState([]);
-  const [prateleira, setprateleira] = useState([]);
-
-  const [loteList, setLoteList] = useState([]);
-  const [lote, setLote] = useState([]);
-  
-  const [posicaoList, setPosicaoList] = useState([]);
+  const [posicaoList, setPosicaoList] = useState([]); //0posicao
   const [posicao, setPosicao] = useState([]);
-  
-  const [sitioAnat, setSitioAnat] = useState([]);
-  const [sitioAnatList, setSitioAnatList] = useState([]);
 
-  const [labList, setLabList] = useState([]); //0laboratorio
-  const [laboratorio, setLaboratorio] = useState([]);
+  const [loteList, setLoteList] = useState([]); //0lote
+  const [lote, setLote] = useState([]);
+
+  const [prateleiraList, setPrateleiraList] = useState([]); //0prateleira
+  const [prateleira, setPrateleira] = useState([]);
+
+  const [armarioList, setArmarioList] = useState([]); //0armario
+  const [armario, setArmario] = useState([]);
 
   const [sub_colecao, setSub_colecao] = useState([]);
   const [sub_colecaoList, setSub_colecaoList] = useState([]); //0sub_colecao
+  
+  const [sitioAnat, setSitioAnat] = useState([]);
+  const [sitioAnatList, setSitioAnatList] = useState([]); //0sitio
+
+  const [labList, setLabList] = useState([]); //0laboratorio
+  const [laboratorio, setLaboratorio] = useState([]);
 
   const [grupo_pesquisa, setGrupo_pesquisa] = useState([]);
   const [grupo_pesquisaList, setGrupo_pesquisaList] = useState([]); //0grupo_pesquisa
@@ -265,7 +267,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
-    // console.log(pesquisadorList.length);
+    //0pesquisador
     if (pesquisadorList.length === 0) {
       axios.get(baseurl+"pesquisador")
         .then(response => {
@@ -411,7 +413,7 @@ export default function MicroContent(props) {
         });
     }
     //0sub_colecao
-    if (dominioList.length === 0) {
+    if (sub_colecaoList.length === 0) {
       axios.get(baseurl+"sub_colecao")
         .then(response => {
           console.log(response.data);
@@ -426,7 +428,7 @@ export default function MicroContent(props) {
   }, [])
 
   useEffect(() => {
-    // console.log("CUEN 1");
+   //0dominio
     const fetchData = async () => {
       if (dominio.iddominio) {
         axios.get(baseurl+"reino/search", {
@@ -450,7 +452,7 @@ export default function MicroContent(props) {
   }, [dominio]);
 
   useEffect(() => {
-    // console.log("CUEN 1");
+    //0reino
     const fetchData = async () => {
       if (reino?.idreino) {
         axios.get(baseurl+"filo/search", {
@@ -474,7 +476,7 @@ export default function MicroContent(props) {
   }, [reino]);
 
   useEffect(() => {
-    // console.log("CUEN 1");
+    //0filo
     const fetchData = async () => {
       if (filo?.idfilo) {
         axios.get(baseurl+"classe/search", {
@@ -498,7 +500,7 @@ export default function MicroContent(props) {
   }, [filo]);
 
   useEffect(() => {
-    // console.log("CUEN 1");
+    //0classe
     const fetchData = async () => {
       if (classe?.idclasse) {
         axios.get(baseurl+"ordem/search", {
@@ -522,7 +524,7 @@ export default function MicroContent(props) {
   }, [classe]);
 
   useEffect(() => {
-    // console.log("CUEN 1");
+    //0ordem
     const fetchData = async () => {
       if (ordem?.idordem) {
         axios.get(baseurl+"familia/search", {
@@ -546,7 +548,7 @@ export default function MicroContent(props) {
   }, [ordem]);
 
   useEffect(() => {
-    // console.log("CUEN 1");
+    //0familia
     const fetchData = async () => {
       if (familia?.idfamilia) {
         axios.get(baseurl+"genero/search", {
@@ -570,7 +572,7 @@ export default function MicroContent(props) {
   }, [familia]);
 
   useEffect(() => {
-    // console.log("CUEN 1");
+    //0genero
     const fetchData = async () => {
       if (genero?.idgenero) {
         axios.get(baseurl+"especie/search", {
@@ -594,7 +596,7 @@ export default function MicroContent(props) {
   }, [genero]);
 
   useEffect(() => {
-    // console.log("CUEN 1");
+    ////0especie
     const fetchData = async () => {
       if (especie?.idespecie) {
         axios.get(baseurl+"sub_especie/search", {
@@ -618,7 +620,7 @@ export default function MicroContent(props) {
   }, [especie]);
 
   useEffect(() => {
-    // console.log("CUEN 1");
+    //0sub_especie
     const fetchData = async () => {
       if (sub_especie?.idsub_especie) {
         axios.get(baseurl+"variedade/search", {
@@ -642,6 +644,7 @@ export default function MicroContent(props) {
   }, [sub_especie]);
   
   useEffect(() => {
+    //0habitat
     console.log(habitat);
     if (habitat?.idHabitat <= 2) {
       console.log("Vegetal")
@@ -684,6 +687,7 @@ export default function MicroContent(props) {
           }, error => {
             console.log(error);
           });
+          //0sitio
           axios.get(baseurl+"sitio/")
             .then(response => {
               console.log(response.data);
@@ -695,6 +699,122 @@ export default function MicroContent(props) {
       fetchData();
     }
   }, [habitat]);
+  // useEffect(() => {
+  //  //0posicao
+  //   const fetchData = async () => {
+  //     if (posicao.idposicao) {
+  //       axios.get(baseurl+"lote/search", {
+  //         params: {
+  //           "posicao_idposicao": posicao.idposicao
+  //         }
+  //       })
+  //         .then(response => {
+  //           console.log(response.data);
+  //           setLoteList(response.data);
+  //         }, error => {
+  //           console.log(error);
+  //         });
+  //     }
+  //     else {
+  //       setLoteList([])
+  //       setLote(null)
+  //     }
+  //   };
+  //   fetchData();
+  // }, [posicao]);
+  useEffect(() => {
+  //0sub_colecao
+   const fetchData = async () => {
+     if (sub_colecao.idsub_colecao) {
+       axios.get(baseurl+"armario/search", {
+         params: {
+           "sub_colecao_idsub_colecao": sub_colecao.idsub_colecao
+         }
+       })
+         .then(response => {
+           console.log(response.data);
+           setArmarioList(response.data);
+         }, error => {
+           console.log(error);
+         });
+     }
+     else {
+       setArmarioList([])
+       setArmario(null)
+     }
+   };
+   fetchData();
+  }, [sub_colecao]);
+   
+   useEffect(() => {
+    //0armario
+    const fetchData = async () => {
+      if (armario?.idarmario) {
+        axios.get(baseurl+"prateleira/search", {
+          params: {
+            "armario_idarmario": armario.idarmario
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setPrateleiraList(response.data);
+          }, error => {
+            console.log(error);
+          });
+      }
+      else {
+        setPrateleiraList([])
+        setPrateleira(null)
+      }
+    };
+    fetchData();
+  }, [armario]);
+  useEffect(() => {
+    //0prateleira
+    const fetchData = async () => {
+      if (prateleira?.idprateleira) {
+        axios.get(baseurl+"lote/search", {
+          params: {
+            "prateleira_idprateleira": prateleira.idprateleira
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setLoteList(response.data);
+          }, error => {
+            console.log(error);
+          });
+      }
+      else {
+        setLoteList([])
+        setLote(null)
+      }
+    };
+    fetchData();
+  }, [prateleira]);
+  useEffect(() => {
+    //0lote
+    const fetchData = async () => {
+      if (lote?.idlote) {
+        axios.get(baseurl+"posicao/search", {
+          params: {
+            "lote_idlote": lote.idlote
+          }
+        })
+          .then(response => {
+            console.log(response.data);
+            setPosicaoList(response.data);
+          }, error => {
+            console.log(error);
+          });
+      }
+      else {
+        setPosicaoList([])
+        setPosicao(null)
+      }
+    };
+    fetchData();
+  }, [lote]);
 
   // START DEFAULT MODAL
   const [itemName, setItemName] = React.useState("");
@@ -737,27 +857,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
-    //0grupo_pesquisa
-    if (persist === true && tmpState === "grupo_pesquisa") {
-      axios.post(baseurl+ tmpState, {
-        grupo_pesquisa: itemValue,
-      })
-        .then((response) => {
-          console.log(response);
-          axios.get(baseurl+"grupo_pesquisa")
-            .then(response => {
-              console.log(response.data);
-              setGrupo_pesquisaList(response.data);
-              if (grupo_pesquisa.idgrupo_pesquisa) {
-                setGrupo_pesquisa(null);
-              }
-            }, error => {
-              console.log(error);
-            });
-        }, (error) => {
-          console.log(error);
-        });
-    }
+    //0reino
     if (persist === true && tmpState === "reino" && dominio.iddominio > 0) {
       axios.post(baseurl+ tmpState, {
         reino: itemValue,
@@ -782,6 +882,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0filo
     if (persist === true && tmpState === "filo" && reino.idreino > 0) {
       axios.post(baseurl+ tmpState, {
         filo: itemValue,
@@ -806,6 +907,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0classe
     if (persist === true && tmpState === "classe" && filo.idfilo > 0) {
       axios.post(baseurl+ tmpState, {
         classe: itemValue,
@@ -830,6 +932,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0ordem
     if (persist === true && tmpState === "ordem" && classe.idclasse > 0) {
       axios.post(baseurl+ tmpState, {
         ordem: itemValue,
@@ -854,6 +957,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0familia
     if (persist === true && tmpState === "familia" && ordem.idordem > 0) {
       axios.post(baseurl+ tmpState, {
         familia: itemValue,
@@ -878,6 +982,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0genero
     if (persist === true && tmpState === "genero" && familia.idfamilia > 0) {
       axios.post(baseurl+ tmpState, {
         genero: itemValue,
@@ -961,6 +1066,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0sitio
     if (persist === true && tmpState === "sitio") {
       axios.post(baseurl+ tmpState, {
         sitio: itemValue,
@@ -1015,6 +1121,132 @@ export default function MicroContent(props) {
               setTexturaList(response.data);
               if (textura.idtextura) {
                 setTextura(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    //0grupo_pesquisa
+    if (persist === true && tmpState === "grupo_pesquisa") {
+      axios.post(baseurl+ tmpState, {
+        grupo_pesquisa: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"grupo_pesquisa")
+            .then(response => {
+              console.log(response.data);
+              setGrupo_pesquisaList(response.data);
+              if (grupo_pesquisa.idgrupo_pesquisa) {
+                setGrupo_pesquisa(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    //0posicao
+    if (persist === true && tmpState === "posicao") {
+      axios.post(baseurl+ tmpState, {
+        posicao: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"posicao")
+            .then(response => {
+              console.log(response.data);
+              setPosicaoList(response.data);
+              if (posicao.idposicao) {
+                setPosicao(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    //0lote
+    if (persist === true && tmpState === "lote") {
+      axios.post(baseurl+ tmpState, {
+        lote: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"lote")
+            .then(response => {
+              console.log(response.data);
+              setLoteList(response.data);
+              if (lote.idlote) {
+                setLote(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    //0prateleira
+    if (persist === true && tmpState === "prateleira") {
+      axios.post(baseurl+ tmpState, {
+        prateleira: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"prateleira")
+            .then(response => {
+              console.log(response.data);
+              setPrateleiraList(response.data);
+              if (prateleira.idprateleira) {
+                setPrateleira(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    //0armario
+    if (persist === true && tmpState === "armario") {
+      axios.post(baseurl+ tmpState, {
+        armario: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"armario")
+            .then(response => {
+              console.log(response.data);
+              setArmarioList(response.data);
+              if (armario.idarmario) {
+                setArmario(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    //0sub_colecao
+    if (persist === true && tmpState === "sub_colecao") {
+      axios.post(baseurl+ tmpState, {
+        sub_colecao: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"sub_colecao")
+            .then(response => {
+              console.log(response.data);
+              setSub_colecaoList(response.data);
+              if (sub_colecao.idsub_colecao) {
+                setSub_colecao(null);
               }
             }, error => {
               console.log(error);
@@ -1170,27 +1402,6 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
-    //0sub_colecao
-    if (persist === true && tmpState === "sub_colecao") {
-      axios.post(baseurl+ tmpState, {
-        sub_colecao: itemValue,
-      })
-        .then((response) => {
-          console.log(response);
-          axios.get(baseurl+"sub_colecao")
-            .then(response => {
-              console.log(response.data);
-              setSub_colecaoList(response.data);
-              if (sub_colecao.idsub_colecao) {
-                setSub_colecao(null);
-              }
-            }, error => {
-              console.log(error);
-            });
-        }, (error) => {
-          console.log(error);
-        });
-    }
     setIsOpen(false);
   }
   //END DEFAULT MODAL
@@ -1216,10 +1427,10 @@ export default function MicroContent(props) {
     // references are now sync'd and can be accessed.
     // subtitle.style.color = '#f00';
   }
-
   function closePersonModal(persist) {
     console.log(itemPersonValueA,itemPersonValueB,itemPersonValueC)
     console.log(tmpStatePeson);
+     //0pesquisador
     if (persist === true && tmpStatePeson === "pesquisador") {
       axios.post(baseurl+ tmpStatePeson, {
         nome: itemPersonValueA,
@@ -1279,6 +1490,7 @@ export default function MicroContent(props) {
   function closeAutorModal(persist) {
     console.log(itemAutorValueA,itemAutorValueB)
     console.log(tmpStateAutor)
+    //0especie
     if (persist === true && tmpStateAutor === "especie" && genero.idgenero > 0) {
       axios.post(baseurl + tmpStateAutor, {
           especie: itemAutorValueA,
@@ -1310,6 +1522,7 @@ export default function MicroContent(props) {
           }
         );
     }
+    //0sub_especie
     if (persist === true && tmpStateAutor === "sub_especie" && especie.idespecie > 0) {
       axios.post(baseurl+ tmpStateAutor, {
         sub_especie: itemAutorValueA,
@@ -1335,6 +1548,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0variedade
    if (persist === true && tmpStateAutor === "variedade" && sub_especie.idsub_especie > 0) {
      axios.post(baseurl+ tmpStateAutor, {
        variedade: itemAutorValueA,
@@ -1814,6 +2028,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idreino"]}
                           />
                           {props.showOnly === false ? (
+                            //0reino
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -1858,6 +2073,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idFilo"]}
                           />
                           {props.showOnly === false ? (
+                            //0filo
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -1902,6 +2118,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idClasse"]}
                           />
                           {props.showOnly === false ? (
+                            //0classe
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -1946,6 +2163,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idOrdem"]}
                           />
                           {props.showOnly === false ? (
+                            //0ordem
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -1990,6 +2208,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idfamilia"]}
                           />
                           {props.showOnly === false ? (
+                            //0familia
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2033,6 +2252,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idgenero"]}
                           />
                           {props.showOnly === false ? (
+                            //0genero
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2076,6 +2296,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idespecie"]}
                           />
                           {props.showOnly === false ? (
+                            //0especie
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2137,6 +2358,7 @@ export default function MicroContent(props) {
                             <option value="manga">Manga</option>
                           </select> */}
                           {props.showOnly === false ? (
+                            //0sub_especie
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2187,6 +2409,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idvariedade"]}
                           />
                           {props.showOnly === false ? (
+                            //0variedade
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2373,6 +2596,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idpesquisador"]}
                           />
                           {props.showOnly === false ? (
+                             //0pesquisador
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2450,6 +2674,7 @@ export default function MicroContent(props) {
                                 }
                               />
                               {props.showOnly === false ? (
+                                //0vegetal
                                 <>
                                   <button
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2600,6 +2825,7 @@ export default function MicroContent(props) {
                                 }
                               />
                               {props.showOnly === false ? (
+                                //0Animal
                                 <>
                                   <button
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2648,6 +2874,7 @@ export default function MicroContent(props) {
                                 }
                               />
                               {props.showOnly === false ? (
+                                //0sitio
                                 <>
                                   <button
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2826,6 +3053,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idpesquisador"]}
                           />
                           {props.showOnly === false ? (
+                            //0pesquisador
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2900,6 +3128,7 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idpesquisador"]}
                           />
                           {props.showOnly === false ? (
+                            //0pesquisador
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -3730,15 +3959,16 @@ export default function MicroContent(props) {
                             defaultValue={armario}
                             onChange={setArmario}
                             getOptionLabel={(options) => options["armario"]}
-                            getOptionValue={(options) => options["idArmario"]}
+                            getOptionValue={(options) => options["idarmario"]}
                           />
                           {props.showOnly === false ? (
+                            //0armario
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Armário", "");
+                                  openModal("Armário", "", "armario");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3747,7 +3977,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Armário", "Coco");
+                                  openModal("Armário", "", "armario");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3771,19 +4001,20 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={prateleiraList}
                             defaultValue={prateleira}
-                            onChange={setprateleira}
+                            onChange={setPrateleira}
                             getOptionLabel={(options) => options["prateleira"]}
                             getOptionValue={(options) =>
-                              options["idPrateleira"]
+                              options["idprateleira"]
                             }
                           />
                           {props.showOnly === false ? (
+                            //0prateleira
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Prateleira", "");
+                                  openModal("Prateleira", "", "prateleira");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3792,7 +4023,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Prateleira", "Coco");
+                                  openModal("Prateleira", "", "prateleira");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3818,15 +4049,16 @@ export default function MicroContent(props) {
                             defaultValue={lote}
                             onChange={setLote}
                             getOptionLabel={(options) => options["lote"]}
-                            getOptionValue={(options) => options["idLote"]}
+                            getOptionValue={(options) => options["idlote"]}
                           />
                           {props.showOnly === false ? (
+                            //0lote
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Lote", "");
+                                  openModal("Lote", "", "lote");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3835,7 +4067,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Lote", "Coco");
+                                  openModal("Lote", "", "lote");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3861,15 +4093,16 @@ export default function MicroContent(props) {
                             defaultValue={posicao}
                             onChange={setPosicao}
                             getOptionLabel={(options) => options["posicao"]}
-                            getOptionValue={(options) => options["idPosicao"]}
+                            getOptionValue={(options) => options["idposicao"]}
                           />
                           {props.showOnly === false ? (
+                            //0posicao
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Posição", "");
+                                  openModal("Posição", "", "posicao");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3878,7 +4111,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Posição", "Coco");
+                                  openModal("Posição", "", "posicao");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3922,12 +4155,13 @@ export default function MicroContent(props) {
                             getOptionValue={(options) => options["idpesquisador"]}
                           />
                           {props.showOnly === false ? (
+                            //0pesquisador
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3936,11 +4170,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], [
-                                    "Pesquisador 1",
-                                    "pesq1@uea.edu.br",
-                                    "UEA",
-                                  ]);
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -4072,7 +4302,7 @@ export default function MicroContent(props) {
                             onChange={setRefAdd}
                             getOptionLabel={(options) => options["referencia"]}
                             getOptionValue={(options) =>
-                              options["idReferencia"]
+                              options["idreferencia"]
                             }
                           />
                           {props.showOnly === false ? (
@@ -4082,7 +4312,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Referências adicionais", "");
+                                  openModal("Referências adicionais", "", "referencia");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -4091,7 +4321,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Referências adicionais", "Coco");
+                                  openModal("Referências adicionais", "", "referencia");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />

@@ -673,16 +673,10 @@ export default function MicroContent(props) {
         })
         .then((response) => {
           console.log(response);
-          axios.get(baseurl+"hospedeiro")
-            .then(response => {
-              console.log(response.data);
-              setHospVegList(response.data);
-              if (hospVeg.idhospedeiro) {
-                setHospVeg(null);
-              }
-            }, error => {
-              console.log(error);
-            });
+          setHospVegList(response.data);
+          if (hospVeg.idhospedeiro) {
+            setHospVeg(null);
+          }
         }, (error) => {
           console.log(error);
         });
@@ -1048,7 +1042,7 @@ export default function MicroContent(props) {
         axios.get(baseurl+"hospedeiro")
           .then(response => {
             console.log(response.data);
-            setHospVegList(response.data);
+            setHospVegList(response.data.filter(hosp => hosp.isAnimal === 0));
           }, error => {
             console.log(error);
           });
@@ -1067,7 +1061,7 @@ export default function MicroContent(props) {
         axios.get(baseurl+"hospedeiro")
           .then(response => {
             console.log(response.data);
-            setHospAnList(response.data);
+            setHospAnList(response.data.filter(hosp => hosp.isAnimal === 1));
             if (hospAn.idhospedeiro) {
               setHospAn(null);
             }

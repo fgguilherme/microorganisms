@@ -16,7 +16,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
-
+//0habitat
 const habitatList = [
   {
     idHabitat: 0,
@@ -85,7 +85,7 @@ const doacaoList = [
     doacao: "Sob Consulta",
   },
 ];
-
+//0unidade
 // const unidadeList = [
 //   {
 //     idUnidade: 0,
@@ -163,10 +163,13 @@ export default function MicroContent(props) {
   const [doacao, setDoacao] = useState([]);
   const [habitat, setHabitat] = useState([]);
   
-  const [hospAnList, setHospAnList] = useState([]); //0Animal
+  const [hospAnList, setHospAnList] = useState([]); //0hospAnimal
   const [hospAn, setHospAn] = useState([]);
 
-  const [hospVegList, setHospVegList] = useState([]); //0vegetal
+  const [sitioAnat, setSitioAnat] = useState([]);
+  const [sitioAnatList, setSitioAnatList] = useState([]); //0sitio
+
+  const [hospVegList, setHospVegList] = useState([]); //0hospVegetal
   const [hospVeg, setHospVeg] = useState([]);
   
 
@@ -211,15 +214,15 @@ export default function MicroContent(props) {
 
   const [sub_colecao, setSub_colecao] = useState([]);
   const [sub_colecaoList, setSub_colecaoList] = useState([]); //0sub_colecao
-  
-  const [sitioAnat, setSitioAnat] = useState([]);
-  const [sitioAnatList, setSitioAnatList] = useState([]); //0sitio
 
   const [labList, setLabList] = useState([]); //0laboratorio
   const [laboratorio, setLaboratorio] = useState([]);
 
-  const [grupo_pesquisa, setGrupo_pesquisa] = useState([]);
-  const [grupo_pesquisaList, setGrupo_pesquisaList] = useState([]); //0grupo_pesquisa
+  const [grupo_pesquisa, setGrupoPesquisa] = useState([]);
+  const [grupo_pesquisaList, setGrupoPesquisaList] = useState([]); //0grupo_pesquisa
+
+  const [metodo_preservacao, setMetodoPreservacao] = useState([]);
+  const [metodo_preservacaoList, setMetodoPreservacaoList] = useState([]); //0metodo_preservacao
 
   useEffect(() => {
     //0dominio
@@ -240,9 +243,9 @@ export default function MicroContent(props) {
       axios.get(baseurl+"grupo_pesquisa")
         .then(response => {
           console.log(response.data);
-          setGrupo_pesquisaList(response.data);
+          setGrupoPesquisaList(response.data);
           if (grupo_pesquisa.idgrupo_pesquisa) {
-            setGrupo_pesquisa(null);
+            setGrupoPesquisa(null);
           }
         }, error => {
           console.log(error);
@@ -407,6 +410,19 @@ export default function MicroContent(props) {
           setLabList(response.data);
           if (laboratorio.idlaboratorio) {
             setLaboratorio(null);
+          }
+        }, error => {
+          console.log(error);
+        });
+    }
+    //0metodo_preservacao
+    if (metodo_preservacaoList.length === 0) {
+      axios.get(baseurl+"metodo_preservacao")
+        .then(response => {
+          console.log(response.data);
+          setMetodoPreservacaoList(response.data);
+          if (metodo_preservacao.idmetodo_preservacao) {
+            setMetodoPreservacao(null);
           }
         }, error => {
           console.log(error);
@@ -648,19 +664,29 @@ export default function MicroContent(props) {
     console.log(habitat);
     if (habitat?.idHabitat <= 2) {
       console.log("Vegetal")
-      // console.log("CUEN 1");
+      //0hospVegetal
       const fetchData = async () => {
         axios.get(baseurl+"hospedeiro/search", {
           params: {
             "isAnimal": "0"
           }
         })
-          .then(response => {
-            console.log(response.data);
-            setHospVegList(response.data);
-          }, error => {
-            console.log(error);
-          });
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"hospedeiro")
+            .then(response => {
+              console.log(response.data);
+              setHospVegList(response.data);
+              if (hospVeg.idhospedeiro) {
+                setHospVeg(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+          //0substrato
           axios.get(baseurl+"substrato/search")
             .then(response => {
               console.log(response.data);
@@ -674,7 +700,7 @@ export default function MicroContent(props) {
       console.log("outros")
     } else if (habitat?.idHabitat === 3){
       console.log("animal")
-      // console.log("CUEN 1");
+      //0hospAnimal
       const fetchData = async () => {
         axios.get(baseurl+"hospedeiro/search", {
           params: {
@@ -699,33 +725,10 @@ export default function MicroContent(props) {
       fetchData();
     }
   }, [habitat]);
-  // useEffect(() => {
-  //  //0posicao
-  //   const fetchData = async () => {
-  //     if (posicao.idposicao) {
-  //       axios.get(baseurl+"lote/search", {
-  //         params: {
-  //           "posicao_idposicao": posicao.idposicao
-  //         }
-  //       })
-  //         .then(response => {
-  //           console.log(response.data);
-  //           setLoteList(response.data);
-  //         }, error => {
-  //           console.log(error);
-  //         });
-  //     }
-  //     else {
-  //       setLoteList([])
-  //       setLote(null)
-  //     }
-  //   };
-  //   fetchData();
-  // }, [posicao]);
   useEffect(() => {
   //0sub_colecao
    const fetchData = async () => {
-     if (sub_colecao.idsub_colecao) {
+     if (sub_colecao?.idsub_colecao) {
        axios.get(baseurl+"armario/search", {
          params: {
            "sub_colecao_idsub_colecao": sub_colecao.idsub_colecao
@@ -1034,52 +1037,88 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
+    //0hospVegetal
     if (persist === true && tmpState === "hospedeiro_veg") {
       axios.post(baseurl+ "hospedeiro", {
         hospedeiro: itemValue,
         isAnimal: "0"
       })
-        .then((response) => {
-          console.log(response);
-        }, (error) => {
-          console.log(error);
-        });
+      .then((response) => {
+        console.log(response);
+        axios.get(baseurl+"hospedeiro")
+          .then(response => {
+            console.log(response.data);
+            setHospVegList(response.data);
+          }, error => {
+            console.log(error);
+          });
+      }, (error) => {
+        console.log(error);
+      });
     }
+    //0hospAnimal
     if (persist === true && tmpState === "hospedeiro_ani") {
       axios.post(baseurl+ "hospedeiro", {
         hospedeiro: itemValue,
         isAnimal: "1"
       })
-        .then((response) => {
-          console.log(response);
-        }, (error) => {
-          console.log(error);
-        });
+      .then((response) => {
+        console.log(response);
+        axios.get(baseurl+"hospedeiro")
+          .then(response => {
+            console.log(response.data);
+            setHospAnList(response.data);
+            if (hospAn.idhospedeiro) {
+              setHospAn(null);
+            }
+          }, error => {
+            console.log(error);
+          });
+      }, (error) => {
+        console.log(error);
+      });
     }
+    //0substrato
     if (persist === true && tmpState === "substrato") {
       axios.post(baseurl+ tmpState, {
         substrato: itemValue,
       })
-        .then((response) => {
-          console.log(response);
-        }, (error) => {
-          console.log(error);
-        });
+      .then((response) => {
+        console.log(response);
+        axios.get(baseurl+"substrato")
+          .then(response => {
+            console.log(response.data);
+            setSubstratoList(response.data);
+            if (substrato.idhospedeiro) {
+              setSubstrato(null);
+            }
+          }, error => {
+            console.log(error);
+          });
+      }, (error) => {
+        console.log(error);
+      });
     }
     //0sitio
     if (persist === true && tmpState === "sitio") {
       axios.post(baseurl+ tmpState, {
         sitio: itemValue,
       })
-        .then((response) => {
-          console.log(response);
-          setSitioAnatList(response.data);
-            if (sitioAnat.idsitio) {
+      .then((response) => {
+        console.log(response);
+        axios.get(baseurl+"sitio")
+          .then(response => {
+            console.log(response.data);
+            setSitioAnatList(response.data);
+            if (sitioAnat.idhospedeiro) {
               setSitioAnat(null);
             }
-        }, (error) => {
-          console.log(error);
-        });
+          }, error => {
+            console.log(error);
+          });
+      }, (error) => {
+        console.log(error);
+      });
     }
     //0cor
     if (persist === true && tmpState === "cor") {
@@ -1132,16 +1171,16 @@ export default function MicroContent(props) {
     //0grupo_pesquisa
     if (persist === true && tmpState === "grupo_pesquisa") {
       axios.post(baseurl+ tmpState, {
-        grupo_pesquisa: itemValue,
+        grupo: itemValue,
       })
         .then((response) => {
           console.log(response);
           axios.get(baseurl+"grupo_pesquisa")
             .then(response => {
               console.log(response.data);
-              setGrupo_pesquisaList(response.data);
+              setGrupoPesquisaList(response.data);
               if (grupo_pesquisa.idgrupo_pesquisa) {
-                setGrupo_pesquisa(null);
+                setGrupoPesquisa(null);
               }
             }, error => {
               console.log(error);
@@ -1151,88 +1190,104 @@ export default function MicroContent(props) {
         });
     }
     //0posicao
-    if (persist === true && tmpState === "posicao") {
+    if (persist === true && tmpState === "posicao" && lote.idlote > 0) {
       axios.post(baseurl+ tmpState, {
         posicao: itemValue,
+        lote_idlote: lote.idlote
       })
-        .then((response) => {
-          console.log(response);
-          axios.get(baseurl+"posicao")
+      .then((response) => {
+        console.log(response);
+        if (lote.idlote) {
+          axios.get(baseurl+"posicao/search", {
+            params: {
+              "lote_idlote": lote.idlote
+            }
+          })
             .then(response => {
               console.log(response.data);
               setPosicaoList(response.data);
-              if (posicao.idposicao) {
-                setPosicao(null);
-              }
             }, error => {
               console.log(error);
             });
-        }, (error) => {
-          console.log(error);
-        });
+        }
+      }, (error) => {
+        console.log(error);
+      });
     }
     //0lote
-    if (persist === true && tmpState === "lote") {
+    if (persist === true && tmpState === "lote" && prateleira.idprateleira > 0) {
       axios.post(baseurl+ tmpState, {
         lote: itemValue,
+        prateleira_idprateleira: prateleira.idprateleira
       })
-        .then((response) => {
-          console.log(response);
-          axios.get(baseurl+"lote")
+      .then((response) => {
+        console.log(response);
+        if (prateleira.idprateleira) {
+          axios.get(baseurl+"lote/search", {
+            params: {
+              "prateleira_idprateleira": prateleira.idprateleira
+            }
+          })
             .then(response => {
               console.log(response.data);
               setLoteList(response.data);
-              if (lote.idlote) {
-                setLote(null);
-              }
             }, error => {
               console.log(error);
             });
-        }, (error) => {
-          console.log(error);
-        });
+        }
+      }, (error) => {
+        console.log(error);
+      });
     }
     //0prateleira
-    if (persist === true && tmpState === "prateleira") {
+    if (persist === true && tmpState === "prateleira" && armario.idarmario > 0) {
       axios.post(baseurl+ tmpState, {
         prateleira: itemValue,
+        armario_idarmario: armario.idarmario
       })
-        .then((response) => {
-          console.log(response);
-          axios.get(baseurl+"prateleira")
+      .then((response) => {
+        console.log(response);
+        if (armario.idarmario) {
+          axios.get(baseurl+"prateleira/search", {
+            params: {
+              "armario_idarmario": armario.idarmario
+            }
+          })
             .then(response => {
               console.log(response.data);
               setPrateleiraList(response.data);
-              if (prateleira.idprateleira) {
-                setPrateleira(null);
-              }
             }, error => {
               console.log(error);
             });
-        }, (error) => {
-          console.log(error);
-        });
+        }
+      }, (error) => {
+        console.log(error);
+      });
     }
     //0armario
-    if (persist === true && tmpState === "armario") {
+    if (persist === true && tmpState === "armario" && sub_colecao.idsub_colecao > 0) {
       axios.post(baseurl+ tmpState, {
         armario: itemValue,
+        sub_colecao_idsub_colecao: sub_colecao.idsub_colecao
       })
-        .then((response) => {
-          console.log(response);
-          axios.get(baseurl+"armario")
+      .then((response) => {
+        console.log(response);
+        if (sub_colecao.idsub_colecao) {
+          axios.get(baseurl+"armario/search", {
+            params: {
+              "sub_colecao_idsub_colecao": sub_colecao.idsub_colecao
+            }
+          })
             .then(response => {
               console.log(response.data);
               setArmarioList(response.data);
-              if (armario.idarmario) {
-                setArmario(null);
-              }
             }, error => {
               console.log(error);
             });
-        }, (error) => {
-          console.log(error);
-        });
+        }
+      }, (error) => {
+        console.log(error);
+      });
     }
     //0sub_colecao
     if (persist === true && tmpState === "sub_colecao") {
@@ -1245,9 +1300,6 @@ export default function MicroContent(props) {
             .then(response => {
               console.log(response.data);
               setSub_colecaoList(response.data);
-              if (sub_colecao.idsub_colecao) {
-                setSub_colecao(null);
-              }
             }, error => {
               console.log(error);
             });
@@ -1381,7 +1433,7 @@ export default function MicroContent(props) {
           console.log(error);
         });
     }
-        //0laboratorio
+    //0laboratorio
     if (persist === true && tmpState === "laboratorio") {
       axios.post(baseurl+ tmpState, {
         laboratorio: itemValue,
@@ -1394,6 +1446,27 @@ export default function MicroContent(props) {
               setLabList(response.data);
               if (laboratorio.idlaboratorio) {
                 setLaboratorio(null);
+              }
+            }, error => {
+              console.log(error);
+            });
+        }, (error) => {
+          console.log(error);
+        });
+    }
+    //0metodo_preservacao
+    if (persist === true && tmpState === "metodo_preservacao") {
+      axios.post(baseurl+ tmpState, {
+        metodo: itemValue,
+      })
+        .then((response) => {
+          console.log(response);
+          axios.get(baseurl+"metodo_preservacao")
+            .then(response => {
+              console.log(response.data);
+              setMetodoPreservacaoList(response.data);
+              if (metodo_preservacao.idmetodo_preservacao) {
+                setMetodoPreservacao(null);
               }
             }, error => {
               console.log(error);
@@ -2670,11 +2743,10 @@ export default function MicroContent(props) {
                                 onChange={setHospVeg}
                                 getOptionLabel={(options) => options["hospedeiro"]}
                                 getOptionValue={(options) =>
-                                  options["idhospedeiro"]
-                                }
+                                  options["idhospedeiro"]}
                               />
                               {props.showOnly === false ? (
-                                //0vegetal
+                                //0hospVegetal
                                 <>
                                   <button
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2719,10 +2791,11 @@ export default function MicroContent(props) {
                                 onChange={setSubstrato}
                                 getOptionLabel={(options) => options["substrato"]}
                                 getOptionValue={(options) =>
-                                  options["idSubstrato"]
+                                  options["idsubstrato"]
                                 }
                               />
                               {props.showOnly === false ? (
+                                //0substrato
                                 <>
                                   <button
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2825,7 +2898,7 @@ export default function MicroContent(props) {
                                 }
                               />
                               {props.showOnly === false ? (
-                                //0Animal
+                                //0hospAnimal
                                 <>
                                   <button
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -2870,7 +2943,7 @@ export default function MicroContent(props) {
                                 onChange={setSitioAnat}
                                 getOptionLabel={(options) => options["sitio"]}
                                 getOptionValue={(options) =>
-                                  options["idSitio"]
+                                  options["idsitio"]
                                 }
                               />
                               {props.showOnly === false ? (
@@ -3868,8 +3941,8 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={grupo_pesquisaList}
                             defaultValue={grupo_pesquisa}
-                            onChange={setGrupo_pesquisa}
-                            getOptionLabel={(options) => options["grupo_pesquisa"]}
+                            onChange={setGrupoPesquisa}
+                            getOptionLabel={(options) => options["grupo"]}
                             getOptionValue={(options) => options["idgrupo_pesquisa"]}
                           />
                           {props.showOnly === false ? (
@@ -4193,21 +4266,21 @@ export default function MicroContent(props) {
                             className="w-8/12"
                             isDisabled={props.showOnly}
                             searchable={true}
-                            isMulti
                             placeholder={"Select an option"}
-                            options={dominioList}
-                            defaultValue={dominio}
-                            onChange={setDominio}
-                            getOptionLabel={(options) => options["dominio"]}
-                            getOptionValue={(options) => options["idDominio"]}
+                            options={metodo_preservacaoList}
+                            defaultValue={metodo_preservacao}
+                            onChange={setMetodoPreservacao}
+                            getOptionLabel={(options) => options["metodo"]}
+                            getOptionValue={(options) => options["idmetodo_preservacao"]}
                           />
                           {props.showOnly === false ? (
+                            //0metodo_preservacao
                             <>
                               <button
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Método de Preservação", "");
+                                  openModal("Método de Preservação", "", "metodo_preservacao");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -4216,7 +4289,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Método de Preservação", "Coco");
+                                  openModal("Método de Preservação", "", "metodo_preservacao");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -4299,6 +4372,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={referenciaList}
                             defaultValue={refAdd}
+                            isMulti
                             onChange={setRefAdd}
                             getOptionLabel={(options) => options["referencia"]}
                             getOptionValue={(options) =>

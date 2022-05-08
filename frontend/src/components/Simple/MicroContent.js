@@ -224,6 +224,109 @@ export default function MicroContent(props) {
   const [metodo_preservacao, setMetodoPreservacao] = useState([]);
   const [metodo_preservacaoList, setMetodoPreservacaoList] = useState([]); //0metodo_preservacao
 
+  const [dataReg, setDataReg] = useState("");
+  const [dataCol, setDataCol] = useState("");
+  const [dataIso, setDataIso] = useState("");
+  const [dataIdn, setDataIdn] = useState("");
+  const [dataMol, setDataMol] = useState("");
+  const [dataPrv, setDataPrv] = useState("");
+  
+  const [origCode, setOrigCode] = useState("");
+  const [origHist, setOrigHist] = useState("");
+  const [habitatInfo, setHabitatInfo] = useState("");
+  const [origGeo, setOrigGeo] = useState("");
+  const [origLat, setOrigLat] = useState("");
+  const [origLon, setOrigLon] = useState("");
+  const [origDatum, setOrigDatum] = useState("");
+  const [origPrecisao, setOrigPrecisao] = useState("");
+  const [origComent, setOrigComent] = useState("");
+  const [regExiHosp, setRegExiHosp] = useState("");
+  const [herbDeposit, setHerbDeposit] = useState("");
+  const [codHerb, setCodHerb] = useState("");
+  const [isoInfo, setIsoInfo] = useState("");
+  const [isoComment, setIsoComment] = useState("");
+  const [molCod, setMolCod] = useState("");
+  const [molSeq, setMolSeq] = useState("");
+  const [molMeta, setMolMeta] = useState("");
+  const [comments, setComments] = useState("");
+
+  const [tempCrescimento, setTempCrescimento] = useState(0);
+
+  function saveMicro(){
+    let newMicro
+    try {
+       newMicro = {
+        "variedade_idvariedade": variedade?.idvariedade,
+        "status": status?.idstatus,
+        "referencia_taxa": refTaxa,
+        "data_reg_col_orig": dataReg,
+        "cod_orig": origCode,
+        "hist_orig": origHist,
+        "pesquisador_coleta": pesqColeta?.idpesquisador,
+        "origem_geo": origGeo,
+        "lat": origLat,
+        "lon": origLon,
+        "datum": origDatum,
+        "precisao": origPrecisao,
+        "coment_orig": origComent,
+        "data_isol": dataIso,
+        "pesquisador_isolamento": pesqIsola?.idpesquisador,
+        "info_isolamento": isoInfo,
+        "coment_isolamento": isoComment,
+        "data_ident": dataIdn,
+        "pesquisador_ident": pesqId?.idpesquisador,
+        "data_coleta": dataCol,
+        "cor_colonia": corColonia?.idcor,
+        "textura_idtextura": textura?.idtextura,
+        "borda_idborda": borda?.idborda,
+        "relevo_idrelevo": relevo?.idrelevo,
+        "exudato_idexudato": exudato?.idexudato,
+        "cor_exudato": corExu?.idcor,
+        "pigmento_idpigmento": pigmento?.idpigmento,
+        "cor_pigmento": corPig?.idcor,
+        "temp_crescimento": tempCrescimento,
+        "referencia_temp": refTemp,
+        "laboratorio_mol": laboratorio?.idlaboratorio,
+        "data_mol": dataMol,
+        "cod_mol": molCod,
+        "sequencia_mol": molSeq,
+        "meta_mol": molMeta,
+        //Habitat INIT
+        "habitat_idhabitat": habitat?.idHabitat,
+        "hospedeiro_ani": hospAn?.idhospedeiro,
+        "sitio_anatomico": sitioAnat?.idsitio,
+        "hospedeiro_veg": hospVeg?.idhospedeiro,
+        "idsubstrato": substrato?.idsubstrato,
+        "reg_exidata": regExiHosp,
+        "herb_deposit": herbDeposit,
+        "cod_herb": codHerb,
+        "habitat_info": habitatInfo,
+        //Habitat END
+        //REPIQUE INIT
+        "grupo_pesq": grupo_pesquisa?.idgrupo_pesquisa,
+        "posicao":posicao?.idposicao,
+        "data_preserv":dataPrv,
+        "pesquisador_preserv": pesqPres?.idpesquisador,
+        "metodo_preserv": metodo_preservacao?.idmetodo_preservacao,  
+        "other_comments": comments,
+        "disp_doacao": doacao.idDoacao,
+        "ref_others": refAdd   
+        //REPIQUE END
+      }
+      console.log(newMicro)
+      // axios.post(baseurl+ "microorganismos", newMicro)
+      //   .then((response) => {
+      //     //return to main table
+      //     window.location.href = "/admin/m/" + props.returnto
+      //   }, (error) => {
+      //     console.log(error);
+      //   });
+    } catch (error) {
+      console.log("MISSING SOMETHING")
+    }
+  }
+
+
   useEffect(() => {
     //0dominio
     if (dominioList.length === 0) {
@@ -2137,7 +2240,7 @@ export default function MicroContent(props) {
                             defaultValue={filo}
                             onChange={setFilo}
                             getOptionLabel={(options) => options["filo"]}
-                            getOptionValue={(options) => options["idFilo"]}
+                            getOptionValue={(options) => options["idfilo"]}
                           />
                           {props.showOnly === false ? (
                             //0filo
@@ -2182,7 +2285,7 @@ export default function MicroContent(props) {
                             defaultValue={classe}
                             onChange={setClasse}
                             getOptionLabel={(options) => options["classe"]}
-                            getOptionValue={(options) => options["idClasse"]}
+                            getOptionValue={(options) => options["idclasse"]}
                           />
                           {props.showOnly === false ? (
                             //0classe
@@ -2227,7 +2330,7 @@ export default function MicroContent(props) {
                             defaultValue={ordem}
                             onChange={setOrdem}
                             getOptionLabel={(options) => options["ordem"]}
-                            getOptionValue={(options) => options["idOrdem"]}
+                            getOptionValue={(options) => options["idordem"]}
                           />
                           {props.showOnly === false ? (
                             //0ordem
@@ -2594,6 +2697,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="date"
+                            onChange={e=>setDataReg(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -2608,7 +2712,8 @@ export default function MicroContent(props) {
                           </label>
                           <input
                             disabled={props.showOnly}
-                            type="email"
+                            type="text"
+                            onChange={e=>setOrigCode(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             defaultValue=""
                           />
@@ -2622,7 +2727,8 @@ export default function MicroContent(props) {
                           </label>
                           <input
                             disabled={props.showOnly}
-                            type="email"
+                            type="text"
+                            onChange={e=>setOrigHist(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             defaultValue=""
                           />
@@ -2639,6 +2745,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="date"
+                            onChange={e=>setDataCol(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -2824,7 +2931,8 @@ export default function MicroContent(props) {
                               </label>
                               <input
                                 disabled={props.showOnly}
-                                type="email"
+                                type="text"
+                                onChange={e=>setRegExiHosp(e.target.value)}
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 defaultValue=""
                               />
@@ -2841,7 +2949,8 @@ export default function MicroContent(props) {
                               </label>
                               <input
                                 disabled={props.showOnly}
-                                type="email"
+                                type="text"
+                                onChange={e=>setHerbDeposit(e.target.value)}
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 defaultValue=""
                               />
@@ -2858,7 +2967,8 @@ export default function MicroContent(props) {
                               </label>
                               <input
                                 disabled={props.showOnly}
-                                type="email"
+                                type="text"
+                                onChange={e=>setCodHerb(e.target.value)}
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 defaultValue=""
                               />
@@ -2977,7 +3087,8 @@ export default function MicroContent(props) {
                           </label>
                           <input
                             disabled={props.showOnly}
-                            type="email"
+                            type="text"
+                            onChange={e=>setHabitatInfo(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             defaultValue=""
                           />
@@ -2993,7 +3104,8 @@ export default function MicroContent(props) {
                           </label>
                           <input
                             disabled={props.showOnly}
-                            type="email"
+                            type="text"
+                            onChange={e=>setOrigGeo(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             defaultValue=""
                           />
@@ -3009,7 +3121,8 @@ export default function MicroContent(props) {
                           </label>
                           <input
                             disabled={props.showOnly}
-                            type="email"
+                            type="text"
+                            onChange={e=>setOrigLat(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             defaultValue=""
                           />
@@ -3025,7 +3138,8 @@ export default function MicroContent(props) {
                           </label>
                           <input
                             disabled={props.showOnly}
-                            type="email"
+                            type="text"
+                            onChange={e=>setOrigLon(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             defaultValue=""
                           />
@@ -3041,7 +3155,8 @@ export default function MicroContent(props) {
                           </label>
                           <input
                             disabled={props.showOnly}
-                            type="email"
+                            type="text"
+                            onChange={e=>setOrigDatum(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             defaultValue=""
                           />
@@ -3057,7 +3172,8 @@ export default function MicroContent(props) {
                           </label>
                           <input
                             disabled={props.showOnly}
-                            type="email"
+                            type="text"
+                            onChange={e=>setOrigPrecisao(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             defaultValue=""
                           />
@@ -3073,7 +3189,8 @@ export default function MicroContent(props) {
                           </label>
                           <input
                             disabled={props.showOnly}
-                            type="email"
+                            type="text"
+                            onChange={e=>setOrigComent(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             defaultValue=""
                           />
@@ -3096,6 +3213,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="date"
+                            onChange={e=>setDataIso(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -3154,7 +3272,8 @@ export default function MicroContent(props) {
                           </label>
                           <input
                             disabled={props.showOnly}
-                            type="email"
+                            type="text"
+                            onChange={e=>setIsoInfo(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             defaultValue=""
                           />
@@ -3171,6 +3290,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="date"
+                            onChange={e=>setDataIdn(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -3230,6 +3350,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="text"
+                            onChange={e=>setIsoComment(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -3610,6 +3731,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="number"
+                            onChange={e=>setTempCrescimento(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -3804,6 +3926,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="date"
+                            onChange={e=>setDataMol(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -3819,6 +3942,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="text"
+                            onChange={e=>setMolCod(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -3834,6 +3958,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="text"
+                            onChange={e=>setMolSeq(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -3849,6 +3974,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="text"
+                            onChange={e=>setMolMeta(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -4198,6 +4324,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="date"
+                            onChange={e=>setDataPrv(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -4310,6 +4437,7 @@ export default function MicroContent(props) {
                           <input
                             disabled={props.showOnly}
                             type="text"
+                            onChange={e=>setComments(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
@@ -4414,14 +4542,13 @@ export default function MicroContent(props) {
                   Cancelar
                 </button>
               </Link>
-              <Link to={"/admin/m/" + props.returnto}>
                 <button
                   className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   type="button"
+                  onClick={()=>{saveMicro()}}
                 >
                   Salvar
                 </button>
-              </Link>
             </div>
           ) : null}
           {props.showOnly === false && props.isRepique === true ? (

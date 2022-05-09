@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     grupo: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "grupo_UNIQUE"
+      allowNull: false
     }
   }, {
     sequelize,
@@ -31,14 +30,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idgrupo_pesquisa" },
-        ]
-      },
-      {
-        name: "grupo_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "grupo" },
         ]
       },
     ]

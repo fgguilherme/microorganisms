@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     cor: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "cor_UNIQUE"
+      allowNull: false
     }
   }, {
     sequelize,
@@ -31,14 +30,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idcor" },
-        ]
-      },
-      {
-        name: "cor_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "cor" },
         ]
       },
     ]

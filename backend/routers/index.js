@@ -44,4 +44,7 @@ module.exports = app => {
   require("./repique_has_imagem")(app);
   require("./repique_has_referencia")(app);
   require("./repique_has_metodo_preservacao")(app);
+  require("./microorganismo_has_metodo_preservacao")(app);
+  require("./microorganismo_has_referencia_taxa")(app);
+  require("./microorganismo_has_referencia_temp")(app);
 }

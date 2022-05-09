@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     textura: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "textura_UNIQUE"
+      allowNull: false
     }
   }, {
     sequelize,
@@ -31,14 +30,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idtextura" },
-        ]
-      },
-      {
-        name: "textura_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "textura" },
         ]
       },
     ]

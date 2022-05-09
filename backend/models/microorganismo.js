@@ -20,15 +20,23 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
-    referencia_taxa: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
-      references: {
-        model: 'referencia',
-        key: 'idreferencia'
-      }
-    },
     data_reg_col_orig: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    data_colet: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    data_isol: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    data_ident: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    data_mol: {
       type: DataTypes.DATEONLY,
       allowNull: true
     },
@@ -72,10 +80,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(245),
       allowNull: true
     },
-    data_isol: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
-    },
     pesquisador_isolamento: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -86,10 +90,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     info_isolamento: {
       type: DataTypes.STRING(145),
-      allowNull: true
-    },
-    data_ident: {
-      type: DataTypes.DATEONLY,
       allowNull: true
     },
     pesquisador_ident: {
@@ -172,14 +172,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.FLOAT,
       allowNull: true
     },
-    referencia_temp: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
-      references: {
-        model: 'referencia',
-        key: 'idreferencia'
-      }
-    },
     laboratorio_mol: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -187,10 +179,6 @@ module.exports = function(sequelize, DataTypes) {
         model: 'laboratorio',
         key: 'idlaboratorio'
       }
-    },
-    data_mol: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
     },
     cod_mol: {
       type: DataTypes.STRING(45),
@@ -238,13 +226,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "variedade_idvariedade" },
-        ]
-      },
-      {
-        name: "fk_microorganismo_referencia1_idx",
-        using: "BTREE",
-        fields: [
-          { name: "referencia_taxa" },
         ]
       },
       {
@@ -322,13 +303,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "cor_pigmento" },
-        ]
-      },
-      {
-        name: "fk_microorganismo_referencia2_idx",
-        using: "BTREE",
-        fields: [
-          { name: "referencia_temp" },
         ]
       },
       {

@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     reino: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "reino_UNIQUE"
+      allowNull: false
     },
     dominio_iddominio: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -39,14 +38,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idreino" },
-        ]
-      },
-      {
-        name: "reino_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "reino" },
         ]
       },
       {

@@ -3798,6 +3798,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={caracMicroList}
                             defaultValue={caracMicro}
+                            isMulti
                             onChange={setCaracMicro}
                             getOptionLabel={(options) => options["carac_micromorfologica"]}
                             getOptionValue={(options) => options["idcarac_micromorfologica"]}
@@ -4390,6 +4391,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={metodo_preservacaoList}
                             defaultValue={metodo_preservacao}
+                            isMulti
                             onChange={setMetodoPreservacao}
                             getOptionLabel={(options) => options["metodo"]}
                             getOptionValue={(options) => options["idmetodo_preservacao"]}

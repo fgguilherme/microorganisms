@@ -1,10 +1,10 @@
 const db = require("../models");
-const Element = db.models.habitat_ani;
+const Element = db.models.microorganismo_has_referencia_taxa;
 const Op = db.Sequelize.Op;
 // Create and Save a new Element
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.hospedeiro_idhospedeiro || !req.body.sitio_idsitio) {
+  if (!req.body.microorganismo_idmicroorganismo || !req.body.referencia_idreferencia) {
     res.status(400).send({
       message: "Content missing mandatory data!"
     });
@@ -71,7 +71,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     Element.update(req.body, {
-      where: {idhabitat_ani: id }
+      where: {idmicroorganismo_has_referencia_taxa: id }
     })
       .then(num => {
         if (num == 1) {
@@ -96,7 +96,7 @@ exports.delete = (req, res) => {
     const id = req.params.id;
 
     Element.destroy({
-      where: {idhabitat_ani: id }
+      where: {idmicroorganismo_has_referencia_taxa: id }
     })
       .then(num => {
         if (num == 1) {

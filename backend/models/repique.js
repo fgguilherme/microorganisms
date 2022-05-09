@@ -40,6 +40,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
+    data_emission: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    data_preserv: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
     posicao_idposicao: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -48,10 +56,6 @@ module.exports = function(sequelize, DataTypes) {
         key: 'idposicao'
       }
     },
-    data_emission: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
-    },
     pesquisador_preserv: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -59,10 +63,6 @@ module.exports = function(sequelize, DataTypes) {
         model: 'pesquisador',
         key: 'idpesquisador'
       }
-    },
-    data_preserv: {
-      type: DataTypes.DATE,
-      allowNull: true
     }
   }, {
     sequelize,

@@ -18,7 +18,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "    {\n        \"dominio\":\"Dominio002\"\n    }",
+									"raw": "    {\n        \"dominio\":\"Dominio003\"\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -115,7 +115,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"dominio_iddominio\":\"2\",\n    \"reino\":\"Reino004\"\n}",
+									"raw": "{\n    \"dominio_iddominio\":\"1\",\n    \"reino\":\"Reino003\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -190,7 +190,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/reino/search?dominio_iddominio=2",
+									"raw": "{{base_url}}/api/reino/search?dominio_iddominio=1",
 									"host": [
 										"{{base_url}}"
 									],
@@ -202,7 +202,7 @@
 									"query": [
 										{
 											"key": "dominio_iddominio",
-											"value": "2"
+											"value": "1"
 										}
 									]
 								}
@@ -249,7 +249,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"filo\":\"Filo004\",\n    \"reino_idreino\":\"2\"\n}",
+									"raw": "{\n    \"filo\":\"Filo003\",\n    \"reino_idreino\":\"1\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -338,7 +338,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "    {\n        \"idfilo\": 1,\n        \"filo\": \"Filo001\",\n        \"reino_idreino\": 1\n    }",
+									"raw": "{\n        \"idfilo\": 2,\n        \"filo\": \"Filo002\",\n        \"reino_idreino\": 1\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -346,14 +346,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/filo/1",
+									"raw": "{{base_url}}/api/filo/2",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"filo",
-										"1"
+										"2"
 									]
 								}
 							},
@@ -1230,7 +1230,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"variedade_idvariedade\":\"1\",\r\n    \"status\":\"1\",\r\n    \"referencia_taxa\":\"1\",\r\n    \"data_reg_col_orig\":\"2022-03-21\",\r\n    \"cod_orig\":\"CodigoOrigem002\",\r\n    \"hist_orig\":\"HistóriaOrigem002\",\r\n    \"pesquisador_coleta\":\"3\",\r\n    \"origem_geo\":\"OrigemGeografica002\",\r\n    \"lat\":\"Latitude003\",\r\n    \"lon\":\"Longitude002\",\r\n    \"datum\":\"Datum004\",\r\n    \"precisao\":\"Precisão003\",\r\n    \"coment_orig\":\"ComentarioOrigem002\",\r\n    \"data_isol\":\"2022-02-22\",\r\n    \"pesquisador_isolamento\":\"1\",\r\n    \"info_isolamento\":\"InformaçãoIsolamento003\",\r\n    \"data_ident\":\"2022-02-23\",\r\n    \"pesquisador_ident\":\"1\",\r\n    \"data_preserv\":\"2022-02-19\",\r\n    \"pesquisador_preserv\":\"1\",\r\n    \"coment_isolamento\":\"ComentarioIsolamento003\",\r\n    \"cor_colonia\":\"1\",\r\n    \"textura_idtextura\":\"1\",\r\n    \"borda_idborda\":\"1\",\r\n    \"relevo_idrelevo\":\"1\",\r\n    \"exudato_idexudato\":\"1\",\r\n    \"cor_exudato\":\"1\",\r\n    \"pigmento_idpigmento\":\"1\",\r\n    \"cor_pigmento\":\"1\",\r\n    \"temp_crescimento\":\"10.5\",\r\n    \"referencia_temp\":\"1\",\r\n    \"laboratorio_mol\":\"1\",\r\n    \"data_mol\":\"2022-02-18\",\r\n    \"cod_mol\":\"CodigoMol002\",\r\n    \"sequencia_mol\":\"SequinciaMol003\",\r\n    \"meta_mol\":\"MetaMol002\",\r\n    \"habitat_idhabitat\":\"1\",\r\n    \"anexos_idanexos\":\"1\",\r\n    \"carac_micromorfologica_idcarac_micromorfologica\":\"1\",\r\n    \"imagem_idimagem\":\"1\",\r\n    \"metodo_preservacao_idmetodo_preservacao\":\"1\"\r\n}",
+									"raw": "{\r\n    \"variedade_idvariedade\":\"2\",\r\n    \"status\":\"2\",\r\n    \"referencia_taxa\":\"2\",\r\n    \"data_reg_col_orig\":\"2022-03-21\",\r\n    \"cod_orig\":\"CodigoOrigem001\",\r\n    \"hist_orig\":\"HistóriaOrigem001\",\r\n    \"pesquisador_coleta\":\"3\",\r\n    \"origem_geo\":\"OrigemGeografica001\",\r\n    \"lat\":\"Latitude001\",\r\n    \"lon\":\"Longitude001\",\r\n    \"datum\":\"Datum004\",\r\n    \"precisao\":\"Precisão001\",\r\n    \"coment_orig\":\"ComentarioOrigem001\",\r\n    \"data_isol\":\"2022-05-10\",\r\n    \"pesquisador_isolamento\":\"1\",\r\n    \"info_isolamento\":\"InformaçãoIsolamento001\",\r\n    \"data_ident\":\"2022-05-10\",\r\n    \"pesquisador_ident\":\"1\",\r\n    \"data_preserv\":\"2022-05-10\",\r\n    \"pesquisador_preserv\":\"1\",\r\n    \"coment_isolamento\":\"ComentarioIsolamento001\",\r\n    \"cor_colonia\":\"1\",\r\n    \"textura_idtextura\":\"1\",\r\n    \"borda_idborda\":\"1\",\r\n    \"relevo_idrelevo\":\"1\",\r\n    \"exudato_idexudato\":\"1\",\r\n    \"cor_exudato\":\"1\",\r\n    \"pigmento_idpigmento\":\"1\",\r\n    \"cor_pigmento\":\"1\",\r\n    \"temp_crescimento\":\"10.5\",\r\n    \"referencia_temp\":\"1\",\r\n    \"laboratorio_mol\":\"1\",\r\n    \"data_mol\":\"2022-05-10\",\r\n    \"cod_mol\":\"CodigoMol001\",\r\n    \"sequencia_mol\":\"SequinciaMol001\",\r\n    \"meta_mol\":\"MetaMol001\",\r\n    \"habitat_idhabitat\":\"4\",\r\n    \"anexos_idanexos\":\"1\",\r\n    \"carac_micromorfologica_idcarac_micromorfologica\":\"1\",\r\n    \"imagem_idimagem\":\"1\",\r\n    \"referencia_idreferencia\":\"1\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1896,134 +1896,6 @@
 					]
 				},
 				{
-					"name": "Microorganismo_has_metodo_preservacao",
-					"item": [
-						{
-							"name": "microorganismo_has_metodo_preservacao_new",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"1\",\r\n    \"metodo_preservacao_idmetodo_preservacao\":\"2\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_metodo_preservacao",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_metodo_preservacao"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_metodo_preservacao_getAll",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_metodo_preservacao",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_metodo_preservacao"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_metodo_preservacao_getAll_microorganismo",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_metodo_preservacao/search?microorganismo_idmicroorganismo=1",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_metodo_preservacao",
-										"search"
-									],
-									"query": [
-										{
-											"key": "microorganismo_idmicroorganismo",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_metodo_preservacao_getAll_metodo",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_metodo_preservacao/search?metodo_preservacao_idmetodo_preservacao=2",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_metodo_preservacao",
-										"search"
-									],
-									"query": [
-										{
-											"key": "metodo_preservacao_idmetodo_preservacao",
-											"value": "2"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_metodo_preservacao_put",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "    {\r\n        \"idmicroorganismo_has_metodo_preservacao\": 2,\r\n        \"microorganismo_idmicroorganismo\": 1,\r\n        \"metodo_preservacao_idmetodo_preservacao\": 4\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_metodo_preservacao/2",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_metodo_preservacao",
-										"2"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "Exudato",
 					"item": [
 						{
@@ -2579,7 +2451,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"link\":\"Anexos004\"\r\n}",
+									"raw": "{\r\n    \"link\":\"Anexos003\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2639,134 +2511,6 @@
 									"path": [
 										"api",
 										"anexos",
-										"3"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "microorganismo_has_anexos",
-					"item": [
-						{
-							"name": "microorganismo_has_anexos_new",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"3\",\r\n    \"anexos_idanexos\":\"3\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_anexos",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_anexos"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_anexos_getAll",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_anexos",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_anexos"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_anexos_getAll_microorganismo",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_anexos/search?microorganismo_idmicroorganismo=3",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_anexos",
-										"search"
-									],
-									"query": [
-										{
-											"key": "microorganismo_idmicroorganismo",
-											"value": "3"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_anexos_getAll_anexos",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_anexos/search?anexos_idanexos=4",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_anexos",
-										"search"
-									],
-									"query": [
-										{
-											"key": "anexos_idanexos",
-											"value": "4"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_anexos_put",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "    {\r\n        \"idmicroorganismo_has_anexos\": 3,\r\n        \"microorganismo_idmicroorganismo\": 3,\r\n        \"anexos_idanexos\": 3\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_anexos/3",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_anexos",
 										"3"
 									]
 								}
@@ -2846,134 +2590,6 @@
 										"api",
 										"carac_micromorfologica",
 										"3"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Microorganismo_has_carac_micromorfologica",
-					"item": [
-						{
-							"name": "microorganismo_has_carac_micromorfologica_new",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"3\",\r\n    \"carac_micromorfologica_idcarac_micromorfologica\":\"4\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_carac_micromorfologica",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_carac_micromorfologica"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_carac_micromorfologica_getAll",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_carac_micromorfologica",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_carac_micromorfologica"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_carac_micromorfologica_getAll_microorganismo",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_carac_micromorfologica/search?microorganismo_idmicroorganismo=3",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_carac_micromorfologica",
-										"search"
-									],
-									"query": [
-										{
-											"key": "microorganismo_idmicroorganismo",
-											"value": "3"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_carac_micromorfologica_getAll_carat_micro",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_carac_micromorfologica/search?carac_micromorfologica_idcarac_micromorfologica=4",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_carac_micromorfologica",
-										"search"
-									],
-									"query": [
-										{
-											"key": "carac_micromorfologica_idcarac_micromorfologica",
-											"value": "4"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "microorganismo_has_carac_micromorfologica_put",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "    {\r\n        \"idmicroorganismo_has_carac_micromorfologica\": 1,\r\n        \"microorganismo_idmicroorganismo\": 1,\r\n        \"carac_micromorfologica_idcarac_micromorfologica\": 3\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/api/microorganismo_has_carac_micromorfologica/1",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"microorganismo_has_carac_micromorfologica",
-										"1"
 									]
 								}
 							},
@@ -3138,6 +2754,262 @@
 					]
 				},
 				{
+					"name": "microorganismo_has_anexos",
+					"item": [
+						{
+							"name": "microorganismo_has_anexos_new",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"3\",\r\n    \"anexos_idanexos\":\"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_anexos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_anexos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_anexos_getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_anexos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_anexos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_anexos_getAll_microorganismo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_anexos/search?microorganismo_idmicroorganismo=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_anexos",
+										"search"
+									],
+									"query": [
+										{
+											"key": "microorganismo_idmicroorganismo",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_anexos_getAll_anexos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_anexos/search?anexos_idanexos=4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_anexos",
+										"search"
+									],
+									"query": [
+										{
+											"key": "anexos_idanexos",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_anexos_put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"idmicroorganismo_has_anexos\": 3,\r\n        \"microorganismo_idmicroorganismo\": 3,\r\n        \"anexos_idanexos\": 3\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_anexos/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_anexos",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Microorganismo_has_carac_micromorfologica",
+					"item": [
+						{
+							"name": "microorganismo_has_carac_micromorfologica_new",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"4\",\r\n    \"carac_micromorfologica_idcarac_micromorfologica\":\"2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_carac_micromorfologica",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_carac_micromorfologica"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_carac_micromorfologica_getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_carac_micromorfologica",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_carac_micromorfologica"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_carac_micromorfologica_getAll_microorganismo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_carac_micromorfologica/search?microorganismo_idmicroorganismo=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_carac_micromorfologica",
+										"search"
+									],
+									"query": [
+										{
+											"key": "microorganismo_idmicroorganismo",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_carac_micromorfologica_getAll_carat_micro",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_carac_micromorfologica/search?carac_micromorfologica_idcarac_micromorfologica=4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_carac_micromorfologica",
+										"search"
+									],
+									"query": [
+										{
+											"key": "carac_micromorfologica_idcarac_micromorfologica",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_carac_micromorfologica_put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"idmicroorganismo_has_carac_micromorfologica\": 1,\r\n        \"microorganismo_idmicroorganismo\": 1,\r\n        \"carac_micromorfologica_idcarac_micromorfologica\": 3\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_carac_micromorfologica/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_carac_micromorfologica",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "microorganismo_has_imagem_macro",
 					"item": [
 						{
@@ -3147,7 +3019,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"3\",\r\n    \"imagem_idimagem\":\"3\"\r\n}",
+									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"4\",\r\n    \"imagem_idimagem\":\"2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3275,7 +3147,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"3\",\r\n    \"imagem_idimagem\":\"4\"\r\n}",
+									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"3\",\r\n    \"imagem_idimagem\":\"3\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3392,6 +3264,262 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "microorganismo_has_referencia_taxa",
+					"item": [
+						{
+							"name": "microorganismo_has_referencia_taxa_new",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"3\",\r\n    \"referencia_idreferencia\":\"3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_referencia_taxa",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_referencia_taxa"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_referencia_taxa_getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_referencia_taxa",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_referencia_taxa"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_referencia_taxa_getAll_microorganismo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_referencia_taxa/search?microorganismo_idmicroorganismo=1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_referencia_taxa",
+										"search"
+									],
+									"query": [
+										{
+											"key": "microorganismo_idmicroorganismo",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_referencia_taxa_getAll_metodo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_referencia_taxa/search?microorganismo_has_referencia_taxa=2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_referencia_taxa",
+										"search"
+									],
+									"query": [
+										{
+											"key": "microorganismo_has_referencia_taxa",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_referencia_taxa_put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"idmicroorganismo_has_referencia_taxa\": 2,\r\n        \"microorganismo_idmicroorganismo\": 1,\r\n        \"microorganismo_has_referencia_taxa\": 4\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_referencia_taxa/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_referencia_taxa",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "microorganismo_has_referencia_temp",
+					"item": [
+						{
+							"name": "microorganismo_has_referencia_temp_new",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"3\",\r\n    \"referencia_idreferencia\":\"3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_referencia_temp",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_referencia_temp"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_referencia_temp_getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_referencia_temp",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_referencia_temp"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_referencia_temp_getAll_microorganismo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_referencia_temp/search?microorganismo_idmicroorganismo=1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_referencia_temp",
+										"search"
+									],
+									"query": [
+										{
+											"key": "microorganismo_idmicroorganismo",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_referencia_temp_getAll_metodo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_referencia_temp/search?microorganismo_has_referencia_temp=2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_referencia_temp",
+										"search"
+									],
+									"query": [
+										{
+											"key": "microorganismo_has_referencia_temp",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "microorganismo_has_referencia_temp_put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"idmicroorganismo_has_referencia_temp\": 2,\r\n        \"microorganismo_idmicroorganismo\": 1,\r\n        \"microorganismo_has_referencia_temp\": 4\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/microorganismo_has_referencia_temp/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"microorganismo_has_referencia_temp",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -3408,7 +3536,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"hospedeiro\":\"Hospedeiro004\"\r\n}",
+									"raw": "{\r\n        \"idhospedeiro\": 2,\r\n        \"hospedeiro\": \"HospAni001\",\r\n        \"isAnimal\": 1\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3486,7 +3614,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"habitat\":\"Habitat001\",\r\n    \"habitat_veg_idhabitat_veg\":\"1\",\r\n    \"habitat_ani_idhabitat_ani\":\"1\",\r\n    \"info\":\"Info006\"\r\n}",
+									"raw": "{\r\n    \"habitat\":\"Habitat004\",\r\n    \"habitat_veg_idhabitat_veg\":\"2\",\r\n    \"habitat_ani_idhabitat_ani\":\"1\",\r\n    \"info\":\"Info006\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3614,7 +3742,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"hospedeiro_idhospedeiro\":\"1\",\r\n    \"substrato_idsubstrato\":\"1\",\r\n    \"registro\":\"Reristro001\",\r\n    \"codigo\":\"Código001\",\r\n    \"herbario\":\"Herbario001\"\r\n}",
+									"raw": "{\r\n    \"hospedeiro_idhospedeiro\":\"3\",\r\n    \"substrato_idsubstrato\":\"2\",\r\n    \"registro\":\"Reristro003\",\r\n    \"codigo\":\"Código003\",\r\n    \"herbario\":\"Herbario003\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3742,7 +3870,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"hospedeiro_idhospedeiro\": 2,\r\n        \"sitio_idsitio\": 1\r\n}",
+									"raw": "{\r\n        \"hospedeiro_idhospedeiro\": 3,\r\n        \"sitio_idsitio\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4599,7 +4727,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"3\",\r\n    \"unidade_idunidade\":\"1\",\r\n    \"grupo_pesquisa_idgrupo_pesquisa\":\"2\",\r\n    \"comentarios\":\"Comentario003\",\r\n    \"disponivel\":\"2\",\r\n    \"posicao_idposicao\":\"1\",\r\n    \"data\":\"2022-02-20\",\r\n    \"idreferencia\":\"1\",\r\n    \"idimagem\":\"2\"\r\n}",
+									"raw": "{\r\n    \"microorganismo_idmicroorganismo\":\"2\",\r\n    \"unidade_idunidade\":\"1\",\r\n    \"grupo_pesquisa_idgrupo_pesquisa\":\"2\",\r\n    \"comentarios\":\"Comentario001\",\r\n    \"disponivel\":\"2\",\r\n    \"posicao_idposicao\":\"1\",\r\n    \"data_issue\":\"2022-05-10\",\r\n    \"data_preserv\":\"2022-05-10\",\r\n    \"referencia_idreferencia\":\"1\",\r\n    \"imagem_idimagem\":\"2\",\r\n    \"pesquisador_preserv\":\"3\",\r\n    \"metodo_preservacao_idmetodo_preservacao\":\"2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4855,7 +4983,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"repique_idrepique\":\"4\",\r\n    \"imagem_idimagem\":\"2\"\r\n    \r\n}",
+									"raw": "{\r\n    \"repique_idrepique\":\"3\",\r\n    \"imagem_idimagem\":\"3\"\r\n    \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4983,7 +5111,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"repique_idrepique\":\"4\",\r\n    \"referencia_idreferencia\":\"4\"\r\n    \r\n}",
+									"raw": "{\r\n    \"repique_idrepique\":\"1\",\r\n    \"referencia_idreferencia\":\"2\"\r\n    \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -5111,7 +5239,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"repique_idrepique\":\"3\",\r\n    \"repique_idrepique1\":\"2\"\r\n    \r\n}",
+									"raw": "{\r\n    \"repique_idrepique\":\"3\",\r\n    \"repique_idrepique1\":\"1\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -5222,6 +5350,134 @@
 										"api",
 										"repique_has_repique",
 										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "repique_has_metodo_preservacao",
+					"item": [
+						{
+							"name": "repique_has_metodo_preservacao_new",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"repique_idrepique\":\"1\",\r\n    \"metodo_preservacao_idmetodo_preservacao\":\"2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/repique_has_metodo_preservacao",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"repique_has_metodo_preservacao"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "repique_has_metodo_preservacao_getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/repique_has_metodo_preservacao",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"repique_has_metodo_preservacao"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "repique_has_metodo_preservacao_getAll_microorganismo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/repique_has_metodo_preservacao/search?repique_idrepique=1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"repique_has_metodo_preservacao",
+										"search"
+									],
+									"query": [
+										{
+											"key": "repique_idrepique",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "repique_has_metodo_preservacao_getAll_metodo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/repique_has_metodo_preservacao/search?metodo_preservacao_idmetodo_preservacao=2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"repique_has_metodo_preservacao",
+										"search"
+									],
+									"query": [
+										{
+											"key": "metodo_preservacao_idmetodo_preservacao",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "repique_has_metodo_preservacao_put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"idrepique_has_metodo_preservacao\": 2,\r\n        \"repique_idrepique\": 1,\r\n        \"metodo_preservacao_idmetodo_preservacao\": 4\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/repique_has_metodo_preservacao/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"repique_has_metodo_preservacao",
+										"2"
 									]
 								}
 							},

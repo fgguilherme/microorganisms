@@ -16,8 +16,10 @@ exports.create = async (req, res) => {
     !req.body.disponivel ||
     !req.body.posicao_idposicao ||
     !req.body.data_issue ||
-    !req.body.idreferencia ||
-    !req.body.idimagem
+    !req.body.referencia_idreferencia ||
+    !req.body.metodo_preservacao_idmetodo_preservacao ||
+    !req.body.pesquisador_preserv ||
+    !req.body.imagem_idimagem
   ) {
     res.status(400).send({
       message: "Content missing mandatory data!",

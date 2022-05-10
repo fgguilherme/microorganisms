@@ -85,25 +85,6 @@ const doacaoList = [
     doacao: "Sob Consulta",
   },
 ];
-//0unidade
-// const unidadeList = [
-//   {
-//     idUnidade: 0,
-//     unidade: "TB",
-//   },
-//   {
-//     idUnidade: 1,
-//     unidade: "EP",
-//   },
-//   {
-//     idUnidade: 2,
-//     unidade: "FP",
-//   },
-//   {
-//     idUnidade: 3,
-//     unidade: "OT",
-//   },
-// ];
 
 export default function MicroContent(props) {
   var initialTab = 1;

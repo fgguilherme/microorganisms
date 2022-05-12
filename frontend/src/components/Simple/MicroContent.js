@@ -233,20 +233,14 @@ export default function MicroContent(props) {
 
   const [tempCrescimento, setTempCrescimento] = useState(0);
 
-  const [anexos, setAnexos] = useState([]);
-
   function saveMicro(){
     let newMicro
     try {
        newMicro = {
         "variedade_idvariedade": variedade?.idvariedade,
-        "status": status.idstatus,
+        "status": status?.idstatus,
+        "referencia_taxa": refTaxa,
         "data_reg_col_orig": dataReg,
-        "data_colet": dataCol,
-        "data_isol": dataIso,
-        "data_ident": dataIdn,
-        "data_mol": dataMol,
-
         "cod_orig": origCode,
         "hist_orig": origHist,
         "pesquisador_coleta": pesqColeta?.idpesquisador,
@@ -256,10 +250,13 @@ export default function MicroContent(props) {
         "datum": origDatum,
         "precisao": origPrecisao,
         "coment_orig": origComent,
+        "data_isol": dataIso,
         "pesquisador_isolamento": pesqIsola?.idpesquisador,
-        "info_isolamento": isoInfo, 
+        "info_isolamento": isoInfo,
+        "coment_isolamento": isoComment,
+        "data_ident": dataIdn,
         "pesquisador_ident": pesqId?.idpesquisador,
-        "coment_isolamento": isoComment,       
+        "data_coleta": dataCol,
         "cor_colonia": corColonia?.idcor,
         "textura_idtextura": textura?.idtextura,
         "borda_idborda": borda?.idborda,
@@ -269,25 +266,23 @@ export default function MicroContent(props) {
         "pigmento_idpigmento": pigmento?.idpigmento,
         "cor_pigmento": corPig?.idcor,
         "temp_crescimento": tempCrescimento,
+        "referencia_temp": refTemp,
         "laboratorio_mol": laboratorio?.idlaboratorio,
+        "data_mol": dataMol,
         "cod_mol": molCod,
         "sequencia_mol": molSeq,
         "meta_mol": molMeta,
-        // _has_
-        "referencia_temp": refTemp,
-        "referencia_taxa": refTaxa,
-        "carac_micromorfologica": caracMicro,
-        "anexos": anexos,
-        
         //Habitat INIT
-        "idsubstrato": substrato?.idsubstrato,
+        "habitat_idhabitat": habitat?.idHabitat,
+        "hospedeiro_ani": hospAn?.idhospedeiro,
         "sitio_anatomico": sitioAnat?.idsitio,
+        "hospedeiro_veg": hospVeg?.idhospedeiro,
+        "idsubstrato": substrato?.idsubstrato,
         "reg_exidata": regExiHosp,
         "herb_deposit": herbDeposit,
         "cod_herb": codHerb,
         "habitat_info": habitatInfo,
         //Habitat END
-
         //REPIQUE INIT
         "grupo_pesq": grupo_pesquisa?.idgrupo_pesquisa,
         "posicao":posicao?.idposicao,

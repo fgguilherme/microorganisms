@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm install
-RUN npm install -g nodemon
+RUN npm install -g nodemon sequelize mysql2 sequelize-auto
 # If you are building your code for production
 # RUN npm ci --only=production
 

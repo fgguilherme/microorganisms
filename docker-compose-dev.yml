@@ -18,7 +18,7 @@ services:
       MYSQL_ROOT_PASSWORD: BDBD03C7E6D2A1BB01C7698E2BD1CC12
     volumes:
       - dbdata:/var/lib/mysql
-      - ./backend/init_db.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./backend/init_db_dev.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       microcollection:
 

@@ -10,6 +10,10 @@ const ElementImagem = db.models.imagem;
 const ElementHasImagem_micro = db.models.microorganismo_has_imagem_micro;
 const ElementHas_anexos = db.models.microorganismo_has_anexos;
 const ElementAnexos = db.models.anexos;
+const ElementHabitat = db.models.habitat;
+const ElementHabitatAN = db.models.habitat_ani;
+const ElementHabitatVG = db.models.habitat_veg;
+const ElementHospedeiro = db.models.hospedeiro;
 
 const Op = db.Sequelize.Op;
 // Create and Save a new Element
@@ -79,14 +83,41 @@ exports.create = async (req, res) => {
   var needWait = 0;
   console.log(req.body)
 
+  //INICIO HABITAT
+
+  const habitat = {
+    habitat: req.body.habitat,
+    info: req.body.habitat_info
+  };
+  const habitat_an = {
+    hospedeiro_idhospedeiro: req.body.hospedeiro_idhospedeiro,
+    substrato_idsubstrato: req.body.idsubstrato,
+    registro : req.body.reg_exidata,
+    codigo: req.body.cod_herb,
+    herbario: req.body.herb_deposit
+  }
+  const habitat_veg = {
+    hospedeiro_idhospedeiro: req.body.hospedeiro_idhospedeiro,
+    sitio_idsitio: req.body.sitio_anatomico
+  }
+
+  const hosp = await ElementHospedeiro.findByPk(req.body.hospedeiro_idhospedeiro)
+  let hab
+  if (hosp.isAnimal) {
+    hab = await ElementHabitatAN.create(habitat_an)
+  }else{
+    hab = await ElementHabitatVG.create(habitat_veg)
+  }
+  const habit = await ElementHabitat.create(hab)
+
+  //FIM HABITAT
+
   // Save Element in the database
   Element.create(element)
   .then(data => {
-
     console.log("------------");
     console.log(data.dataValues);
     console.log("------------");
-
     if (req.body.metodo_preservacao_idmetodo_preservacao) {
       console.log("has Metodo_preservacao");
       needWait++;

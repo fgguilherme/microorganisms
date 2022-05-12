@@ -280,6 +280,8 @@ export default function MicroContent(props) {
         "anexos": anexos,
         
         //Habitat INIT
+        "habitat" : habitat.idHabitat,
+        "hospedeiro_idhospedeiro": hospAn? hospAn.idhospedeiro:hospVeg.idhospedeiro,
         "idsubstrato": substrato?.idsubstrato,
         "sitio_anatomico": sitioAnat?.idsitio,
         "reg_exidata": regExiHosp,

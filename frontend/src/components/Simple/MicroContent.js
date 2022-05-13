@@ -302,13 +302,14 @@ export default function MicroContent(props) {
         //REPIQUE END
       }
       console.log(newMicro)
-      // axios.post(baseurl+ "microorganismos", newMicro)
-      //   .then((response) => {
-      //     //return to main table
-      //     window.location.href = "/admin/m/" + props.returnto
-      //   }, (error) => {
-      //     console.log(error);
-      //   });
+      axios.post(baseurl+ "repique", newMicro)
+        .then((response) => {
+          console.log(response)
+          //return to main table
+          // window.location.href = "/admin/m/" + props.returnto
+        }, (error) => {
+          console.log(error);
+        });
     } catch (error) {
       console.log("MISSING SOMETHING")
     }

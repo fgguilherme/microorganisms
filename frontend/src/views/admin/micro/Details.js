@@ -27,7 +27,7 @@ export default function Details() {
           id: location.item?.microorganismo_idmicroorganismo.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade,
         }})
         .then(response => {
-          console.log(response)
+          // console.log(response)
         }, error => {
           console.log(error);
         });
@@ -77,8 +77,8 @@ export default function Details() {
         </div>
         <div className="w-full xl:w-4/12 px-4">
           {/* <CardBarChart /> */}
-          <CardMicroOrigin />
-          <CardMicroAuth />
+          <CardMicroOrigin microorg={location.item?.microorganismo_idmicroorganismo}/>
+          <CardMicroAuth microorg={location.item?.microorganismo_idmicroorganismo}/>
           {/* <CardMicroArt /> */}
         </div>
       </div>

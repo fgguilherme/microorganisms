@@ -280,7 +280,7 @@ export default function CardTable({ color,microorgid }) {
             var lote = element.posicao_idposicao_posicao.lote_idlote_lote.lote;
             var prateleira = element.posicao_idposicao_posicao.lote_idlote_lote.prateleira_idprateleira_prateleira.prateleira;
             var armario = element.posicao_idposicao_posicao.lote_idlote_lote.prateleira_idprateleira_prateleira.armario_idarmario_armario.armario;
-            e.push("CMM-UEA-F"+element.microorganismo_idmicroorganismo)
+            e.push("CMM-UEA-F"+element.microorganismo_idmicroorganismo.toString().padStart(4,'0')+"-"+element.idrepique.toString().padStart(4,'0'))
             e.push(element.posicao_idposicao_posicao.lote_idlote_lote.prateleira_idprateleira_prateleira.armario_idarmario_armario.sub_colecao_idsub_colecao_sub_colecao.sub_colecao)
             e.push(element.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.genero)//genero
             e.push(element.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.especie)//especie

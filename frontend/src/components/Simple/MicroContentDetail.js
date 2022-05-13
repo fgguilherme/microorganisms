@@ -1,10 +1,76 @@
 import React, { useState, useEffect } from "react";
 
+//0habitat
+const habitatList = [
+  {
+    idHabitat: 0,
+    habitat: "Fitopatogênico",
+  },
+  {
+    idHabitat: 1,
+    habitat: "Endofítico",
+  },
+  {
+    idHabitat: 2,
+    habitat: "Epifítico",
+  },
+  {
+    idHabitat: 3,
+    habitat: "Clínico",
+  },
+  {
+    idHabitat: 4,
+    habitat: "Solo",
+  },
+  {
+    idHabitat: 5,
+    habitat: "Degradador de madeira",
+  },
+  {
+    idHabitat: 6,
+    habitat: "Hipógeo",
+  },
+  {
+    idHabitat: 7,
+    habitat: "Anemófilo",
+  },
+  {
+    idHabitat: 8,
+    habitat: "Outros",
+  },
+];
+
+const statusList = [
+  {
+    idStatus: 0,
+    status: "Ativo",
+  },
+  {
+    idStatus: 1,
+    status: "Inativo",
+  },
+  {
+    idStatus: 2,
+    status: "Pendente",
+  },
+];
+
+const doacaoList = [
+  {
+    idDoacao: 0,
+    doacao: "Sim",
+  },
+  {
+    idDoacao: 1,
+    doacao: "Não",
+  },
+  {
+    idDoacao: 2,
+    doacao: "Sob Consulta",
+  },
+];
 export default function MicroContentDetail(props) {
   const [openTab, setOpenTab] = useState(1);
-  console.log("----------------------")
-  console.log(props?.microorg)
-  console.log("----------------------")
   return (
     <>
       <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
@@ -271,7 +337,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {/* {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.genero} */}
+                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.genero}
                           </label>
                         </div>
                       </div>
@@ -287,7 +353,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {/* {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.especie} */}
+                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.especie}
                           </label>
                         </div>
                       </div>
@@ -303,7 +369,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {/* {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.sub_especie} */}
+                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.sub_especie}
                           </label>
                         </div>
                       </div>
@@ -336,7 +402,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {/* PIPOCA */}
                           </label>
                         </div>
                       </div>
@@ -353,7 +419,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.status}
+                          {statusList[(props?.microorg.microorganismo_idmicroorganismo_microorganismo.status)].status}
                           </label>
                         </div>
                       </div>
@@ -375,7 +441,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {new Date(props?.microorg.microorganismo_idmicroorganismo_microorganismo.data_reg_col_orig).toLocaleDateString()}
                           </label>
                         </div>
                       </div>
@@ -391,7 +457,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.cod_orig}
                           </label>
                         </div>
                         <div className="relative w-full mb-3">
@@ -405,7 +471,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.hist_orig}
                           </label>
                         </div>
                       </div>
@@ -421,7 +487,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {new Date(props?.microorg.microorganismo_idmicroorganismo_microorganismo.data_colet).toLocaleDateString()}
                           </label>
                         </div>
                       </div>
@@ -437,7 +503,10 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.nome + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.email + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.instituicao }
                           </label>
                         </div>
                       </div>
@@ -453,7 +522,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {habitatList[(props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat)].habitat}
                           </label>
                         </div>
                       </div>
@@ -462,7 +531,7 @@ export default function MicroContentDetail(props) {
                         <div className="relative w-full mb-3">
                         </div>
                       </div>
-                      {/* {habitat.idHabitat <= 2 ? (
+                      {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat <= 2 ? (
 
                         <>
                           <div className="w-full lg:w-6/12 px-4">
@@ -477,7 +546,7 @@ export default function MicroContentDetail(props) {
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 htmlFor="grid-password"
                               >
-                                PIPOCA
+                                {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.hospedeiro}
                               </label>
                             </div>
                           </div>
@@ -494,7 +563,7 @@ export default function MicroContentDetail(props) {
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 htmlFor="grid-password"
                               >
-                                PIPOCA
+                              {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.substrato_idsubstrato_substrato.substrato}
                               </label>
                             </div>
                           </div>
@@ -511,7 +580,7 @@ export default function MicroContentDetail(props) {
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 htmlFor="grid-password"
                               >
-                                PIPOCA
+                                {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.registro}
                               </label>
                             </div>
                           </div>
@@ -528,7 +597,7 @@ export default function MicroContentDetail(props) {
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 htmlFor="grid-password"
                               >
-                                PIPOCA
+                              {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.herbario}
                               </label>
                             </div>
                           </div>
@@ -545,13 +614,14 @@ export default function MicroContentDetail(props) {
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 htmlFor="grid-password"
                               >
-                                PIPOCA
+                                
+                                {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.codigo}
                               </label>
                             </div>
                           </div>
                         </>
                       ) : null}
-                      {habitat.idHabitat === 3 ? (
+                      {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat === 3 ? (
                         <>
                           <div className="w-full lg:w-6/12 px-4">
                             <div className="relative w-full mb-3">
@@ -588,7 +658,7 @@ export default function MicroContentDetail(props) {
                             </div>
                           </div>
                         </>
-                      ) : null} */}
+                      ) : null}
                       <div className="w-full lg:w-12/12 px-4">
                         <div className="relative w-full mb-3">
                           <label
@@ -601,7 +671,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.info}
                           </label>
                         </div>
                       </div>
@@ -617,7 +687,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.origem_geo}
                           </label>
                         </div>
                       </div>
@@ -633,7 +703,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.lat}
                           </label>
                         </div>
                       </div>
@@ -649,7 +719,8 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            
+                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.lon}
                           </label>
                         </div>
                       </div>
@@ -665,7 +736,8 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            
+                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.datum}
                           </label>
                         </div>
                       </div>
@@ -681,7 +753,8 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            
+                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.precisao}
                           </label>
                         </div>
                       </div>
@@ -697,7 +770,8 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            
+                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.coment_orig}
                           </label>
                         </div>
                       </div>
@@ -719,7 +793,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                          {new Date(props?.microorg.microorganismo_idmicroorganismo_microorganismo.data_isol).toLocaleDateString()}
                           </label>
                         </div>
                       </div>
@@ -735,7 +809,10 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.nome + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.email + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.instituicao }
                           </label>
                         </div>
                       </div>
@@ -751,7 +828,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.info_isolamento}
                           </label>
                         </div>
                       </div>
@@ -767,7 +844,8 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            
+                          {new Date(props?.microorg.microorganismo_idmicroorganismo_microorganismo.data_ident).toLocaleDateString()}
                           </label>
                         </div>
                       </div>
@@ -783,7 +861,10 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.nome + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.email + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.instituicao }
                           </label>
                         </div>
                       </div>
@@ -799,7 +880,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.coment_isolamento}
                           </label>
                         </div>
                       </div>
@@ -821,7 +902,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.cor_colonia_cor.cor}
                           </label>
                         </div>
                       </div>
@@ -837,7 +918,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.textura_idtextura_textura.textura}
                           </label>
                         </div>
                       </div>
@@ -853,7 +934,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.borda}
                           </label>
                         </div>
                       </div>
@@ -869,7 +950,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.relevo_idrelevo_relevo.relevo}
                           </label>
                         </div>
                       </div>
@@ -885,7 +966,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.exudato_idexudato_exudato.exudato}
                           </label>
                         </div>
                       </div>
@@ -901,7 +982,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.cor_exudato_cor.cor}
                           </label>
                         </div>
                       </div>
@@ -917,7 +998,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento.pigmento}
                           </label>
                         </div>
                       </div>
@@ -933,7 +1014,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.cor_pigmento_cor.cor}
                           </label>
                         </div>
                       </div>
@@ -949,7 +1030,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.temp_crescimento}
                           </label>
                         </div>
                       </div>
@@ -965,7 +1046,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {/* PIPOCA */}
                           </label>
                         </div>
                       </div>
@@ -981,7 +1062,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {/* PIPOCA */}
                           </label>
                         </div>
                       </div>
@@ -997,7 +1078,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {/* PIPOCA */}
                           </label>
                         </div>
                       </div>
@@ -1013,7 +1094,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {/* PIPOCA */}
                           </label>
                         </div>
                       </div>
@@ -1035,7 +1116,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.laboratorio_mol_laboratorio.laboratorio}
                           </label>
                         </div>
                       </div>
@@ -1051,7 +1132,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {new Date(props?.microorg.microorganismo_idmicroorganismo_microorganismo.data_mol).toLocaleDateString()}
                           </label>
                         </div>
                       </div>
@@ -1067,7 +1148,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.cod_mol}
                           </label>
                         </div>
                       </div>
@@ -1083,7 +1164,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.sequencia_mol}
                           </label>
                         </div>
                       </div>
@@ -1099,7 +1180,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.meta_mol}
                           </label>
                         </div>
                       </div>
@@ -1115,7 +1196,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {/* PIPOCA */}
                           </label>
                         </div>
                       </div>
@@ -1137,7 +1218,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.posicao_idposicao_posicao.lote_idlote_lote.prateleira_idprateleira_prateleira.armario_idarmario_armario.sub_colecao_idsub_colecao_sub_colecao.sub_colecao}
                           </label>
                         </div>
                       </div>
@@ -1153,7 +1234,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.grupo_pesquisa_idgrupo_pesquisa_grupo_pesquisa.grupo}
                           </label>
                         </div>
                       </div>
@@ -1169,7 +1250,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.unidade_idunidade_unidade.unidade}
                           </label>
                         </div>
                       </div>
@@ -1185,7 +1266,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.posicao_idposicao_posicao.lote_idlote_lote.prateleira_idprateleira_prateleira.armario_idarmario_armario.armario}
                           </label>
                         </div>
                       </div>
@@ -1201,7 +1282,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.posicao_idposicao_posicao.lote_idlote_lote.prateleira_idprateleira_prateleira.prateleira}
                           </label>
                         </div>
                       </div>
@@ -1217,7 +1298,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.posicao_idposicao_posicao.lote_idlote_lote.lote}
                           </label>
                         </div>
                       </div>
@@ -1233,7 +1314,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.posicao_idposicao_posicao.posicao}
                           </label>
                         </div>
                       </div>
@@ -1249,7 +1330,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {new Date(props?.microorg.data_preserv).toLocaleDateString()}
                           </label>
                         </div>
                       </div>
@@ -1265,7 +1346,9 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.pesquisador_preserv_pesquisador.nome + " - " +
+                             props?.microorg.pesquisador_preserv_pesquisador.email + " - " +
+                             props?.microorg.pesquisador_preserv_pesquisador.instituicao }
                           </label>
                         </div>
                       </div>
@@ -1282,7 +1365,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {/* PIPOCA */}
                           </label>
                         </div>
                       </div>
@@ -1305,7 +1388,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {props?.microorg.comentarios}
                           </label>
                         </div>
                       </div>
@@ -1321,7 +1404,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {doacaoList[props?.microorg.disponivel].doacao}
                           </label>
                         </div>
                       </div>
@@ -1337,7 +1420,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {/* PIPOCA */}
                           </label>
                         </div>
                       </div>
@@ -1353,7 +1436,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            PIPOCA
+                            {/* PIPOCA */}
                           </label>
                         </div>
                       </div>

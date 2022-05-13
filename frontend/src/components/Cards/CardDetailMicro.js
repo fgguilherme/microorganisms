@@ -15,9 +15,6 @@ const customStyles = {
   },
 };
 export default function CardDetailMicro(props) {
-  console.log("=============================")
-  console.log(props)
-  console.log("=============================")
   //START PERSON MODAL
   const [itemPersonName, setItemPersonName] = React.useState(["", "", ""]);
   const [itemPersonValue, setItemPersonValue] = React.useState(["", "", ""]);

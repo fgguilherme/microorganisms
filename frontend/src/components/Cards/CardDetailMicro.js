@@ -1,4 +1,4 @@
-import MicroContent from "components/Simple/MicroContent";
+import MicroContentDetail from "components/Simple/MicroContentDetail";
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
@@ -14,8 +14,10 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
-export default function CardDetailMicro() {
-  
+export default function CardDetailMicro(props) {
+  console.log("=============================")
+  console.log(props)
+  console.log("=============================")
   //START PERSON MODAL
   const [itemPersonName, setItemPersonName] = React.useState(["", "", ""]);
   const [itemPersonValue, setItemPersonValue] = React.useState(["", "", ""]);
@@ -378,7 +380,7 @@ export default function CardDetailMicro() {
           </div>
         </div>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-          <MicroContent showOnly={true} isRepique={false}/>
+          <MicroContentDetail microorg={props.microorg} />
           </div>
       </div>
     </>

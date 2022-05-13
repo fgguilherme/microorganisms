@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom'
 import CardStats from "components/Cards/CardStats.js";
+import axios from "axios";
 
 // components
 
@@ -16,6 +17,21 @@ export default function Details() {
   if(location.item?.microorganismo_idmicroorganismo === undefined){
     window.location.href = "/admin/m/tables"
   }
+  const baseurl = window.location.origin.toString() + "/api/"
+  const [variedadeContent, setVariedadeContent] = useState([]);
+  useEffect(() => {
+    if (variedadeContent.length === 0) {
+      axios.get(baseurl+"variedade",{
+        params: {
+          id: location.item?.microorganismo_idmicroorganismo.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade,
+        }})
+        .then(response => {
+          console.log(response)
+        }, error => {
+          console.log(error);
+        });
+    }
+  }, [])
   return (
     <>
       {/* Card stats */}
@@ -55,14 +71,14 @@ export default function Details() {
                 <h6 className="text-blueGray-700 text-xl font-bold">Detalhes</h6>
               </div>
             </div>
-              <MicroContentDetail microorg={location.item?.microorganismo_idmicroorganismo}/>
+              {/* <MicroContentDetail microorg={location.item?.microorganismo_idmicroorganismo}/> */}
           </div>
         </div>
         <div className="w-full xl:w-4/12 px-4">
           {/* <CardBarChart /> */}
           <CardMicroOrigin />
           <CardMicroAuth />
-          <CardMicroArt />
+          {/* <CardMicroArt /> */}
         </div>
       </div>
       <div className="flex flex-wrap mt-4">

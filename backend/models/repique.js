@@ -63,6 +63,10 @@ module.exports = function(sequelize, DataTypes) {
         model: 'pesquisador',
         key: 'idpesquisador'
       }
+    },
+    parent: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     sequelize,

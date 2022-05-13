@@ -262,11 +262,14 @@ let repiques
 export default function CardTable({ color,microorgid }) {
   const [tableContent, setTableContent] = useState([]);
   const [tableContentDetail, setTableContentDetail] = useState([]);
-  console.log(microorgid)
+  // console.log(microorgid)
   useEffect(() => {
     //0dominio
     if (tableContent.length === 0) {
-      axios.get(baseurl+"repique",{"microorganismo_idmicroorganismo":microorgid})
+      axios.get(baseurl+"repique/search",{
+        params: {
+          microorganismo_idmicroorganismo: microorgid,
+        }})
         .then(response => {
           let tmpContent = []
           repiques = response.data

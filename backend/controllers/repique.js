@@ -196,6 +196,78 @@ exports.findAll = (req, res) => {
     });
 };
 
+// Retrieve all Elements from the database.
+exports.findAllParents = (req, res) => {
+  var condition = { parent: null };
+  
+  Element.findAll({ where: condition, include: [
+    { model: models.posicao, as: "posicao_idposicao_posicao",  include: { 
+      model: models.lote, as: "lote_idlote_lote", include:{
+        model: models.prateleira, as: "prateleira_idprateleira_prateleira", include: {
+          model: models.armario, as: "armario_idarmario_armario", include: {
+            model: models.sub_colecao, as: "sub_colecao_idsub_colecao_sub_colecao"
+          }
+        }
+      }
+    }
+    },
+    {model:  models.unidade, as:"unidade_idunidade_unidade"},
+    {model:  models.pesquisador, as:"pesquisador_preserv_pesquisador"},
+    {model:  models.grupo_pesquisa, as:"grupo_pesquisa_idgrupo_pesquisa_grupo_pesquisa"},
+    { model: models.microorganismo, as: "microorganismo_idmicroorganismo_microorganismo",  include: [
+      {model:  models.pesquisador, as:"pesquisador_coleta_pesquisador"},
+      {model:  models.pesquisador, as:"pesquisador_isolamento_pesquisador"},
+      {model:  models.pesquisador, as:"pesquisador_ident_pesquisador"},
+      {model:  models.cor, as:"cor_colonia_cor"},
+      {model:  models.cor, as:"cor_exudato_cor"},
+      {model:  models.cor, as:"cor_pigmento_cor"},
+      {model:  models.borda, as:"borda_idborda_borda"},
+      {model:  models.textura, as:"textura_idtextura_textura"},
+      {model:  models.relevo, as:"relevo_idrelevo_relevo"},
+      {model:  models.exudato, as:"exudato_idexudato_exudato"},
+      {model:  models.pigmento, as:"pigmento_idpigmento_pigmento"},
+      {model:  models.laboratorio, as:"laboratorio_mol_laboratorio"},
+      {model:  models.habitat, as:"habitat_idhabitat_habitat",  include: [
+        {model:  models.habitat_veg, as:"habitat_veg_idhabitat_veg_habitat_veg",  include: [
+          {model:  models.hospedeiro, as:"hospedeiro_idhospedeiro_hospedeiro"},
+          {model:  models.substrato, as:"substrato_idsubstrato_substrato"}
+        ]},
+        {model:  models.habitat_ani, as:"habitat_ani_idhabitat_ani_habitat_ani",  include: [
+          {model:  models.hospedeiro, as:"hospedeiro_idhospedeiro_hospedeiro"},
+          {model:  models.sitio, as:"sitio_idsitio_sitio"}
+        ]},
+      ]},
+      {model: models.variedade, as: "variedade_idvariedade_variedade",  include: [
+        { model: models.sub_especie, as: "sub_especie_idsub_especie_sub_especie",  include: { 
+          model: models.especie, as: "especie_idespecie_especie", include:{
+            model: models.genero, as: "genero_idgenero_genero", include: {
+              model: models.familia, as: "familia_idfamilia_familium", include: {
+                model: models.ordem, as: "ordem_idordem_ordem", include: {
+                  model: models.classe, as: "classe_idclasse_classe"
+                }
+              }
+            }
+          }
+        }
+        }
+
+      ]},
+    ]
+  }
+  ]})
+    .then((data) => {
+      console.log(JSON.stringify(data, null, 2))
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Elements.",
+      });
+    });
+};
+
 // Find a single Element with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
@@ -287,11 +359,73 @@ exports.deleteAll = (req, res) => {
 // Find all published Elements
 exports.findAllParam = (req, res) => {
   var p = req.query;
-  Element.findAll({ where: p })
+  console.log(p)
+  Element.findAll({ where: p , include: [
+    { model: models.posicao, as: "posicao_idposicao_posicao",  include: { 
+      model: models.lote, as: "lote_idlote_lote", include:{
+        model: models.prateleira, as: "prateleira_idprateleira_prateleira", include: {
+          model: models.armario, as: "armario_idarmario_armario", include: {
+            model: models.sub_colecao, as: "sub_colecao_idsub_colecao_sub_colecao"
+          }
+        }
+      }
+    }
+    },
+    {model:  models.unidade, as:"unidade_idunidade_unidade"},
+    {model:  models.pesquisador, as:"pesquisador_preserv_pesquisador"},
+    {model:  models.grupo_pesquisa, as:"grupo_pesquisa_idgrupo_pesquisa_grupo_pesquisa"},
+    { model: models.microorganismo, as: "microorganismo_idmicroorganismo_microorganismo",  include: [
+      {model:  models.pesquisador, as:"pesquisador_coleta_pesquisador"},
+      {model:  models.pesquisador, as:"pesquisador_isolamento_pesquisador"},
+      {model:  models.pesquisador, as:"pesquisador_ident_pesquisador"},
+      {model:  models.cor, as:"cor_colonia_cor"},
+      {model:  models.cor, as:"cor_exudato_cor"},
+      {model:  models.cor, as:"cor_pigmento_cor"},
+      {model:  models.borda, as:"borda_idborda_borda"},
+      {model:  models.textura, as:"textura_idtextura_textura"},
+      {model:  models.relevo, as:"relevo_idrelevo_relevo"},
+      {model:  models.exudato, as:"exudato_idexudato_exudato"},
+      {model:  models.pigmento, as:"pigmento_idpigmento_pigmento"},
+      {model:  models.laboratorio, as:"laboratorio_mol_laboratorio"},
+      {model:  models.habitat, as:"habitat_idhabitat_habitat",  include: [
+        {model:  models.habitat_veg, as:"habitat_veg_idhabitat_veg_habitat_veg",  include: [
+          {model:  models.hospedeiro, as:"hospedeiro_idhospedeiro_hospedeiro"},
+          {model:  models.substrato, as:"substrato_idsubstrato_substrato"}
+        ]},
+        {model:  models.habitat_ani, as:"habitat_ani_idhabitat_ani_habitat_ani",  include: [
+          {model:  models.hospedeiro, as:"hospedeiro_idhospedeiro_hospedeiro"},
+          {model:  models.sitio, as:"sitio_idsitio_sitio"}
+        ]},
+      ]},
+      {model: models.variedade, as: "variedade_idvariedade_variedade",  include: [
+        { model: models.sub_especie, as: "sub_especie_idsub_especie_sub_especie",  include: { 
+          model: models.especie, as: "especie_idespecie_especie", include:{
+            model: models.genero, as: "genero_idgenero_genero", include: {
+              model: models.familia, as: "familia_idfamilia_familium", include: {
+                model: models.ordem, as: "ordem_idordem_ordem", include: {
+                  model: models.classe, as: "classe_idclasse_classe", include: {
+                    model: models.filo, as: "filo_idfilo_filo", include: {
+                      model: models.reino, as: "reino_idreino_reino", include: {
+                        model: models.dominio, as: "dominio_iddominio_dominio"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        }
+
+      ]},
+    ]
+  }
+  ]})
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
+      console.log(err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving Elements.",

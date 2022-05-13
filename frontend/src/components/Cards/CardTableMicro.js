@@ -265,10 +265,11 @@ export default function CardTable({ color }) {
   useEffect(() => {
     //0dominio
     if (tableContent.length === 0) {
-      axios.get(baseurl+"repique",{"parent":"null"})
+      axios.get(baseurl+"repique/parents")
         .then(response => {
           let tmpContent = []
           repiques = response.data
+          console.log(repiques)
           response.data.forEach(element => {
             var e = []
             var dt = new Date(element.data_preserv)

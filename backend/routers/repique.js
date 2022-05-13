@@ -12,6 +12,9 @@ module.exports = app => {
   // Retrieve all _repique
   router.get("/", _repique.findAll);
 
+  // Retrieve all _repique
+  router.get("/parents", _repique.findAllParents);
+
   // Retrieve all published _repique
   router.get("/search", _repique.findAllParam);
 

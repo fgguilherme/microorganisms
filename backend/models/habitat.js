@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     habitat_veg_idhabitat_veg: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'habitat_veg',
         key: 'idhabitat_veg'
@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     habitat_ani_idhabitat_ani: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'habitat_ani',
         key: 'idhabitat_ani'

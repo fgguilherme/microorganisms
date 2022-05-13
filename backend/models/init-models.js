@@ -39,7 +39,6 @@ var _repique = require("./repique");
 var _repique_has_imagem = require("./repique_has_imagem");
 var _repique_has_metodo_preservacao = require("./repique_has_metodo_preservacao");
 var _repique_has_referencia = require("./repique_has_referencia");
-var _repique_has_repique = require("./repique_has_repique");
 var _sitio = require("./sitio");
 var _sub_colecao = require("./sub_colecao");
 var _sub_especie = require("./sub_especie");
@@ -89,7 +88,6 @@ function initModels(sequelize) {
   var repique_has_imagem = _repique_has_imagem(sequelize, DataTypes);
   var repique_has_metodo_preservacao = _repique_has_metodo_preservacao(sequelize, DataTypes);
   var repique_has_referencia = _repique_has_referencia(sequelize, DataTypes);
-  var repique_has_repique = _repique_has_repique(sequelize, DataTypes);
   var sitio = _sitio(sequelize, DataTypes);
   var sub_colecao = _sub_colecao(sequelize, DataTypes);
   var sub_especie = _sub_especie(sequelize, DataTypes);
@@ -116,8 +114,6 @@ function initModels(sequelize) {
   repique.belongsToMany(imagem, { as: 'imagem_idimagem_imagem_repique_has_imagems', through: repique_has_imagem, foreignKey: "repique_idrepique", otherKey: "imagem_idimagem" });
   repique.belongsToMany(metodo_preservacao, { as: 'metodo_preservacao_idmetodo_preservacao_metodo_preservacaos', through: repique_has_metodo_preservacao, foreignKey: "repique_idrepique", otherKey: "metodo_preservacao_idmetodo_preservacao" });
   repique.belongsToMany(referencia, { as: 'referencia_idreferencia_referencia_repique_has_referencia', through: repique_has_referencia, foreignKey: "repique_idrepique", otherKey: "referencia_idreferencia" });
-  repique.belongsToMany(repique, { as: 'repique_idrepique1_repiques', through: repique_has_repique, foreignKey: "repique_idrepique", otherKey: "repique_idrepique1" });
-  repique.belongsToMany(repique, { as: 'repique_idrepique_repique_repique_has_repiques', through: repique_has_repique, foreignKey: "repique_idrepique1", otherKey: "repique_idrepique" });
   microorganismo_has_anexos.belongsTo(anexos, { as: "anexos_idanexos_anexo", foreignKey: "anexos_idanexos"});
   anexos.hasMany(microorganismo_has_anexos, { as: "microorganismo_has_anexos", foreignKey: "anexos_idanexos"});
   prateleira.belongsTo(armario, { as: "armario_idarmario_armario", foreignKey: "armario_idarmario"});
@@ -216,10 +212,6 @@ function initModels(sequelize) {
   repique.hasMany(repique_has_metodo_preservacao, { as: "repique_has_metodo_preservacaos", foreignKey: "repique_idrepique"});
   repique_has_referencia.belongsTo(repique, { as: "repique_idrepique_repique", foreignKey: "repique_idrepique"});
   repique.hasMany(repique_has_referencia, { as: "repique_has_referencia", foreignKey: "repique_idrepique"});
-  repique_has_repique.belongsTo(repique, { as: "repique_idrepique_repique", foreignKey: "repique_idrepique"});
-  repique.hasMany(repique_has_repique, { as: "repique_has_repiques", foreignKey: "repique_idrepique"});
-  repique_has_repique.belongsTo(repique, { as: "repique_idrepique1_repique", foreignKey: "repique_idrepique1"});
-  repique.hasMany(repique_has_repique, { as: "repique_idrepique1_repique_has_repiques", foreignKey: "repique_idrepique1"});
   habitat_ani.belongsTo(sitio, { as: "sitio_idsitio_sitio", foreignKey: "sitio_idsitio"});
   sitio.hasMany(habitat_ani, { as: "habitat_anis", foreignKey: "sitio_idsitio"});
   armario.belongsTo(sub_colecao, { as: "sub_colecao_idsub_colecao_sub_colecao", foreignKey: "sub_colecao_idsub_colecao"});
@@ -276,7 +268,6 @@ function initModels(sequelize) {
     repique_has_imagem,
     repique_has_metodo_preservacao,
     repique_has_referencia,
-    repique_has_repique,
     sitio,
     sub_colecao,
     sub_especie,

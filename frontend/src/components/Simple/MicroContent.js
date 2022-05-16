@@ -235,7 +235,40 @@ export default function MicroContent(props) {
 
   const [anexos, setAnexos] = useState([]);
 
-  function saveMicro(){
+  const [fileList, setFileList] = useState();
+  const [fileName, setFileName] = useState("");
+
+  const saveFile = async (e) => {
+    setFileList(e.target.files)
+  };
+
+  const uploadFile = async () => {
+    console.log(fileList)
+    const dataFormUpload = new FormData();
+    for (let index = 0; index < fileList.length; index++) {
+      console.log(fileList[index])
+      dataFormUpload.append("file", fileList[index]);
+      dataFormUpload.set("fileName", fileList[index].name);
+      
+    }
+    try {
+      const res = await axios.post(
+        baseurl+"upload",
+        dataFormUpload,
+        {
+            headers: {'Content-Type': 'multipart/form-data' },
+        }
+      );
+      console.log(dataFormUpload)
+      console.log(res);
+    } catch (ex) {
+      console.log(ex);
+      console.log(dataFormUpload)
+    }
+  };
+
+  async function saveMicro(){
+    const res = await uploadFile()
     let newMicro
     try {
        newMicro = {
@@ -3850,6 +3883,7 @@ export default function MicroContent(props) {
                             disabled={props.showOnly}
                             type="file"
                             multiple
+                            onChange={saveFile}
                             accept="image/png, image/gif, image/jpeg"
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />

@@ -79,11 +79,20 @@ export default function MicroContentDetail(props) {
       axios.get(baseurl+"variedade/"+props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade)
         .then(response => {
           console.log(response.data)
-          setVariedade(response.data)
-          console.log("CUEN")
         }, error => {
           console.log(error);
         });
+        console.log(props)
+        axios.get(baseurl+"referencia/search",{params: {
+          "idmicroorganismo":props?.microorg.microorganismo_idmicroorganismo_microorganismo.idmicroorganismo,
+          "idrepique":props?.microorg.idrepique
+        }})
+          .then(response => {
+            console.log(response.data)
+            console.log("CUEN")
+          }, error => {
+            console.log(error);
+          });
     }, [])
   return (
     <>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
--- Tempo de geração: 10-Maio-2022 às 17:56
+-- Tempo de geração: 16-Maio-2022 às 18:56
 -- Versão do servidor: 8.0.28
 -- versão do PHP: 8.0.15
 
@@ -297,8 +297,8 @@ INSERT INTO `grupo_pesquisa` (`idgrupo_pesquisa`, `grupo`) VALUES
 CREATE TABLE `habitat` (
   `idhabitat` int UNSIGNED NOT NULL,
   `habitat` varchar(45) NOT NULL,
-  `habitat_veg_idhabitat_veg` int UNSIGNED NOT NULL,
-  `habitat_ani_idhabitat_ani` int UNSIGNED NOT NULL,
+  `habitat_veg_idhabitat_veg` int UNSIGNED DEFAULT NULL,
+  `habitat_ani_idhabitat_ani` int UNSIGNED DEFAULT NULL,
   `info` varchar(144) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -307,10 +307,10 @@ CREATE TABLE `habitat` (
 --
 
 INSERT INTO `habitat` (`idhabitat`, `habitat`, `habitat_veg_idhabitat_veg`, `habitat_ani_idhabitat_ani`, `info`) VALUES
-(4, 'Habitat001', 1, 1, 'Info006'),
-(6, 'Habitat002', 1, 1, 'Info006'),
-(8, 'Habitat003', 2, 1, 'Info006'),
-(10, 'Habitat004', 2, 1, 'Info006');
+(4, '1', 1, NULL, 'Info006'),
+(6, '2', 1, NULL, 'Info006'),
+(8, '3', NULL, 1, 'Info006'),
+(10, '4', NULL, NULL, 'Info006');
 
 -- --------------------------------------------------------
 
@@ -832,17 +832,18 @@ CREATE TABLE `repique` (
   `data_emission` date DEFAULT NULL,
   `data_preserv` datetime DEFAULT NULL,
   `posicao_idposicao` int UNSIGNED NOT NULL,
-  `pesquisador_preserv` int UNSIGNED NOT NULL
+  `pesquisador_preserv` int UNSIGNED NOT NULL,
+  `parent` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Extraindo dados da tabela `repique`
 --
 
-INSERT INTO `repique` (`idrepique`, `microorganismo_idmicroorganismo`, `unidade_idunidade`, `grupo_pesquisa_idgrupo_pesquisa`, `comentarios`, `disponivel`, `data_emission`, `data_preserv`, `posicao_idposicao`, `pesquisador_preserv`) VALUES
-(1, 3, 1, 2, 'Comentario001', 2, NULL, '2022-05-10 00:00:00', 1, 2),
-(3, 3, 1, 2, 'Comentario001', 2, NULL, '2022-05-10 00:00:00', 1, 3),
-(4, 2, 1, 2, 'Comentario001', 2, NULL, '2022-05-10 00:00:00', 1, 3);
+INSERT INTO `repique` (`idrepique`, `microorganismo_idmicroorganismo`, `unidade_idunidade`, `grupo_pesquisa_idgrupo_pesquisa`, `comentarios`, `disponivel`, `data_emission`, `data_preserv`, `posicao_idposicao`, `pesquisador_preserv`, `parent`) VALUES
+(1, 3, 1, 2, 'Comentario001', 2, NULL, '2022-05-10 00:00:00', 1, 2, NULL),
+(3, 3, 1, 2, 'Comentario001', 2, NULL, '2022-05-10 00:00:00', 1, 3, NULL),
+(4, 2, 1, 2, 'Comentario001', 2, NULL, '2022-05-10 00:00:00', 1, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -910,33 +911,6 @@ INSERT INTO `repique_has_referencia` (`idrepique_has_referencia`, `repique_idrep
 (6, 1, 2),
 (2, 3, 3),
 (4, 1, 3);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `repique_has_repique`
---
-
-CREATE TABLE `repique_has_repique` (
-  `idrepique_has_repique` int NOT NULL,
-  `repique_idrepique` int UNSIGNED NOT NULL,
-  `repique_idrepique1` int UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Extraindo dados da tabela `repique_has_repique`
---
-
-INSERT INTO `repique_has_repique` (`idrepique_has_repique`, `repique_idrepique`, `repique_idrepique1`) VALUES
-(4, 3, 1),
-(5, 4, 1),
-(8, 1, 1),
-(10, 3, 1),
-(1, 1, 3),
-(3, 3, 3),
-(6, 4, 3),
-(7, 1, 3),
-(2, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -1415,14 +1389,6 @@ ALTER TABLE `repique_has_referencia`
   ADD KEY `fk_repique_has_referencia_repique1_idx` (`repique_idrepique`);
 
 --
--- Índices para tabela `repique_has_repique`
---
-ALTER TABLE `repique_has_repique`
-  ADD PRIMARY KEY (`idrepique_has_repique`,`repique_idrepique`,`repique_idrepique1`),
-  ADD KEY `fk_repique_has_repique_repique2_idx` (`repique_idrepique1`),
-  ADD KEY `fk_repique_has_repique_repique1_idx` (`repique_idrepique`);
-
---
 -- Índices para tabela `sitio`
 --
 ALTER TABLE `sitio`
@@ -1718,12 +1684,6 @@ ALTER TABLE `repique_has_referencia`
   MODIFY `idrepique_has_referencia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de tabela `repique_has_repique`
---
-ALTER TABLE `repique_has_repique`
-  MODIFY `idrepique_has_repique` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT de tabela `sitio`
 --
 ALTER TABLE `sitio`
@@ -1947,13 +1907,6 @@ ALTER TABLE `repique_has_metodo_preservacao`
 ALTER TABLE `repique_has_referencia`
   ADD CONSTRAINT `fk_repique_has_referencia_referencia1` FOREIGN KEY (`referencia_idreferencia`) REFERENCES `referencia` (`idreferencia`),
   ADD CONSTRAINT `fk_repique_has_referencia_repique1` FOREIGN KEY (`repique_idrepique`) REFERENCES `repique` (`idrepique`);
-
---
--- Limitadores para a tabela `repique_has_repique`
---
-ALTER TABLE `repique_has_repique`
-  ADD CONSTRAINT `fk_repique_has_repique_repique1` FOREIGN KEY (`repique_idrepique`) REFERENCES `repique` (`idrepique`),
-  ADD CONSTRAINT `fk_repique_has_repique_repique2` FOREIGN KEY (`repique_idrepique1`) REFERENCES `repique` (`idrepique`);
 
 --
 -- Limitadores para a tabela `sub_especie`

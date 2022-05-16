@@ -269,7 +269,7 @@ export default function CardTable({ color }) {
         .then(response => {
           let tmpContent = []
           repiques = response.data
-          console.log(JSON.stringify(repiques,null,2))
+          // console.log(JSON.stringify(repiques,null,2))
           response.data.forEach(element => {
             var e = []
             var dt = new Date(element.data_preserv)

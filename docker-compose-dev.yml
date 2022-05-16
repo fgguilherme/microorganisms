@@ -10,7 +10,7 @@ x-common-variables: &common-variables
 
 services:
   mysql_db:
-    image: mysql:latest
+    image: mysql:5.7
     container_name: db
     restart: always
     environment:

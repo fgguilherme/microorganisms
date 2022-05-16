@@ -19,15 +19,14 @@ export default function Details() {
     window.location.href = "/admin/m/tables"
   }
   const baseurl = window.location.origin.toString() + "/api/"
-  const [variedadeContent, setVariedadeContent] = useState([]);
+  const [variedadeContent, setVariedadeContent] = useState({});
   useEffect(() => {
     if (variedadeContent.length === 0) {
-      axios.get(baseurl+"variedade",{
-        params: {
-          id: location.item?.microorganismo_idmicroorganismo.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade,
-        }})
+      axios.get(baseurl+"variedade/"+location.item?.microorganismo_idmicroorganismo.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade)
         .then(response => {
-          // console.log(response)
+          console.log(response)
+          // setVariedadeContent(response.data)
+          // console.log(variedadeContent)
         }, error => {
           console.log(error);
         });

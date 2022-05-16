@@ -751,6 +751,25 @@ export default function MicroContent(props) {
     fetchData();
   }, [sub_especie]);
   
+
+  useEffect(() => {
+    //0sub_especie
+    if(variedade?.idvariedade){
+      const fetchData = async () => {
+        console.log(variedade)
+        axios.get(baseurl+"variedade/" + variedade.idvariedade)
+          .then(response => {
+            console.log(response)
+          }, error => {
+            console.log(error);
+          });
+        }
+        fetchData()
+    }
+  }, [variedade]);
+  
+
+
   useEffect(() => {
     //0habitat
     console.log(habitat);

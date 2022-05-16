@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
+const baseurl = window.location.origin.toString() + "/api/"
 //0habitat
 const habitatList = [
   {
@@ -71,6 +73,18 @@ const doacaoList = [
 ];
 export default function MicroContentDetail(props) {
   const [openTab, setOpenTab] = useState(1);
+  const [variedade, setVariedade] = useState({});
+  useEffect(() => {
+    //0dominio
+      axios.get(baseurl+"variedade/"+props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade)
+        .then(response => {
+          console.log(response.data)
+          setVariedade(response.data)
+          console.log("CUEN")
+        }, error => {
+          console.log(error);
+        });
+    }, [])
   return (
     <>
       <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
@@ -241,7 +255,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {/* {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.fil} */}
+                            {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.reino_idreino_reino.dominio_iddominio_dominio.dominio}
                           </label>
                         </div>
                       </div>
@@ -257,7 +271,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {/* {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.fil} */}
+                            {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.reino_idreino_reino.reino}
                           </label>
                         </div>
                       </div>
@@ -273,7 +287,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {/* {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.fil} */}
+                            {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.filo}
                           </label>
                         </div>
                       </div>
@@ -289,7 +303,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.classe}
+                            {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.classe}
                           </label>
                         </div>
                       </div>
@@ -305,7 +319,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.ordem}
+                          {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.ordem}
                           </label>
                         </div>
                       </div>
@@ -321,7 +335,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.familia}
+                          {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.familia}
                           </label>
                         </div>
                       </div>
@@ -337,7 +351,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.genero}
+                          {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.genero_idgenero_genero.genero}
                           </label>
                         </div>
                       </div>
@@ -353,7 +367,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.especie}
+                          {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.especie}
                           </label>
                         </div>
                       </div>
@@ -369,7 +383,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.sub_especie}
+                          {variedade?.sub_especie_idsub_especie_sub_especie?.sub_especie}
                           </label>
                         </div>
                       </div>
@@ -385,7 +399,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.variedade}
+                          {variedade?.variedade}
                           </label>
                         </div>
                       </div>

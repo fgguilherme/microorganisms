@@ -311,12 +311,21 @@ export default function CardTable({ color,microorgid }) {
           <div>
             {/* <CSVLink data={tableContentDetail} headers={tableheaderDetail}> */}
             <button
-              className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+              className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
+              disabled
             >
               Exportar
             </button>
             {/* </CSVLink> */}
+            <Link to="/admin/m/repique">
+              <button
+                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="button"
+              >
+                Adicionar
+              </button>
+            </Link>
           </div>
         </div>
         <div className="block w-full overflow-x-auto">

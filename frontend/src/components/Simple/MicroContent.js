@@ -2206,8 +2206,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Domínio", "Coco", "dominio");
                                 }}
@@ -2251,8 +2252,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Reino", "Coco", "reino");
                                 }}
@@ -2296,8 +2298,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Filo", "Coco", "filo");
                                 }}
@@ -2341,8 +2344,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Classe", "Coco", "classe");
                                 }}
@@ -2386,8 +2390,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Ordem", "Coco", "ordem");
                                 }}
@@ -2431,8 +2436,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Família", "Coco", "familia");
                                 }}
@@ -2475,8 +2481,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Gênero", "Coco");
                                 }}
@@ -2522,8 +2529,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openAutorModal(
                                     ["Espécie", "Autor"],
@@ -2584,8 +2592,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openAutorModal(
                                     ["Sub_Espécie", "Autor"],
@@ -2635,8 +2644,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openAutorModal(
                                     ["Variedade", "Autor"],
@@ -2686,8 +2696,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Referências taxonômicas", "", "referencia");
                                 }}
@@ -2823,8 +2834,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
@@ -2900,8 +2912,9 @@ export default function MicroContent(props) {
                                     <i className="fas fa-plus"></i>
                                   </button>
                                   <button
-                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
+                                    disabled
                                     onClick={() => {
                                       openModal("Hospedeiro vegetal", "", "hospedeiro");
                                     }}
@@ -2949,8 +2962,9 @@ export default function MicroContent(props) {
                                     <i className="fas fa-plus"></i>
                                   </button>
                                   <button
-                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
+                                    disabled
                                     onClick={() => {
                                       openModal("Substrato", "", "substrato");
                                     }}
@@ -3055,8 +3069,9 @@ export default function MicroContent(props) {
                                     <i className="fas fa-plus"></i>
                                   </button>
                                   <button
-                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
+                                    disabled
                                     onClick={() => {
                                       openModal("Hospedeiro animal", "","hospedeiro");
                                     }}
@@ -3104,8 +3119,9 @@ export default function MicroContent(props) {
                                     <i className="fas fa-plus"></i>
                                   </button>
                                   <button
-                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
+                                    disabled
                                     onClick={() => {
                                       openModal("Sítio anatômico", "", "sitio");
                                     }}
@@ -3291,8 +3307,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
@@ -3368,8 +3385,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
@@ -3435,8 +3453,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Cor", "", "cor");
                                 }}
@@ -3479,8 +3498,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Textura", "", "textura");
                                 }}
@@ -3524,8 +3544,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Borda", "", "borda");
                                 }}
@@ -3569,8 +3590,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Relevo", "", "relevo");
                                 }}
@@ -3614,8 +3636,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Exudato", "", "exudato");
                                 }}
@@ -3659,8 +3682,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Cor", "", "cor");
                                 }}
@@ -3704,8 +3728,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Pigmento", "", "pigmento");
                                 }}
@@ -3749,8 +3774,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Cor", "", "cor");
                                 }}
@@ -3811,8 +3837,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Referência para temperatura", "", "referencia");
                                 }}
@@ -3858,8 +3885,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal(
                                     "Caracteristicas micromorfológicas", "", "carac_micromorfologica");
@@ -3946,8 +3974,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Laboratório", "", "laboratorio");
                                 }}
@@ -4076,8 +4105,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Sub-Coleção", "", "sub_colecao");
                                 }}
@@ -4122,8 +4152,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Grupo de pesquisa", "", "grupo_pesquisa");
                                 }}
@@ -4166,8 +4197,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Unidade", "", "unidade");
                                 }}
@@ -4210,8 +4242,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Armário", "", "armario");
                                 }}
@@ -4256,8 +4289,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Prateleira", "", "prateleira");
                                 }}
@@ -4300,8 +4334,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Lote", "", "lote");
                                 }}
@@ -4344,8 +4379,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Posição", "", "posicao");
                                 }}
@@ -4404,8 +4440,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
                                 }}
@@ -4451,8 +4488,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Método de Preservação", "", "metodo_preservacao");
                                 }}
@@ -4558,8 +4596,9 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
+                                disabled
                                 onClick={() => {
                                   openModal("Referências adicionais", "", "referencia");
                                 }}

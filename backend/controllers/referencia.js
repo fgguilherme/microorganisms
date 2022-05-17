@@ -137,11 +137,11 @@ exports.deleteAll = (req, res) => {
 // Find all published Elements
 exports.findAllParam = async (req, res) => {
     var p = req.query;
-    console.log("===========================")
-    console.log(p)
+    // console.log("===========================")
+    // console.log(p)
     const mic = {"microorganismo_idmicroorganismo":p?.idmicroorganismo}
     const rep = {"repique_idrepique":p?.idrepique}
-    console.log("===========================")
+    // console.log("===========================")
     const repq_ref = await models.repique_has_referencia.findAll({ where: rep, include: [
       { model: models.referencia, as: "referencia_idreferencia_referencium"}
     ]})
@@ -151,9 +151,9 @@ exports.findAllParam = async (req, res) => {
     const temp_ref = await models.microorganismo_has_referencia_temp.findAll({ where: mic, include: [
       { model: models.referencia, as: "referencia_idreferencia_referencium"}
     ]})
-    console.log(repq_ref)
-    console.log(taxa_ref)
-    console.log(temp_ref)
+    // console.log(repq_ref)
+    // console.log(taxa_ref)
+    // console.log(temp_ref)
     r = {
       "repq_ref":repq_ref,
       "taxa_ref":taxa_ref,

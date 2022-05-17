@@ -74,21 +74,64 @@ const doacaoList = [
 export default function MicroContentDetail(props) {
   const [openTab, setOpenTab] = useState(1);
   const [variedade, setVariedade] = useState({});
+  const [referencia, setReferencia] = useState("");
+  const [referenciaTax, setReferenciaTax] = useState("");
+  const [referenciaTemp, setReferenciaTemp] = useState("");
+  const [referenciaRep, setReferenciaRep] = useState("");
+  const [caracMidro, setCaracMidro] = useState("");
   useEffect(() => {
-    //0dominio
+    //0variedade
       axios.get(baseurl+"variedade/"+props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade)
         .then(response => {
           console.log(response.data)
+          setVariedade(response.data)
         }, error => {
           console.log(error);
         });
         console.log(props)
+        //0referencia
         axios.get(baseurl+"referencia/search",{params: {
           "idmicroorganismo":props?.microorg.microorganismo_idmicroorganismo_microorganismo.idmicroorganismo,
           "idrepique":props?.microorg.idrepique
         }})
           .then(response => {
             console.log(response.data)
+            let tmpTax = []
+            let tmpRep = []
+            let tmpTemp = []
+            response.data.repq_ref.forEach(element => {
+              tmpRep.push(element.referencia_idreferencia_referencium.referencia)
+            });
+            response.data.taxa_ref.forEach(element => {
+              tmpTax.push(element.referencia_idreferencia_referencium.referencia)
+            });
+            response.data.temp_ref.forEach(element => {
+              tmpTemp.push(element.referencia_idreferencia_referencium.referencia)
+            });
+            console.log(tmpTax,
+              tmpRep,
+              tmpTemp)
+            setReferenciaTax(tmpTax.join(" - "))
+            setReferenciaTemp(tmpTemp.join(" - "))
+            setReferenciaRep(tmpRep.join(" - "))
+            setReferencia(response.data)
+            console.log("CUEN")
+          }, error => {
+            console.log(error);
+          });
+          //0caracMicro
+        axios.get(baseurl+"microorganismo_has_carac_micromorfologica/search",{params: {
+          "microorganismo_idmicroorganismo":props?.microorg.microorganismo_idmicroorganismo_microorganismo.idmicroorganismo,
+        }})
+          .then(response => {
+            // console.log(response.data)
+            let caracMicro = []
+            response.data.forEach(element => {
+              caracMicro.push(element.carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologica.carac_micromorfologica)
+            });
+            // console.log(caracMicro)
+            setCaracMidro(caracMicro.join(" - "))
+            //setCaracMidro(response.data)
             console.log("CUEN")
           }, error => {
             console.log(error);
@@ -376,7 +419,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.especie}
+                          {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.especie+" - "+variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.autor}
                           </label>
                         </div>
                       </div>
@@ -392,7 +435,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {variedade?.sub_especie_idsub_especie_sub_especie?.sub_especie}
+                          {variedade?.sub_especie_idsub_especie_sub_especie?.sub_especie+" - "+variedade?.sub_especie_idsub_especie_sub_especie?.autor}
                           </label>
                         </div>
                       </div>
@@ -408,7 +451,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                          {variedade?.variedade}
+                          {variedade?.variedade+" - "+variedade?.autor}
                           </label>
                         </div>
                       </div>
@@ -419,13 +462,12 @@ export default function MicroContentDetail(props) {
                             htmlFor="grid-password"
                           >
                             Referências taxonômicas
-                            {/* ARTIGO -  */}
                           </label>
                           <label
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {/* PIPOCA */}
+                            {referenciaTax}
                           </label>
                         </div>
                       </div>
@@ -1069,11 +1111,11 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {/* PIPOCA */}
+                          {referenciaTemp }
                           </label>
                         </div>
                       </div>
-                      <div className="w-full lg:w-4/12 px-4">
+                      <div className="w-full lg:w-full px-4">
                         <div className="relative w-full mb-3">
                           <label
                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -1085,7 +1127,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {/* PIPOCA */}
+                            {caracMidro}
                           </label>
                         </div>
                       </div>
@@ -1459,7 +1501,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {/* PIPOCA */}
+                          {referenciaRep}
                           </label>
                         </div>
                       </div>

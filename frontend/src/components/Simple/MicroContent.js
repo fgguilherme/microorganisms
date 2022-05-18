@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-
 import Modal from "react-modal";
 import Select from "react-select";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios, {AxiosError} from "axios";
+import MultipleDropzone from "components/Upload/MultipleDropzone";
+import MultipleDropzonePDF from "components/Upload/MultipleDropzonePDF";
+import { useAlert } from 'react-alert'
 // components
 const baseurl = window.location.origin.toString() + "/api/"
 const customStyles = {
@@ -238,37 +240,58 @@ export default function MicroContent(props) {
   const [fileList, setFileList] = useState();
   const [fileName, setFileName] = useState("");
 
+  const alert = useAlert();
+  
   const saveFile = async (e) => {
+    // Prevent default behavior
+    e.preventDefault();
     setFileList(e.target.files)
   };
 
-  const uploadFile = async () => {
-    console.log(fileList)
-    const dataFormUpload = new FormData();
+  const uploadFile = async (e) => {
+    e.preventDefault();
+    // console.log(e)
+    let dataFormUpload = new FormData();
+    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
     for (let index = 0; index < fileList.length; index++) {
-      console.log(fileList[index])
+      // console.log(fileList[index])
       dataFormUpload.append("file", fileList[index]);
-      dataFormUpload.set("fileName", fileList[index].name);
-      
     }
-    try {
-      const res = await axios.post(
-        baseurl+"upload",
-        dataFormUpload,
-        {
-            headers: {'Content-Type': 'multipart/form-data' },
-        }
-      );
-      console.log(dataFormUpload)
-      console.log(res);
-    } catch (ex) {
-      console.log(ex);
-      console.log(dataFormUpload)
-    }
+    console.log(dataFormUpload.getAll('data'));
+    const res = await axios.post(
+      baseurl+"upload",
+      fileList,
+      {
+          headers: {'Content-Type':`multipart/form-data; boundary=${dataFormUpload._boundary}` },
+      }
+    );
+    console.log(res);
   };
 
-  async function saveMicro(){
-    const res = await uploadFile()
+  async function saveMicro(e){
+    if(variedade?.idvariedade == undefined){
+      alert.error('Oh look, an alert!')
+      return
+    }
+    if(dataReg.length < 5){
+
+    }
+    if(variedade?.idvariedade == undefined){
+
+    }
+    if(variedade?.idvariedade == undefined){
+
+    }
+    if(variedade?.idvariedade == undefined){
+
+    }
+    if(variedade?.idvariedade == undefined){
+
+    }
+    if(variedade?.idvariedade == undefined){
+
+    }
+    const res = await uploadFile(e)
     let newMicro
     try {
        newMicro = {
@@ -334,15 +357,15 @@ export default function MicroContent(props) {
         "ref_others": refAdd   
         //REPIQUE END
       }
-      console.log(newMicro)
-      axios.post(baseurl+ "repique", newMicro)
-        .then((response) => {
-          console.log(response)
-          //return to main table
-          // window.location.href = "/admin/m/" + props.returnto
-        }, (error) => {
-          console.log(error);
-        });
+      // console.log(newMicro)
+      // axios.post(baseurl+ "repique", newMicro)
+      //   .then((response) => {
+      //     // console.log(response)
+      //     //return to main table
+      //     // window.location.href = "/admin/m/" + props.returnto
+      //   }, (error) => {
+      //     console.log(error);
+      //   });
     } catch (error) {
       console.log("MISSING SOMETHING")
     }
@@ -3907,14 +3930,7 @@ export default function MicroContent(props) {
                           >
                             Imagens macromorfológicas
                           </label>
-                          <input
-                            disabled={props.showOnly}
-                            type="file"
-                            multiple
-                            onChange={saveFile}
-                            accept="image/png, image/gif, image/jpeg"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          />
+                          <MultipleDropzone/>
                         </div>
                       </div>
                       <div className="w-full lg:w-12/12 px-4">
@@ -3925,13 +3941,7 @@ export default function MicroContent(props) {
                           >
                             Imagens micromorfológicas
                           </label>
-                          <input
-                            disabled={props.showOnly}
-                            type="file"
-                            multiple
-                            accept="image/png, image/gif, image/jpeg"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          />
+                          <MultipleDropzone/>
                         </div>
                       </div>
                     </div>
@@ -4059,11 +4069,8 @@ export default function MicroContent(props) {
                           >
                             Anexos
                           </label>
-                          <input
-                            disabled={props.showOnly}
-                            type="file"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          />
+                          
+                          <MultipleDropzonePDF/>
                         </div>
                       </div>
                     </div>
@@ -4553,11 +4560,8 @@ export default function MicroContent(props) {
                           >
                             Imagens adicionais
                           </label>
-                          <input
-                            disabled={props.showOnly}
-                            type="file"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          />
+                          
+                          <MultipleDropzone/>
                         </div>
                       </div>
                       <div className="w-full lg:w-12/12 px-4">
@@ -4628,7 +4632,7 @@ export default function MicroContent(props) {
                 <button
                   className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   type="button"
-                  onClick={()=>{saveMicro()}}
+                  onClick={(e)=>{saveMicro(e)}}
                 >
                   Salvar
                 </button>

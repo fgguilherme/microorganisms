@@ -14,7 +14,7 @@ exports.create = (req, res) => {
 
   // Create a Element
   const element = req.body;
-  console.log(req.body)
+  // console.log(req.body)
 
   // Save Element in the database
   Element.create(element)
@@ -136,21 +136,17 @@ exports.deleteAll = (req, res) => {
 
 // Find all published Elements
 exports.findAllParam = (req, res) => {
-  var p = req.query;
-  // console.log("=================================")
-  // console.log(req.query)
-  // console.log("=================================")
-  Element.findAll({ where: p , include: [
-    { model: models.carac_micromorfologica, as: "carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologica"}
-  ]})
-  .then(data => {
-    res.send(data);
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).send({
-      message:
-        err.message || "Some error occurred while retrieving Elements."
+    var p = req.query;
+    Element.findAll({ where: p , include: [
+      { model: models.carac_micromorfologica, as: "carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologica"}
+    ]})
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Elements."
     });
   });
 };

@@ -78,7 +78,8 @@ export default function MicroContentDetail(props) {
   const [referenciaTax, setReferenciaTax] = useState("");
   const [referenciaTemp, setReferenciaTemp] = useState("");
   const [referenciaRep, setReferenciaRep] = useState("");
-  const [caracMidro, setCaracMidro] = useState("");
+  const [caracMicro, setCaracMicro] = useState("");
+  const [metodoPrev, setMetodoPrev] = useState("");
   useEffect(() => {
     //0variedade
       axios.get(baseurl+"variedade/"+props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade)
@@ -108,14 +109,12 @@ export default function MicroContentDetail(props) {
             response.data.temp_ref.forEach(element => {
               tmpTemp.push(element.referencia_idreferencia_referencium.referencia)
             });
-            console.log(tmpTax,
-              tmpRep,
-              tmpTemp)
+            // console.log(tmpTax, tmpRep, tmpTemp)
             setReferenciaTax(tmpTax.join(" - "))
             setReferenciaTemp(tmpTemp.join(" - "))
             setReferenciaRep(tmpRep.join(" - "))
             setReferencia(response.data)
-            console.log("CUEN")
+            // console.log("CUEN")
           }, error => {
             console.log(error);
           });
@@ -125,14 +124,29 @@ export default function MicroContentDetail(props) {
         }})
           .then(response => {
             // console.log(response.data)
-            let caracMicro = []
+            let cm = []
             response.data.forEach(element => {
-              caracMicro.push(element.carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologica.carac_micromorfologica)
+              cm.push(element.carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologica.carac_micromorfologica)
             });
-            // console.log(caracMicro)
-            setCaracMidro(caracMicro.join(" - "))
-            //setCaracMidro(response.data)
+            // console.log(cm)
+            setCaracMicro(cm.join(" - "))
+            //setCaracMicro(response.data)
             console.log("CUEN")
+          }, error => {
+            console.log(error);
+          });
+        //0metodo
+        axios.get(baseurl+"repique_has_metodo_preservacao/search",{params: {
+          "repique_idrepique":props?.microorg.idrepique
+        }})
+          .then(response => {
+            let mp = []
+            response.data.forEach(element => {
+              console.log(element.metodo_preservacao_idmetodo_preservacao_metodo_preservacao.metodo);
+              mp.push(element.metodo_preservacao_idmetodo_preservacao_metodo_preservacao.metodo)
+            });
+            setMetodoPrev(mp.join(" - "))
+            // setMetodoPrev(response.data)
           }, error => {
             console.log(error);
           });
@@ -1127,7 +1141,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {caracMidro}
+                            {caracMicro}
                           </label>
                         </div>
                       </div>
@@ -1418,7 +1432,7 @@ export default function MicroContentDetail(props) {
                         </div>
                       </div>
 
-                      <div className="w-full lg:w-6/12 px-4">
+                      <div className="w-full lg:w-full px-4">
                         <div className="relative w-full mb-3">
                           <label
                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -1430,7 +1444,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {/* PIPOCA */}
+                            {metodoPrev}
                           </label>
                         </div>
                       </div>

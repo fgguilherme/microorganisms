@@ -137,9 +137,9 @@ exports.deleteAll = (req, res) => {
 // Find all published Elements
 exports.findAllParam = (req, res) => {
   var p = req.query;
-  console.log("=================================")
-  console.log(req.query)
-  console.log("=================================")
+  // console.log("=================================")
+  // console.log(req.query)
+  // console.log("=================================")
   Element.findAll({ where: p , include: [
     { model: models.carac_micromorfologica, as: "carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologica"}
   ]})

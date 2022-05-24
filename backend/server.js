@@ -125,6 +125,33 @@ const multipleFileUpload = async (req, res) => {
   }
 };
 
+// Multiple File Upload Funcstion
+const multipleFileUploadNoPhoto = async (req, res) => {
+  try {
+    // Create public/images folder if not exist
+    await makeDir("public/images");
+
+    let files = [];
+    for (let [index, file] of req.files.entries()) {
+      const t= Date.now()
+      const imageFile = `./public/images/${t}-${splitFileName(
+        file.originalname
+      )}`;
+
+      fs.writeFileSync(imageFile, file.buffer,'binary');
+
+      files[index] = `/api/public/images/${t}-${splitFileName(
+        file.originalname
+      )}`;
+    }
+    //console.log(files);
+
+    return res.json({ files });
+  } catch (err) {
+    return res.status(422).json({ err });
+  }
+};
+
 
 
 
@@ -208,7 +235,7 @@ app.post(
   "/api/multiple-dropzone-pdf",
   multipleUpload("files"),
   validateFile,
-  multipleFileUpload
+  multipleFileUploadNoPhoto
 );
 
 

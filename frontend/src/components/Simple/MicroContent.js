@@ -434,7 +434,7 @@ export default function MicroContent(props) {
     try {
       newMicro = {
       //MICRORGANISMO
-      "variedade_idvariedade": variedade?.idvariedade,
+      "variedade_idvariedade": variedade.idvariedade,
       "status": status.idstatus,
       "data_reg_col_orig": dataReg,
       "data_colet": dataCol,

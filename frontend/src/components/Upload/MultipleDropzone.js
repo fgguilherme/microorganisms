@@ -114,7 +114,7 @@ export class MultipleDropzone extends Component {
         uploading: false,
         error: false
       });
-
+      this.props.setFileList([...files]);
       /*setTimeout(
         () =>
           this.setState({

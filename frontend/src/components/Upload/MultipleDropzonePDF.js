@@ -115,6 +115,7 @@ export class MultipleDropzonePDF extends Component {
         error: false
       });
 
+      this.props.setFileList([...files]);
       /*setTimeout(
         () =>
           this.setState({

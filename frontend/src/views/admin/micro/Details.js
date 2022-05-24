@@ -5,12 +5,9 @@ import axios from "axios";
 
 // components
 
-import CardDetail from "components/Cards/CardDetailMicro"
 import CardTableMicro from "components/Cards/CardTableMicroDetails"
 import CardMicroOrigin from "components/Cards/CardMicroOrigin"
-import CardMicroArt from "components/Cards/CardMicroArt"
 import CardMicroAuth from "components/Cards/CardMicroAuthentication";
-import MicroContentDetail from "components/Simple/MicroContentDetail";
 import CardDetailMicro from "components/Cards/CardDetailMicro";
 export default function Details() {
   const location = useLocation()
@@ -82,7 +79,7 @@ export default function Details() {
         </div>
       </div>
       <div className="flex flex-wrap mt-4">
-        <CardTableMicro  microorgid={location.item?.microorganismo_idmicroorganismo.microorganismo_idmicroorganismo} />
+        <CardTableMicro  microorgid={location.item?.microorganismo_idmicroorganismo.microorganismo_idmicroorganismo} microorg={location.item?.microorganismo_idmicroorganismo}/>
       </div>
     </>
   );

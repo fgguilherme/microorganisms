@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import TableDropdown from "components/Dropdowns/TableDropdownMicro";
 import { Link } from "react-router-dom";
 import {CSVDownload, CSVLink} from "react-csv";
 

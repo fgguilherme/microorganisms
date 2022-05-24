@@ -259,7 +259,7 @@ const doacaoList = [
 ];
 const baseurl = window.location.origin.toString() + "/api/"
 let repiques
-export default function CardTable({ color,microorgid }) {
+export default function CardTable({ color,microorgid, microorg }) {
   const [tableContent, setTableContent] = useState([]);
   const [tableContentDetail, setTableContentDetail] = useState([]);
   // console.log(microorgid)
@@ -318,7 +318,7 @@ export default function CardTable({ color,microorgid }) {
               Exportar
             </button>
             {/* </CSVLink> */}
-            <Link to="/admin/m/repique">
+            <Link to={{pathname:"/admin/m/repique",item: {microorg: microorg}}}>
               <button
                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="button"

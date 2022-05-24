@@ -242,38 +242,14 @@ export default function MicroContent(props) {
   const [imagemMacro, setImagemMacro] = useState([]);
   const [imagemRepiq, setImagemRepiq] = useState([]);
 
-  const [fileList, setFileList] = useState();
-  const [fileName, setFileName] = useState("");
-
   const alert = useAlert();
   
-  const saveFile = async (e) => {
-    // Prevent default behavior
-    e.preventDefault();
-    setFileList(e.target.files)
-  };
-
-  const uploadFile = async (e) => {
-    e.preventDefault();
-    // console.log(e)
-    let dataFormUpload = new FormData();
-    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-    for (let index = 0; index < fileList.length; index++) {
-      // console.log(fileList[index])
-      dataFormUpload.append("file", fileList[index]);
-    }
-    console.log(dataFormUpload.getAll('data'));
-    const res = await axios.post(
-      baseurl+"upload",
-      fileList,
-      {
-          headers: {'Content-Type':`multipart/form-data; boundary=${dataFormUpload._boundary}` },
-      }
-    );
-    console.log(res);
-  };
   
   async function saveMicro(e){
+    console.log(imagemMacro)
+    console.log(imagemMicro)
+    console.log(imagemRepiq)
+    console.log(anexos)
     if(variedade?.idvariedade == undefined){
       alert.error('Informe a variedade')
       return
@@ -283,259 +259,260 @@ export default function MicroContent(props) {
       return
     }
     if(status.idstatus == undefined){
-        alert.error('Informe o status')
-        return
-      }
-      if(dataReg.length < 5){
-        alert.error('Informe a data do registro.')
-        return
-      }
-      if(origCode == ""){
-        alert.error('Informe Código orginal')
-        return
-      }
-      if(origHist == ""){
-        alert.error('Informe o histórico')
-        return
-      }
-      if(dataCol.length < 5){
-        alert.error('Informe a data da coleta.')
-        return
-      }
-      if(pesqColeta?.idpesquisador == undefined){
-        alert.error('Informe o responsável pela entrega')
-        return
-      }
-      if(habitat.idhabitat == undefined){
-        alert.error('Informe o habitat')
-        return
-      }
-      // if(habitat?.idhabitat <= 2){
+      alert.error('Informe o status')
+      return
+    }
+    if(dataReg.length < 5){
+      alert.error('Informe a data do registro.')
+      return
+    }
+    if(origCode == ""){
+      alert.error('Informe Código orginal')
+      return
+    }
+    if(origHist == ""){
+      alert.error('Informe o histórico')
+      return
+    }
+    if(dataCol.length < 5){
+      alert.error('Informe a data da coleta.')
+      return
+    }
+    if(pesqColeta?.idpesquisador == undefined){
+      alert.error('Informe o responsável pela entrega')
+      return
+    }
+    if(habitat.idhabitat == undefined){
+      alert.error('Informe o habitat')
+      return
+    }
+    // if(habitat?.idhabitat <= 2){
 
-      //   if(hospVeg?.idhospedeiro == ""){
-      //     alert.error('Informe o Hospedeiro Vegetal')
-      //     return
-      //   }
-      //   if(substrato?.idsubstrato == undefined){
-      //     alert.error('Informe o substrato')
-      //     return
-      //   }
+    //   if(hospVeg?.idhospedeiro == ""){
+    //     alert.error('Informe o Hospedeiro Vegetal')
+    //     return
+    //   }
+    //   if(substrato?.idsubstrato == undefined){
+    //     alert.error('Informe o substrato')
+    //     return
+    //   }
 
-      // }else if(habitat?.idhabitat === 3){
-      //   if(hospAn?.idhospedeiro == undefined){
-      //     alert.error('Informe o Hospedeiro Aninal')
-      //     return
-      //   }
-      //   if(sitioAnat?.idsitio == undefined){
-      //     alert.error('Informe o sítio')
-      //     return
-      //   }
-      // }else{
-      //   if(pesqId?.idpesquisador == undefined){
-      //     alert.error('Informe o identificador')
-      //     return
-      //   }
-      // }
-      if(dataIso.length < 5){
-        alert.error('Informe a data do isolamento.')
-        return
-      }
-      if(pesqIsola?.idpesquisador == undefined){
-        alert.error('Informe o responsável pelo isolamento')
-        return
-      }
-      if(dataIdn.length < 5){
-        alert.error('Informe a data da identificação.')
-        return
-      }
-      if(pesqId?.idpesquisador == undefined){
-        alert.error('Informe o identificador')
-        return
-      }
+    // }else if(habitat?.idhabitat === 3){
+    //   if(hospAn?.idhospedeiro == undefined){
+    //     alert.error('Informe o Hospedeiro Aninal')
+    //     return
+    //   }
+    //   if(sitioAnat?.idsitio == undefined){
+    //     alert.error('Informe o sítio')
+    //     return
+    //   }
+    // }else{
+    //   if(pesqId?.idpesquisador == undefined){
+    //     alert.error('Informe o identificador')
+    //     return
+    //   }
+    // }
+    if(dataIso.length < 5){
+      alert.error('Informe a data do isolamento.')
+      return
+    }
+    if(pesqIsola?.idpesquisador == undefined){
+      alert.error('Informe o responsável pelo isolamento')
+      return
+    }
+    if(dataIdn.length < 5){
+      alert.error('Informe a data da identificação.')
+      return
+    }
+    if(pesqId?.idpesquisador == undefined){
+      alert.error('Informe o identificador')
+      return
+    }
+    
+    if(corColonia?.idcor == undefined){
+      alert.error('Informe a cor da colônia')
+      return
+    }
+    if(textura?.idtextura == undefined){
+      alert.error('Informe a textura')
+      return
+    }
+    if(borda?.idborda == undefined){
+      alert.error('Informe a borda')
+      return
+    }
+    if(relevo?.idrelevo == undefined){
+      alert.error('Informe o relevo')
+      return
+    }
+    if(exudato?.idexudato == undefined){
+      alert.error('Informe o exudato')
+      return
+    }
+    if(corExu?.idcor == undefined){
+      alert.error('Informe a cor do exudato')
+      return
+    }
+    if(pigmento?.idpigmento == undefined){
+      alert.error('Informe o pigmento')
+      return
+    }
+    if(corPig?.idcor == undefined){
+      alert.error('Informe a cor do pigmento')
+      return
+    }
+    if(tempCrescimento == ""){
+      alert.error('Informe a tempetura de crescimento')
+      return
+    }
+    if(refTemp == ""){
+      alert.error('Informe a referência para temperatura')
+      return
+    }
+    if(caracMicro == ""){
+      alert.error('Informe as caracteristicas micromorfológicas')
+      return
+    }
+    
+    if(laboratorio?.idlaboratorio == undefined){
+      alert.error('Informe o laboratório')
+      return
+    }
+    if(dataMol.length < 5){
+      alert.error('Informe a data molecular.')
+      return
+    }
+    if(molCod == ""){
+      alert.error('Informe o código molecular')
+      return
+    }
+    if(molSeq == ""){
+      alert.error('Informe a sequência molecular')
+      return
+    }
+    if(molMeta == ""){
+      alert.error('Informe o metadados molecular')
+      return
+    }
+
+    if(grupo_pesquisa?.idgrupo_pesquisa == undefined){
+      alert.error('Informe o grupo de pesquisa')
+      return
+    }
+    if(unidade.idunidade == undefined){
+      alert.error('Informe o tipo de frasco')
+      return
+    }
+    if(posicao?.idposicao == undefined){
+      alert.error('Informe a posição')
+      return
+    }
+    if(dataPrv.length < 5){
+      alert.error('Informe a data do método de preservação.')
+      return
+    }
+    if(pesqPres?.idpesquisador == undefined){
+      alert.error('Informe o responsável pela preservação')
+      return
+    }
+    if(metodo_preservacao?.idmetodo_preservacao == ""){
+      alert.error('Informe o método de preservação')
+      return
+    }
+    if(doacao.iddoacao == undefined){
+      alert.error('Informe a doação')
+      return
+    }
+    if(refAdd == ""){
+      alert.error('Informe a referências adicionais')
+      return
+    }
+    
+    // const res = await uploadFile(e)
+
+    let newMicro
+    try {
+      newMicro = {
+      //MICRORGANISMO
+      "variedade_idvariedade": variedade?.idvariedade,
+      "status": status.idstatus,
+      "data_reg_col_orig": dataReg,
+      "data_colet": dataCol,
+      "data_isol": dataIso,
+      "data_ident": dataIdn,
+      "data_mol": dataMol,
+      "cod_orig": origCode,
+      "hist_orig": origHist,
+      "pesquisador_coleta": pesqColeta?.idpesquisador,
+      "origem_geo": origGeo,
+      "lat": origLat,
+      "lon": origLon,
+      "datum": origDatum,
+      "precisao": origPrecisao,
+      "coment_orig": origComent,
+      "pesquisador_isolamento": pesqIsola?.idpesquisador,
+      "info_isolamento": isoInfo, 
+      "pesquisador_ident": pesqId?.idpesquisador,
+      "coment_isolamento": isoComment,       
+      "cor_colo nia": corColonia?.idcor,
+      "textura_idtextura": textura?.idtextura,
+      "borda_idborda": borda?.idborda,
+      "relevo_idrelevo": relevo?.idrelevo,
+      "exudato_idexudato": exudato?.idexudato,
+      "cor_exudato": corExu?.idcor,
+      "pigmento_idpigmento": pigmento?.idpigmento,
+      "cor_pigmento": corPig?.idcor,
+      "temp_crescimento": tempCrescimento,
+      "laboratorio_mol": laboratorio?.idlaboratorio,
+      "cod_mol": molCod,
+      "sequencia_mol": molSeq,
+      "meta_mol": molMeta,
       
-      if(corColonia?.idcor == undefined){
-        alert.error('Informe a cor da colônia')
-        return
-      }
-      if(textura?.idtextura == undefined){
-        alert.error('Informe a textura')
-        return
-      }
-      if(borda?.idborda == undefined){
-        alert.error('Informe a borda')
-        return
-      }
-      if(relevo?.idrelevo == undefined){
-        alert.error('Informe o relevo')
-        return
-      }
-      if(exudato?.idexudato == undefined){
-        alert.error('Informe o exudato')
-        return
-      }
-      if(corExu?.idcor == undefined){
-        alert.error('Informe a cor do exudato')
-        return
-      }
-      if(pigmento?.idpigmento == undefined){
-        alert.error('Informe o pigmento')
-        return
-      }
-      if(corPig?.idcor == undefined){
-        alert.error('Informe a cor do pigmento')
-        return
-      }
-      if(tempCrescimento == ""){
-        alert.error('Informe a tempetura de crescimento')
-        return
-      }
-      if(refTemp == ""){
-        alert.error('Informe a referência para temperatura')
-        return
-      }
-      if(caracMicro == ""){
-        alert.error('Informe as caracteristicas micromorfológicas')
-        return
-      }
+      // _HAS_MICRO
+      "has_referencia_taxa": refTaxa,
+      "has_referencia_temp": refTemp,
+      "has_imagem_macro": imagemMacro,
+      "has_imagem_micro": imagemMicro,
+      "has_carac_micromorfologica": caracMicro,
+      "has_anexos": anexos,
       
-      if(laboratorio?.idlaboratorio == undefined){
-        alert.error('Informe o laboratório')
-        return
-      }
-      if(dataMol.length < 5){
-        alert.error('Informe a data molecular.')
-        return
-      }
-      if(molCod == ""){
-        alert.error('Informe o código molecular')
-        return
-      }
-      if(molSeq == ""){
-        alert.error('Informe a sequência molecular')
-        return
-      }
-      if(molMeta == ""){
-        alert.error('Informe o metadados molecular')
-        return
-      }
-
-      if(grupo_pesquisa?.idgrupo_pesquisa == undefined){
-        alert.error('Informe o grupo de pesquisa')
-        return
-      }
-      if(unidade.idunidade == undefined){
-        alert.error('Informe o tipo de frasco')
-        return
-      }
-      if(posicao?.idposicao == undefined){
-        alert.error('Informe a posição')
-        return
-      }
-      if(dataPrv.length < 5){
-        alert.error('Informe a data do método de preservação.')
-        return
-      }
-      if(pesqPres?.idpesquisador == undefined){
-        alert.error('Informe o responsável pela preservação')
-        return
-      }
-      if(metodo_preservacao?.idmetodo_preservacao == ""){
-        alert.error('Informe o método de preservação')
-        return
-      }
-      if(doacao.iddoacao == undefined){
-        alert.error('Informe a doação')
-        return
-      }
-      if(refAdd == ""){
-        alert.error('Informe a referências adicionais')
-        return
-      }
       
-      const res = await uploadFile(e)
-      let newMicro
-      try {
-        newMicro = {
-        //MICRORGANISMO
-        "variedade_idvariedade": variedade?.idvariedade,
-        "status": status.idstatus,
-        "data_reg_col_orig": dataReg,
-        "data_colet": dataCol,
-        "data_isol": dataIso,
-        "data_ident": dataIdn,
-        "data_mol": dataMol,
-        "cod_orig": origCode,
-        "hist_orig": origHist,
-        "pesquisador_coleta": pesqColeta?.idpesquisador,
-        "origem_geo": origGeo,
-        "lat": origLat,
-        "lon": origLon,
-        "datum": origDatum,
-        "precisao": origPrecisao,
-        "coment_orig": origComent,
-        "pesquisador_isolamento": pesqIsola?.idpesquisador,
-        "info_isolamento": isoInfo, 
-        "pesquisador_ident": pesqId?.idpesquisador,
-        "coment_isolamento": isoComment,       
-        "cor_colo nia": corColonia?.idcor,
-        "textura_idtextura": textura?.idtextura,
-        "borda_idborda": borda?.idborda,
-        "relevo_idrelevo": relevo?.idrelevo,
-        "exudato_idexudato": exudato?.idexudato,
-        "cor_exudato": corExu?.idcor,
-        "pigmento_idpigmento": pigmento?.idpigmento,
-        "cor_pigmento": corPig?.idcor,
-        "temp_crescimento": tempCrescimento,
-        "laboratorio_mol": laboratorio?.idlaboratorio,
-        "cod_mol": molCod,
-        "sequencia_mol": molSeq,
-        "meta_mol": molMeta,
-        
-        // _HAS_MICRO
-        "has_referencia_taxa": refTaxa,
-        "has_referencia_temp": refTemp,
-        "has_imagem_macro": imagemMacro,
-        "has_imagem_micro": imagemMicro,
-        "has_carac_micromorfologica": caracMicro,
-        "has_anexos": anexos,
-        
-        
-        //Habitat INIT
-        "habitat": habitat,
-        "hospedeiro_idhospedeiro": hospAn? hospAn.idhospedeiro:hospVeg.idhospedeiro,
-        "habitat_info": habitatInfo,
-        "idsubstrato": substrato?.idsubstrato,
-        "reg_exidata": regExiHosp,
-        "cod_herb": codHerb,
-        "herb_deposit": herbDeposit,
-        "sitio_idsitio": sitioAnat?.idsitio,
-        // //Habitat END
+      //Habitat INIT
+      "habitat": habitat,
+      "hospedeiro_idhospedeiro": hospAn? hospAn.idhospedeiro:hospVeg.idhospedeiro,
+      "habitat_info": habitatInfo,
+      "idsubstrato": substrato?.idsubstrato,
+      "reg_exidata": regExiHosp,
+      "cod_herb": codHerb,
+      "herb_deposit": herbDeposit,
+      "sitio_idsitio": sitioAnat?.idsitio,
+      // //Habitat END
 
-        //REPIQUE INIT
-        "unidade_idunidade": unidade?.idunidade,
-        "grupo_pesq": grupo_pesquisa?.idgrupo_pesquisa,
-        "other_comments": comments,
-        "disp_doacao": doacao.iddoacao,
-        "data_emission":dataEmis,
-        "data_preserv":dataPrv,
-        "posicao":posicao?.idposicao,
-        "pesquisador_preserv": pesqPres?.idpesquisador,
-        "parent": parent,
-        // _HAS_REPIQUE
-        "has_metodo_preservacao": metodo_preservacao?.idmetodo_preservacao,  
-        "has_refencia_adic": refAdd,
-        "has_imagem_rep": imagemRepiq,
-        //REPIQUE END
-      }
-      // console.log(newMicro)
-      // axios.post(baseurl+ "repique", newMicro)
-      //   .then((response) => {
-      //     // console.log(response)
-      //     //return to main table
-      //     // window.location.href = "/admin/m/" + props.returnto
-      //   }, (error) => {
-      //     console.log(error);
-      //   });
+      //REPIQUE INIT
+      "unidade_idunidade": unidade?.idunidade,
+      "grupo_pesq": grupo_pesquisa?.idgrupo_pesquisa,
+      "other_comments": comments,
+      "disp_doacao": doacao.iddoacao,
+      "data_emission":dataEmis,
+      "data_preserv":dataPrv,
+      "posicao":posicao?.idposicao,
+      "pesquisador_preserv": pesqPres?.idpesquisador,
+      "parent": parent,
+      // _HAS_REPIQUE
+      "has_metodo_preservacao": metodo_preservacao?.idmetodo_preservacao,  
+      "has_refencia_adic": refAdd,
+      "has_imagem_rep": imagemRepiq,
+      //REPIQUE END
+    }
+    // console.log(newMicro)
+    // axios.post(baseurl+ "repique", newMicro)
+    //   .then((response) => {
+    //     // console.log(response)
+    //     //return to main table
+    //     // window.location.href = "/admin/m/" + props.returnto
+    //   }, (error) => {
+    //     console.log(error);
+    //   });
     } catch (error) {
       console.log("MISSING SOMETHING")
     }
@@ -4101,7 +4078,7 @@ export default function MicroContent(props) {
                           >
                             Imagens macromorfológicas
                           </label>
-                          <MultipleDropzone/>
+                          <MultipleDropzone setFileList={setImagemMacro}/>
                         </div>
                       </div>
                       <div className="w-full lg:w-12/12 px-4">
@@ -4112,7 +4089,7 @@ export default function MicroContent(props) {
                           >
                             Imagens micromorfológicas
                           </label>
-                          <MultipleDropzone/>
+                          <MultipleDropzone setFileList={setImagemMicro}/>
                         </div>
                       </div>
                     </div>
@@ -4241,7 +4218,7 @@ export default function MicroContent(props) {
                             Anexos
                           </label>
                           
-                          <MultipleDropzonePDF/>
+                          <MultipleDropzonePDF setFileList={setAnexos}/>
                         </div>
                       </div>
                     </div>
@@ -4732,7 +4709,7 @@ export default function MicroContent(props) {
                             Imagens adicionais
                           </label>
                           
-                          <MultipleDropzone/>
+                          <MultipleDropzone  setFileList={setImagemRepiq}/>
                         </div>
                       </div>
                       <div className="w-full lg:w-12/12 px-4">

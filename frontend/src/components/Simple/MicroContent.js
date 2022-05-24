@@ -262,26 +262,26 @@ export default function MicroContent(props) {
       alert.error('Informe o status')
       return
     }
-    if(dataReg.length < 5){
-      alert.error('Informe a data do registro.')
-      return
-    }
-    if(origCode == ""){
-      alert.error('Informe Código orginal')
-      return
-    }
-    if(origHist == ""){
-      alert.error('Informe o histórico')
-      return
-    }
-    if(dataCol.length < 5){
-      alert.error('Informe a data da coleta.')
-      return
-    }
-    if(pesqColeta?.idpesquisador == undefined){
-      alert.error('Informe o responsável pela entrega')
-      return
-    }
+    // if(dataReg.length < 5){
+    //   alert.error('Informe a data do registro.')
+    //   return
+    // }
+    // if(origCode == ""){
+    //   alert.error('Informe Código orginal')
+    //   return
+    // }
+    // if(origHist == ""){
+    //   alert.error('Informe o histórico')
+    //   return
+    // }
+    // if(dataCol.length < 5){
+    //   alert.error('Informe a data da coleta.')
+    //   return
+    // }
+    // if(pesqColeta?.idpesquisador == undefined){
+    //   alert.error('Informe o responsável pela entrega')
+    //   return
+    // }
     if(habitat.idhabitat == undefined){
       alert.error('Informe o habitat')
       return
@@ -312,88 +312,88 @@ export default function MicroContent(props) {
     //     return
     //   }
     // }
-    if(dataIso.length < 5){
-      alert.error('Informe a data do isolamento.')
-      return
-    }
-    if(pesqIsola?.idpesquisador == undefined){
-      alert.error('Informe o responsável pelo isolamento')
-      return
-    }
-    if(dataIdn.length < 5){
-      alert.error('Informe a data da identificação.')
-      return
-    }
-    if(pesqId?.idpesquisador == undefined){
-      alert.error('Informe o identificador')
-      return
-    }
+    // if(dataIso.length < 5){
+    //   alert.error('Informe a data do isolamento.')
+    //   return
+    // }
+    // if(pesqIsola?.idpesquisador == undefined){
+    //   alert.error('Informe o responsável pelo isolamento')
+    //   return
+    // }
+    // if(dataIdn.length < 5){
+    //   alert.error('Informe a data da identificação.')
+    //   return
+    // }
+    // if(pesqId?.idpesquisador == undefined){
+    //   alert.error('Informe o identificador')
+    //   return
+    // }
     
-    if(corColonia?.idcor == undefined){
-      alert.error('Informe a cor da colônia')
-      return
-    }
-    if(textura?.idtextura == undefined){
-      alert.error('Informe a textura')
-      return
-    }
-    if(borda?.idborda == undefined){
-      alert.error('Informe a borda')
-      return
-    }
-    if(relevo?.idrelevo == undefined){
-      alert.error('Informe o relevo')
-      return
-    }
-    if(exudato?.idexudato == undefined){
-      alert.error('Informe o exudato')
-      return
-    }
-    if(corExu?.idcor == undefined){
-      alert.error('Informe a cor do exudato')
-      return
-    }
-    if(pigmento?.idpigmento == undefined){
-      alert.error('Informe o pigmento')
-      return
-    }
-    if(corPig?.idcor == undefined){
-      alert.error('Informe a cor do pigmento')
-      return
-    }
-    if(tempCrescimento == ""){
-      alert.error('Informe a tempetura de crescimento')
-      return
-    }
-    if(refTemp == ""){
-      alert.error('Informe a referência para temperatura')
-      return
-    }
-    if(caracMicro == ""){
-      alert.error('Informe as caracteristicas micromorfológicas')
-      return
-    }
+    // if(corColonia?.idcor == undefined){
+    //   alert.error('Informe a cor da colônia')
+    //   return
+    // }
+    // if(textura?.idtextura == undefined){
+    //   alert.error('Informe a textura')
+    //   return
+    // }
+    // if(borda?.idborda == undefined){
+    //   alert.error('Informe a borda')
+    //   return
+    // }
+    // if(relevo?.idrelevo == undefined){
+    //   alert.error('Informe o relevo')
+    //   return
+    // }
+    // if(exudato?.idexudato == undefined){
+    //   alert.error('Informe o exudato')
+    //   return
+    // }
+    // if(corExu?.idcor == undefined){
+    //   alert.error('Informe a cor do exudato')
+    //   return
+    // }
+    // if(pigmento?.idpigmento == undefined){
+    //   alert.error('Informe o pigmento')
+    //   return
+    // }
+    // if(corPig?.idcor == undefined){
+    //   alert.error('Informe a cor do pigmento')
+    //   return
+    // }
+    // if(tempCrescimento == ""){
+    //   alert.error('Informe a tempetura de crescimento')
+    //   return
+    // }
+    // if(refTemp == ""){
+    //   alert.error('Informe a referência para temperatura')
+    //   return
+    // }
+    // if(caracMicro == ""){
+    //   alert.error('Informe as caracteristicas micromorfológicas')
+    //   return
+    // }
     
-    if(laboratorio?.idlaboratorio == undefined){
-      alert.error('Informe o laboratório')
-      return
-    }
-    if(dataMol.length < 5){
-      alert.error('Informe a data molecular.')
-      return
-    }
-    if(molCod == ""){
-      alert.error('Informe o código molecular')
-      return
-    }
-    if(molSeq == ""){
-      alert.error('Informe a sequência molecular')
-      return
-    }
-    if(molMeta == ""){
-      alert.error('Informe o metadados molecular')
-      return
-    }
+    // if(laboratorio?.idlaboratorio == undefined){
+    //   alert.error('Informe o laboratório')
+    //   return
+    // }
+    // if(dataMol.length < 5){
+    //   alert.error('Informe a data molecular.')
+    //   return
+    // }
+    // if(molCod == ""){
+    //   alert.error('Informe o código molecular')
+    //   return
+    // }
+    // if(molSeq == ""){
+    //   alert.error('Informe a sequência molecular')
+    //   return
+    // }
+    // if(molMeta == ""){
+    //   alert.error('Informe o metadados molecular')
+    //   return
+    // }
 
     if(grupo_pesquisa?.idgrupo_pesquisa == undefined){
       alert.error('Informe o grupo de pesquisa')
@@ -420,13 +420,13 @@ export default function MicroContent(props) {
       return
     }
     if(doacao.iddoacao == undefined){
-      alert.error('Informe a doação')
+      alert.error('Informe a disponibilidade de doação')
       return
     }
-    if(refAdd == ""){
-      alert.error('Informe a referências adicionais')
-      return
-    }
+    // if(refAdd == ""){
+    //   alert.error('Informe a referências adicionais')
+    //   return
+    // }
     
     // const res = await uploadFile(e)
 

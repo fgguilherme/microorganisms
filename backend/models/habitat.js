@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     habitat: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "substrato_UNIQUE"
+      allowNull: false
     },
     habitat_veg_idhabitat_veg: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -51,14 +50,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idhabitat" },
-        ]
-      },
-      {
-        name: "substrato_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "habitat" },
         ]
       },
       {

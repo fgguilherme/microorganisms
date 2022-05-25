@@ -58,7 +58,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     pesquisador_preserv: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'pesquisador',
         key: 'idpesquisador'

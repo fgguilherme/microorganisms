@@ -57,7 +57,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     origem_geo: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     lat: {
@@ -89,7 +89,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     info_isolamento: {
-      type: DataTypes.STRING(145),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     pesquisador_ident: {
@@ -101,7 +101,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     coment_isolamento: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     cor_colonia: {

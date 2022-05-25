@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     comentarios: {
-      type: DataTypes.STRING(145),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     disponivel: {

@@ -615,13 +615,13 @@ export default function MicroContent(props) {
           console.log(response.data);
           setReferenciaList(response.data);
           if (refTaxa.idreferencia) {
-            setPesqColeta(null);
+            setRefTaxa(null);
           }
           if (refTemp.idreferencia) {
-            setPesqIsola(null);
+            setRefTemp(null);
           }
           if (refAdd.idreferencia) {
-            setPesqId(null);
+            setRefAdd(null);
           }
         }, error => {
           console.log(error);

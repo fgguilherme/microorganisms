@@ -22,7 +22,7 @@ export default function Repique() {
           
         </div>
         <div className="w-full  mb-12  px-4">
-          <CardRepique/>
+          <CardRepique microorg={location.item?.microorg}/>
           <CardDetailMicro microorg={location.item?.microorg} hideActionbar={true}/>
         </div>
       </div>

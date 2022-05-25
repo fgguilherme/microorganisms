@@ -235,7 +235,6 @@ export default function MicroContent(props) {
   const [comments, setComments] = useState("");
 
   const [tempCrescimento, setTempCrescimento] = useState(0);
-  const [parent, setParent] = useState("");
 
   const [anexos, setAnexos] = useState([]);
   const [imagemMicro, setImagemMicro] = useState([]);
@@ -494,7 +493,6 @@ export default function MicroContent(props) {
       "data_preserv":dataPrv,
       "posicao":posicao?.idposicao,
       "pesquisador_preserv": pesqPres?.idpesquisador,
-      "parent": parent,
       // _HAS_REPIQUE
       "has_metodo_preservacao": metodo_preservacao,  
       "has_refencia_adic": refAdd,
@@ -507,6 +505,72 @@ export default function MicroContent(props) {
         console.log(response)
         //return to main table
         // window.location.href = "/admin/m/" + props.returnto
+      }, (error) => {
+        console.log(error);
+      });
+    } catch (error) {
+      console.log("MISSING SOMETHING")
+    }
+  }
+  
+  async function saveRepique(e,hasNext){
+    if(grupo_pesquisa?.idgrupo_pesquisa == undefined){
+      alert.error('Informe o grupo de pesquisa')
+      return
+    }
+    if(unidade.idunidade == undefined){
+      alert.error('Informe o tipo de frasco')
+      return
+    }
+    if(posicao?.idposicao == undefined){
+      alert.error('Informe a posição')
+      return
+    }
+    if(dataPrv.length < 5){
+      alert.error('Informe a data do método de preservação.')
+      return
+    }
+    if(pesqPres?.idpesquisador == undefined){
+      alert.error('Informe o responsável pela preservação')
+      return
+    }
+    if(metodo_preservacao.length == 0){
+      alert.error('Informe o método de preservação')
+      return
+    }
+    if(doacao.iddoacao == undefined){
+      alert.error('Informe a disponibilidade de doação')
+      return
+    }
+
+    let newMicro
+    try {
+      newMicro = {
+      //REPIQUE INIT
+      "microorganismo_idmicroorganismo":props.idmicro,
+      "unidade_idunidade": unidade?.idunidade,
+      "grupo_pesq": grupo_pesquisa?.idgrupo_pesquisa,
+      "other_comments": comments,
+      "disp_doacao": doacao.iddoacao,
+      "data_emission":dataEmis,
+      "data_preserv":dataPrv,
+      "posicao":posicao?.idposicao,
+      "pesquisador_preserv": pesqPres?.idpesquisador,
+      "parent": props.idrepique,
+      // _HAS_REPIQUE
+      "has_metodo_preservacao": metodo_preservacao,  
+      "has_refencia_adic": refAdd,
+      "has_imagem_rep": imagemRepiq,
+      //REPIQUE END
+    }
+    console.log(newMicro)
+    axios.post(baseurl+ "repique", newMicro)
+      .then((response) => {
+        console.log(response)
+        //return to main table
+        if(!hasNext){
+          window.location.href = "/admin/m/" + props.returnto
+        }
       }, (error) => {
         console.log(error);
       });
@@ -4796,6 +4860,7 @@ export default function MicroContent(props) {
               <button
                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="button"
+                onClick={(e)=>{saveRepique(e,true)}}
               >
                 Próximo
               </button>
@@ -4803,6 +4868,7 @@ export default function MicroContent(props) {
                 <button
                   className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   type="button"
+                  onClick={(e)=>{saveRepique(e,false)}}
                 >
                   Salvar
                 </button>

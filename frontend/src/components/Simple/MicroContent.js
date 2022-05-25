@@ -246,18 +246,14 @@ export default function MicroContent(props) {
   
   
   async function saveMicro(e){
-    console.log(imagemMacro)
-    console.log(imagemMicro)
-    console.log(imagemRepiq)
-    console.log(anexos)
     if(variedade?.idvariedade == undefined){
       alert.error('Informe a variedade')
       return
     }
-    if(refTaxa == ""){
-      alert.error('Informe a referências taxonômicas')
-      return
-    }
+    // if(refTaxa == ""){
+    //   alert.error('Informe a referências taxonômicas')
+    //   return
+    // }
     if(status.idstatus == undefined){
       alert.error('Informe o status')
       return
@@ -415,7 +411,7 @@ export default function MicroContent(props) {
       alert.error('Informe o responsável pela preservação')
       return
     }
-    if(metodo_preservacao?.idmetodo_preservacao == ""){
+    if(metodo_preservacao.length == 0){
       alert.error('Informe o método de preservação')
       return
     }
@@ -454,7 +450,7 @@ export default function MicroContent(props) {
       "info_isolamento": isoInfo, 
       "pesquisador_ident": pesqId?.idpesquisador,
       "coment_isolamento": isoComment,       
-      "cor_colo nia": corColonia?.idcor,
+      "cor_colonia": corColonia?.idcor,
       "textura_idtextura": textura?.idtextura,
       "borda_idborda": borda?.idborda,
       "relevo_idrelevo": relevo?.idrelevo,
@@ -479,7 +475,8 @@ export default function MicroContent(props) {
       
       //Habitat INIT
       "habitat": habitat,
-      "hospedeiro_idhospedeiro": hospAn? hospAn.idhospedeiro:hospVeg.idhospedeiro,
+      "hospedeiro_idhospedeiro_An": hospAn?.idhospedeiro,
+      "hospedeiro_idhospedeiro_Vg":hospVeg?.idhospedeiro,
       "habitat_info": habitatInfo,
       "idsubstrato": substrato?.idsubstrato,
       "reg_exidata": regExiHosp,
@@ -499,20 +496,20 @@ export default function MicroContent(props) {
       "pesquisador_preserv": pesqPres?.idpesquisador,
       "parent": parent,
       // _HAS_REPIQUE
-      "has_metodo_preservacao": metodo_preservacao?.idmetodo_preservacao,  
+      "has_metodo_preservacao": metodo_preservacao,  
       "has_refencia_adic": refAdd,
       "has_imagem_rep": imagemRepiq,
       //REPIQUE END
     }
-    // console.log(newMicro)
-    // axios.post(baseurl+ "repique", newMicro)
-    //   .then((response) => {
-    //     // console.log(response)
-    //     //return to main table
-    //     // window.location.href = "/admin/m/" + props.returnto
-    //   }, (error) => {
-    //     console.log(error);
-    //   });
+    console.log(newMicro)
+    axios.post(baseurl+ "repique", newMicro)
+      .then((response) => {
+        console.log(response)
+        //return to main table
+        // window.location.href = "/admin/m/" + props.returnto
+      }, (error) => {
+        console.log(error);
+      });
     } catch (error) {
       console.log("MISSING SOMETHING")
     }
@@ -1774,7 +1771,7 @@ export default function MicroContent(props) {
             .then(response => {
               console.log(response.data);
               setMetodoPreservacaoList(response.data);
-              if (metodo_preservacao.idmetodo_preservacao) {
+              if (metodo_preservacao.length > 0) {
                 setMetodoPreservacao(null);
               }
             }, error => {

@@ -427,15 +427,21 @@ export default function MicroContent(props) {
 
     let newMicro
     try {
+      const d_reg_col_orig = ((dataReg.length > 0) ? dataReg : undefined)
+      const d_colet = ((dataCol.length > 0) ? dataCol : undefined);
+      const d_isol = ((dataIso.length > 0) ? dataIso : undefined);
+      const d_ident = ((dataIdn.length > 0) ? dataIdn : undefined);
+      const d_mol = ((dataMol.length > 0) ? dataMol : undefined);
+
       newMicro = {
       //MICRORGANISMO
       "variedade_idvariedade": variedade.idvariedade,
       "status": status.idstatus,
-      "data_reg_col_orig": dataReg,
-      "data_colet": dataCol,
-      "data_isol": dataIso,
-      "data_ident": dataIdn,
-      "data_mol": dataMol,
+      "data_reg_col_orig": d_reg_col_orig,
+      "data_colet": d_colet,
+      "data_isol": d_isol,
+      "data_ident": d_ident,
+      "data_mol": d_mol,
       "cod_orig": origCode,
       "hist_orig": origHist,
       "pesquisador_coleta": pesqColeta?.idpesquisador,
@@ -499,17 +505,17 @@ export default function MicroContent(props) {
       "has_imagem_rep": imagemRepiq,
       //REPIQUE END
     }
-    console.log(newMicro)
+    // console.log(newMicro)
     axios.post(baseurl+ "repique", newMicro)
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         //return to main table
         // window.location.href = "/admin/m/" + props.returnto
       }, (error) => {
-        console.log(error);
+        // console.log(error);
       });
     } catch (error) {
-      console.log("MISSING SOMETHING")
+      // console.log("MISSING SOMETHING")
     }
   }
   
@@ -563,22 +569,22 @@ export default function MicroContent(props) {
       "has_imagem_rep": imagemRepiq,
       //REPIQUE END
     }
-    console.log(newMicro)
+    // console.log(newMicro)
     axios.post(baseurl+ "repique", newMicro)
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         //return to main table
         if(!hasNext){
           window.location.href = "/admin/m/" + props.returnto
         }
       }, (error) => {
-        console.log(error);
+        // console.log(error);
       });
     } catch (error) {
-      console.log("MISSING SOMETHING")
+      // console.log("MISSING SOMETHING")
     }
   }
-  // console.log(origCode);
+  console.log(origCode);
 
 
   useEffect(() => {
@@ -586,33 +592,33 @@ export default function MicroContent(props) {
     if (dominioList.length === 0) {
       axios.get(baseurl+"dominio")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setDominioList(response.data);
           if (dominio.iddominio) {
             setDominio(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0grupo_pesquisa
     if (grupo_pesquisaList.length === 0) {
       axios.get(baseurl+"grupo_pesquisa")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setGrupoPesquisaList(response.data);
           if (grupo_pesquisa.idgrupo_pesquisa) {
             setGrupoPesquisa(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0referencia
     if (referenciaList.length === 0) {
       axios.get(baseurl+"referencia")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setReferenciaList(response.data);
           if (refTaxa.idreferencia) {
             setRefTaxa(null);
@@ -624,14 +630,14 @@ export default function MicroContent(props) {
             setRefAdd(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0pesquisador
     if (pesquisadorList.length === 0) {
       axios.get(baseurl+"pesquisador")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setPesquisadorList(response.data);
           if (pesqColeta.idpesquisador) {
             setPesqColeta(null);
@@ -646,14 +652,14 @@ export default function MicroContent(props) {
             setPesqPres(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0cor
     if (corList.length === 0) {
       axios.get(baseurl+"cor")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setCorList(response.data);
           if (corColonia.idcor) {
             setCorColonia(null);
@@ -665,137 +671,137 @@ export default function MicroContent(props) {
             setCorPig(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0textura
     if (texturaList.length === 0) {
       axios.get(baseurl+"textura")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setTexturaList(response.data);
           if (textura.idtextura) {
             setTextura(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0unidade
     if (texturaList.length === 0) {
       axios.get(baseurl+"unidade")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setUnidadeList(response.data);
           if (unidade.idunidade) {
             setUnidade(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0borda
     if (bordaList.length === 0) {
       axios.get(baseurl+"borda")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setBordaList(response.data);
           if (borda.idborda) {
             setBorda(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0relevo
     if (relevoList.length === 0) {
       axios.get(baseurl+"relevo")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setRelevoList(response.data);
           if (relevo.idrelevo) {
             setRelevo(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0exudato
     if (exudatoList.length === 0) {
       axios.get(baseurl+"exudato")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setExudatoList(response.data);
           if (exudato.idexudato) {
             setExudato(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0caracMicro
     if (caracMicroList.length === 0) {
       axios.get(baseurl+"carac_micromorfologica")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setCaracMicroList(response.data);
           if (caracMicro.idcarac_micromorfologica) {
             setCaracMicro(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0pigmento
     if (pigmentoList.length === 0) {
       axios.get(baseurl+"pigmento")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setPigmentoList(response.data);
           if (pigmento.idpigmento) {
             setPigmento(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0laboratorio
     if (labList.length === 0) {
       axios.get(baseurl+"laboratorio")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setLabList(response.data);
           if (laboratorio.idlaboratorio) {
             setLaboratorio(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0metodo_preservacao
     if (metodo_preservacaoList.length === 0) {
       axios.get(baseurl+"metodo_preservacao")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setMetodoPreservacaoList(response.data);
           if (metodo_preservacao.idmetodo_preservacao) {
             setMetodoPreservacao(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0sub_colecao
     if (sub_colecaoList.length === 0) {
       axios.get(baseurl+"sub_colecao")
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           setSub_colecaoList(response.data);
           if (sub_colecao.idsub_colecao) {
             setSub_colecao(null);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
     }
   }, [])
@@ -810,10 +816,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setReinoList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -834,10 +840,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setFiloList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -858,10 +864,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setClasseList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -882,10 +888,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setOrdemList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -906,10 +912,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setFamiliaList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -930,10 +936,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setGeneroList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -954,10 +960,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setEspecieList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -978,10 +984,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setSub_especieList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -1002,10 +1008,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setVariedadeList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -1021,12 +1027,12 @@ export default function MicroContent(props) {
     //0sub_especie
     if(variedade?.idvariedade){
       const fetchData = async () => {
-        console.log(variedade)
+        // console.log(variedade)
         axios.get(baseurl+"variedade/" + variedade.idvariedade)
           .then(response => {
-            console.log(response)
+            // console.log(response)
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
         }
         fetchData()
@@ -1037,9 +1043,9 @@ export default function MicroContent(props) {
 
   useEffect(() => {
     //0habitat
-    console.log(habitat);
+    // console.log(habitat);
     if (habitat?.idhabitat <= 2) {
-      console.log("Vegetal")
+      // console.log("Vegetal")
       //0hospVegetal
       const fetchData = async () => {
         axios.get(baseurl+"hospedeiro/search", {
@@ -1048,28 +1054,28 @@ export default function MicroContent(props) {
           }
         })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           setHospVegList(response.data);
           if (hospVeg.idhospedeiro) {
             setHospVeg(null);
           }
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
           //0substrato
           axios.get(baseurl+"substrato/search")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setSubstratoList(response.data);
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
       };
       fetchData();
     } else if (habitat?.idhabitat > 3) {
-      console.log("outros")
+      // console.log("outros")
     } else if (habitat?.idhabitat === 3){
-      console.log("animal")
+      // console.log("animal")
       //0hospAnimal
       const fetchData = async () => {
         axios.get(baseurl+"hospedeiro/search", {
@@ -1078,18 +1084,18 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setHospAnList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
           //0sitio
           axios.get(baseurl+"sitio/")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setSitioAnatList(response.data);
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
       };
       fetchData();
@@ -1105,10 +1111,10 @@ export default function MicroContent(props) {
          }
        })
          .then(response => {
-           console.log(response.data);
+          //  console.log(response.data);
            setArmarioList(response.data);
          }, error => {
-           console.log(error);
+          //  console.log(error);
          });
      }
      else {
@@ -1129,10 +1135,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setPrateleiraList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -1152,10 +1158,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setLoteList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -1175,10 +1181,10 @@ export default function MicroContent(props) {
           }
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setPosicaoList(response.data);
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }
       else {
@@ -1208,26 +1214,26 @@ export default function MicroContent(props) {
   }
 
   function closeModal(persist) {
-    console.log(tmpState)
+    // console.log(tmpState)
     //0dominio
     if (persist === true && tmpState === "dominio") {
       axios.post(baseurl+ tmpState, {
         dominio: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"dominio")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setDominioList(response.data);
               if (dominio.iddominio) {
                 setDominio(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0reino
@@ -1237,7 +1243,7 @@ export default function MicroContent(props) {
         dominio_iddominio: dominio.iddominio
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           if (dominio.iddominio) {
             axios.get(baseurl+"reino/search", {
               params: {
@@ -1245,14 +1251,14 @@ export default function MicroContent(props) {
               }
             })
               .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setReinoList(response.data);
               }, error => {
-                console.log(error);
+                // console.log(error);
               });
           }
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0filo
@@ -1262,7 +1268,7 @@ export default function MicroContent(props) {
         reino_idreino: reino.idreino
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           if (reino?.idreino) {
             axios.get(baseurl+"filo/search", {
               params: {
@@ -1270,14 +1276,14 @@ export default function MicroContent(props) {
               }
             })
               .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setFiloList(response.data);
               }, error => {
-                console.log(error);
+                // console.log(error);
               });
           }
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0classe
@@ -1287,7 +1293,7 @@ export default function MicroContent(props) {
         filo_idfilo: filo.idfilo
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           if (filo?.idfilo) {
             axios.get(baseurl+"classe/search", {
               params: {
@@ -1295,14 +1301,14 @@ export default function MicroContent(props) {
               }
             })
               .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setClasseList(response.data);
               }, error => {
-                console.log(error);
+                // console.log(error);
               });
           }
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0ordem
@@ -1312,7 +1318,7 @@ export default function MicroContent(props) {
         classe_idclasse: classe.idclasse
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           if (classe?.idclasse) {
             axios.get(baseurl+"ordem/search", {
               params: {
@@ -1320,14 +1326,14 @@ export default function MicroContent(props) {
               }
             })
               .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setOrdemList(response.data);
               }, error => {
-                console.log(error);
+                // console.log(error);
               });
           }
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0familia
@@ -1337,7 +1343,7 @@ export default function MicroContent(props) {
         ordem_idordem: ordem.idordem
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           if (ordem?.idordem) {
             axios.get(baseurl+"familia/search", {
               params: {
@@ -1345,14 +1351,14 @@ export default function MicroContent(props) {
               }
             })
               .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setFamiliaList(response.data);
               }, error => {
-                console.log(error);
+                // console.log(error);
               });
           }
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0genero
@@ -1362,7 +1368,7 @@ export default function MicroContent(props) {
         familia_idfamilia: familia.idfamilia
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           if (familia?.idfamilia) {
             axios.get(baseurl+"genero/search", {
               params: {
@@ -1370,41 +1376,78 @@ export default function MicroContent(props) {
               }
             })
               .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setGeneroList(response.data);
               }, error => {
-                console.log(error);
+                // console.log(error);
               });
           }
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
-      console.log(itemValue);
+      // console.log(itemValue);
     }
-    if (persist === true && tmpState === "referencia") {
-      axios.post(baseurl+ tmpState, {
+    //0referencia
+    if (persist === true && tmpState === "referenciaTaxa") {
+      axios.post(baseurl+ "referencia", {
         referencia: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"referencia")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setReferenciaList(response.data);
               if (refTaxa.idreferencia) {
                 setRefTaxa(null);
               }
+            }, error => {
+              // console.log(error);
+            });
+        }, (error) => {
+          // console.log(error);
+        });
+    }
+    //0referencia
+    if (persist === true && tmpState === "referenciaTemp") {
+      axios.post(baseurl+ "referencia", {
+        referencia: itemValue,
+      })
+        .then((response) => {
+          // console.log(response);
+          axios.get(baseurl+"referencia")
+            .then(response => {
+              // console.log(response.data);
+              setReferenciaList(response.data);
               if (refTemp.idreferencia) {
                 setRefTemp(null);
               }
+            }, error => {
+              // console.log(error);
+            });
+        }, (error) => {
+          // console.log(error);
+        });
+    }
+    //0referencia
+    if (persist === true && tmpState === "referenciaAdd") {
+      axios.post(baseurl+ "referencia", {
+        referencia: itemValue,
+      })
+        .then((response) => {
+          // console.log(response);
+          axios.get(baseurl+"referencia")
+            .then(response => {
+              // console.log(response.data);
+              setReferenciaList(response.data);
               if (refAdd.idreferencia) {
                 setRefAdd(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0hospVegetal
@@ -1414,16 +1457,16 @@ export default function MicroContent(props) {
         isAnimal: "0"
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         axios.get(baseurl+"hospedeiro")
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setHospVegList(response.data.filter(hosp => hosp.isAnimal === 0));
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }, (error) => {
-        console.log(error);
+        // console.log(error);
       });
     }
     //0hospAnimal
@@ -1433,19 +1476,19 @@ export default function MicroContent(props) {
         isAnimal: "1"
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         axios.get(baseurl+"hospedeiro")
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setHospAnList(response.data.filter(hosp => hosp.isAnimal === 1));
             if (hospAn.idhospedeiro) {
               setHospAn(null);
             }
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }, (error) => {
-        console.log(error);
+        // console.log(error);
       });
     }
     //0substrato
@@ -1454,19 +1497,19 @@ export default function MicroContent(props) {
         substrato: itemValue,
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         axios.get(baseurl+"substrato")
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setSubstratoList(response.data);
             if (substrato.idhospedeiro) {
               setSubstrato(null);
             }
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }, (error) => {
-        console.log(error);
+        // console.log(error);
       });
     }
     //0sitio
@@ -1475,46 +1518,82 @@ export default function MicroContent(props) {
         sitio: itemValue,
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         axios.get(baseurl+"sitio")
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setSitioAnatList(response.data);
             if (sitioAnat.idhospedeiro) {
               setSitioAnat(null);
             }
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
       }, (error) => {
-        console.log(error);
+        // console.log(error);
       });
     }
     //0cor
-    if (persist === true && tmpState === "cor") {
-      axios.post(baseurl+ tmpState, {
+    if (persist === true && tmpState === "cor_col") {
+      axios.post(baseurl+ "cor", {
         cor: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"cor")
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setCorList(response.data);
             if (corColonia.idcor) {
               setCorColonia(null);
             }
+          }, error => {
+            // console.log(error);
+          });
+        }, (error) => {
+          // console.log(error);
+        });
+    }
+    //0cor
+    if (persist === true && tmpState === "cor_exu") {
+      axios.post(baseurl+"cor", {
+        cor: itemValue,
+      })
+        .then((response) => {
+          // console.log(response);
+          axios.get(baseurl+"cor")
+          .then(response => {
+            // console.log(response.data);
+            setCorList(response.data);
             if (corExu.idcor) {
               setCorExu(null);
             }
+          }, error => {
+            // console.log(error);
+          });
+        }, (error) => {
+          // console.log(error);
+        });
+    }
+    //0cor
+    if (persist === true && tmpState === "cor_pig") {
+      axios.post(baseurl+"cor", {
+        cor: itemValue,
+      })
+        .then((response) => {
+          // console.log(response);
+          axios.get(baseurl+"cor")
+          .then(response => {
+            // console.log(response.data);
+            setCorList(response.data);
             if (corPig.idcor) {
               setCorPig(null);
             }
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0textura
@@ -1523,19 +1602,19 @@ export default function MicroContent(props) {
         textura: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"textura")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setTexturaList(response.data);
               if (textura.idtextura) {
                 setTextura(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0grupo_pesquisa
@@ -1544,19 +1623,19 @@ export default function MicroContent(props) {
         grupo: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"grupo_pesquisa")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setGrupoPesquisaList(response.data);
               if (grupo_pesquisa.idgrupo_pesquisa) {
                 setGrupoPesquisa(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0posicao
@@ -1566,7 +1645,7 @@ export default function MicroContent(props) {
         lote_idlote: lote.idlote
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (lote.idlote) {
           axios.get(baseurl+"posicao/search", {
             params: {
@@ -1574,14 +1653,14 @@ export default function MicroContent(props) {
             }
           })
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setPosicaoList(response.data);
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }
       }, (error) => {
-        console.log(error);
+        // console.log(error);
       });
     }
     //0lote
@@ -1591,7 +1670,7 @@ export default function MicroContent(props) {
         prateleira_idprateleira: prateleira.idprateleira
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (prateleira.idprateleira) {
           axios.get(baseurl+"lote/search", {
             params: {
@@ -1599,14 +1678,14 @@ export default function MicroContent(props) {
             }
           })
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setLoteList(response.data);
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }
       }, (error) => {
-        console.log(error);
+        // console.log(error);
       });
     }
     //0prateleira
@@ -1616,7 +1695,7 @@ export default function MicroContent(props) {
         armario_idarmario: armario.idarmario
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (armario.idarmario) {
           axios.get(baseurl+"prateleira/search", {
             params: {
@@ -1624,14 +1703,14 @@ export default function MicroContent(props) {
             }
           })
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setPrateleiraList(response.data);
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }
       }, (error) => {
-        console.log(error);
+        // console.log(error);
       });
     }
     //0armario
@@ -1641,7 +1720,7 @@ export default function MicroContent(props) {
         sub_colecao_idsub_colecao: sub_colecao.idsub_colecao
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (sub_colecao.idsub_colecao) {
           axios.get(baseurl+"armario/search", {
             params: {
@@ -1649,14 +1728,14 @@ export default function MicroContent(props) {
             }
           })
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setArmarioList(response.data);
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }
       }, (error) => {
-        console.log(error);
+        // console.log(error);
       });
     }
     //0sub_colecao
@@ -1665,16 +1744,16 @@ export default function MicroContent(props) {
         sub_colecao: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"sub_colecao")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setSub_colecaoList(response.data);
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0unidade
@@ -1683,19 +1762,19 @@ export default function MicroContent(props) {
         unidade: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"unidade")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setUnidadeList(response.data);
               if (unidade.idunidade) {
                 setUnidade(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0borda
@@ -1704,19 +1783,19 @@ export default function MicroContent(props) {
         borda: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"borda")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setBordaList(response.data);
               if (borda.idborda) {
                 setBorda(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0relevo
@@ -1725,19 +1804,19 @@ export default function MicroContent(props) {
         relevo: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"relevo")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setRelevoList(response.data);
               if (relevo.idrelevo) {
                 setRelevo(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0exudato
@@ -1746,19 +1825,19 @@ export default function MicroContent(props) {
         exudato: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"exudato")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setExudatoList(response.data);
               if (exudato.idexudato) {
                 setExudato(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0pigmento
@@ -1767,19 +1846,19 @@ export default function MicroContent(props) {
         pigmento: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"pigmento")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setPigmentoList(response.data);
               if (pigmento.idpigmento) {
                 setPigmento(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0caracMicro
@@ -1788,19 +1867,19 @@ export default function MicroContent(props) {
         carac_micromorfologica: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"carac_micromorfologica")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setCaracMicroList(response.data);
               if (caracMicro.idcarac_micromorfologica) {
                 setCaracMicro(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0laboratorio
@@ -1809,19 +1888,19 @@ export default function MicroContent(props) {
         laboratorio: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"laboratorio")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setLabList(response.data);
               if (laboratorio.idlaboratorio) {
                 setLaboratorio(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0metodo_preservacao
@@ -1830,19 +1909,19 @@ export default function MicroContent(props) {
         metodo: itemValue,
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           axios.get(baseurl+"metodo_preservacao")
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               setMetodoPreservacaoList(response.data);
               if (metodo_preservacao.length > 0) {
                 setMetodoPreservacao(null);
               }
             }, error => {
-              console.log(error);
+              // console.log(error);
             });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     setIsOpen(false);
@@ -1871,38 +1950,99 @@ export default function MicroContent(props) {
     // subtitle.style.color = '#f00';
   }
   function closePersonModal(persist) {
-    console.log(itemPersonValueA,itemPersonValueB,itemPersonValueC)
-    console.log(tmpStatePeson);
+    // console.log(itemPersonValueA,itemPersonValueB,itemPersonValueC)
+    // console.log(tmpStatePeson);
      //0pesquisador
-    if (persist === true && tmpStatePeson === "pesquisador") {
-      axios.post(baseurl+ tmpStatePeson, {
+    if (persist === true && tmpStatePeson === "pesquisadorColeta") {
+      console.log("Passou");
+      axios.post(baseurl+ "pesquisador", {
         nome: itemPersonValueA,
         email: itemPersonValueB,
         instituicao: itemPersonValueC
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
             axios.get(baseurl+"pesquisador")
               .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setPesquisadorList(response.data);
                 if (pesqColeta.idpesquisador) {
                   setPesqColeta(null);
                 }
+              }, error => {
+                // console.log(error);
+              });
+        }, (error) => {
+          // console.log(error);
+        });
+    }
+     //0pesquisador
+    if (persist === true && tmpStatePeson === "pesquisadorIsol") {
+      axios.post(baseurl+ "pesquisador", {
+        nome: itemPersonValueA,
+        email: itemPersonValueB,
+        instituicao: itemPersonValueC
+      })
+        .then((response) => {
+          // console.log(response);
+            axios.get(baseurl+"pesquisador")
+              .then(response => {
+                // console.log(response.data);
+                setPesquisadorList(response.data);
                 if (pesqIsola.idpesquisador) {
                   setPesqIsola(null);
                 }
+              }, error => {
+                // console.log(error);
+              });
+        }, (error) => {
+          // console.log(error);
+        });
+    }
+     //0pesquisador
+    if (persist === true && tmpStatePeson === "pesquisadorIdent") {
+      axios.post(baseurl+ "pesquisador", {
+        nome: itemPersonValueA,
+        email: itemPersonValueB,
+        instituicao: itemPersonValueC
+      })
+        .then((response) => {
+          // console.log(response);
+            axios.get(baseurl+"pesquisador")
+              .then(response => {
+                // console.log(response.data);
+                setPesquisadorList(response.data);
                 if (pesqId.idpesquisador) {
                   setPesqId(null);
                 }
+              }, error => {
+                // console.log(error);
+              });
+        }, (error) => {
+          // console.log(error);
+        });
+    }
+     //0pesquisador
+    if (persist === true && tmpStatePeson === "pesquisadorPres") {
+      axios.post(baseurl+ "pesquisador", {
+        nome: itemPersonValueA,
+        email: itemPersonValueB,
+        instituicao: itemPersonValueC
+      })
+        .then((response) => {
+          // console.log(response);
+            axios.get(baseurl+"pesquisador")
+              .then(response => {
+                // console.log(response.data);
+                setPesquisadorList(response.data);
                 if (pesqPres.idpesquisador) {
                   setPesqPres(null);
                 }
               }, error => {
-                console.log(error);
+                // console.log(error);
               });
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     setPersonIsOpen(false);
@@ -1931,8 +2071,8 @@ export default function MicroContent(props) {
   }
 
   function closeAutorModal(persist) {
-    console.log(itemAutorValueA,itemAutorValueB)
-    console.log(tmpStateAutor)
+    // console.log(itemAutorValueA,itemAutorValueB)
+    // console.log(tmpStateAutor)
     //0especie
     if (persist === true && tmpStateAutor === "especie" && genero.idgenero > 0) {
       axios.post(baseurl + tmpStateAutor, {
@@ -1942,7 +2082,7 @@ export default function MicroContent(props) {
         })
         .then(
           (response) => {
-            console.log(response);
+            // console.log(response);
             if (genero?.idgenero) {
               axios.get(baseurl + "especie/search", {
                   params: {
@@ -1951,17 +2091,17 @@ export default function MicroContent(props) {
               })
                 .then(
                   (response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     setEspecieList(response.data);
                   },
                   (error) => {
-                    console.log(error);
+                    // console.log(error);
                   }
                 );
             }
           },
           (error) => {
-            console.log(error);
+            // console.log(error);
           }
         );
     }
@@ -1973,7 +2113,7 @@ export default function MicroContent(props) {
         especie_idespecie: especie.idespecie
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           if (especie?.idespecie) {
             axios.get(baseurl+"sub_especie/search", {
               params: {
@@ -1981,14 +2121,14 @@ export default function MicroContent(props) {
               }
             })
               .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setSub_especieList(response.data);
               }, error => {
-                console.log(error);
+                // console.log(error);
               });
           }
         }, (error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
     //0variedade
@@ -1999,7 +2139,7 @@ export default function MicroContent(props) {
        sub_especie_idsub_especie: sub_especie.idsub_especie
      })
        .then((response) => {
-         console.log(response);
+        //  console.log(response);
          if (sub_especie?.idsub_especie) {
            axios.get(baseurl+"variedade/search", {
              params: {
@@ -2007,14 +2147,14 @@ export default function MicroContent(props) {
              }
            })
              .then(response => {
-               console.log(response.data);
+              //  console.log(response.data);
                setVariedadeList(response.data);
              }, error => {
-               console.log(error);
+              //  console.log(error);
              });
          }
        }, (error) => {
-         console.log(error);
+        //  console.log(error);
        });
    }
     setAutorIsOpen(false);
@@ -2922,7 +3062,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Referências taxonômicas", "", "referencia");
+                                  openModal("Referências taxonômicas", "", "referenciaTaxa");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -2932,7 +3072,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 disabled
                                 onClick={() => {
-                                  openModal("Referências taxonômicas", "", "referencia");
+                                  openModal("Referências taxonômicas", "", "referenciaTaxa");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3060,7 +3200,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisadorColeta");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3070,7 +3210,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 disabled
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisadorColeta");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3533,7 +3673,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisadorIsol");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3543,7 +3683,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 disabled
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisadorIsol");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3611,7 +3751,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisadorIdent");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3621,7 +3761,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 disabled
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisadorIdent");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3679,7 +3819,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Cor", "", "cor");
+                                  openModal("Cor", "", "cor_col");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3689,7 +3829,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 disabled
                                 onClick={() => {
-                                  openModal("Cor", "", "cor");
+                                  openModal("Cor", "", "cor_col");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3908,7 +4048,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Cor", "", "cor");
+                                  openModal("Cor", "", "cor_exu");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -3918,7 +4058,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 disabled
                                 onClick={() => {
-                                  openModal("Cor", "", "cor");
+                                  openModal("Cor", "", "cor_exu");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -4000,7 +4140,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Cor", "", "cor");
+                                  openModal("Cor", "", "cor_pig");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -4010,7 +4150,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 disabled
                                 onClick={() => {
-                                  openModal("Cor", "", "cor");
+                                  openModal("Cor", "", "cor_pig");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -4063,7 +4203,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Referência para temperatura", "", "referencia");
+                                  openModal("Referência para temperatura", "", "referenciaTemp");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -4073,7 +4213,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 disabled
                                 onClick={() => {
-                                  openModal("Referência para temperatura", "", "referencia");
+                                  openModal("Referência para temperatura", "", "referenciaTemp");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -4650,7 +4790,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisadorPres");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -4660,7 +4800,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 disabled
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisador");
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisadorPres");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -4803,7 +4943,7 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Referências adicionais", "", "referencia");
+                                  openModal("Referências adicionais", "", "referenciaAdd");
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
@@ -4813,7 +4953,7 @@ export default function MicroContent(props) {
                                 type="button"
                                 disabled
                                 onClick={() => {
-                                  openModal("Referências adicionais", "", "referencia");
+                                  openModal("Referências adicionais", "", "referenciaAdd");
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />

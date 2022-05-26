@@ -84,19 +84,19 @@ export default function MicroContentDetail(props) {
     //0variedade
       axios.get(baseurl+"variedade/"+props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade)
         .then(response => {
-          console.log(response.data)
+          // console.log(response.data)
           setVariedade(response.data)
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
-        console.log(props)
+        // console.log(props)
         //0referencia
         axios.get(baseurl+"referencia/search",{params: {
           "idmicroorganismo":props?.microorg.microorganismo_idmicroorganismo_microorganismo.idmicroorganismo,
           "idrepique":props?.microorg.idrepique
         }})
           .then(response => {
-            console.log(response.data)
+            // console.log(response.data)
             let tmpTax = []
             let tmpRep = []
             let tmpTemp = []
@@ -109,31 +109,31 @@ export default function MicroContentDetail(props) {
             response.data.temp_ref.forEach(element => {
               tmpTemp.push(element.referencia_idreferencia_referencium.referencia)
             });
-            // console.log(tmpTax, tmpRep, tmpTemp)
+            console.log(tmpTax, tmpRep, tmpTemp)
             setReferenciaTax(tmpTax.join(" - "))
             setReferenciaTemp(tmpTemp.join(" - "))
             setReferenciaRep(tmpRep.join(" - "))
             setReferencia(response.data)
-            // console.log("CUEN")
+            console.log("CUEN")
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
           //0caracMicro
         axios.get(baseurl+"microorganismo_has_carac_micromorfologica/search",{params: {
           "microorganismo_idmicroorganismo":props?.microorg.microorganismo_idmicroorganismo_microorganismo.idmicroorganismo,
         }})
           .then(response => {
-            // console.log(response.data)
+            console.log(response.data)
             let cm = []
             response.data.forEach(element => {
               cm.push(element.carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologica.carac_micromorfologica)
             });
-            // console.log(cm)
+            console.log(cm)
             setCaracMicro(cm.join(" - "))
             //setCaracMicro(response.data)
-            console.log("CUEN")
+            // console.log("CUEN")
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
         //0metodo
         axios.get(baseurl+"repique_has_metodo_preservacao/search",{params: {
@@ -142,13 +142,13 @@ export default function MicroContentDetail(props) {
           .then(response => {
             let mp = []
             response.data.forEach(element => {
-              console.log(element.metodo_preservacao_idmetodo_preservacao_metodo_preservacao.metodo);
+              // console.log(element.metodo_preservacao_idmetodo_preservacao_metodo_preservacao.metodo);
               mp.push(element.metodo_preservacao_idmetodo_preservacao_metodo_preservacao.metodo)
             });
             setMetodoPrev(mp.join(" - "))
             // setMetodoPrev(response.data)
           }, error => {
-            console.log(error);
+            // console.log(error);
           });
     }, [])
   return (

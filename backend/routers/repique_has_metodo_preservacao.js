@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _repique_has_metodo_preservacao.deleteAll);
 
 
-  app.use('/api/repique_has_metodo_preservacao', router);
+  app.use('/repique_has_metodo_preservacao', router);
 
 }

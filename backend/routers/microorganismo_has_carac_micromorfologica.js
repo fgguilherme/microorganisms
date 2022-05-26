@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _microorganismo_has_carac_micromorfologica.deleteAll);
 
 
-  app.use('/api/microorganismo_has_carac_micromorfologica', router);
+  app.use('/microorganismo_has_carac_micromorfologica', router);
 
 }

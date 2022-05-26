@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _ordem.deleteAll);
 
 
-  app.use('/api/ordem', router);
+  app.use('/ordem', router);
 
 }

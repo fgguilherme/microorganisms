@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _microorganismo_has_referencia_taxa.deleteAll);
 
 
-  app.use('/api/microorganismo_has_referencia_taxa', router);
+  app.use('/microorganismo_has_referencia_taxa', router);
 
 }

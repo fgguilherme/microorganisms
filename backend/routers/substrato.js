@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _substrato.deleteAll);
 
 
-  app.use('/api/substrato', router);
+  app.use('/substrato', router);
 
 }

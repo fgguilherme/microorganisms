@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _carac_micromorfologica.deleteAll);
 
 
-  app.use('/api/carac_micromorfologica', router);
+  app.use('/carac_micromorfologica', router);
 
 }

@@ -809,7 +809,7 @@ export default function MicroContent(props) {
   useEffect(() => {
    //0dominio
     const fetchData = async () => {
-      if (dominio.iddominio) {
+      if (dominio?.iddominio) {
         axios.get(baseurl+"reino/search", {
           params: {
             "dominio_iddominio": dominio.iddominio
@@ -1021,7 +1021,6 @@ export default function MicroContent(props) {
     };
     fetchData();
   }, [sub_especie]);
-  
 
   useEffect(() => {
     //0sub_especie
@@ -1038,8 +1037,6 @@ export default function MicroContent(props) {
         fetchData()
     }
   }, [variedade]);
-  
-
 
   useEffect(() => {
     //0habitat
@@ -1101,6 +1098,7 @@ export default function MicroContent(props) {
       fetchData();
     }
   }, [habitat]);
+
   useEffect(() => {
   //0sub_colecao
    const fetchData = async () => {
@@ -1124,7 +1122,7 @@ export default function MicroContent(props) {
    };
    fetchData();
   }, [sub_colecao]);
-   
+
    useEffect(() => {
     //0armario
     const fetchData = async () => {
@@ -1148,6 +1146,7 @@ export default function MicroContent(props) {
     };
     fetchData();
   }, [armario]);
+
   useEffect(() => {
     //0prateleira
     const fetchData = async () => {
@@ -1171,6 +1170,7 @@ export default function MicroContent(props) {
     };
     fetchData();
   }, [prateleira]);
+
   useEffect(() => {
     //0lote
     const fetchData = async () => {
@@ -1200,12 +1200,18 @@ export default function MicroContent(props) {
   const [itemValue, setItemValue] = React.useState("");
   const [tmpState, setTmpState] = React.useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [ItemId, setItemId] = useState(null)
 
-  function openModal(vartext, varval, tState) {
+  function openModal(vartext, varval, tState, id) {
     setIsOpen(true);
     setItemName(vartext);
     setItemValue(varval);
     setTmpState(tState);
+    if(id){
+      setItemId(id)
+    }else{
+      setItemId(null)
+    }
   }
 
   function afterOpenModal() {
@@ -1217,25 +1223,47 @@ export default function MicroContent(props) {
     // console.log(tmpState)
     //0dominio
     if (persist === true && tmpState === "dominio") {
-      axios.post(baseurl+ tmpState, {
-        dominio: itemValue,
-      })
-        .then((response) => {
-          // console.log(response);
-          axios.get(baseurl+"dominio")
-            .then(response => {
-              // console.log(response.data);
-              setDominioList(response.data);
-              if (dominio.iddominio) {
-                setDominio(null);
-              }
-            }, error => {
-              // console.log(error);
-            });
-        }, (error) => {
-          // console.log(error);
-        });
+      if(ItemId != null){
+        axios.put(baseurl+ tmpState+"/"+ItemId, {
+          id: ItemId,
+          dominio: dominio
+        })
+          .then((response) => {
+            // console.log(response);
+            axios.get(baseurl+"dominio")
+              .then(response => {
+                // console.log(response.data);
+                setDominioList(response.data);
+                // if (dominio.iddominio) {
+                //   setDominio(null);
+                // }
+              }, error => {
+                console.log(error);
+              });
+          }, (error) => {
+                console.log(error);
+          });
+      }else{
+        axios.post(baseurl+ tmpState, {
+          dominio: itemValue,
+        })
+          .then((response) => {
+            // console.log(response);
+            axios.get(baseurl+"dominio")
+              .then(response => {
+                // console.log(response.data);
+                setDominioList(response.data);
+                if (dominio.iddominio) {
+                  setDominio(null);
+                }
+              }, error => {
+                // console.log(error);
+              });
+          }, (error) => {
+            // console.log(error);
+          });
     }
+  }
     //0reino
     if (persist === true && tmpState === "reino" && dominio.iddominio > 0) {
       axios.post(baseurl+ tmpState, {
@@ -2192,7 +2220,7 @@ export default function MicroContent(props) {
                     type="text"
                     autoFocus
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  // value={itemValue}
+                  value={itemValue}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -2572,17 +2600,17 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Domínio", "", "dominio");
+                                  openModal("Domínio", "", "dominio", null);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
-                                  openModal("Domínio", "Coco", "dominio");
+                                  openModal("Domínio", dominio.dominio, "dominio", dominio.iddominio);
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />

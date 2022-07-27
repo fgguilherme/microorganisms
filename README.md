@@ -15,3 +15,7 @@ Project designed to run on AWS.
 ## Deploy instructions
 
 @TODO
+
+## Build
+
+* docker compose -f docker-compose-dev.yml up -d --build

@@ -242,8 +242,8 @@ export default function MicroContent(props) {
   const [imagemRepiq, setImagemRepiq] = useState([]);
 
   const alert = useAlert();
-  
-  
+
+
   async function saveMicro(e){
     if(variedade?.idvariedade == undefined){
       alert.error('Informe a variedade')
@@ -518,7 +518,7 @@ export default function MicroContent(props) {
       // console.log("MISSING SOMETHING")
     }
   }
-  
+
   async function saveRepique(e,hasNext){
     if(grupo_pesquisa?.idgrupo_pesquisa == undefined){
       alert.error('Informe o grupo de pesquisa')
@@ -584,7 +584,7 @@ export default function MicroContent(props) {
       // console.log("MISSING SOMETHING")
     }
   }
-  console.log(origCode);
+  // console.log(origCode);
 
 
   useEffect(() => {
@@ -1225,8 +1225,7 @@ export default function MicroContent(props) {
     if (persist === true && tmpState === "dominio") {
       if(ItemId != null){
         axios.put(baseurl+ tmpState+"/"+ItemId, {
-          id: ItemId,
-          dominio: dominio
+          dominio: itemValue
         })
           .then((response) => {
             // console.log(response);
@@ -1234,9 +1233,7 @@ export default function MicroContent(props) {
               .then(response => {
                 // console.log(response.data);
                 setDominioList(response.data);
-                // if (dominio.iddominio) {
-                //   setDominio(null);
-                // }
+                setDominio({iddominio:ItemId, dominio: itemValue});
               }, error => {
                 console.log(error);
               });
@@ -1266,57 +1263,131 @@ export default function MicroContent(props) {
   }
     //0reino
     if (persist === true && tmpState === "reino" && dominio.iddominio > 0) {
-      axios.post(baseurl+ tmpState, {
-        reino: itemValue,
-        dominio_iddominio: dominio.iddominio
-      })
-        .then((response) => {
-          // console.log(response);
-          if (dominio.iddominio) {
-            axios.get(baseurl+"reino/search", {
-              params: {
-                "dominio_iddominio": dominio.iddominio
-              }
-            })
-              .then(response => {
-                // console.log(response.data);
-                setReinoList(response.data);
-              }, error => {
-                // console.log(error);
-              });
-          }
-        }, (error) => {
-          // console.log(error);
-        });
+      if(ItemId != null){
+        axios.put(baseurl+ tmpState+"/"+ItemId, {
+          reino: itemValue
+        })
+          .then((response) => {
+            // console.log(response);
+            if (dominio?.iddominio) {
+              axios.get(baseurl+"reino/search", {
+                params: {
+                  "dominio_iddominio": dominio.iddominio
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setReinoList(response.data);
+                  setReino({idreino:ItemId, reino: itemValue});
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }else{
+        axios.post(baseurl+ tmpState, {
+          reino: itemValue,
+          dominio_iddominio: dominio.iddominio
+        })
+          .then((response) => {
+            // console.log(response);
+            if (dominio?.iddominio) {
+              axios.get(baseurl+"reino/search", {
+                params: {
+                  "dominio_iddominio": dominio.iddominio
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setReinoList(response.data);
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }
     }
     //0filo
     if (persist === true && tmpState === "filo" && reino.idreino > 0) {
-      axios.post(baseurl+ tmpState, {
-        filo: itemValue,
-        reino_idreino: reino.idreino
-      })
-        .then((response) => {
-          // console.log(response);
-          if (reino?.idreino) {
-            axios.get(baseurl+"filo/search", {
-              params: {
-                "reino_idreino": reino.idreino
-              }
-            })
-              .then(response => {
-                // console.log(response.data);
-                setFiloList(response.data);
-              }, error => {
-                // console.log(error);
-              });
-          }
-        }, (error) => {
-          // console.log(error);
-        });
+      if(ItemId != null){
+        axios.put(baseurl+ tmpState+"/"+ItemId, {
+          filo: itemValue
+        })
+          .then((response) => {
+            // console.log(response);
+            if (reino?.idreino) {
+              axios.get(baseurl+"filo/search", {
+                params: {
+                  "reino_idreino": reino.idreino
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setFiloList(response.data);
+                  setFilo({idfilo:ItemId, filo: itemValue});
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }else{
+        axios.post(baseurl+ tmpState, {
+          filo: itemValue,
+          reino_idreino: reino.idreino
+        })
+          .then((response) => {
+            // console.log(response);
+            if (reino?.idreino) {
+              axios.get(baseurl+"filo/search", {
+                params: {
+                  "reino_idreino": reino.idreino
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setFiloList(response.data);
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }
     }
     //0classe
     if (persist === true && tmpState === "classe" && filo.idfilo > 0) {
-      axios.post(baseurl+ tmpState, {
+      if(ItemId != null){
+        axios.put(baseurl+ tmpState+"/"+ItemId, {
+          classe: itemValue
+        })
+          .then((response) => {
+            // console.log(response);
+            if (filo?.idfilo) {
+              axios.get(baseurl+"classe/search", {
+                params: {
+                  "filo_idfilo": filo.idfilo
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setClasseList(response.data);
+                  setClasse({idclasse:ItemId, classe: itemValue});
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }else{
+        axios.post(baseurl+ tmpState, {
         classe: itemValue,
         filo_idfilo: filo.idfilo
       })
@@ -1338,82 +1409,158 @@ export default function MicroContent(props) {
         }, (error) => {
           // console.log(error);
         });
+      }
     }
     //0ordem
     if (persist === true && tmpState === "ordem" && classe.idclasse > 0) {
-      axios.post(baseurl+ tmpState, {
-        ordem: itemValue,
-        classe_idclasse: classe.idclasse
-      })
-        .then((response) => {
-          // console.log(response);
-          if (classe?.idclasse) {
-            axios.get(baseurl+"ordem/search", {
-              params: {
-                "classe_idclasse": classe.idclasse
-              }
-            })
-              .then(response => {
-                // console.log(response.data);
-                setOrdemList(response.data);
-              }, error => {
-                // console.log(error);
-              });
-          }
-        }, (error) => {
-          // console.log(error);
-        });
+      if(ItemId != null){
+        axios.put(baseurl+ tmpState+"/"+ItemId, {
+          ordem: itemValue
+        })
+          .then((response) => {
+            // console.log(response);
+            if (classe?.idclasse) {
+              axios.get(baseurl+"ordem/search", {
+                params: {
+                  "classe_idclasse": classe.idclasse
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setOrdemList(response.data);
+                  setOrdem({idordem:ItemId, ordem: itemValue});
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }else{
+        axios.post(baseurl+ tmpState, {
+          ordem: itemValue,
+          classe_idclasse: classe.idclasse
+        })
+          .then((response) => {
+            // console.log(response);
+            if (classe?.idclasse) {
+              axios.get(baseurl+"ordem/search", {
+                params: {
+                  "classe_idclasse": classe.idclasse
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setOrdemList(response.data);
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }
     }
+
     //0familia
     if (persist === true && tmpState === "familia" && ordem.idordem > 0) {
-      axios.post(baseurl+ tmpState, {
-        familia: itemValue,
-        ordem_idordem: ordem.idordem
-      })
-        .then((response) => {
-          // console.log(response);
-          if (ordem?.idordem) {
-            axios.get(baseurl+"familia/search", {
-              params: {
-                "ordem_idordem": ordem.idordem
-              }
-            })
-              .then(response => {
-                // console.log(response.data);
-                setFamiliaList(response.data);
-              }, error => {
-                // console.log(error);
-              });
-          }
-        }, (error) => {
-          // console.log(error);
-        });
+      if(ItemId != null){
+        axios.put(baseurl+ tmpState+"/"+ItemId, {
+          familia: itemValue
+        })
+          .then((response) => {
+            // console.log(response);
+            if (ordem?.idordem) {
+              axios.get(baseurl+"familia/search", {
+                params: {
+                  "ordem_idordem": ordem.idordem
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setFamiliaList(response.data);
+                  setFamilia({idfamilia:ItemId, familia: itemValue});
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }else{
+        axios.post(baseurl+ tmpState, {
+          familia: itemValue,
+          ordem_idordem: ordem.idordem
+        })
+          .then((response) => {
+            // console.log(response);
+            if (ordem?.idordem) {
+              axios.get(baseurl+"familia/search", {
+                params: {
+                  "ordem_idordem": ordem.idordem
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setFamiliaList(response.data);
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }
     }
     //0genero
     if (persist === true && tmpState === "genero" && familia.idfamilia > 0) {
-      axios.post(baseurl+ tmpState, {
-        genero: itemValue,
-        familia_idfamilia: familia.idfamilia
-      })
-        .then((response) => {
-          // console.log(response);
-          if (familia?.idfamilia) {
-            axios.get(baseurl+"genero/search", {
-              params: {
-                "familia_idfamilia": familia.idfamilia
-              }
-            })
-              .then(response => {
-                // console.log(response.data);
-                setGeneroList(response.data);
-              }, error => {
-                // console.log(error);
-              });
-          }
-        }, (error) => {
-          // console.log(error);
-        });
-      // console.log(itemValue);
+      if(ItemId != null){
+        axios.put(baseurl+ tmpState+"/"+ItemId, {
+          genero: itemValue
+        })
+          .then((response) => {
+            // console.log(response);
+            if (familia?.idfamilia) {
+              axios.get(baseurl+"genero/search", {
+                params: {
+                  "familia_idfamilia": familia.idfamilia
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setGeneroList(response.data);
+                  setGenero({idgenero:ItemId, genero: itemValue});
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }else{
+        axios.post(baseurl+ tmpState, {
+          genero: itemValue,
+          familia_idfamilia: familia.idfamilia
+        })
+          .then((response) => {
+            // console.log(response);
+            if (familia?.idfamilia) {
+              axios.get(baseurl+"genero/search", {
+                params: {
+                  "familia_idfamilia": familia.idfamilia
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setGeneroList(response.data);
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }
     }
     //0referencia
     if (persist === true && tmpState === "referenciaTaxa") {
@@ -2084,13 +2231,19 @@ export default function MicroContent(props) {
   const [itemAutorValueB, setItemAutorValueB] = React.useState("");
   const [modalAutorIsOpen, setAutorIsOpen] = useState(false);
   const [tmpStateAutor, setTmpStateAutor] = React.useState("");
+  const [ItemAutorId, setItemAutorId] = useState(null)
 
-  function openAutorModal(vartext, varval,tmState) {
+  function openAutorModal(vartext, varval,tmState, id) {
     setAutorIsOpen(true);
     setItemAutorName(vartext);
     setItemAutorValueA(varval[0]);
     setItemAutorValueB(varval[1]);
     setTmpStateAutor(tmState);
+    if(id){
+      setItemAutorId(id)
+    }else{
+      setItemAutorId(null)
+    }
   }
 
   function afterOpenAutorModal() {
@@ -2103,7 +2256,38 @@ export default function MicroContent(props) {
     // console.log(tmpStateAutor)
     //0especie
     if (persist === true && tmpStateAutor === "especie" && genero.idgenero > 0) {
-      axios.post(baseurl + tmpStateAutor, {
+      if(ItemAutorId != null){
+        axios.put(baseurl + tmpStateAutor+"/"+ItemAutorId, {
+          especie: itemAutorValueA,
+          autor: itemAutorValueB,
+        })
+        .then(
+          (response) => {
+            // console.log(response);
+            if (genero?.idgenero) {
+              axios.get(baseurl + "especie/search", {
+                  params: {
+                    genero_idgenero: genero.idgenero,
+                  },
+              })
+                .then(
+                  (response) => {
+                    // console.log(response.data);
+                    setEspecieList(response.data);
+                    setEspecie({idespecie:ItemAutorId, especie: itemAutorValueA, autor: itemAutorValueB});
+                  },
+                  (error) => {
+                    // console.log(error);
+                  }
+                );
+            }
+          },
+          (error) => {
+            // console.log(error);
+          }
+        );
+      }else{
+        axios.post(baseurl + tmpStateAutor, {
           especie: itemAutorValueA,
           autor: itemAutorValueB,
           genero_idgenero: genero.idgenero,
@@ -2132,58 +2316,112 @@ export default function MicroContent(props) {
             // console.log(error);
           }
         );
+      }
     }
     //0sub_especie
     if (persist === true && tmpStateAutor === "sub_especie" && especie.idespecie > 0) {
-      axios.post(baseurl+ tmpStateAutor, {
-        sub_especie: itemAutorValueA,
-        autor: itemAutorValueB,
-        especie_idespecie: especie.idespecie
-      })
-        .then((response) => {
-          // console.log(response);
-          if (especie?.idespecie) {
-            axios.get(baseurl+"sub_especie/search", {
-              params: {
-                "especie_idespecie": especie.idespecie
-              }
-            })
-              .then(response => {
-                // console.log(response.data);
-                setSub_especieList(response.data);
-              }, error => {
-                // console.log(error);
-              });
-          }
-        }, (error) => {
-          // console.log(error);
-        });
+      if(ItemAutorId != null){
+        axios.put(baseurl + tmpStateAutor+"/"+ItemAutorId, {
+          sub_especie: itemAutorValueA,
+          autor: itemAutorValueB,
+        })
+          .then((response) => {
+            // console.log(response);
+            if (especie?.idespecie) {
+              axios.get(baseurl+"sub_especie/search", {
+                params: {
+                  "especie_idespecie": especie.idespecie
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setSub_especieList(response.data);
+                  setSub_especie({idsub_especie:ItemAutorId, sub_especie: itemAutorValueA, autor: itemAutorValueB});
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }else{
+        axios.post(baseurl+ tmpStateAutor, {
+          sub_especie: itemAutorValueA,
+          autor: itemAutorValueB,
+          especie_idespecie: especie.idespecie
+        })
+          .then((response) => {
+            // console.log(response);
+            if (especie?.idespecie) {
+              axios.get(baseurl+"sub_especie/search", {
+                params: {
+                  "especie_idespecie": especie.idespecie
+                }
+              })
+                .then(response => {
+                  // console.log(response.data);
+                  setSub_especieList(response.data);
+                  setSub_especie(null)
+                }, error => {
+                  // console.log(error);
+                });
+            }
+          }, (error) => {
+            // console.log(error);
+          });
+      }
     }
     //0variedade
    if (persist === true && tmpStateAutor === "variedade" && sub_especie.idsub_especie > 0) {
-     axios.post(baseurl+ tmpStateAutor, {
-       variedade: itemAutorValueA,
-       autor: itemAutorValueB,
-       sub_especie_idsub_especie: sub_especie.idsub_especie
-     })
-       .then((response) => {
-        //  console.log(response);
-         if (sub_especie?.idsub_especie) {
-           axios.get(baseurl+"variedade/search", {
-             params: {
-               "sub_especie_idsub_especie": sub_especie.idsub_especie
-             }
-           })
-             .then(response => {
-              //  console.log(response.data);
-               setVariedadeList(response.data);
-             }, error => {
-              //  console.log(error);
-             });
-         }
-       }, (error) => {
-        //  console.log(error);
-       });
+    if(ItemAutorId != null){
+      axios.put(baseurl + tmpStateAutor+"/"+ItemAutorId, {
+        variedade: itemAutorValueA,
+        autor: itemAutorValueB,
+      })
+        .then((response) => {
+         //  console.log(response);
+          if (sub_especie?.idsub_especie) {
+            axios.get(baseurl+"variedade/search", {
+              params: {
+                "sub_especie_idsub_especie": sub_especie.idsub_especie
+              }
+            })
+              .then(response => {
+               //  console.log(response.data);
+                setVariedadeList(response.data);
+                setVariedade({idvariedade:ItemAutorId, variedade: itemAutorValueA, autor: itemAutorValueB});
+              }, error => {
+               //  console.log(error);
+              });
+          }
+        }, (error) => {
+         //  console.log(error);
+        });
+    }else{
+      axios.post(baseurl+ tmpStateAutor, {
+        variedade: itemAutorValueA,
+        autor: itemAutorValueB,
+        sub_especie_idsub_especie: sub_especie.idsub_especie
+      })
+        .then((response) => {
+         //  console.log(response);
+          if (sub_especie?.idsub_especie) {
+            axios.get(baseurl+"variedade/search", {
+              params: {
+                "sub_especie_idsub_especie": sub_especie.idsub_especie
+              }
+            })
+              .then(response => {
+               //  console.log(response.data);
+                setVariedadeList(response.data);
+              }, error => {
+               //  console.log(error);
+              });
+          }
+        }, (error) => {
+         //  console.log(error);
+        });
+    }
    }
     setAutorIsOpen(false);
   }
@@ -2589,6 +2827,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={dominioList}
                             defaultValue={dominio}
+                            value={dominio}
                             onChange={setDominio}
                             getOptionLabel={(options) => options["dominio"]}
                             getOptionValue={(options) => options["iddominio"]}
@@ -2635,6 +2874,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={reinoList}
                             defaultValue={reino}
+                            value={reino}
                             onChange={setReino}
                             getOptionLabel={(options) => options["reino"]}
                             getOptionValue={(options) => options["idreino"]}
@@ -2646,17 +2886,17 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Reino", "", "reino");
+                                  openModal("Reino", "", "reino", null);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
-                                  openModal("Reino", "Coco", "reino");
+                                  openModal("Reino", reino.reino, "reino", reino.idreino);
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2681,6 +2921,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={filoList}
                             defaultValue={filo}
+                            value={filo}
                             onChange={setFilo}
                             getOptionLabel={(options) => options["filo"]}
                             getOptionValue={(options) => options["idfilo"]}
@@ -2692,17 +2933,17 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Filo", "", "filo");
+                                  openModal("Filo", "", "filo", null);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
-                                  openModal("Filo", "Coco", "filo");
+                                  openModal("Filo", filo.filo, "filo", filo.idfilo);
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2727,6 +2968,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={classeList}
                             defaultValue={classe}
+                            value={classe}
                             onChange={setClasse}
                             getOptionLabel={(options) => options["classe"]}
                             getOptionValue={(options) => options["idclasse"]}
@@ -2738,18 +2980,19 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Classe", "", "classe");
+                                  openModal("Classe", "", "classe", null);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
-                                  openModal("Classe", "Coco", "classe");
+                                  openModal("Classe", classe.classe, "classe", classe.idclasse);
                                 }}
+                              >
                               >
                                 <i className="fas fa-pencil-alt" />
                               </button>
@@ -2773,6 +3016,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={ordemList}
                             defaultValue={ordem}
+                            value={ordem}
                             onChange={setOrdem}
                             getOptionLabel={(options) => options["ordem"]}
                             getOptionValue={(options) => options["idordem"]}
@@ -2784,17 +3028,17 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Ordem", "", "ordem");
+                                  openModal("Ordem", "", "ordem", null);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
-                                  openModal("Ordem", "Coco", "ordem");
+                                  openModal("Ordem", ordem.ordem, "ordem", ordem.idordem);
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2819,6 +3063,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={familiaList}
                             defaultValue={familia}
+                            value={familia}
                             onChange={setFamilia}
                             getOptionLabel={(options) => options["familia"]}
                             getOptionValue={(options) => options["idfamilia"]}
@@ -2830,17 +3075,17 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Família", "", "familia");
+                                  openModal("Família", "", "familia", null);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
-                                  openModal("Família", "Coco", "familia");
+                                  openModal("Família", familia.familia, "familia", familia.idfamilia);
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2864,6 +3109,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={generoList}
                             defaultValue={genero}
+                            value={genero}
                             onChange={setGenero}
                             getOptionLabel={(options) => options["genero"]}
                             getOptionValue={(options) => options["idgenero"]}
@@ -2875,17 +3121,17 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Gênero", "", "genero");
+                                  openModal("Gênero", "", "genero", null);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
-                                  openModal("Gênero", "Coco");
+                                  openModal("Gênero", genero.genero, "genero", genero.idgenero);
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -2909,6 +3155,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={especieList}
                             defaultValue={especie}
+                            value={especie}
                             onChange={setEspecie}
                             getOptionLabel={(options) => options["especie"]+" - "+options["autor"]}
                             getOptionValue={(options) => options["idespecie"]}
@@ -2922,20 +3169,20 @@ export default function MicroContent(props) {
                                 onClick={() => {
                                   openAutorModal(
                                     ["Espécie", "Autor"],
-                                    ["", ""], "especie"
+                                    ["", ""], "especie", null
                                   );
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
                                   openAutorModal(
                                     ["Espécie", "Autor"],
-                                    ["", ""], "especie"
+                                    [especie.especie, especie.autor], "especie", especie.idespecie
                                   );
                                 }}
                               >
@@ -2960,6 +3207,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={sub_especieList}
                             defaultValue={sub_especie}
+                            value={sub_especie}
                             onChange={setSub_especie}
                             getOptionLabel={(options) => options["sub_especie"]+" - "+options["autor"]}
                             getOptionValue={(options) => options["idsub_especie"]
@@ -2985,7 +3233,7 @@ export default function MicroContent(props) {
                                 onClick={() => {
                                   openAutorModal(
                                     ["Sub_Espécie", "Autor"],
-                                    ["", ""], "sub_especie"
+                                    ["", ""], "sub_especie", null
                                   );
                                 }}
                               >
@@ -2994,11 +3242,11 @@ export default function MicroContent(props) {
                               <button
                                 className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
                                   openAutorModal(
                                     ["Sub_Espécie", "Autor"],
-                                    ["", ""], "sub_especie"
+                                    [sub_especie.sub_especie, sub_especie.autor], "sub_especie", sub_especie.idsub_especie
                                   );
                                 }}
                               >
@@ -3024,6 +3272,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={variedadeList}
                             defaultValue={variedade}
+                            value={variedade}
                             onChange={setVariedade}
                             getOptionLabel={(options) => options["variedade"]+" - "+options["autor"]}
                             getOptionValue={(options) => options["idvariedade"]}
@@ -3037,7 +3286,7 @@ export default function MicroContent(props) {
                                 onClick={() => {
                                   openAutorModal(
                                     ["Variedade", "Autor"],
-                                    ["", ""], "variedade"
+                                    ["", ""], "variedade", null
                                   );
                                 }}
                               >
@@ -3046,11 +3295,11 @@ export default function MicroContent(props) {
                               <button
                                 className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
                                   openAutorModal(
                                     ["Variedade", "Autor"],
-                                    ["", ""], "variedade"
+                                    [variedade.variedade, variedade.autor], "variedade", variedade.idvariedade
                                   );
                                 }}
                               >

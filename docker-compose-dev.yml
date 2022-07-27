@@ -5,13 +5,13 @@ x-common-variables: &common-variables
   MYSQL_USER: micro_user
   MYSQL_PASSWORD: micro_user
   MYSQL_PORT: 3306
-  MYSQL_HOST: "db"
+  MYSQL_HOST: "db_micro"
   BASE_URL: "localhost:4200"
 
 services:
   mysql_db:
     image: mysql:5.7
-    container_name: db
+    container_name: db_micro
     restart: always
     environment:
       <<: *common-variables
@@ -31,7 +31,7 @@ services:
       dockerfile: Dockerfile
       context: ./nginx
     ports:
-      - "4100:80"
+      - "3100:80"
     networks:
       microcollection:
 
@@ -71,16 +71,16 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: pma
+    container_name: pma_micro
     restart: always
     links:
       - mysql_db
     environment:
-      PMA_HOST: db
+      PMA_HOST: db_micro
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
     ports:
-      - 8081:80
+      - 8082:80
     networks:
       microcollection:
 

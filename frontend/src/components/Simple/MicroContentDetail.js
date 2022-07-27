@@ -583,9 +583,9 @@ export default function MicroContentDetail(props) {
                             htmlFor="grid-password"
                           >
                             
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.nome + " - " +
-                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.email + " - " +
-                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.instituicao }
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.nome + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.email + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.instituicao }
                           </label>
                         </div>
                       </div>
@@ -625,7 +625,7 @@ export default function MicroContentDetail(props) {
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 htmlFor="grid-password"
                               >
-                                {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.hospedeiro}
+                                {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.hospedeiro_idhospedeiro_hospedeiro?.hospedeiro}
                               </label>
                             </div>
                           </div>
@@ -642,7 +642,7 @@ export default function MicroContentDetail(props) {
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 htmlFor="grid-password"
                               >
-                              {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.substrato_idsubstrato_substrato.substrato}
+                              {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.substrato_idsubstrato_substrato?.substrato}
                               </label>
                             </div>
                           </div>
@@ -659,7 +659,7 @@ export default function MicroContentDetail(props) {
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 htmlFor="grid-password"
                               >
-                                {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.registro}
+                                {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.registro}
                               </label>
                             </div>
                           </div>
@@ -676,7 +676,7 @@ export default function MicroContentDetail(props) {
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 htmlFor="grid-password"
                               >
-                              {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.herbario}
+                              {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.herbario}
                               </label>
                             </div>
                           </div>
@@ -694,7 +694,7 @@ export default function MicroContentDetail(props) {
                                 htmlFor="grid-password"
                               >
                                 
-                                {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.codigo}
+                                {props?.microorg.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.codigo}
                               </label>
                             </div>
                           </div>
@@ -941,9 +941,9 @@ export default function MicroContentDetail(props) {
                             htmlFor="grid-password"
                           >
                             
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.nome + " - " +
-                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.email + " - " +
-                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.instituicao }
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador?.nome + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador?.email + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador?.instituicao }
                           </label>
                         </div>
                       </div>
@@ -1061,7 +1061,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.cor_exudato_cor.cor}
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.cor_exudato_cor?.cor}
                           </label>
                         </div>
                       </div>
@@ -1093,7 +1093,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.cor_pigmento_cor.cor}
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.cor_pigmento_cor?.cor}
                           </label>
                         </div>
                       </div>
@@ -1195,7 +1195,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.laboratorio_mol_laboratorio.laboratorio}
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.laboratorio_mol_laboratorio?.laboratorio}
                           </label>
                         </div>
                       </div>

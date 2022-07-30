@@ -1245,14 +1245,11 @@ export default function MicroContent(props) {
           dominio: itemValue,
         })
           .then((response) => {
-            // console.log(response);
             axios.get(baseurl+"dominio")
               .then(response => {
-                // console.log(response.data);
+                console.log(response.data);
                 setDominioList(response.data);
-                if (dominio.iddominio) {
-                  setDominio(null);
-                }
+                setDominio(null);
               }, error => {
                 // console.log(error);
               });
@@ -1302,6 +1299,7 @@ export default function MicroContent(props) {
                 .then(response => {
                   // console.log(response.data);
                   setReinoList(response.data);
+                  setReino(null);
                 }, error => {
                   // console.log(error);
                 });
@@ -1352,6 +1350,7 @@ export default function MicroContent(props) {
                 .then(response => {
                   // console.log(response.data);
                   setFiloList(response.data);
+                  setFilo(null);
                 }, error => {
                   // console.log(error);
                 });
@@ -1402,6 +1401,7 @@ export default function MicroContent(props) {
               .then(response => {
                 // console.log(response.data);
                 setClasseList(response.data);
+                setClasse(null);
               }, error => {
                 // console.log(error);
               });
@@ -1452,6 +1452,7 @@ export default function MicroContent(props) {
                 .then(response => {
                   // console.log(response.data);
                   setOrdemList(response.data);
+                  setOrdem(null);
                 }, error => {
                   // console.log(error);
                 });
@@ -1503,6 +1504,7 @@ export default function MicroContent(props) {
                 .then(response => {
                   // console.log(response.data);
                   setFamiliaList(response.data);
+                  setFamilia(null);
                 }, error => {
                   // console.log(error);
                 });
@@ -1553,6 +1555,7 @@ export default function MicroContent(props) {
                 .then(response => {
                   // console.log(response.data);
                   setGeneroList(response.data);
+                  setGenero(null);
                 }, error => {
                   // console.log(error);
                 });
@@ -1564,24 +1567,41 @@ export default function MicroContent(props) {
     }
     //0referencia
     if (persist === true && tmpState === "referenciaTaxa") {
-      axios.post(baseurl+ "referencia", {
-        referencia: itemValue,
-      })
-        .then((response) => {
-          // console.log(response);
-          axios.get(baseurl+"referencia")
-            .then(response => {
-              // console.log(response.data);
-              setReferenciaList(response.data);
-              if (refTaxa.idreferencia) {
-                setRefTaxa(null);
-              }
-            }, error => {
-              // console.log(error);
-            });
-        }, (error) => {
-          // console.log(error);
-        });
+      if(ItemId != null){
+        axios.put(baseurl+ tmpState+"/"+ItemId, {
+          referencia: itemValue,
+        })
+          .then((response) => {
+            // console.log(response);
+            axios.get(baseurl+"referencia")
+              .then(response => {
+                // console.log(response.data);
+                setReferenciaList(response.data);
+                setRefTaxa({idreferencia:ItemId, referencia: itemValue});
+              }, error => {
+                // console.log(error);
+              });
+          }, (error) => {
+            // console.log(error);
+          });
+      }else{
+        axios.post(baseurl+ "referencia", {
+          referencia: itemValue,
+        })
+          .then((response) => {
+            // console.log(response);
+            axios.get(baseurl+"referencia")
+              .then(response => {
+                // console.log(response.data);
+                setReferenciaList(response.data);
+                // setRefTaxa(null);
+              }, error => {
+                // console.log(error);
+              });
+          }, (error) => {
+            // console.log(error);
+          });
+      }
     }
     //0referencia
     if (persist === true && tmpState === "referenciaTemp") {
@@ -1594,9 +1614,7 @@ export default function MicroContent(props) {
             .then(response => {
               // console.log(response.data);
               setReferenciaList(response.data);
-              if (refTemp.idreferencia) {
-                setRefTemp(null);
-              }
+              setRefTemp(null);
             }, error => {
               // console.log(error);
             });
@@ -1615,9 +1633,7 @@ export default function MicroContent(props) {
             .then(response => {
               // console.log(response.data);
               setReferenciaList(response.data);
-              if (refAdd.idreferencia) {
-                setRefAdd(null);
-              }
+              setRefAdd(null);
             }, error => {
               // console.log(error);
             });
@@ -1627,86 +1643,162 @@ export default function MicroContent(props) {
     }
     //0hospVegetal
     if (persist === true && tmpState === "hospedeiro_veg") {
-      axios.post(baseurl+ "hospedeiro", {
-        hospedeiro: itemValue,
-        isAnimal: "0"
-      })
-      .then((response) => {
-        // console.log(response);
-        axios.get(baseurl+"hospedeiro")
-          .then(response => {
-            // console.log(response.data);
-            setHospVegList(response.data.filter(hosp => hosp.isAnimal === 0));
-          }, error => {
-            // console.log(error);
-          });
-      }, (error) => {
-        // console.log(error);
-      });
+      if(ItemId != null){
+        axios.put(baseurl+"hospedeiro"+"/"+ItemId, {
+          hospedeiro: itemValue,
+          // isAnimal: "0"
+        })
+        .then((response) => {
+          console.log(response.data);
+          axios.get(baseurl+"hospedeiro")
+            .then(response => {
+              // console.log(response.data);
+              setHospVegList(response.data.filter(hosp => hosp.isAnimal === 0));
+              setHospVeg({idhospedeiro:ItemId, hospedeiro: itemValue});
+            }, error => {
+              // console.log(error);
+            });
+        }, (error) => {
+          // console.log(error);
+        });
+      }else{
+        axios.post(baseurl+ "hospedeiro", {
+          hospedeiro: itemValue,
+          isAnimal: "0"
+        })
+        .then((response) => {
+          // console.log(response);
+          axios.get(baseurl+"hospedeiro")
+            .then(response => {
+              // console.log(response.data);
+              setHospVegList(response.data.filter(hosp => hosp.isAnimal === 0));
+            }, error => {
+              // console.log(error);
+            });
+        }, (error) => {
+          // console.log(error);
+        });
+      }
     }
     //0hospAnimal
     if (persist === true && tmpState === "hospedeiro_ani") {
-      axios.post(baseurl+ "hospedeiro", {
-        hospedeiro: itemValue,
-        isAnimal: "1"
-      })
-      .then((response) => {
-        // console.log(response);
-        axios.get(baseurl+"hospedeiro")
-          .then(response => {
-            // console.log(response.data);
-            setHospAnList(response.data.filter(hosp => hosp.isAnimal === 1));
-            if (hospAn.idhospedeiro) {
-              setHospAn(null);
-            }
-          }, error => {
-            // console.log(error);
-          });
-      }, (error) => {
-        // console.log(error);
-      });
+      if(ItemId != null){
+        axios.put(baseurl+"hospedeiro"+"/"+ItemId, {
+          hospedeiro: itemValue,
+          // isAnimal: "1"
+        })
+        .then((response) => {
+          // console.log(response);
+          axios.get(baseurl+"hospedeiro")
+            .then(response => {
+              // console.log(response.data);
+              setHospAnList(response.data.filter(hosp => hosp.isAnimal === 1));
+              setHospAn({idhospedeiro:ItemId, hospedeiro: itemValue});
+            }, error => {
+              // console.log(error);
+            });
+        }, (error) => {
+          // console.log(error);
+        });
+      }else{
+        axios.post(baseurl+ "hospedeiro", {
+          hospedeiro: itemValue,
+          isAnimal: "1"
+        })
+        .then((response) => {
+          // console.log(response);
+          axios.get(baseurl+"hospedeiro")
+            .then(response => {
+              // console.log(response.data);
+              setHospAnList(response.data.filter(hosp => hosp.isAnimal === 1));
+              if (hospAn.idhospedeiro) {
+                setHospAn(null);
+              }
+            }, error => {
+              // console.log(error);
+            });
+        }, (error) => {
+          // console.log(error);
+        });
+      }
     }
     //0substrato
     if (persist === true && tmpState === "substrato") {
-      axios.post(baseurl+ tmpState, {
-        substrato: itemValue,
-      })
-      .then((response) => {
-        // console.log(response);
-        axios.get(baseurl+"substrato")
-          .then(response => {
-            // console.log(response.data);
-            setSubstratoList(response.data);
-            if (substrato.idhospedeiro) {
-              setSubstrato(null);
-            }
-          }, error => {
-            // console.log(error);
-          });
-      }, (error) => {
-        // console.log(error);
-      });
+      if(ItemId != null){
+        axios.put(baseurl+ tmpState+"/"+ItemId, {
+          substrato: itemValue,
+        })
+        .then((response) => {
+          // console.log(response);
+          axios.get(baseurl+"substrato")
+            .then(response => {
+              // console.log(response.data);
+              setSubstratoList(response.data);
+              setSubstrato({idsubstrato:ItemId, substrato: itemValue});
+            }, error => {
+              // console.log(error);
+            });
+        }, (error) => {
+          // console.log(error);
+        });
+      }else{
+        axios.post(baseurl+ tmpState, {
+          substrato: itemValue,
+        })
+        .then((response) => {
+          // console.log(response);
+          axios.get(baseurl+"substrato")
+            .then(response => {
+              // console.log(response.data);
+              setSubstratoList(response.data);
+              if (substrato.idhospedeiro) {
+                setSubstrato(null);
+              }
+            }, error => {
+              // console.log(error);
+            });
+        }, (error) => {
+          // console.log(error);
+        });
+      }
     }
     //0sitio
     if (persist === true && tmpState === "sitio") {
-      axios.post(baseurl+ tmpState, {
-        sitio: itemValue,
-      })
-      .then((response) => {
-        // console.log(response);
-        axios.get(baseurl+"sitio")
-          .then(response => {
-            // console.log(response.data);
-            setSitioAnatList(response.data);
-            if (sitioAnat.idhospedeiro) {
+      if(ItemId != null){
+        axios.put(baseurl+ tmpState+"/"+ItemId, {
+          sitio: itemValue,
+        })
+        .then((response) => {
+          // console.log(response);
+          axios.get(baseurl+"sitio")
+            .then(response => {
+              // console.log(response.data);
+              setSitioAnatList(response.data);
+              setSitioAnat({idsitio:ItemId, sitio: itemValue});
+            }, error => {
+              // console.log(error);
+            });
+        }, (error) => {
+          // console.log(error);
+        });
+      }else{
+        axios.post(baseurl+ tmpState, {
+          sitio: itemValue,
+        })
+        .then((response) => {
+          // console.log(response);
+          axios.get(baseurl+"sitio")
+            .then(response => {
+              // console.log(response.data);
+              setSitioAnatList(response.data);
               setSitioAnat(null);
-            }
-          }, error => {
-            // console.log(error);
-          });
-      }, (error) => {
-        // console.log(error);
-      });
+            }, error => {
+              // console.log(error);
+            });
+        }, (error) => {
+          // console.log(error);
+        });
+      }
     }
     //0cor
     if (persist === true && tmpState === "cor_col") {
@@ -2110,14 +2202,20 @@ export default function MicroContent(props) {
   const [itemPersonValueC, setItemPersonValueC] = React.useState("");
   const [modalPersonIsOpen, setPersonIsOpen] = useState(false);
   const [tmpStatePeson, setTmpStatePerson] = React.useState("");
+  const [itemPesonId, setItemPesonId] = useState(null)
 
-  function openPersonModal(vartext, varval, tmpState) {
+  function openPersonModal(vartext, varval, tmpState, id) {
     setPersonIsOpen(true);
     setItemPersonName(vartext);
     setItemPersonValueA(varval[0]);
     setItemPersonValueB(varval[1]);
     setItemPersonValueC(varval[2]);
     setTmpStatePerson(tmpState);
+    if(id){
+      setItemPesonId(id)
+    }else{
+      setItemPesonId(null)
+    }
   }
 
   function afterOpenPersonModal() {
@@ -2129,27 +2227,47 @@ export default function MicroContent(props) {
     // console.log(tmpStatePeson);
      //0pesquisador
     if (persist === true && tmpStatePeson === "pesquisadorColeta") {
-      console.log("Passou");
-      axios.post(baseurl+ "pesquisador", {
-        nome: itemPersonValueA,
-        email: itemPersonValueB,
-        instituicao: itemPersonValueC
-      })
-        .then((response) => {
-          // console.log(response);
-            axios.get(baseurl+"pesquisador")
-              .then(response => {
-                // console.log(response.data);
-                setPesquisadorList(response.data);
-                if (pesqColeta.idpesquisador) {
-                  setPesqColeta(null);
-                }
-              }, error => {
-                // console.log(error);
-              });
-        }, (error) => {
-          // console.log(error);
-        });
+      if(itemPesonId != null){
+        axios.put(baseurl+"pesquisador"+"/"+itemPesonId, {
+          nome: itemPersonValueA,
+          email: itemPersonValueB,
+          instituicao: itemPersonValueC
+        })
+          .then((response) => {
+            // console.log(response);
+              axios.get(baseurl+"pesquisador")
+                .then(response => {
+                  // console.log(response.data);
+                  setPesquisadorList(response.data);
+                  setPesqColeta({idpesquisador:itemPesonId, nome: itemPersonValueA, email: itemPersonValueB, instituicao: itemPersonValueC});
+                }, error => {
+                  // console.log(error);
+                });
+          }, (error) => {
+            // console.log(error);
+          });
+      }else{
+        axios.post(baseurl+ "pesquisador", {
+          nome: itemPersonValueA,
+          email: itemPersonValueB,
+          instituicao: itemPersonValueC
+        })
+          .then((response) => {
+            // console.log(response);
+              axios.get(baseurl+"pesquisador")
+                .then(response => {
+                  // console.log(response.data);
+                  setPesquisadorList(response.data);
+                  if (pesqColeta.idpesquisador) {
+                    setPesqColeta(null);
+                  }
+                }, error => {
+                  // console.log(error);
+                });
+          }, (error) => {
+            // console.log(error);
+          });
+      }
     }
      //0pesquisador
     if (persist === true && tmpStatePeson === "pesquisadorIsol") {
@@ -3240,7 +3358,7 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 // disabled
                                 onClick={() => {
@@ -3293,7 +3411,7 @@ export default function MicroContent(props) {
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 // disabled
                                 onClick={() => {
@@ -3326,6 +3444,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={referenciaList}
                             defaultValue={refTaxa}
+                            value={refTaxa}
                             isMulti
                             onChange={setRefTaxa}
                             getOptionLabel={(options) => options["referencia"]}
@@ -3339,21 +3458,21 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openModal("Referências taxonômicas", "", "referenciaTaxa");
+                                  openModal("Referências taxonômicas", "", "referenciaTaxa",null);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
                               </button>
-                              <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                              {/* <button
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
-                                  openModal("Referências taxonômicas", "", "referenciaTaxa");
+                                  openModal("Referências taxonômicas", referencia.refencia, "referenciaTaxa", referencia.idreferencia);
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
-                              </button>
+                              </button> */}
                             </>
                           ) : null}
                         </div>
@@ -3466,6 +3585,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={pesquisadorList}
                             defaultValue={pesqColeta}
+                            value={pesqColeta}
                             onChange={setPesqColeta}
                             getOptionLabel={(options) => options["nome"]+" - "+options["email"]+" - "+options["instituicao"]}
                             getOptionValue={(options) => options["idpesquisador"]}
@@ -3477,17 +3597,17 @@ export default function MicroContent(props) {
                                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisadorColeta");
+                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisadorColeta", null);
                                 }}
                               >
                                 <i className="fas fa-plus"></i>
                               </button>
                               <button
-                                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
-                                disabled
+                                // disabled
                                 onClick={() => {
-                                  openPersonModal(["Nome","Email","Instituição"], ["", "", ""], "pesquisadorColeta");
+                                  openPersonModal(["Nome","Email","Instituição"], [pesqColeta.nome, pesqColeta.email, pesqColeta.instituicao], "pesquisadorColeta", pesqColeta.idpesquisador);
                                 }}
                               >
                                 <i className="fas fa-pencil-alt" />
@@ -3543,6 +3663,7 @@ export default function MicroContent(props) {
                                 placeholder={"Select an option"}
                                 options={hospVegList}
                                 defaultValue={hospVeg}
+                                value={hospVeg}
                                 onChange={setHospVeg}
                                 getOptionLabel={(options) => options["hospedeiro"]}
                                 getOptionValue={(options) =>
@@ -3555,17 +3676,17 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Hospedeiro vegetal", "", "hospedeiro_veg");
+                                      openModal("Hospedeiro vegetal", "", "hospedeiro_veg", null);
                                     }}
                                   >
                                     <i className="fas fa-plus"></i>
                                   </button>
                                   <button
-                                    className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
-                                    disabled
+                                    // disabled
                                     onClick={() => {
-                                      openModal("Hospedeiro vegetal", "", "hospedeiro");
+                                      openModal("Hospedeiro vegetal", hospVeg.hospedeiro, "hospedeiro_veg", hospVeg.idhospedeiro);
                                     }}
                                   >
                                     <i className="fas fa-pencil-alt" />
@@ -3592,6 +3713,7 @@ export default function MicroContent(props) {
                                 placeholder={"Select an option"}
                                 options={substratoList}
                                 defaultValue={substrato}
+                                value={substrato}
                                 onChange={setSubstrato}
                                 getOptionLabel={(options) => options["substrato"]}
                                 getOptionValue={(options) =>
@@ -3605,17 +3727,17 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Substrato", "", "substrato");
+                                      openModal("Substrato", "", "substrato", null);
                                     }}
                                   >
                                     <i className="fas fa-plus"></i>
                                   </button>
                                   <button
-                                    className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
-                                    disabled
+                                    // disabled
                                     onClick={() => {
-                                      openModal("Substrato", "", "substrato");
+                                      openModal("Substrato", substrato.substrato, "substrato", substrato.idsubstrato);
                                     }}
                                   >
                                     <i className="fas fa-pencil-alt" />
@@ -3699,6 +3821,7 @@ export default function MicroContent(props) {
                                 placeholder={"Select an option"}
                                 options={hospAnList}
                                 defaultValue={hospAn}
+                                value={hospAn}
                                 onChange={setHospAn}
                                 getOptionLabel={(options) => options["hospedeiro"]}
                                 getOptionValue={(options) =>
@@ -3712,17 +3835,17 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Hospedeiro animal", "", "hospedeiro_ani");
+                                      openModal("Hospedeiro animal", "", "hospedeiro_ani", null);
                                     }}
                                   >
                                     <i className="fas fa-plus"></i>
                                   </button>
                                   <button
-                                    className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
-                                    disabled
+                                    // disabled
                                     onClick={() => {
-                                      openModal("Hospedeiro animal", "","hospedeiro");
+                                      openModal("Hospedeiro animal", hospAn.hospedeiro,"hospedeiro_ani", hospAn.idhospedeiro);
                                     }}
                                   >
                                     <i className="fas fa-pencil-alt" />
@@ -3749,6 +3872,7 @@ export default function MicroContent(props) {
                                 placeholder={"Select an option"}
                                 options={sitioAnatList}
                                 defaultValue={sitioAnat}
+                                value={sitioAnat}
                                 onChange={setSitioAnat}
                                 getOptionLabel={(options) => options["sitio"]}
                                 getOptionValue={(options) =>
@@ -3762,17 +3886,17 @@ export default function MicroContent(props) {
                                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={() => {
-                                      openModal("Sítio anatômico", "", "sitio");
+                                      openModal("Sítio anatômico", "", "sitio", null);
                                     }}
                                   >
                                     <i className="fas fa-plus"></i>
                                   </button>
                                   <button
-                                    className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                     type="button"
-                                    disabled
+                                    // disabled
                                     onClick={() => {
-                                      openModal("Sítio anatômico", "", "sitio");
+                                      openModal("Sítio anatômico", sitioAnat.sitio, "sitio", sitioAnat.idsitio);
                                     }}
                                   >
                                     <i className="fas fa-pencil-alt" />
@@ -4695,7 +4819,6 @@ export default function MicroContent(props) {
                           >
                             Anexos
                           </label>
-                          
                           <MultipleDropzonePDF setFileList={setAnexos}/>
                         </div>
                       </div>

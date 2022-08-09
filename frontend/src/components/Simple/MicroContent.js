@@ -600,224 +600,167 @@ export default function MicroContent(props) {
   }
   // console.log(origCode);
 
-
   useEffect(() => {
+    const fetchData = async () => {
     //0dominio
     if (dominioList.length === 0) {
-      axios.get(baseurl+"dominio")
-        .then(response => {
-          // console.log(response.data);
-          setDominioList(response.data);
-          if (dominio.iddominio) {
-            setDominio(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"dominio")
+      setDominioList(response)
+      if (dominio.iddominio) {
+        setDominio(null);
+      }
     }
     //0grupo_pesquisa
     if (grupo_pesquisaList.length === 0) {
-      axios.get(baseurl+"grupo_pesquisa")
-        .then(response => {
-          // console.log(response.data);
-          setGrupoPesquisaList(response.data);
+      let response = await axios.get(baseurl+"grupo_pesquisa")
+          setGrupoPesquisaList(response);
           if (grupo_pesquisa.idgrupo_pesquisa) {
             setGrupoPesquisa(null);
           }
-        }, error => {
-          // console.log(error);
-        });
     }
     //0referencia
     if (referenciaList.length === 0) {
-      axios.get(baseurl+"referencia")
-        .then(response => {
-          // console.log(response.data);
-          setReferenciaList(response.data);
-          if (refTaxa.idreferencia) {
-            setRefTaxa(null);
-          }
-          if (refTemp.idreferencia) {
-            setRefTemp(null);
-          }
-          if (refAdd.idreferencia) {
-            setRefAdd(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"referencia")
+      setReferenciaList(response);
+      if (refTaxa.idreferencia) {
+        setRefTaxa(null);
+      }
+      if (refTemp.idreferencia) {
+        setRefTemp(null);
+      }
+      if (refAdd.idreferencia) {
+        setRefAdd(null);
+      }
     }
     //0pesquisador
     if (pesquisadorList.length === 0) {
-      axios.get(baseurl+"pesquisador")
-        .then(response => {
-          // console.log(response.data);
-          setPesquisadorList(response.data);
-          if (pesqColeta.idpesquisador) {
-            setPesqColeta(null);
-          }
-          if (pesqIsola.idpesquisador) {
-            setPesqIsola(null);
-          }
-          if (pesqId.idpesquisador) {
-            setPesqId(null);
-          }
-          if (pesqPres.idpesquisador) {
-            setPesqPres(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"pesquisador")
+      setPesquisadorList(response);
+      if (pesqColeta.idpesquisador) {
+        setPesqColeta(null);
+      }
+      if (pesqIsola.idpesquisador) {
+        setPesqIsola(null);
+      }
+      if (pesqId.idpesquisador) {
+        setPesqId(null);
+      }
+      if (pesqPres.idpesquisador) {
+        setPesqPres(null);
+      }
     }
     //0cor
     if (corList.length === 0) {
-      axios.get(baseurl+"cor")
-        .then(response => {
-          // console.log(response.data);
-          setCorList(response.data);
-          if (corColonia.idcor) {
-            setCorColonia(null);
-          }
-          if (corExu.idcor) {
-            setCorExu(null);
-          }
-          if (corPig.idcor) {
-            setCorPig(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"cor")
+      setCorList(response);
+      if (corColonia.idcor) {
+        setCorColonia(null);
+      }
+      if (corExu.idcor) {
+        setCorExu(null);
+      }
+      if (corPig.idcor) {
+        setCorPig(null);
+      }
     }
     //0textura
     if (texturaList.length === 0) {
-      axios.get(baseurl+"textura")
-        .then(response => {
-          // console.log(response.data);
-          setTexturaList(response.data);
-          if (textura.idtextura) {
-            setTextura(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"textura")
+      setTexturaList(response);
+      if (textura.idtextura) {
+        setTextura(null);
+      }
     }
     //0unidade
     if (texturaList.length === 0) {
-      axios.get(baseurl+"unidade")
-        .then(response => {
-          // console.log(response.data);
-          setUnidadeList(response.data);
-          if (unidade.idunidade) {
-            setUnidade(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"unidade")
+      setUnidadeList(response);
+      if (unidade.idunidade) {
+        setUnidade(null);
+      }
     }
     //0borda
     if (bordaList.length === 0) {
-      axios.get(baseurl+"borda")
-        .then(response => {
-          // console.log(response.data);
-          setBordaList(response.data);
-          if (borda.idborda) {
-            setBorda(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"borda")
+      setBordaList(response);
+      if (borda.idborda) {
+        setBorda(null);
+      }
     }
     //0relevo
     if (relevoList.length === 0) {
-      axios.get(baseurl+"relevo")
-        .then(response => {
-          // console.log(response.data);
-          setRelevoList(response.data);
-          if (relevo.idrelevo) {
-            setRelevo(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"relevo")
+      setRelevoList(response);
+      if (relevo.idrelevo) {
+        setRelevo(null);
+      }
     }
     //0exudato
     if (exudatoList.length === 0) {
-      axios.get(baseurl+"exudato")
-        .then(response => {
-          // console.log(response.data);
-          setExudatoList(response.data);
-          if (exudato.idexudato) {
-            setExudato(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"exudato")
+      setExudatoList(response);
+      if (exudato.idexudato) {
+        setExudato(null);
+      }
     }
     //0caracMicro
     if (caracMicroList.length === 0) {
-      axios.get(baseurl+"carac_micromorfologica")
-        .then(response => {
-          // console.log(response.data);
-          setCaracMicroList(response.data);
-          if (caracMicro.idcarac_micromorfologica) {
-            setCaracMicro(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"carac_micromorfologica")
+      setCaracMicroList(response);
+      if (caracMicro.idcarac_micromorfologica) {
+        setCaracMicro(null);
+      }
     }
     //0pigmento
     if (pigmentoList.length === 0) {
-      axios.get(baseurl+"pigmento")
-        .then(response => {
-          // console.log(response.data);
-          setPigmentoList(response.data);
-          if (pigmento.idpigmento) {
-            setPigmento(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"pigmento")
+      setPigmentoList(response);
+      if (pigmento.idpigmento) {
+        setPigmento(null);
+      }
     }
     //0laboratorio
     if (labList.length === 0) {
-      axios.get(baseurl+"laboratorio")
-        .then(response => {
-          // console.log(response.data);
-          setLabList(response.data);
-          if (laboratorio.idlaboratorio) {
-            setLaboratorio(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"laboratorio")
+      setLabList(response);
+      if (laboratorio.idlaboratorio) {
+        setLaboratorio(null);
+      }
     }
     //0metodo_preservacao
     if (metodo_preservacaoList.length === 0) {
-      axios.get(baseurl+"metodo_preservacao")
-        .then(response => {
-          // console.log(response.data);
-          setMetodoPreservacaoList(response.data);
-          if (metodo_preservacao.idmetodo_preservacao) {
-            setMetodoPreservacao(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"metodo_preservacao")
+      setMetodoPreservacaoList(response);
+      if (metodo_preservacao.idmetodo_preservacao) {
+        setMetodoPreservacao(null);
+      }
     }
     //0sub_colecao
     if (sub_colecaoList.length === 0) {
-      axios.get(baseurl+"sub_colecao")
-        .then(response => {
-          // console.log(response.data);
-          setSub_colecaoList(response.data);
-          if (sub_colecao.idsub_colecao) {
-            setSub_colecao(null);
-          }
-        }, error => {
-          // console.log(error);
-        });
+      let response = await axios.get(baseurl+"sub_colecao")
+      setSub_colecaoList(response);
+      if (sub_colecao.idsub_colecao) {
+        setSub_colecao(null);
+      }
     }
+    console.log(props)
+    // ORIGEM
+    setDataReg(props.micro.microorganismo_idmicroorganismo_microorganismo.data_reg_col_orig)
+    setOrigCode(props.micro.microorganismo_idmicroorganismo_microorganismo.cod_orig)
+    setOrigHist(props.micro.microorganismo_idmicroorganismo_microorganismo.hist_orig)
+    setDataCol(props.micro.microorganismo_idmicroorganismo_microorganismo.data_colet)
+    setPesqColeta({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.instituicao})
+    setHospVeg({idhospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.idhospedeiro, hospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.hospedeiro})
+    setRegExiHosp(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.registro)
+    setHerbDeposit(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.herbario)
+    setCodHerb(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.codigo)
+    setHabitatInfo(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.info)
+    setOrigGeo(props.micro.microorganismo_idmicroorganismo_microorganismo.origem_geo)
+
+    setDataPrv(props.micro.data_preserv)
+    setBorda({idborda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.idborda, borda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.borda})
+  };
+  fetchData();
   }, [])
 
   useEffect(() => {
@@ -3932,6 +3875,7 @@ export default function MicroContent(props) {
                             type="date"
                             onChange={e=>setDataReg(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={dataReg}
                           />
                         </div>
                       </div>
@@ -3948,7 +3892,8 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setOrigCode(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
+                            // defaultValue={origCode}
+                            value={origCode}
                           />
                         </div>
                         <div className="relative w-full mb-3">
@@ -3963,7 +3908,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setOrigHist(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
+                            value={origHist}
                           />
                         </div>
                       </div>
@@ -3980,6 +3925,7 @@ export default function MicroContent(props) {
                             type="date"
                             onChange={e=>setDataCol(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={dataCol}
                           />
                         </div>
                       </div>
@@ -4173,7 +4119,7 @@ export default function MicroContent(props) {
                                 type="text"
                                 onChange={e=>setRegExiHosp(e.target.value)}
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                defaultValue=""
+                                value={regExiHosp}
                               />
                             </div>
                           </div>
@@ -4191,7 +4137,7 @@ export default function MicroContent(props) {
                                 type="text"
                                 onChange={e=>setHerbDeposit(e.target.value)}
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                defaultValue=""
+                                value={herbDeposit}
                               />
                             </div>
                           </div>
@@ -4209,7 +4155,7 @@ export default function MicroContent(props) {
                                 type="text"
                                 onChange={e=>setCodHerb(e.target.value)}
                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                defaultValue=""
+                                value={codHerb}
                               />
                             </div>
                           </div>
@@ -4333,7 +4279,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setHabitatInfo(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
+                            value={habitatInfo}
                           />
                         </div>
                       </div>
@@ -4350,7 +4296,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setOrigGeo(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
+                            value={origGeo}
                           />
                         </div>
                       </div>

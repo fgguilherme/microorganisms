@@ -605,7 +605,9 @@ export default function MicroContent(props) {
     //0dominio
     if (dominioList.length === 0) {
       let response = await axios.get(baseurl+"dominio")
-      setDominioList(response)
+      setDominioList(response.data)
+      console.log(response)
+      console.log(dominioList)
       if (dominio.iddominio) {
         setDominio(null);
       }
@@ -613,7 +615,7 @@ export default function MicroContent(props) {
     //0grupo_pesquisa
     if (grupo_pesquisaList.length === 0) {
       let response = await axios.get(baseurl+"grupo_pesquisa")
-          setGrupoPesquisaList(response);
+          setGrupoPesquisaList(response.data);
           if (grupo_pesquisa.idgrupo_pesquisa) {
             setGrupoPesquisa(null);
           }
@@ -621,7 +623,7 @@ export default function MicroContent(props) {
     //0referencia
     if (referenciaList.length === 0) {
       let response = await axios.get(baseurl+"referencia")
-      setReferenciaList(response);
+      setReferenciaList(response.data);
       if (refTaxa.idreferencia) {
         setRefTaxa(null);
       }
@@ -635,7 +637,7 @@ export default function MicroContent(props) {
     //0pesquisador
     if (pesquisadorList.length === 0) {
       let response = await axios.get(baseurl+"pesquisador")
-      setPesquisadorList(response);
+      setPesquisadorList(response.data);
       if (pesqColeta.idpesquisador) {
         setPesqColeta(null);
       }
@@ -652,7 +654,7 @@ export default function MicroContent(props) {
     //0cor
     if (corList.length === 0) {
       let response = await axios.get(baseurl+"cor")
-      setCorList(response);
+      setCorList(response.data);
       if (corColonia.idcor) {
         setCorColonia(null);
       }
@@ -666,7 +668,7 @@ export default function MicroContent(props) {
     //0textura
     if (texturaList.length === 0) {
       let response = await axios.get(baseurl+"textura")
-      setTexturaList(response);
+      setTexturaList(response.data);
       if (textura.idtextura) {
         setTextura(null);
       }
@@ -674,7 +676,7 @@ export default function MicroContent(props) {
     //0unidade
     if (texturaList.length === 0) {
       let response = await axios.get(baseurl+"unidade")
-      setUnidadeList(response);
+      setUnidadeList(response.data);
       if (unidade.idunidade) {
         setUnidade(null);
       }
@@ -682,7 +684,7 @@ export default function MicroContent(props) {
     //0borda
     if (bordaList.length === 0) {
       let response = await axios.get(baseurl+"borda")
-      setBordaList(response);
+      setBordaList(response.data);
       if (borda.idborda) {
         setBorda(null);
       }
@@ -690,7 +692,7 @@ export default function MicroContent(props) {
     //0relevo
     if (relevoList.length === 0) {
       let response = await axios.get(baseurl+"relevo")
-      setRelevoList(response);
+      setRelevoList(response.data);
       if (relevo.idrelevo) {
         setRelevo(null);
       }
@@ -698,7 +700,7 @@ export default function MicroContent(props) {
     //0exudato
     if (exudatoList.length === 0) {
       let response = await axios.get(baseurl+"exudato")
-      setExudatoList(response);
+      setExudatoList(response.data);
       if (exudato.idexudato) {
         setExudato(null);
       }
@@ -706,7 +708,7 @@ export default function MicroContent(props) {
     //0caracMicro
     if (caracMicroList.length === 0) {
       let response = await axios.get(baseurl+"carac_micromorfologica")
-      setCaracMicroList(response);
+      setCaracMicroList(response.data);
       if (caracMicro.idcarac_micromorfologica) {
         setCaracMicro(null);
       }
@@ -714,7 +716,7 @@ export default function MicroContent(props) {
     //0pigmento
     if (pigmentoList.length === 0) {
       let response = await axios.get(baseurl+"pigmento")
-      setPigmentoList(response);
+      setPigmentoList(response.data);
       if (pigmento.idpigmento) {
         setPigmento(null);
       }
@@ -722,7 +724,7 @@ export default function MicroContent(props) {
     //0laboratorio
     if (labList.length === 0) {
       let response = await axios.get(baseurl+"laboratorio")
-      setLabList(response);
+      setLabList(response.data);
       if (laboratorio.idlaboratorio) {
         setLaboratorio(null);
       }
@@ -730,7 +732,7 @@ export default function MicroContent(props) {
     //0metodo_preservacao
     if (metodo_preservacaoList.length === 0) {
       let response = await axios.get(baseurl+"metodo_preservacao")
-      setMetodoPreservacaoList(response);
+      setMetodoPreservacaoList(response.data);
       if (metodo_preservacao.idmetodo_preservacao) {
         setMetodoPreservacao(null);
       }
@@ -738,27 +740,71 @@ export default function MicroContent(props) {
     //0sub_colecao
     if (sub_colecaoList.length === 0) {
       let response = await axios.get(baseurl+"sub_colecao")
-      setSub_colecaoList(response);
+      setSub_colecaoList(response.data);
       if (sub_colecao.idsub_colecao) {
         setSub_colecao(null);
       }
     }
     console.log(props)
     // ORIGEM
-    setDataReg(props.micro.microorganismo_idmicroorganismo_microorganismo.data_reg_col_orig)
-    setOrigCode(props.micro.microorganismo_idmicroorganismo_microorganismo.cod_orig)
-    setOrigHist(props.micro.microorganismo_idmicroorganismo_microorganismo.hist_orig)
-    setDataCol(props.micro.microorganismo_idmicroorganismo_microorganismo.data_colet)
-    setPesqColeta({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.instituicao})
-    setHospVeg({idhospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.idhospedeiro, hospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.hospedeiro})
-    setRegExiHosp(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.registro)
-    setHerbDeposit(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.herbario)
-    setCodHerb(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.codigo)
-    setHabitatInfo(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.info)
-    setOrigGeo(props.micro.microorganismo_idmicroorganismo_microorganismo.origem_geo)
+    if(props.micro){
 
-    setDataPrv(props.micro.data_preserv)
-    setBorda({idborda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.idborda, borda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.borda})
+      //ORIGEM
+      setDataReg(props.micro.microorganismo_idmicroorganismo_microorganismo.data_reg_col_orig)
+      setOrigCode(props.micro.microorganismo_idmicroorganismo_microorganismo.cod_orig)
+      setOrigHist(props.micro.microorganismo_idmicroorganismo_microorganismo.hist_orig)
+      setDataCol(props.micro.microorganismo_idmicroorganismo_microorganismo.data_colet)
+      setPesqColeta({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.instituicao})
+      setHospVeg({idhospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.idhospedeiro, hospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.hospedeiro})
+      setRegExiHosp(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.registro)
+      setHerbDeposit(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.herbario)
+      setCodHerb(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.codigo)
+      setHabitatInfo(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.info)
+      setOrigGeo(props.micro.microorganismo_idmicroorganismo_microorganismo.origem_geo)
+      setOrigLat(props.micro.microorganismo_idmicroorganismo_microorganismo.lat)
+      setOrigLon(props.micro.microorganismo_idmicroorganismo_microorganismo.lon)
+      setOrigDatum(props.micro.microorganismo_idmicroorganismo_microorganismo.datum)
+      setOrigPrecisao(props.micro.microorganismo_idmicroorganismo_microorganismo.precisao)
+      setOrigComent(props.micro.microorganismo_idmicroorganismo_microorganismo.coment_orig)
+      
+      //ISOLAMENTO
+      setDataIso(props.micro.microorganismo_idmicroorganismo_microorganismo.data_isol)
+      setPesqIsola({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.instituicao})
+      setIsoInfo(props.micro.microorganismo_idmicroorganismo_microorganismo.info_isolamento)
+      setDataIdn(props.micro.microorganismo_idmicroorganismo_microorganismo.data_ident)
+      setPesqId({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.instituicao})
+      setIsoComment(props.micro.microorganismo_idmicroorganismo_microorganismo.coment_isolamento)
+      
+      //CARACTERISTICAS
+      setBorda({idborda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.idborda, borda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.borda})
+      setCorColonia({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_colonia_cor.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_colonia_cor.cor})
+      setTextura({idtextura: props.micro.microorganismo_idmicroorganismo_microorganismo.textura_idtextura_textura.idtextura, textura: props.micro.microorganismo_idmicroorganismo_microorganismo.textura_idtextura_textura.textura})
+      setRelevo({idrelevo: props.micro.microorganismo_idmicroorganismo_microorganismo.relevo_idrelevo_relevo.idrelevo, relevo: props.micro.microorganismo_idmicroorganismo_microorganismo.relevo_idrelevo_relevo.relevo})
+      setExudato({idexudato: props.micro.microorganismo_idmicroorganismo_microorganismo.exudato_idexudato_exudato.idexudato, exudato: props.micro.microorganismo_idmicroorganismo_microorganismo.exudato_idexudato_exudato.exudato})
+      setCorExu({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_exudato_cor.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_exudato_cor.cor})
+      setPigmento({idpigmento: props.micro.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento.idpigmento, pigmento: props.micro.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento.pigmento})
+      setCorPig({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_pigmento_cor?.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_pigmento_cor?.cor})
+      setTempCrescimento(props.micro.microorganismo_idmicroorganismo_microorganismo.temp_crescimento)
+      // setRefTemp(props.micro.microorganismo_idmicroorganismo_microorganismo)
+      // setCaracMicro(props.micro.microorganismo_idmicroorganismo_microorganismo)
+      
+      //MOLECULAR
+      setLaboratorio({idlaboratorio: props.micro.microorganismo_idmicroorganismo_microorganismo.laboratorio_mol_laboratorio.idlaboratorio, laboratorio: props.micro.microorganismo_idmicroorganismo_microorganismo.laboratorio_mol_laboratorio.laboratorio})
+      setDataMol(props.micro.microorganismo_idmicroorganismo_microorganismo.data_mol)
+      setMolCod(props.micro.microorganismo_idmicroorganismo_microorganismo.cod_mol)
+      setMolSeq(props.micro.microorganismo_idmicroorganismo_microorganismo.sequencia_mol)
+      setMolMeta(props.micro.microorganismo_idmicroorganismo_microorganismo.meta_mol)
+      
+      //LOCALIZAÇÃO
+      setDataPrv(props.micro.data_preserv) //Corrigir formato da data
+      
+      //OUTROS
+      setComments(props.micro.comentarios)
+
+
+
+      
+    }
   };
   fetchData();
   }, [])
@@ -4313,7 +4359,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setOrigLat(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
+                            value={origLat}
                           />
                         </div>
                       </div>
@@ -4330,7 +4376,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setOrigLon(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
+                            value={origLon}
                           />
                         </div>
                       </div>
@@ -4347,7 +4393,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setOrigDatum(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
+                            value={origDatum}
                           />
                         </div>
                       </div>
@@ -4364,7 +4410,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setOrigPrecisao(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
+                            value={origPrecisao}
                           />
                         </div>
                       </div>
@@ -4381,7 +4427,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setOrigComent(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
+                            value={origComent}
                           />
                         </div>
                       </div>
@@ -4404,6 +4450,7 @@ export default function MicroContent(props) {
                             type="date"
                             onChange={e=>setDataIso(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={dataIso}
                           />
                         </div>
                       </div>
@@ -4466,7 +4513,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setIsoInfo(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue=""
+                            value={isoInfo}
                           />
                         </div>
                       </div>
@@ -4483,6 +4530,7 @@ export default function MicroContent(props) {
                             type="date"
                             onChange={e=>setDataIdn(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={dataIdn}
                           />
                         </div>
                       </div>
@@ -4545,6 +4593,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setIsoComment(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={isoComment}
                           />
                         </div>
                       </div>
@@ -4942,6 +4991,7 @@ export default function MicroContent(props) {
                             type="number"
                             onChange={e=>setTempCrescimento(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={tempCrescimento}
                           />
                         </div>
                       </div>
@@ -5130,6 +5180,7 @@ export default function MicroContent(props) {
                             type="date"
                             onChange={e=>setDataMol(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={dataMol}
                           />
                         </div>
                       </div>
@@ -5146,6 +5197,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setMolCod(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={molCod}
                           />
                         </div>
                       </div>
@@ -5162,6 +5214,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setMolSeq(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={molSeq}
                           />
                         </div>
                       </div>
@@ -5178,6 +5231,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setMolMeta(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={molMeta}
                           />
                         </div>
                       </div>
@@ -5538,6 +5592,7 @@ export default function MicroContent(props) {
                             type="date"
                             onChange={e=>setDataPrv(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={dataPrv}
                           />
                         </div>
                       </div>
@@ -5655,6 +5710,7 @@ export default function MicroContent(props) {
                             type="text"
                             onChange={e=>setComments(e.target.value)}
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={comments}
                           />
                         </div>
                       </div>

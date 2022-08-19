@@ -20,6 +20,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: 0
+    },
+    instituicao: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    nome: {
+      type: DataTypes.STRING(255),
+      allowNull: false
     }
   }, {
     sequelize,

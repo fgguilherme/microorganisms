@@ -243,6 +243,8 @@ export default function MicroContent(props) {
 
   const alert = useAlert();
 
+  const [tempTaxa, setTempTaxa] = useState({})
+
 
   async function saveMicro(e){
     if(variedade?.idvariedade == undefined){
@@ -751,20 +753,70 @@ export default function MicroContent(props) {
     console.log(props)
     // ORIGEM
     if(props.micro){
-
       //TAXA
-      // setDominio()
-      // setReino()
-      // setFilo()
-      // setClasse()
-      // setOrdem()
-      // setFamilia()
-      // setGenero()
-      // setEspecie()
-      // setSubstrato()
-      // setVariedade()
-      // setRefTaxa()
-      setStatus(props.micro.microorganismo_idmicroorganismo_microorganismo.status)
+      
+      setStatus(statusList.find(status => status.idstatus === props.micro.microorganismo_idmicroorganismo_microorganismo.status))
+
+      //0variedade
+      axios.get(baseurl+"variedade/"+props?.micro.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade)
+      .then(response => {
+        console.log(response.data)
+        setTempTaxa(response.data)
+        setDominio({iddominio: response.data.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.reino_idreino_reino.dominio_iddominio_dominio.iddominio, dominio: response.data.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.reino_idreino_reino.dominio_iddominio_dominio.dominio})
+        // setVariedade(response.data)
+      }, error => {
+        // console.log(error);
+      });
+      // console.log(props)
+      
+      //0referencia
+      axios.get(baseurl+"referencia/search",{params: {
+        "idmicroorganismo":props?.micro.microorganismo_idmicroorganismo_microorganismo.idmicroorganismo,
+        "idrepique":props?.micro.idrepique
+      }})
+      .then(response => {
+        console.log(response.data)
+        let tmpTax = []
+        let tmpRep = []
+        let tmpTemp = []
+        response.data.repq_ref.forEach(element => {
+          tmpRep.push({referencia: element.referencia_idreferencia_referencium.referencia, idreferencia: element.referencia_idreferencia_referencium.idreferencia})
+        });
+        response.data.taxa_ref.forEach(element => {
+          tmpTax.push({referencia: element.referencia_idreferencia_referencium.referencia, idreferencia: element.referencia_idreferencia_referencium.idreferencia})
+        });
+        response.data.temp_ref.forEach(element => {
+          tmpTemp.push({referencia: element.referencia_idreferencia_referencium.referencia, idreferencia: element.referencia_idreferencia_referencium.idreferencia})
+        });
+        setRefTaxa(tmpTax)
+        setRefTemp(tmpTemp)
+        setRefAdd(tmpRep)
+      }, error => {
+        // console.log(error);
+      });
+      //0caracMicro
+      axios.get(baseurl+"microorganismo_has_carac_micromorfologica/search",{params: {
+        "microorganismo_idmicroorganismo":props?.micro.microorganismo_idmicroorganismo_microorganismo.idmicroorganismo,
+      }})
+        .then(response => {
+          console.log(response.data)
+          let cm = []
+          response.data.forEach(element => {
+            cm.push({carac_micromorfologica: element.carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologica.carac_micromorfologica, idcarac_micromorfologica: element.carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologica.idcarac_micromorfologica})
+          });
+          setCaracMicro(cm)
+          //setCaracMicro(response.data)
+          // console.log("CUEN")
+        }, error => {
+          // console.log(error);
+        });
+
+      // .then(response => {
+      //   console.log(response.data)
+      //   // setRefTaxa(repq_ref[0].referencia_idreferencia_referencium.idreferencia)
+      // }, error => {
+      //   // console.log(error);
+      // });
 
       //ORIGEM
       setDataReg(props.micro.microorganismo_idmicroorganismo_microorganismo?.data_reg_col_orig)
@@ -821,8 +873,8 @@ export default function MicroContent(props) {
       
       //LOCALIZAÇÃO
       // setSub_colecao()
-      // setGrupoPesquisa()
-      // setUnidade()
+      setGrupoPesquisa()
+      setUnidade()
       // setArmario()
       // setPrateleira()
       // setLote()
@@ -858,6 +910,9 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setReinoList(response.data);
+            if(tempTaxa.sub_especie_idsub_especie_sub_especie){
+              setReino({idreino: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.reino_idreino_reino.idreino, reino: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.reino_idreino_reino.reino})
+            }
           }, error => {
             // console.log(error);
           });
@@ -882,6 +937,9 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setFiloList(response.data);
+            if(tempTaxa.sub_especie_idsub_especie_sub_especie){
+              setFilo({idfilo: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.idfilo, filo: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.filo})
+            }
           }, error => {
             // console.log(error);
           });
@@ -906,6 +964,9 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setClasseList(response.data);
+            if(tempTaxa.sub_especie_idsub_especie_sub_especie){
+              setClasse({idclasse: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.idclasse, classe: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.classe})
+            }
           }, error => {
             // console.log(error);
           });
@@ -930,6 +991,9 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setOrdemList(response.data);
+            if(tempTaxa.sub_especie_idsub_especie_sub_especie){
+              setOrdem({idordem: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.idordem, ordem: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.ordem})
+            }
           }, error => {
             // console.log(error);
           });
@@ -954,6 +1018,9 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setFamiliaList(response.data);
+            if(tempTaxa.sub_especie_idsub_especie_sub_especie){
+              setFamilia({idfamilia: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.idfamilia, familia: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.familia})
+            }
           }, error => {
             // console.log(error);
           });
@@ -978,6 +1045,9 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setGeneroList(response.data);
+            if(tempTaxa.sub_especie_idsub_especie_sub_especie){
+              setGenero({idgenero: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.idgenero, genero: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.genero})
+            }
           }, error => {
             // console.log(error);
           });
@@ -1002,6 +1072,9 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setEspecieList(response.data);
+            if(tempTaxa.sub_especie_idsub_especie_sub_especie){
+              setEspecie({idespecie: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.idespecie, especie: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.especie, autor: tempTaxa.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.autor})
+            }
           }, error => {
             // console.log(error);
           });
@@ -1026,6 +1099,9 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setSub_especieList(response.data);
+            if(tempTaxa.sub_especie_idsub_especie_sub_especie){
+              setSub_especie({idsub_especie: tempTaxa.sub_especie_idsub_especie_sub_especie.idsub_especie, sub_especie: tempTaxa.sub_especie_idsub_especie_sub_especie.sub_especie, autor: tempTaxa.sub_especie_idsub_especie_sub_especie.autor})
+            }
           }, error => {
             // console.log(error);
           });
@@ -1050,6 +1126,10 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setVariedadeList(response.data);
+            if(tempTaxa.sub_especie_idsub_especie_sub_especie){
+              setVariedade({idvariedade: tempTaxa.idvariedade, variedade: tempTaxa.variedade, autor: tempTaxa.autor})
+              setTempTaxa({})
+            }
           }, error => {
             // console.log(error);
           });
@@ -5050,6 +5130,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={referenciaList}
                             defaultValue={refTemp}
+                            value={refTemp}
                             isMulti
                             onChange={setRefTemp}
                             getOptionLabel={(options) => options["referencia"]}
@@ -5097,6 +5178,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={caracMicroList}
                             defaultValue={caracMicro}
+                            value={caracMicro}
                             isMulti
                             onChange={setCaracMicro}
                             getOptionLabel={(options) => options["carac_micromorfologica"]}
@@ -5803,6 +5885,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={referenciaList}
                             defaultValue={refAdd}
+                            value={refAdd}
                             isMulti
                             onChange={setRefAdd}
                             getOptionLabel={(options) => options["referencia"]}

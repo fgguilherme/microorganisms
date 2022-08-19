@@ -771,16 +771,16 @@ export default function MicroContent(props) {
       setOrigCode(props.micro.microorganismo_idmicroorganismo_microorganismo?.cod_orig)
       setOrigHist(props.micro.microorganismo_idmicroorganismo_microorganismo?.hist_orig)
       setDataCol(props.micro.microorganismo_idmicroorganismo_microorganismo?.data_colet)
-      setPesqColeta({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.instituicao})
-      // setHabitat(idhabitat: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.idhabitat)
-      setHospVeg({idhospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.hospedeiro_idhospedeiro_hospedeiro?.idhospedeiro, hospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.hospedeiro})
+      setPesqColeta({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.instituicao})
+      setHabitat(habitatList.find(habitat => habitat.idhabitat == props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat))
+      setHospVeg({idhospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.hospedeiro_idhospedeiro_hospedeiro?.idhospedeiro, hospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.hospedeiro_idhospedeiro_hospedeiro?.hospedeiro})
       // setSubstrato()
       // setHospAn()
       // setSitioAnat()
-      setRegExiHosp(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.registro)
-      setHerbDeposit(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.herbario)
-      setCodHerb(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.codigo)
-      setHabitatInfo(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.info)
+      setRegExiHosp(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg?.registro)
+      setHerbDeposit(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg?.herbario)
+      setCodHerb(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg?.codigo)
+      setHabitatInfo(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.info)
       setOrigGeo(props.micro.microorganismo_idmicroorganismo_microorganismo.origem_geo)
       setOrigLat(props.micro.microorganismo_idmicroorganismo_microorganismo.lat)
       setOrigLon(props.micro.microorganismo_idmicroorganismo_microorganismo.lon)
@@ -790,20 +790,20 @@ export default function MicroContent(props) {
       
       //ISOLAMENTO
       setDataIso(props.micro.microorganismo_idmicroorganismo_microorganismo.data_isol)
-      setPesqIsola({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador?.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador?.instituicao})
+      setPesqIsola({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador?.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador?.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador?.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador?.instituicao})
       setIsoInfo(props.micro.microorganismo_idmicroorganismo_microorganismo.info_isolamento)
       setDataIdn(props.micro.microorganismo_idmicroorganismo_microorganismo.data_ident)
-      setPesqId({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.instituicao})
+      setPesqId({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador?.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador?.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador?.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador?.instituicao})
       setIsoComment(props.micro.microorganismo_idmicroorganismo_microorganismo.coment_isolamento)
       
       //CARACTERISTICAS
-      setCorColonia({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_colonia_cor.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_colonia_cor.cor})
-      setTextura({idtextura: props.micro.microorganismo_idmicroorganismo_microorganismo.textura_idtextura_textura.idtextura, textura: props.micro.microorganismo_idmicroorganismo_microorganismo.textura_idtextura_textura.textura})
-      setBorda({idborda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.idborda, borda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.borda})
-      setRelevo({idrelevo: props.micro.microorganismo_idmicroorganismo_microorganismo.relevo_idrelevo_relevo.idrelevo, relevo: props.micro.microorganismo_idmicroorganismo_microorganismo.relevo_idrelevo_relevo.relevo})
-      setExudato({idexudato: props.micro.microorganismo_idmicroorganismo_microorganismo.exudato_idexudato_exudato.idexudato, exudato: props.micro.microorganismo_idmicroorganismo_microorganismo.exudato_idexudato_exudato.exudato})
-      setCorExu({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_exudato_cor.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_exudato_cor.cor})
-      setPigmento({idpigmento: props.micro.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento.idpigmento, pigmento: props.micro.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento.pigmento})
+      setCorColonia({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_colonia_cor?.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_colonia_cor?.cor})
+      setTextura({idtextura: props.micro.microorganismo_idmicroorganismo_microorganismo.textura_idtextura_textura?.idtextura, textura: props.micro.microorganismo_idmicroorganismo_microorganismo.textura_idtextura_textura?.textura})
+      setBorda({idborda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda?.idborda, borda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda?.borda})
+      setRelevo({idrelevo: props.micro.microorganismo_idmicroorganismo_microorganismo.relevo_idrelevo_relevo?.idrelevo, relevo: props.micro.microorganismo_idmicroorganismo_microorganismo.relevo_idrelevo_relevo?.relevo})
+      setExudato({idexudato: props.micro.microorganismo_idmicroorganismo_microorganismo.exudato_idexudato_exudato?.idexudato, exudato: props.micro.microorganismo_idmicroorganismo_microorganismo.exudato_idexudato_exudato?.exudato})
+      setCorExu({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_exudato_cor?.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_exudato_cor?.cor})
+      setPigmento({idpigmento: props.micro.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento?.idpigmento, pigmento: props.micro.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento?.pigmento})
       setCorPig({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_pigmento_cor?.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_pigmento_cor?.cor})
       setTempCrescimento(props.micro.microorganismo_idmicroorganismo_microorganismo.temp_crescimento)
       // setRefTemp()
@@ -812,7 +812,7 @@ export default function MicroContent(props) {
       // setImagemMicro()
 
       //MOLECULAR
-      setLaboratorio({idlaboratorio: props.micro.microorganismo_idmicroorganismo_microorganismo.laboratorio_mol_laboratorio.idlaboratorio, laboratorio: props.micro.microorganismo_idmicroorganismo_microorganismo.laboratorio_mol_laboratorio.laboratorio})
+      setLaboratorio({idlaboratorio: props.micro.microorganismo_idmicroorganismo_microorganismo.laboratorio_mol_laboratorio?.idlaboratorio, laboratorio: props.micro.microorganismo_idmicroorganismo_microorganismo.laboratorio_mol_laboratorio?.laboratorio})
       setDataMol(props.micro.microorganismo_idmicroorganismo_microorganismo.data_mol)
       setMolCod(props.micro.microorganismo_idmicroorganismo_microorganismo.cod_mol)
       setMolSeq(props.micro.microorganismo_idmicroorganismo_microorganismo.sequencia_mol)
@@ -834,7 +834,7 @@ export default function MicroContent(props) {
       
       //OUTROS
       setComments(props.micro.comentarios)
-      setDoacao()
+      setDoacao(doacaoList.find(doacao => doacao.iddoacao === props.micro.disponivel))
       setImagemRepiq()
       setRefAdd()
 
@@ -4075,6 +4075,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={habitatList}
                             defaultValue={habitat}
+                            value={habitat}
                             onChange={setHabitat}
                             getOptionLabel={(options) => options["habitat"]}
                             getOptionValue={(options) => options["idhabitat"]}
@@ -5767,6 +5768,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={doacaoList}
                             defaultValue={doacao}
+                            value={doacao}
                             onChange={setDoacao}
                             getOptionLabel={(options) => options["doacao"]}
                             getOptionValue={(options) => options["iddoacao"]}

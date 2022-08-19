@@ -189,10 +189,10 @@ app.get("/", (req, res) => {
 
 // simple route
 app.post("/upload", upload.array('foto', maxFotos), (req, res) => {
-  console.log(req.body)
-  console.log(req.file)
-  console.log(req.files)
-  console.log(req.params)
+  // console.log(req.body)
+  // console.log(req.file)
+  // console.log(req.files)
+  // console.log(req.params)
   res.json({});
 });
 

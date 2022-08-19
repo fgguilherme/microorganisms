@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const baseurl = window.location.origin.toString() + "/api/"
+const baseurlImg = window.location.origin.toString()
 //0habitat
 const habitatList = [
   {
@@ -80,7 +81,47 @@ export default function MicroContentDetail(props) {
   const [referenciaRep, setReferenciaRep] = useState("");
   const [caracMicro, setCaracMicro] = useState("");
   const [metodoPrev, setMetodoPrev] = useState("");
+  const [imgRepique, setImgRepique] = useState([]);
+  const [imgMicro, setImgMicro] = useState([]);
+  const [imgMacro, setImgMacro] = useState([]);
+  // console.log(props.microorg)
   useEffect(() => {
+    axios.get(baseurl+"imagem_repique/search",{params: {
+      "repique_idrepique":props?.microorg.idrepique
+    }})
+      .then(response => {
+        let img = []
+        response.data.map(i => {
+          img.push(baseurlImg+i.imagem_idimagem_imagem.imagem)
+        })
+        setImgRepique(img)
+      }, error => {
+        // console.log(error);
+      });
+      axios.get(baseurl+"imagem_macro/search",{params: {
+        "microorganismo_idmicroorganismo":props?.microorg.idrepique
+      }})
+        .then(response => {
+          let img = []
+          response.data.map(i => {
+            img.push(baseurlImg+i.imagem_idimagem_imagem.imagem)
+          })
+          setImgMacro(img)
+        }, error => {
+          // console.log(error);
+        });
+        axios.get(baseurl+"imagem_micro/search",{params: {
+          "microorganismo_idmicroorganismo":props?.microorg.idrepique
+        }})
+          .then(response => {
+            let img = []
+            response.data.map(i => {
+              img.push(baseurlImg+i.imagem_idimagem_imagem.imagem)
+            })
+            setImgMicro(img)
+          }, error => {
+            // console.log(error);
+          });
     //0variedade
       axios.get(baseurl+"variedade/"+props?.microorg.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade)
         .then(response => {
@@ -109,12 +150,10 @@ export default function MicroContentDetail(props) {
             response.data.temp_ref.forEach(element => {
               tmpTemp.push(element.referencia_idreferencia_referencium.referencia)
             });
-            console.log(tmpTax, tmpRep, tmpTemp)
             setReferenciaTax(tmpTax.join(" - "))
             setReferenciaTemp(tmpTemp.join(" - "))
             setReferenciaRep(tmpRep.join(" - "))
             setReferencia(response.data)
-            console.log("CUEN")
           }, error => {
             // console.log(error);
           });
@@ -123,12 +162,10 @@ export default function MicroContentDetail(props) {
           "microorganismo_idmicroorganismo":props?.microorg.microorganismo_idmicroorganismo_microorganismo.idmicroorganismo,
         }})
           .then(response => {
-            console.log(response.data)
             let cm = []
             response.data.forEach(element => {
               cm.push(element.carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologica.carac_micromorfologica)
             });
-            console.log(cm)
             setCaracMicro(cm.join(" - "))
             //setCaracMicro(response.data)
             // console.log("CUEN")
@@ -889,9 +926,9 @@ export default function MicroContentDetail(props) {
                             htmlFor="grid-password"
                           >
                             
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.nome + " - " +
-                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.email + " - " +
-                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.instituicao }
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador?.nome + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador?.email + " - " +
+                             props?.microorg.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador?.instituicao }
                           </label>
                         </div>
                       </div>
@@ -981,7 +1018,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.cor_colonia_cor.cor}
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.cor_colonia_cor?.cor}
                           </label>
                         </div>
                       </div>
@@ -997,7 +1034,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.textura_idtextura_textura.textura}
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.textura_idtextura_textura?.textura}
                           </label>
                         </div>
                       </div>
@@ -1013,7 +1050,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.borda}
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda?.borda}
                           </label>
                         </div>
                       </div>
@@ -1029,7 +1066,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.relevo_idrelevo_relevo.relevo}
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.relevo_idrelevo_relevo?.relevo}
                           </label>
                         </div>
                       </div>
@@ -1045,7 +1082,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.exudato_idexudato_exudato.exudato}
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.exudato_idexudato_exudato?.exudato}
                           </label>
                         </div>
                       </div>
@@ -1077,7 +1114,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento.pigmento}
+                            {props?.microorg.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento?.pigmento}
                           </label>
                         </div>
                       </div>
@@ -1153,12 +1190,11 @@ export default function MicroContentDetail(props) {
                           >
                             Imagens macromorfológicas
                           </label>
-                          <label
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            htmlFor="grid-password"
-                          >
-                            {/* PIPOCA */}
-                          </label>
+                          {
+                            imgMacro.map((img, index) => {
+                                return <img src={img} alt="img" className="w-full h-full" />
+                            })
+                          }
                         </div>
                       </div>
                       <div className="w-full lg:w-12/12 px-4">
@@ -1169,12 +1205,11 @@ export default function MicroContentDetail(props) {
                           >
                             Imagens micromorfológicas
                           </label>
-                          <label
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            htmlFor="grid-password"
-                          >
-                            {/* PIPOCA */}
-                          </label>
+                          {
+                            imgMicro.map((img, index) => {
+                                return <img src={img} alt="img" className="w-full h-full" />
+                            })
+                          }
                         </div>
                       </div>
                     </div>
@@ -1495,12 +1530,11 @@ export default function MicroContentDetail(props) {
                           >
                             Imagens adicionais
                           </label>
-                          <label
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            htmlFor="grid-password"
-                          >
-                            {/* PIPOCA */}
-                          </label>
+                          {
+                            imgRepique.map((img, index) => {
+                                return <img src={img} alt="img" className="w-full h-full" />
+                            })
+                          }
                         </div>
                       </div>
                       <div className="w-full lg:w-12/12 px-4">

@@ -5,6 +5,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Element
 exports.create = async (req, res) => {
   let repique
+  // console.log(req.body);
   if(req.body.microorganismo_idmicroorganismo > 0){
     repique = await models.repique.create({
       microorganismo_idmicroorganismo:req.body.microorganismo_idmicroorganismo,
@@ -263,7 +264,7 @@ exports.findAll = (req, res) => {
       res.send(data);
     })
     .catch((err) => {
-      console.log(err)
+      // console.log(err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving Elements.",
@@ -335,7 +336,7 @@ exports.findAllParents = (req, res) => {
       res.send(data);
     })
     .catch((err) => {
-      console.log(err)
+      // console.log(err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving Elements.",
@@ -434,7 +435,7 @@ exports.deleteAll = (req, res) => {
 // Find all published Elements
 exports.findAllParam = (req, res) => {
   var p = req.query;
-  console.log(p)
+  // console.log(p)
   Element.findAll({ where: p , include: [
     { model: models.posicao, as: "posicao_idposicao_posicao",  include: { 
       model: models.lote, as: "lote_idlote_lote", include:{
@@ -500,7 +501,7 @@ exports.findAllParam = (req, res) => {
       res.send(data);
     })
     .catch((err) => {
-      console.log(err)
+      // console.log(err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving Elements.",

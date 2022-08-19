@@ -13,7 +13,7 @@ exports.create = (req, res) => {
 
   // Create a Element
   const element = req.body;
-  console.log(req.body)
+  // console.log(req.body)
 
   // Save Element in the database
   Element.create(element)
@@ -136,7 +136,7 @@ exports.deleteAll = (req, res) => {
 // Find all published Elements
 exports.findAllParam = (req, res) => {
     var p = req.query;
-    console.log(p)
+    // console.log(p)
     Element.findAll({ where: p })
     .then(data => {
       res.send(data);

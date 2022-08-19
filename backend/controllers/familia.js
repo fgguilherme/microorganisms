@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Element
 exports.create = (req, res) => {
   // Validate request
-  console.log(req.body)
+  // console.log(req.body)
   if (!req.body.familia || !req.body.ordem_idordem) {
     res.status(400).send({
       message: "Content missing mandatory data!"
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
 
   // Create a Element
   const element = req.body;
-  console.log(req.body)
+  // console.log(req.body)
 
   // Save Element in the database
   Element.create(element)

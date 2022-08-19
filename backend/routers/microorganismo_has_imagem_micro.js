@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _microorganismo_has_imagem_micro.deleteAll);
 
 
-  app.use('/microorganismo_has_imagem_micro', router);
+  app.use('/imagem_micro', router);
 
 }

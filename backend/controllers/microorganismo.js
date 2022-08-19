@@ -81,7 +81,7 @@ exports.create = async (req, res) => {
   // Create a Element
   const element = req.body;
   var needWait = 0;
-  console.log(req.body)
+  // console.log(req.body)
 
   //INICIO HABITAT
 
@@ -115,11 +115,11 @@ exports.create = async (req, res) => {
   // Save Element in the database
   Element.create(element)
   .then(data => {
-    console.log("------------");
-    console.log(data.dataValues);
-    console.log("------------");
+    // console.log("------------");
+    // console.log(data.dataValues);
+    // console.log("------------");
     if (req.body.metodo_preservacao_idmetodo_preservacao) {
-      console.log("has Metodo_preservacao");
+      // console.log("has Metodo_preservacao");
       needWait++;
       var elementHasMetodo_preservacao = {
         "metodo_preservacao_idmetodo_preservacao": req.body.metodo_preservacao_idmetodo_preservacao,
@@ -127,7 +127,7 @@ exports.create = async (req, res) => {
       }
       ElementHasMetodo_preservacao.create(elementHasMetodo_preservacao)
         .then(d => {
-          console.log("done_Metodo_preservacao");
+          // console.log("done_Metodo_preservacao");
           needWait--;
           if (needWait == 0) {
             res.send(data);
@@ -141,14 +141,14 @@ exports.create = async (req, res) => {
         });
     };
     if (req.body.carac_micromorfologica_idcarac_micromorfologica) {
-      console.log("has Carac_micromorfologica");
+      // console.log("has Carac_micromorfologica");
       needWait++;
       var elementHasCarac_micromorfologica = {
         "carac_micromorfologica_idcarac_micromorfologica": req.body.carac_micromorfologica_idcarac_micromorfologica,
         "microorganismo_idmicroorganismo": data.dataValues.idmicroorganismo
       }
       ElementHasCarac_micromorfologica.create(elementHasCarac_micromorfologica).then(d => {
-        console.log("done_Carac_micromorfologica");
+        // console.log("done_Carac_micromorfologica");
         needWait--;
         if (needWait == 0) {
           res.send(data);
@@ -162,14 +162,14 @@ exports.create = async (req, res) => {
         });
     };
     if (req.body.microorganismo_has_imagem_macro) {
-      console.log("has imagem_macro");
+      // console.log("has imagem_macro");
       needWait++;
       var elementHasImagem_macro = {
         "microorganismo_has_imagem_macro": req.body.microorganismo_has_imagem_macro,
         "microorganismo_idmicroorganismo": data.dataValues.idmicroorganismo
       }
       ElementHasImagem_macro.create(elementHasImagem_macro).then(d => {
-        console.log("done_imagem_macro");
+        // console.log("done_imagem_macro");
         needWait--;
         if (needWait == 0) {
           res.send(data);
@@ -183,14 +183,14 @@ exports.create = async (req, res) => {
         });
     };
     if (req.body.microorganismo_has_imagem_micro) {
-      console.log("has imagem_micro");
+      // console.log("has imagem_micro");
       needWait++;
       var elementHasImagem_micro = {
         "microorganismo_has_imagem_micro": req.body.microorganismo_has_imagem_micro,
         "microorganismo_idmicroorganismo": data.dataValues.idmicroorganismo
       }
       ElementHasImagem_micro.create(elementHasImagem_micro).then(d => {
-        console.log("done_imagem_macro");
+        // console.log("done_imagem_macro");
         needWait--;
         if (needWait == 0) {
           res.send(data);
@@ -204,14 +204,14 @@ exports.create = async (req, res) => {
         });
     };
     if (req.body.microorganismo_has_anexos) {
-      console.log("has anexos");
+      // console.log("has anexos");
       needWait++;
       var elementHasAnexos = {
         "microorganismo_has_anexos": req.body.microorganismo_has_anexos,
         "microorganismo_idmicroorganismo": data.dataValues.idmicroorganismo
       }
       ElementHas_anexos.create(elementHasAnexos).then(d => {
-        console.log("done_anexos");
+        // console.log("done_anexos");
         needWait--;
         if (needWait == 0) {
           res.send(data);

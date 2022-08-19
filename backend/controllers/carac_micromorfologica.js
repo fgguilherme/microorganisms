@@ -13,7 +13,7 @@ exports.create = (req, res) => {
 
   // Create a Element
   const element = req.body;
-  console.log(req.body)
+  // console.log(req.body)
 
   // Save Element in the database
   Element.create(element)
@@ -141,7 +141,7 @@ exports.findAllParam = (req, res) => {
       res.send(data);
     })
     .catch(err => {
-      console.log(err)
+      // console.log(err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving Elements."

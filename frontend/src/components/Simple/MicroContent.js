@@ -192,7 +192,7 @@ export default function MicroContent(props) {
   const [prateleiraList, setPrateleiraList] = useState([]); //0prateleira
   const [prateleira, setPrateleira] = useState([]);
 
-  const [armarioList, setArmarioList] = useState([]); //0armario
+  const [armarioList, setArmarioList] = useState([]); //0armariodataReg
   const [armario, setArmario] = useState([]);
 
   const [sub_colecao, setSub_colecao] = useState([]);
@@ -506,7 +506,9 @@ export default function MicroContent(props) {
       //REPIQUE END
     }
     // console.log(newMicro)
-    if(true){
+    console.log("passei aqui fora do if")
+    if(props.micro != undefined){
+      console.log("passei aqui if")
       axios.put(baseurl+ "repique", newMicro)
       .then((response) => {
         // console.log(response)
@@ -519,6 +521,7 @@ export default function MicroContent(props) {
     //   // console.log("MISSING SOMETHING")
     // }
     }else{
+      console.log("passei aqui else")
       axios.post(baseurl+ "repique", newMicro)
       .then((response) => {
         // console.log(response)
@@ -749,13 +752,31 @@ export default function MicroContent(props) {
     // ORIGEM
     if(props.micro){
 
+      //TAXA
+      // setDominio()
+      // setReino()
+      // setFilo()
+      // setClasse()
+      // setOrdem()
+      // setFamilia()
+      // setGenero()
+      // setEspecie()
+      // setSubstrato()
+      // setVariedade()
+      // setRefTaxa()
+      setStatus(props.micro.microorganismo_idmicroorganismo_microorganismo.status)
+
       //ORIGEM
-      setDataReg(props.micro.microorganismo_idmicroorganismo_microorganismo.data_reg_col_orig)
-      setOrigCode(props.micro.microorganismo_idmicroorganismo_microorganismo.cod_orig)
-      setOrigHist(props.micro.microorganismo_idmicroorganismo_microorganismo.hist_orig)
-      setDataCol(props.micro.microorganismo_idmicroorganismo_microorganismo.data_colet)
-      setPesqColeta({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.instituicao})
-      setHospVeg({idhospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.idhospedeiro, hospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.hospedeiro})
+      setDataReg(props.micro.microorganismo_idmicroorganismo_microorganismo?.data_reg_col_orig)
+      setOrigCode(props.micro.microorganismo_idmicroorganismo_microorganismo?.cod_orig)
+      setOrigHist(props.micro.microorganismo_idmicroorganismo_microorganismo?.hist_orig)
+      setDataCol(props.micro.microorganismo_idmicroorganismo_microorganismo?.data_colet)
+      setPesqColeta({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador.instituicao})
+      // setHabitat(idhabitat: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.idhabitat)
+      setHospVeg({idhospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.hospedeiro_idhospedeiro_hospedeiro?.idhospedeiro, hospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg.hospedeiro_idhospedeiro_hospedeiro.hospedeiro})
+      // setSubstrato()
+      // setHospAn()
+      // setSitioAnat()
       setRegExiHosp(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.registro)
       setHerbDeposit(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.herbario)
       setCodHerb(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.codigo)
@@ -769,37 +790,53 @@ export default function MicroContent(props) {
       
       //ISOLAMENTO
       setDataIso(props.micro.microorganismo_idmicroorganismo_microorganismo.data_isol)
-      setPesqIsola({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.instituicao})
+      setPesqIsola({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador?.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_isolamento_pesquisador?.instituicao})
       setIsoInfo(props.micro.microorganismo_idmicroorganismo_microorganismo.info_isolamento)
       setDataIdn(props.micro.microorganismo_idmicroorganismo_microorganismo.data_ident)
       setPesqId({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador.instituicao})
       setIsoComment(props.micro.microorganismo_idmicroorganismo_microorganismo.coment_isolamento)
       
       //CARACTERISTICAS
-      setBorda({idborda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.idborda, borda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.borda})
       setCorColonia({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_colonia_cor.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_colonia_cor.cor})
       setTextura({idtextura: props.micro.microorganismo_idmicroorganismo_microorganismo.textura_idtextura_textura.idtextura, textura: props.micro.microorganismo_idmicroorganismo_microorganismo.textura_idtextura_textura.textura})
+      setBorda({idborda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.idborda, borda: props.micro.microorganismo_idmicroorganismo_microorganismo.borda_idborda_borda.borda})
       setRelevo({idrelevo: props.micro.microorganismo_idmicroorganismo_microorganismo.relevo_idrelevo_relevo.idrelevo, relevo: props.micro.microorganismo_idmicroorganismo_microorganismo.relevo_idrelevo_relevo.relevo})
       setExudato({idexudato: props.micro.microorganismo_idmicroorganismo_microorganismo.exudato_idexudato_exudato.idexudato, exudato: props.micro.microorganismo_idmicroorganismo_microorganismo.exudato_idexudato_exudato.exudato})
       setCorExu({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_exudato_cor.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_exudato_cor.cor})
       setPigmento({idpigmento: props.micro.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento.idpigmento, pigmento: props.micro.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento.pigmento})
       setCorPig({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_pigmento_cor?.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_pigmento_cor?.cor})
       setTempCrescimento(props.micro.microorganismo_idmicroorganismo_microorganismo.temp_crescimento)
-      // setRefTemp(props.micro.microorganismo_idmicroorganismo_microorganismo)
-      // setCaracMicro(props.micro.microorganismo_idmicroorganismo_microorganismo)
-      
+      // setRefTemp()
+      // setCaracMicro()
+      // setImagemMacro()
+      // setImagemMicro()
+
       //MOLECULAR
       setLaboratorio({idlaboratorio: props.micro.microorganismo_idmicroorganismo_microorganismo.laboratorio_mol_laboratorio.idlaboratorio, laboratorio: props.micro.microorganismo_idmicroorganismo_microorganismo.laboratorio_mol_laboratorio.laboratorio})
       setDataMol(props.micro.microorganismo_idmicroorganismo_microorganismo.data_mol)
       setMolCod(props.micro.microorganismo_idmicroorganismo_microorganismo.cod_mol)
       setMolSeq(props.micro.microorganismo_idmicroorganismo_microorganismo.sequencia_mol)
       setMolMeta(props.micro.microorganismo_idmicroorganismo_microorganismo.meta_mol)
+      // setAnexos()
       
       //LOCALIZAÇÃO
-      setDataPrv(props.micro.data_preserv) //Corrigir formato da data
+      // setSub_colecao()
+      // setGrupoPesquisa()
+      // setUnidade()
+      // setArmario()
+      // setPrateleira()
+      // setLote()
+      // setPosicao()
+      // setDataPrv(props.micro.data_preserv) // Corrigir formato da data
+      // setPesqPres()
+      // setMetodoPreservacao()
+
       
       //OUTROS
       setComments(props.micro.comentarios)
+      setDoacao()
+      setImagemRepiq()
+      setRefAdd()
 
 
 
@@ -3896,6 +3933,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={statusList}
                             defaultValue={status}
+                            value={status}
                             onChange={setStatus}
                             getOptionLabel={(options) => options["status"]}
                             getOptionValue={(options) => options["idstatus"]}

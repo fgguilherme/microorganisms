@@ -45,6 +45,7 @@ var _sub_especie = require("./sub_especie");
 var _substrato = require("./substrato");
 var _textura = require("./textura");
 var _unidade = require("./unidade");
+var _users = require("./users");
 var _variedade = require("./variedade");
 
 function initModels(sequelize) {
@@ -94,6 +95,7 @@ function initModels(sequelize) {
   var substrato = _substrato(sequelize, DataTypes);
   var textura = _textura(sequelize, DataTypes);
   var unidade = _unidade(sequelize, DataTypes);
+  var users = _users(sequelize, DataTypes);
   var variedade = _variedade(sequelize, DataTypes);
 
   anexos.belongsToMany(microorganismo, { as: 'microorganismo_idmicroorganismo_microorganismos', through: microorganismo_has_anexos, foreignKey: "anexos_idanexos", otherKey: "microorganismo_idmicroorganismo" });
@@ -274,6 +276,7 @@ function initModels(sequelize) {
     substrato,
     textura,
     unidade,
+    users,
     variedade,
   };
 }

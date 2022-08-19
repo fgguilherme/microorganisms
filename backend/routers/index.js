@@ -1,6 +1,7 @@
 module.exports = app => {
   require("./anexos")(app);
   require("./armario")(app);
+  require("./auth")(app);
   require("./borda")(app);
   require("./carac_micromorfologica")(app);
   require("./classe")(app);
@@ -36,6 +37,7 @@ module.exports = app => {
   require("./substrato")(app);
   require("./textura")(app);
   require("./unidade")(app);
+  require("./user")(app);
   require("./variedade")(app);
   require("./microorganismo_has_anexos")(app);
   require("./microorganismo_has_carac_micromorfologica")(app);

@@ -8,6 +8,8 @@ x-common-variables: &common-variables
   MYSQL_HOST: "db_micro"
   BASE_URL: "localhost:4200"
 
+# sequelize-auto -o "./models_new" -d micro_collection -h db_micro -u micro_user -p 3306 -x micro_user -e mysql
+
 services:
   mysql_db:
     image: mariadb:10.3
@@ -86,7 +88,6 @@ services:
 
 volumes:
   dbdata:
-  minio_data:
   
 networks:
   microcollection:

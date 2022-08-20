@@ -15,6 +15,7 @@ import Repique from "views/admin/micro/Repique";
 import AddNew from "views/admin/micro/AddNew";
 import EditMicro from "views/admin/micro/Edit";
 import Users from "views/admin/user/Tables";
+import User from "views/admin/user/Settings";
 
 export default function Admin() {
   return (
@@ -35,6 +36,7 @@ export default function Admin() {
             <Route path="/admin/m/new" exact component={AddNew} />
             <Route path="/admin/m/edit" exact component={EditMicro} />
             <Route path="/admin/users" exact component={Users} />
+            <Route path="/admin/user" exact component={User} />
             <Redirect from="/admin" to="/admin/m/tables" />
           </Switch>
         </div>

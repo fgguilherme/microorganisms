@@ -27,6 +27,7 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
     "react-select": "^5.2.1",
+    "react-switch": "^7.0.0",
     "react-transition-group": "^4.4.2",
     "rsuite": "^5.2.1",
     "tailwindcss": "2.0.4"

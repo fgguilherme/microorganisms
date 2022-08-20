@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db_micro:3306
--- Generation Time: Aug 19, 2022 at 08:09 PM
+-- Generation Time: Aug 20, 2022 at 03:55 AM
 -- Server version: 10.3.35-MariaDB-1:10.3.35+maria~focal
 -- PHP Version: 8.0.19
 
@@ -20,9 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `micro_collection`
 --
+CREATE DATABASE IF NOT EXISTS `micro_collection` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `micro_collection`;
 
-CREATE SCHEMA IF NOT EXISTS `micro_collection` DEFAULT CHARACTER SET utf8 ;
-USE `micro_collection` ;
 -- --------------------------------------------------------
 
 --
@@ -854,16 +854,19 @@ CREATE TABLE `users` (
   `iduser` int(10) UNSIGNED NOT NULL,
   `email` varchar(35) NOT NULL,
   `passwd` varchar(255) NOT NULL,
-  `isMaster` tinyint(1) NOT NULL DEFAULT 0
+  `isMaster` tinyint(1) NOT NULL DEFAULT 0,
+  `instituicao` varchar(255) NOT NULL,
+  `nome` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`iduser`, `email`, `passwd`, `isMaster`) VALUES
-(3, 'guilherme@mavennet.com', '$2b$06$im/.TkOYOzmWS13tvyU3UetXjKAVLaLB9o0FoZYEABNqksTjsxYGi', 0),
-(6, 'guilherme@agreewe.com', '$2b$06$7yCg3PyQLlv2k59hb3Lnie9xZRA43vcr2owHyRFa28MoAN.bn5htW', 1);
+INSERT INTO `users` (`iduser`, `email`, `passwd`, `isMaster`, `instituicao`, `nome`) VALUES
+(3, 'guilherme@mavennet.com', '$2b$06$im/.TkOYOzmWS13tvyU3UetXjKAVLaLB9o0FoZYEABNqksTjsxYGi', 0, 'Mavennet', 'Guilherme Guimarães'),
+(6, 'guilherme@agreewe.com', '$2b$06$3n5H6IFXKwIPsDdlwkTUAeQEA5NPgpZ.AUWSwGCOkW6gcNT8ShrES', 1, 'AgreeWe', 'Guilherme F Guimarães'),
+(7, 'fg.guilherme@gmail.com', '$2b$06$GWh.HXRZGELzVGLgRaVopeOL16czHQ84yJtVbO7pqS1lF6aptjoyW', 1, 'Google', 'Guilherme Freitas Guimarães');
 
 -- --------------------------------------------------------
 
@@ -1557,7 +1560,7 @@ ALTER TABLE `unidade`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `iduser` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `iduser` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `variedade`

@@ -11,12 +11,14 @@ exports.create = (req, res) => {
     });
     return;
   }
-
+  console.log(req.body);
   bcrypt.hash(req.body.passwd, 6).then(
     (hash) => {
       const user = {
         email: req.body.email,
         passwd: hash,
+        nome: req.body.nome,
+        instituicao: req.body.instituicao,
         isMaster: req.body.isMaster
       }
       // Save Element in the database
@@ -25,9 +27,10 @@ exports.create = (req, res) => {
         res.send(data);
       })
       .catch(err => {
+        console.log(err.fields);
         res.status(500).send({
           message:
-            err.message || "Some error occurred while creating the Element."
+            err.errors.message || "Some error occurred while creating the Element."
         });
       });
     }
@@ -75,13 +78,15 @@ exports.findOne = (req, res) => {
 // Update a Element by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;
-
+  
   if(req.body.passwd){
     bcrypt.hash(req.body.passwd, 6).then(
       (hash) => {
         const user = {
           email: req.body.email,
           passwd: hash,
+          nome: req.body.nome,
+          instituicao: req.body.instituicao,
           isMaster: req.body.isMaster
         }
         // Save Element in the database
@@ -89,6 +94,7 @@ exports.update = (req, res) => {
           where: {iduser: id }
         })
           .then(num => {
+            console.log(num);
             if (num == 1) {
               res.send({
                 message: "Element was updated successfully."
@@ -109,6 +115,8 @@ exports.update = (req, res) => {
   }else{
     const user = {
       email: req.body.email,
+      nome: req.body.nome,
+      instituicao: req.body.instituicao,
       isMaster: req.body.isMaster
     }
     // Save Element in the database

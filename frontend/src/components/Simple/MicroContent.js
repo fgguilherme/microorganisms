@@ -8,6 +8,7 @@ import MultipleDropzonePDF from "components/Upload/MultipleDropzonePDF";
 import { useAlert } from 'react-alert'
 // components
 const baseurl = window.location.origin.toString() + "/api/"
+const baseurlImg = window.location.origin.toString()
 const customStyles = {
   content: {
     top: "50%",
@@ -240,10 +241,14 @@ export default function MicroContent(props) {
   const [imagemMicro, setImagemMicro] = useState([]);
   const [imagemMacro, setImagemMacro] = useState([]);
   const [imagemRepiq, setImagemRepiq] = useState([]);
+  const [imgMicro, setImgMicro] = useState([]);
+  const [imgMacro, setImgMacro] = useState([]);
+  const [imgRepiq, setImgRepiq] = useState([]);
 
   const alert = useAlert();
 
   const [tempTaxa, setTempTaxa] = useState({})
+  const [tempLocal, setTempLocal] = useState({})
 
 
   async function saveMicro(e){
@@ -283,32 +288,32 @@ export default function MicroContent(props) {
       alert.error('Informe o habitat')
       return
     }
-    // if(habitat?.idhabitat <= 2){
+    if(habitat?.idhabitat <= 2){
 
-    //   if(hospVeg?.idhospedeiro == ""){
-    //     alert.error('Informe o Hospedeiro Vegetal')
-    //     return
-    //   }
-    //   if(substrato?.idsubstrato == undefined){
-    //     alert.error('Informe o substrato')
-    //     return
-    //   }
+      if(hospVeg?.idhospedeiro == ""){
+        alert.error('Informe o Hospedeiro Vegetal')
+        return
+      }
+      if(substrato?.idsubstrato == undefined){
+        alert.error('Informe o substrato')
+        return
+      }
 
-    // }else if(habitat?.idhabitat === 3){
-    //   if(hospAn?.idhospedeiro == undefined){
-    //     alert.error('Informe o Hospedeiro Aninal')
-    //     return
-    //   }
-    //   if(sitioAnat?.idsitio == undefined){
-    //     alert.error('Informe o sítio')
-    //     return
-    //   }
-    // }else{
-    //   if(pesqId?.idpesquisador == undefined){
-    //     alert.error('Informe o identificador')
-    //     return
-    //   }
-    // }
+    }else if(habitat?.idhabitat === 3){
+      if(hospAn?.idhospedeiro == undefined){
+        alert.error('Informe o Hospedeiro Aninal')
+        return
+      }
+      if(sitioAnat?.idsitio == undefined){
+        alert.error('Informe o sítio')
+        return
+      }
+    }else{
+      if(pesqId?.idpesquisador == undefined){
+        alert.error('Informe o identificador')
+        return
+      }
+    }
     // if(dataIso.length < 5){
     //   alert.error('Informe a data do isolamento.')
     //   return
@@ -751,6 +756,7 @@ export default function MicroContent(props) {
       }
     }
     console.log(props)
+    
     // ORIGEM
     if(props.micro){
       //TAXA
@@ -768,7 +774,7 @@ export default function MicroContent(props) {
         // console.log(error);
       });
       // console.log(props)
-      
+
       //0referencia
       axios.get(baseurl+"referencia/search",{params: {
         "idmicroorganismo":props?.micro.microorganismo_idmicroorganismo_microorganismo.idmicroorganismo,
@@ -811,6 +817,23 @@ export default function MicroContent(props) {
           // console.log(error);
         });
 
+      //0metodo
+      axios.get(baseurl+"repique_has_metodo_preservacao/search",{params: {
+        "repique_idrepique":props?.micro.idrepique
+      }})
+        .then(response => {
+          console.log(response.data)
+          let mp = []
+          response.data.forEach(element => {
+            // console.log(element.metodo_preservacao_idmetodo_preservacao_metodo_preservacao.metodo);
+            mp.push({metodo: element.metodo_preservacao_idmetodo_preservacao_metodo_preservacao.metodo, idmetodo_preservacao: element.metodo_preservacao_idmetodo_preservacao_metodo_preservacao.idmetodo_preservacao})
+          });
+          setMetodoPreservacao(mp)
+          // setMetodoPrev(response.data)
+        }, error => {
+          // console.log(error);
+        });
+
       // .then(response => {
       //   console.log(response.data)
       //   // setRefTaxa(repq_ref[0].referencia_idreferencia_referencium.idreferencia)
@@ -825,14 +848,29 @@ export default function MicroContent(props) {
       setDataCol(props.micro.microorganismo_idmicroorganismo_microorganismo?.data_colet)
       setPesqColeta({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_coleta_pesquisador?.instituicao})
       setHabitat(habitatList.find(habitat => habitat.idhabitat == props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat))
-      setHospVeg({idhospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.hospedeiro_idhospedeiro_hospedeiro?.idhospedeiro, hospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.hospedeiro_idhospedeiro_hospedeiro?.hospedeiro})
-      // setSubstrato()
-      // setHospAn()
-      // setSitioAnat()
-      setRegExiHosp(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg?.registro)
-      setHerbDeposit(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg?.herbario)
-      setCodHerb(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg?.codigo)
-      setHabitatInfo(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.info)
+
+      console.log(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat)
+
+      if(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat <= 2){
+        console.log('Vegetal')
+        
+
+        setHospVeg({idhospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.hospedeiro_idhospedeiro_hospedeiro?.idhospedeiro, hospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.habitat_veg_idhabitat_veg_habitat_veg?.hospedeiro_idhospedeiro_hospedeiro?.hospedeiro})
+        setCodHerb(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg?.codigo)
+        setRegExiHosp(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg?.registro)
+        setHerbDeposit(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg?.herbario)
+        setHabitatInfo(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat?.info)
+        
+        setSubstrato({idsubstrato: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.substrato_idsubstrato_substrato.idsubstrato, substrato: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_veg_idhabitat_veg_habitat_veg.substrato_idsubstrato_substrato.substrato})
+
+  
+      }else if(props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat == 3){
+        console.log('Animaaaaalll')
+        setHospAn({idhospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_ani_idhabitat_ani_habitat_ani.hospedeiro_idhospedeiro_hospedeiro.idhospedeiro, hospedeiro: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_ani_idhabitat_ani_habitat_ani.hospedeiro_idhospedeiro_hospedeiro.hospedeiro})
+        setSitioAnat({idsitio: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_ani_idhabitat_ani_habitat_ani.sitio_idsitio_sitio.idsitio, sitio: props.micro.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat_ani_idhabitat_ani_habitat_ani.sitio_idsitio_sitio.sitio})
+      }else{
+        console.log('Outros')
+      }           
       setOrigGeo(props.micro.microorganismo_idmicroorganismo_microorganismo.origem_geo)
       setOrigLat(props.micro.microorganismo_idmicroorganismo_microorganismo.lat)
       setOrigLon(props.micro.microorganismo_idmicroorganismo_microorganismo.lon)
@@ -858,8 +896,7 @@ export default function MicroContent(props) {
       setPigmento({idpigmento: props.micro.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento?.idpigmento, pigmento: props.micro.microorganismo_idmicroorganismo_microorganismo.pigmento_idpigmento_pigmento?.pigmento})
       setCorPig({idcor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_pigmento_cor?.idcor, cor: props.micro.microorganismo_idmicroorganismo_microorganismo.cor_pigmento_cor?.cor})
       setTempCrescimento(props.micro.microorganismo_idmicroorganismo_microorganismo.temp_crescimento)
-      // setRefTemp()
-      // setCaracMicro()
+  
       // setImagemMacro()
       // setImagemMicro()
 
@@ -872,25 +909,61 @@ export default function MicroContent(props) {
       // setAnexos()
       
       //LOCALIZAÇÃO
-      // setSub_colecao()
-      setGrupoPesquisa()
-      setUnidade()
-      // setArmario()
-      // setPrateleira()
-      // setLote()
-      // setPosicao()
-      // setDataPrv(props.micro.data_preserv) // Corrigir formato da data
-      // setPesqPres()
+      setTempLocal(props.micro.posicao_idposicao_posicao)
+      setSub_colecao({idsub_colecao: props.micro.posicao_idposicao_posicao.lote_idlote_lote.prateleira_idprateleira_prateleira.armario_idarmario_armario.sub_colecao_idsub_colecao_sub_colecao.idsub_colecao, sub_colecao: props.micro.posicao_idposicao_posicao.lote_idlote_lote.prateleira_idprateleira_prateleira.armario_idarmario_armario.sub_colecao_idsub_colecao_sub_colecao.sub_colecao})
+      setGrupoPesquisa({idgrupo_pesquisa: props.micro.grupo_pesquisa_idgrupo_pesquisa_grupo_pesquisa.idgrupo_pesquisa, grupo: props.micro.grupo_pesquisa_idgrupo_pesquisa_grupo_pesquisa.grupo})
+      setUnidade({idunidade: props.micro.unidade_idunidade_unidade.idunidade, unidade: props.micro.unidade_idunidade_unidade.unidade})
+
+      var data = new Date(props.micro.data_preserv)
+      setDataPrv(data.getFullYear()+"-"+(data.getMonth()+1).toString().padStart(2, '0')+"-"+data.getDate().toString().padStart(2, '0'))
+
+     setPesqPres({idpesquisador: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador?.idpesquisador, nome: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador?.nome, email: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador?.email, instituicao: props.micro.microorganismo_idmicroorganismo_microorganismo.pesquisador_ident_pesquisador?.instituicao})
+
       // setMetodoPreservacao()
 
       
       //OUTROS
       setComments(props.micro.comentarios)
       setDoacao(doacaoList.find(doacao => doacao.iddoacao === props.micro.disponivel))
-      setImagemRepiq()
+      // setImagemRepiq()
       setRefAdd()
 
-
+      axios.get(baseurl+"imagem_repique/search",{params: {
+        "repique_idrepique":props?.micro.idrepique
+      }})
+        .then(response => {
+          let img = []
+          response.data.map(i => {
+            img.push(i.imagem_idimagem_imagem.imagem)
+          })
+          setImgRepiq(img)
+        }, error => {
+          // console.log(error);
+        });
+        axios.get(baseurl+"imagem_macro/search",{params: {
+          "microorganismo_idmicroorganismo":props?.micro.idrepique
+        }})
+          .then(response => {
+            let img = []
+            response.data.map(i => {
+              img.push(i.imagem_idimagem_imagem.imagem)
+            })
+            setImgMacro(img)
+          }, error => {
+            // console.log(error);
+          });
+          axios.get(baseurl+"imagem_micro/search",{params: {
+            "microorganismo_idmicroorganismo":props?.micro.idrepique
+          }})
+            .then(response => {
+              let img = []
+              response.data.map(i => {
+                img.push(i.imagem_idimagem_imagem.imagem)
+              })
+              setImgMicro(img)
+            }, error => {
+              // console.log(error);
+            });
 
       
     }
@@ -1231,6 +1304,10 @@ export default function MicroContent(props) {
          .then(response => {
           //  console.log(response.data);
            setArmarioList(response.data);
+           if(tempLocal.lote_idlote_lote){
+            setArmario({idarmario: tempLocal.lote_idlote_lote.prateleira_idprateleira_prateleira.armario_idarmario_armario.idarmario, armario: tempLocal.lote_idlote_lote.prateleira_idprateleira_prateleira.armario_idarmario_armario.armario})
+          }
+
          }, error => {
           //  console.log(error);
          });
@@ -1255,6 +1332,9 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setPrateleiraList(response.data);
+            if(tempLocal.lote_idlote_lote){
+             setPrateleira({idprateleira: tempLocal.lote_idlote_lote.prateleira_idprateleira_prateleira.idprateleira, prateleira: tempLocal.lote_idlote_lote.prateleira_idprateleira_prateleira.prateleira})
+           }
           }, error => {
             // console.log(error);
           });
@@ -1279,6 +1359,9 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setLoteList(response.data);
+            if(tempLocal.lote_idlote_lote){
+             setLote({idlote: tempLocal.lote_idlote_lote.idlote, lote: tempLocal.lote_idlote_lote.lote})
+            }
           }, error => {
             // console.log(error);
           });
@@ -1303,6 +1386,10 @@ export default function MicroContent(props) {
           .then(response => {
             // console.log(response.data);
             setPosicaoList(response.data);
+            if(tempLocal.lote_idlote_lote){
+              setPosicao({idposicao: tempLocal.idposicao, posicao: tempLocal.posicao})
+              setTempLocal({})
+            }
           }, error => {
             // console.log(error);
           });
@@ -5221,6 +5308,11 @@ export default function MicroContent(props) {
                             Imagens macromorfológicas
                           </label>
                           <MultipleDropzone setFileList={setImagemMacro}/>
+                          {
+                            imgMacro.map((img, index) => {
+                                return <img src={baseurlImg+img} alt="img" className="w-full h-full" />
+                            })
+                          }
                         </div>
                       </div>
                       <div className="w-full lg:w-12/12 px-4">
@@ -5232,6 +5324,11 @@ export default function MicroContent(props) {
                             Imagens micromorfológicas
                           </label>
                           <MultipleDropzone setFileList={setImagemMicro}/>
+                          {
+                            imgMicro.map((img, index) => {
+                                return <img src={baseurlImg+img} alt="img" className="w-full h-full" />
+                            })
+                          }
                         </div>
                       </div>
                     </div>
@@ -5780,6 +5877,7 @@ export default function MicroContent(props) {
                             placeholder={"Select an option"}
                             options={metodo_preservacaoList}
                             defaultValue={metodo_preservacao}
+                            value={metodo_preservacao}
                             isMulti
                             onChange={setMetodoPreservacao}
                             getOptionLabel={(options) => options["metodo"]}
@@ -5867,6 +5965,11 @@ export default function MicroContent(props) {
                           </label>
                           
                           <MultipleDropzone  setFileList={setImagemRepiq}/>
+                          {
+                            imgRepiq.map((img, index) => {
+                                return <img src={baseurlImg+img} alt="img" className="w-full h-full" />
+                            })
+                          }
                         </div>
                       </div>
                       <div className="w-full lg:w-12/12 px-4">

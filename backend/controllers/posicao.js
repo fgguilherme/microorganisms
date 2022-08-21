@@ -1,6 +1,7 @@
 const db = require("../models");
 const Element = db.models.posicao;
 const Op = db.Sequelize.Op;
+const models = db.models
 // Create and Save a new Element
 exports.create = (req, res) => {
   // Validate request
@@ -48,8 +49,18 @@ exports.findAll = (req, res) => {
 // Find a single Element with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
+    Element.findByPk(id, {include: [
+      { model: models.lote, as: "lote_idlote_lote",  include: { 
+        model: models.prateleira, as: "prateleira_idprateleira_prateleira", include:{
+          model: models.armario, as: "armario_idarmario_armario", include: {
+            model: models.sub_colecao, as: "sub_colecao_idsub_colecao_sub_colecao", include: {
+            }
+          }
+        }
+      }
+      }
 
-    Element.findByPk(id)
+    ]})
       .then(data => {
         if (data) {
           res.send(data);
@@ -60,6 +71,7 @@ exports.findOne = (req, res) => {
         }
       })
       .catch(err => {
+        console.log(err)
         res.status(500).send({
           message: "Error retrieving Element with id=" + id
         });

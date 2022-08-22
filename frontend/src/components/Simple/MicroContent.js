@@ -238,6 +238,7 @@ export default function MicroContent(props) {
   const [tempCrescimento, setTempCrescimento] = useState(0);
 
   const [anexos, setAnexos] = useState([]);
+  const [tempAnexos, settempAnexos] = useState([]);
   const [imagemMicro, setImagemMicro] = useState([]);
   const [imagemMacro, setImagemMacro] = useState([]);
   const [imagemRepiq, setImagemRepiq] = useState([]);
@@ -906,7 +907,7 @@ export default function MicroContent(props) {
       setMolCod(props.micro.microorganismo_idmicroorganismo_microorganismo.cod_mol)
       setMolSeq(props.micro.microorganismo_idmicroorganismo_microorganismo.sequencia_mol)
       setMolMeta(props.micro.microorganismo_idmicroorganismo_microorganismo.meta_mol)
-      // setAnexos()
+      settempAnexos(props.micro.microorganismo_idmicroorganismo_microorganismo.anexos_idanexos_anexos)
       
       //LOCALIZAÇÃO
       setTempLocal(props.micro.posicao_idposicao_posicao)
@@ -5462,6 +5463,17 @@ export default function MicroContent(props) {
                             Anexos
                           </label>
                           <MultipleDropzonePDF setFileList={setAnexos}/>
+                          {
+                            anexos.map((anx, index) => {
+                                return <a href={baseurlImg+anx} target="blank" alt="anx" className="w-full h-full"><span>{baseurlImg+anx}</span></a>
+                            })
+                          }
+                          {
+                            tempAnexos.map((anx, index) => {
+                                console.log(anx)
+                                return <a href={baseurlImg+anx.link} target="blank" alt="anx" className="w-full h-full"><span>{baseurlImg+anx.link}</span></a>
+                            })
+                          }
                         </div>
                       </div>
                     </div>

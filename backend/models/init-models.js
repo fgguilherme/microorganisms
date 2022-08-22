@@ -1,10 +1,12 @@
 var DataTypes = require("sequelize").DataTypes;
 var _anexos = require("./anexos");
 var _armario = require("./armario");
+var _autenticacao = require("./autenticacao");
 var _borda = require("./borda");
 var _carac_micromorfologica = require("./carac_micromorfologica");
 var _classe = require("./classe");
 var _cor = require("./cor");
+var _doacao = require("./doacao");
 var _dominio = require("./dominio");
 var _especie = require("./especie");
 var _exudato = require("./exudato");
@@ -51,10 +53,12 @@ var _variedade = require("./variedade");
 function initModels(sequelize) {
   var anexos = _anexos(sequelize, DataTypes);
   var armario = _armario(sequelize, DataTypes);
+  var autenticacao = _autenticacao(sequelize, DataTypes);
   var borda = _borda(sequelize, DataTypes);
   var carac_micromorfologica = _carac_micromorfologica(sequelize, DataTypes);
   var classe = _classe(sequelize, DataTypes);
   var cor = _cor(sequelize, DataTypes);
+  var doacao = _doacao(sequelize, DataTypes);
   var dominio = _dominio(sequelize, DataTypes);
   var especie = _especie(sequelize, DataTypes);
   var exudato = _exudato(sequelize, DataTypes);
@@ -232,10 +236,12 @@ function initModels(sequelize) {
   return {
     anexos,
     armario,
+    autenticacao,
     borda,
     carac_micromorfologica,
     classe,
     cor,
+    doacao,
     dominio,
     especie,
     exudato,

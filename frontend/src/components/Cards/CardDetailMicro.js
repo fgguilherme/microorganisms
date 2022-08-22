@@ -1,8 +1,11 @@
 import MicroContentDetail from "components/Simple/MicroContentDetail";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
+import axios, {AxiosError} from "axios";
+import Select from "react-select";
 // components
+const baseurl = window.location.origin.toString() + "/api/"
 
 const customStyles = {
   content: {
@@ -19,6 +22,23 @@ export default function CardDetailMicro(props) {
   const [itemPersonName, setItemPersonName] = React.useState(["", "", ""]);
   const [itemPersonValue, setItemPersonValue] = React.useState(["", "", ""]);
   const [modalPersonIsOpen, setPersonIsOpen] = useState(false);
+  const [pesquisador, setPesquisador] = useState([]);
+  const [pesquisadorList, setPesquisadorList] = useState([]);
+  const [dataAutenticacao, setDataAutenticacao] = useState('');
+  const [dataDoacao, setDataDoacao] = useState('');
+  const [pesquisadorDoacao, setPesquisadorDoacao] = useState([]);
+  const [destinatario, setDestinatario] = useState('');
+
+
+  useEffect(() => {
+    axios.get(baseurl+"pesquisador")
+      .then(response => {
+        // console.log(response.data);
+        setPesquisadorList(response.data);
+      }, error => {
+        // console.log(error);
+      });
+  }, [])
 
   function openPersonModal() {
     setPersonIsOpen(true);
@@ -32,6 +52,19 @@ export default function CardDetailMicro(props) {
   }
 
   function closePersonModal(persist) {
+    if(persist == true){
+      axios.post(baseurl+ "autenticacao", {idPesquisador:pesquisador.idpesquisador,
+        idRepique:props.microorg.idrepique,
+        data_autenticacao:dataAutenticacao
+      })
+      .then((response) => {
+        // console.log(response)
+        //return to main table
+        // window.location.href = "/admin/m/" + props.returnto
+      }, (error) => {
+        // console.log(error);
+      });
+    }
     setPersonIsOpen(false);
   }
   //END PERSON MODAL
@@ -74,6 +107,20 @@ export default function CardDetailMicro(props) {
   }
 
   function closeDonateModal(persist) {
+    if(persist == true){
+      axios.post(baseurl+ "doacao", {idPesquisador:pesquisadorDoacao.idpesquisador,
+        idRepique:props.microorg.idrepique,
+        data_doacao:dataDoacao,
+        destinatario: destinatario
+      })
+      .then((response) => {
+        // console.log(response)
+        //return to main table
+        // window.location.href = "/admin/m/" + props.returnto
+      }, (error) => {
+        // console.log(error);
+      });
+    }
     setDonateIsOpen(false);
   }
   //END DONATE MODAL
@@ -104,37 +151,30 @@ export default function CardDetailMicro(props) {
                 >
                   {itemPersonName[0]}
                 </label>
-                <input
-                  type="text"
-                  className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  value={itemPersonValue[0]}
-                />
-              </div>
-              <div className="relative w-full mb-3">
+                <Select
+                    className="w-8/12"
+                    searchable={true}
+                    placeholder={"Select an option"}
+                    options={pesquisadorList}
+                    defaultValue={pesquisador}
+                    value={pesquisador}
+                    onChange={setPesquisador}
+                    getOptionLabel={(options) => options["nome"]+" - "+options["email"]+" - "+options["instituicao"]}
+                    getOptionValue={(options) => options["idpesquisador"]}
+                  />
                 <label
                   className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
-                  {itemPersonName[1]}
+                  Data da Autenticação
                 </label>
                 <input
-                  type="text"
+                  disabled={props.showOnly}
+                  type="date"
+                  onChange={e=>setDataAutenticacao(e.target.value)}
                   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  value={itemPersonValue[1]}
-                />
-              </div>
-              <div className="relative w-full mb-3">
-                <label
-                  className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  {itemPersonName[2]}
-                </label>
-                <input
-                  type="text"
-                  className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  value={itemPersonValue[2]}
-                />
+                  value={dataAutenticacao}
+               />
               </div>
               <div className="relative w-full mb-3">
                 <button
@@ -258,7 +298,7 @@ export default function CardDetailMicro(props) {
           </div>
         </div>
         <form>
-          <div className="flex flex-wrap">
+        <div className="flex flex-wrap">
             {/* Foto, Comentários. referências adicionais */}
             <div className="w-full lg:w-12/12 px-4">
               <div className="relative w-full mb-3">
@@ -266,39 +306,43 @@ export default function CardDetailMicro(props) {
                   className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
-                  {itemDonateName[0]}
+                  Responsável pela Doação
                 </label>
-                <input
-                  type="text"
-                  className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  value={itemDonateValue[0]}
-                />
-              </div>
-              <div className="relative w-full mb-3">
+                <Select
+                    className="w-8/12"
+                    searchable={true}
+                    placeholder={"Select an option"}
+                    options={pesquisadorList}
+                    defaultValue={pesquisadorDoacao}
+                    value={pesquisadorDoacao}
+                    onChange={setPesquisadorDoacao}
+                    getOptionLabel={(options) => options["nome"]+" - "+options["email"]+" - "+options["instituicao"]}
+                    getOptionValue={(options) => options["idpesquisador"]}
+                  />
                 <label
                   className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
-                  {itemDonateName[1]}
+                  Data da Doação
                 </label>
                 <input
-                  type="text"
+                  type="date"
+                  onChange={e=>setDataDoacao(e.target.value)}
                   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  value={itemDonateValue[1]}
-                />
-              </div>
-              <div className="relative w-full mb-3">
+                  value={dataDoacao}
+               />
                 <label
                   className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
-                  {itemDonateName[2]}
+                  Destinatário
                 </label>
                 <input
                   type="text"
+                  onChange={e=>setDestinatario(e.target.value)}
                   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  value={itemDonateValue[2]}
-                />
+                  value={destinatario}
+               />
               </div>
               <div className="relative w-full mb-3">
                 <button
@@ -321,7 +365,7 @@ export default function CardDetailMicro(props) {
                 </button>
               </div>
             </div>
-          </div>
+          </div>   
         </form>
       </div>
     </Modal>
@@ -340,16 +384,16 @@ export default function CardDetailMicro(props) {
               </button>
               </Link>
               <button
-                className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="button"
-                disabled
+                // disabled
                 onClick={() => {
                   openPersonModal();
                 }}
               >
                 Autenticar
               </button>
-              <button
+              {/* <button
                 className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="button"
                 disabled
@@ -358,17 +402,26 @@ export default function CardDetailMicro(props) {
                 }}
               >
                 Mover
-              </button>
+              </button> */}
+              {props.microorg.disponivel==1?
               <button
                 className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="button"
                 disabled
+              >
+                Doar
+              </button>:              
+              <button
+                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="button"
+                // disabled
                 onClick={() => {
                   openDonateModal();
                 }}
               >
                 Doar
               </button>
+              }
             </div>
           </div>
         </div>

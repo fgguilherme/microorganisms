@@ -84,8 +84,11 @@ export default function MicroContentDetail(props) {
   const [imgRepique, setImgRepique] = useState([]);
   const [imgMicro, setImgMicro] = useState([]);
   const [imgMacro, setImgMacro] = useState([]);
+  const [anexos, setAnexos] = useState([]);
+
   // console.log(props.microorg)
   useEffect(() => {
+    setAnexos(props.microorg.microorganismo_idmicroorganismo_microorganismo.anexos_idanexos_anexos)
     axios.get(baseurl+"imagem_repique/search",{params: {
       "repique_idrepique":props?.microorg.idrepique
     }})
@@ -1306,12 +1309,12 @@ export default function MicroContentDetail(props) {
                           >
                             Anexos
                           </label>
-                          <label
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            htmlFor="grid-password"
-                          >
-                            {/* PIPOCA */}
-                          </label>
+                          {
+                            anexos.map((anx, index) => {
+                                console.log(anx)
+                                return <a href={baseurlImg+anx.link} target="blank" alt="anx" className="w-full h-full"><span>{baseurlImg+anx.link}</span></a>
+                            })
+                          }
                         </div>
                       </div>
                     </div>

@@ -226,6 +226,7 @@ exports.findAll = (req, res) => {
       {model:  models.exudato, as:"exudato_idexudato_exudato"},
       {model:  models.pigmento, as:"pigmento_idpigmento_pigmento"},
       {model:  models.laboratorio, as:"laboratorio_mol_laboratorio"},
+      {model:  models.anexos, as:"anexos_idanexos_anexos"},
       {model:  models.habitat, as:"habitat_idhabitat_habitat",  include: [
         {model:  models.habitat_veg, as:"habitat_veg_idhabitat_veg_habitat_veg",  include: [
           {model:  models.hospedeiro, as:"hospedeiro_idhospedeiro_hospedeiro"},
@@ -303,6 +304,7 @@ exports.findAllParents = (req, res) => {
       {model:  models.exudato, as:"exudato_idexudato_exudato"},
       {model:  models.pigmento, as:"pigmento_idpigmento_pigmento"},
       {model:  models.laboratorio, as:"laboratorio_mol_laboratorio"},
+      {model:  models.anexos, as:"anexos_idanexos_anexos"},
       {model:  models.habitat, as:"habitat_idhabitat_habitat",  include: [
         {model:  models.habitat_veg, as:"habitat_veg_idhabitat_veg_habitat_veg",  include: [
           {model:  models.hospedeiro, as:"hospedeiro_idhospedeiro_hospedeiro"},
@@ -336,7 +338,7 @@ exports.findAllParents = (req, res) => {
       res.send(data);
     })
     .catch((err) => {
-      // console.log(err)
+      console.log(err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving Elements.",
@@ -463,6 +465,7 @@ exports.findAllParam = (req, res) => {
       {model:  models.exudato, as:"exudato_idexudato_exudato"},
       {model:  models.pigmento, as:"pigmento_idpigmento_pigmento"},
       {model:  models.laboratorio, as:"laboratorio_mol_laboratorio"},
+      {model:  models.anexos, as:"anexos_idanexos_anexos"},
       {model:  models.habitat, as:"habitat_idhabitat_habitat",  include: [
         {model:  models.habitat_veg, as:"habitat_veg_idhabitat_veg_habitat_veg",  include: [
           {model:  models.hospedeiro, as:"hospedeiro_idhospedeiro_hospedeiro"},

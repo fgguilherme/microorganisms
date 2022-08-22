@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db_micro:3306
--- Generation Time: Aug 20, 2022 at 03:55 AM
--- Server version: 10.3.35-MariaDB-1:10.3.35+maria~focal
--- PHP Version: 8.0.19
+-- Tempo de geração: 22-Ago-2022 às 05:39
+-- Versão do servidor: 10.3.35-MariaDB-1:10.3.35+maria~focal
+-- versão do PHP: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `micro_collection`
+-- Banco de dados: `micro_collection`
 --
 CREATE DATABASE IF NOT EXISTS `micro_collection` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `micro_collection`;
@@ -26,7 +26,7 @@ USE `micro_collection`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anexos`
+-- Estrutura da tabela `anexos`
 --
 
 CREATE TABLE `anexos` (
@@ -34,10 +34,17 @@ CREATE TABLE `anexos` (
   `link` varchar(145) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `anexos`
+--
+
+INSERT INTO `anexos` (`idanexos`, `link`) VALUES
+(1, '/api/public/docs/1661133368674-O-Rastro-de-Sangue.pdf');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `armario`
+-- Estrutura da tabela `armario`
 --
 
 CREATE TABLE `armario` (
@@ -47,7 +54,7 @@ CREATE TABLE `armario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `armario`
+-- Extraindo dados da tabela `armario`
 --
 
 INSERT INTO `armario` (`idarmario`, `armario`, `sub_colecao_idsub_colecao`) VALUES
@@ -56,7 +63,27 @@ INSERT INTO `armario` (`idarmario`, `armario`, `sub_colecao_idsub_colecao`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `borda`
+-- Estrutura da tabela `autenticacao`
+--
+
+CREATE TABLE `autenticacao` (
+  `idAutenticacao` int(11) NOT NULL,
+  `idRepique` int(11) NOT NULL,
+  `idPesquisador` int(11) NOT NULL,
+  `data_autenticacao` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `autenticacao`
+--
+
+INSERT INTO `autenticacao` (`idAutenticacao`, `idRepique`, `idPesquisador`, `data_autenticacao`) VALUES
+(1, 2, 1, '2022-08-22');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `borda`
 --
 
 CREATE TABLE `borda` (
@@ -65,16 +92,16 @@ CREATE TABLE `borda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `borda`
+-- Extraindo dados da tabela `borda`
 --
 
 INSERT INTO `borda` (`idborda`, `borda`) VALUES
-(1, 'Borda001');
+(1, 'B001');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carac_micromorfologica`
+-- Estrutura da tabela `carac_micromorfologica`
 --
 
 CREATE TABLE `carac_micromorfologica` (
@@ -83,7 +110,7 @@ CREATE TABLE `carac_micromorfologica` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `carac_micromorfologica`
+-- Extraindo dados da tabela `carac_micromorfologica`
 --
 
 INSERT INTO `carac_micromorfologica` (`idcarac_micromorfologica`, `carac_micromorfologica`) VALUES
@@ -93,7 +120,7 @@ INSERT INTO `carac_micromorfologica` (`idcarac_micromorfologica`, `carac_micromo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `classe`
+-- Estrutura da tabela `classe`
 --
 
 CREATE TABLE `classe` (
@@ -103,7 +130,7 @@ CREATE TABLE `classe` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `classe`
+-- Extraindo dados da tabela `classe`
 --
 
 INSERT INTO `classe` (`idclasse`, `classe`, `filo_idfilo`) VALUES
@@ -112,7 +139,7 @@ INSERT INTO `classe` (`idclasse`, `classe`, `filo_idfilo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cor`
+-- Estrutura da tabela `cor`
 --
 
 CREATE TABLE `cor` (
@@ -121,7 +148,7 @@ CREATE TABLE `cor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cor`
+-- Extraindo dados da tabela `cor`
 --
 
 INSERT INTO `cor` (`idcor`, `cor`) VALUES
@@ -133,7 +160,28 @@ INSERT INTO `cor` (`idcor`, `cor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dominio`
+-- Estrutura da tabela `doacao`
+--
+
+CREATE TABLE `doacao` (
+  `idDoacao` int(11) NOT NULL,
+  `idRepique` int(11) NOT NULL,
+  `idPesquisador` int(11) NOT NULL,
+  `data_doacao` date NOT NULL,
+  `destinatario` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `doacao`
+--
+
+INSERT INTO `doacao` (`idDoacao`, `idRepique`, `idPesquisador`, `data_doacao`, `destinatario`) VALUES
+(1, 2, 1, '2022-08-22', 'doado');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `dominio`
 --
 
 CREATE TABLE `dominio` (
@@ -142,7 +190,7 @@ CREATE TABLE `dominio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `dominio`
+-- Extraindo dados da tabela `dominio`
 --
 
 INSERT INTO `dominio` (`iddominio`, `dominio`) VALUES
@@ -151,7 +199,7 @@ INSERT INTO `dominio` (`iddominio`, `dominio`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `especie`
+-- Estrutura da tabela `especie`
 --
 
 CREATE TABLE `especie` (
@@ -162,7 +210,7 @@ CREATE TABLE `especie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `especie`
+-- Extraindo dados da tabela `especie`
 --
 
 INSERT INTO `especie` (`idespecie`, `especie`, `autor`, `genero_idgenero`) VALUES
@@ -171,7 +219,7 @@ INSERT INTO `especie` (`idespecie`, `especie`, `autor`, `genero_idgenero`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exudato`
+-- Estrutura da tabela `exudato`
 --
 
 CREATE TABLE `exudato` (
@@ -180,16 +228,16 @@ CREATE TABLE `exudato` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `exudato`
+-- Extraindo dados da tabela `exudato`
 --
 
 INSERT INTO `exudato` (`idexudato`, `exudato`) VALUES
-(1, 'Exudato001');
+(1, 'EX001');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `familia`
+-- Estrutura da tabela `familia`
 --
 
 CREATE TABLE `familia` (
@@ -199,7 +247,7 @@ CREATE TABLE `familia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `familia`
+-- Extraindo dados da tabela `familia`
 --
 
 INSERT INTO `familia` (`idfamilia`, `familia`, `ordem_idordem`) VALUES
@@ -208,7 +256,7 @@ INSERT INTO `familia` (`idfamilia`, `familia`, `ordem_idordem`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `filo`
+-- Estrutura da tabela `filo`
 --
 
 CREATE TABLE `filo` (
@@ -218,7 +266,7 @@ CREATE TABLE `filo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `filo`
+-- Extraindo dados da tabela `filo`
 --
 
 INSERT INTO `filo` (`idfilo`, `filo`, `reino_idreino`) VALUES
@@ -227,7 +275,7 @@ INSERT INTO `filo` (`idfilo`, `filo`, `reino_idreino`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genero`
+-- Estrutura da tabela `genero`
 --
 
 CREATE TABLE `genero` (
@@ -237,7 +285,7 @@ CREATE TABLE `genero` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `genero`
+-- Extraindo dados da tabela `genero`
 --
 
 INSERT INTO `genero` (`idgenero`, `genero`, `familia_idfamilia`) VALUES
@@ -246,7 +294,7 @@ INSERT INTO `genero` (`idgenero`, `genero`, `familia_idfamilia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grupo_pesquisa`
+-- Estrutura da tabela `grupo_pesquisa`
 --
 
 CREATE TABLE `grupo_pesquisa` (
@@ -255,7 +303,7 @@ CREATE TABLE `grupo_pesquisa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `grupo_pesquisa`
+-- Extraindo dados da tabela `grupo_pesquisa`
 --
 
 INSERT INTO `grupo_pesquisa` (`idgrupo_pesquisa`, `grupo`) VALUES
@@ -264,7 +312,7 @@ INSERT INTO `grupo_pesquisa` (`idgrupo_pesquisa`, `grupo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `habitat`
+-- Estrutura da tabela `habitat`
 --
 
 CREATE TABLE `habitat` (
@@ -276,16 +324,20 @@ CREATE TABLE `habitat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `habitat`
+-- Extraindo dados da tabela `habitat`
 --
 
 INSERT INTO `habitat` (`idhabitat`, `habitat`, `habitat_veg_idhabitat_veg`, `habitat_ani_idhabitat_ani`, `info`) VALUES
-(1, '8', NULL, NULL, '');
+(1, '8', NULL, NULL, ''),
+(2, '0', 1, NULL, 'MAIS INFORMAÇÕES (HABITAT)'),
+(3, '3', NULL, 1, 'I001'),
+(4, '0', 2, NULL, ''),
+(5, '8', NULL, NULL, 'ddfhdf');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `habitat_ani`
+-- Estrutura da tabela `habitat_ani`
 --
 
 CREATE TABLE `habitat_ani` (
@@ -294,10 +346,17 @@ CREATE TABLE `habitat_ani` (
   `sitio_idsitio` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `habitat_ani`
+--
+
+INSERT INTO `habitat_ani` (`idhabitat_ani`, `hospedeiro_idhospedeiro`, `sitio_idsitio`) VALUES
+(1, 2, 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `habitat_veg`
+-- Estrutura da tabela `habitat_veg`
 --
 
 CREATE TABLE `habitat_veg` (
@@ -309,10 +368,18 @@ CREATE TABLE `habitat_veg` (
   `herbario` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `habitat_veg`
+--
+
+INSERT INTO `habitat_veg` (`idhabitat_veg`, `hospedeiro_idhospedeiro`, `substrato_idsubstrato`, `registro`, `codigo`, `herbario`) VALUES
+(1, 1, 1, 'REGISTRO DA EXSICATA DO HOSPEDEIRO', 'CÓDIGO ORIGINAL DO HERBÁRIO', 'HERBÁRIO DO DEPÓSITO DO HOSPEDEIRO'),
+(2, 1, 1, '', '', '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hospedeiro`
+-- Estrutura da tabela `hospedeiro`
 --
 
 CREATE TABLE `hospedeiro` (
@@ -322,7 +389,7 @@ CREATE TABLE `hospedeiro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `hospedeiro`
+-- Extraindo dados da tabela `hospedeiro`
 --
 
 INSERT INTO `hospedeiro` (`idhospedeiro`, `hospedeiro`, `isAnimal`) VALUES
@@ -332,7 +399,7 @@ INSERT INTO `hospedeiro` (`idhospedeiro`, `hospedeiro`, `isAnimal`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `imagem`
+-- Estrutura da tabela `imagem`
 --
 
 CREATE TABLE `imagem` (
@@ -341,18 +408,24 @@ CREATE TABLE `imagem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `imagem`
+-- Extraindo dados da tabela `imagem`
 --
 
 INSERT INTO `imagem` (`idimagem`, `imagem`) VALUES
 (1, '/api/public/images/1660868724437-001.jpeg'),
 (2, '/api/public/images/1660868730790-002.jpeg'),
-(3, '/api/public/images/1660868890026-004.jpeg');
+(3, '/api/public/images/1660868890026-004.jpeg'),
+(4, '/api/public/images/1660963825092-covid-virus-bacteria.png'),
+(5, '/api/public/images/1660963833891-1.jpg'),
+(6, '/api/public/images/1660963895137-1.jpg'),
+(7, '/api/public/images/1661056518682-1.jpg'),
+(8, '/api/public/images/1661056526580-covid-virus-bacteria.png'),
+(9, '/api/public/images/1661056570416-BLOG_DOENÇAS_MICROORGANISMOS-1-1280x720-1.jpeg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laboratorio`
+-- Estrutura da tabela `laboratorio`
 --
 
 CREATE TABLE `laboratorio` (
@@ -361,7 +434,7 @@ CREATE TABLE `laboratorio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `laboratorio`
+-- Extraindo dados da tabela `laboratorio`
 --
 
 INSERT INTO `laboratorio` (`idlaboratorio`, `laboratorio`) VALUES
@@ -371,7 +444,7 @@ INSERT INTO `laboratorio` (`idlaboratorio`, `laboratorio`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lote`
+-- Estrutura da tabela `lote`
 --
 
 CREATE TABLE `lote` (
@@ -381,7 +454,7 @@ CREATE TABLE `lote` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `lote`
+-- Extraindo dados da tabela `lote`
 --
 
 INSERT INTO `lote` (`idlote`, `lote`, `prateleira_idprateleira`) VALUES
@@ -390,7 +463,7 @@ INSERT INTO `lote` (`idlote`, `lote`, `prateleira_idprateleira`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `metodo_preservacao`
+-- Estrutura da tabela `metodo_preservacao`
 --
 
 CREATE TABLE `metodo_preservacao` (
@@ -399,7 +472,7 @@ CREATE TABLE `metodo_preservacao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `metodo_preservacao`
+-- Extraindo dados da tabela `metodo_preservacao`
 --
 
 INSERT INTO `metodo_preservacao` (`idmetodo_preservacao`, `metodo`) VALUES
@@ -408,7 +481,7 @@ INSERT INTO `metodo_preservacao` (`idmetodo_preservacao`, `metodo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `microorganismo`
+-- Estrutura da tabela `microorganismo`
 --
 
 CREATE TABLE `microorganismo` (
@@ -450,16 +523,20 @@ CREATE TABLE `microorganismo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `microorganismo`
+-- Extraindo dados da tabela `microorganismo`
 --
 
 INSERT INTO `microorganismo` (`idmicroorganismo`, `variedade_idvariedade`, `status`, `data_reg_col_orig`, `data_colet`, `data_isol`, `data_ident`, `data_mol`, `cod_orig`, `hist_orig`, `pesquisador_coleta`, `origem_geo`, `lat`, `lon`, `datum`, `precisao`, `coment_orig`, `pesquisador_isolamento`, `info_isolamento`, `pesquisador_ident`, `coment_isolamento`, `cor_colonia`, `textura_idtextura`, `borda_idborda`, `relevo_idrelevo`, `exudato_idexudato`, `cor_exudato`, `pigmento_idpigmento`, `cor_pigmento`, `temp_crescimento`, `laboratorio_mol`, `cod_mol`, `sequencia_mol`, `meta_mol`, `habitat_idhabitat`) VALUES
-(1, 1, 0, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', '', '', '', '', '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '', '', '', 1);
+(1, 1, 0, NULL, NULL, NULL, NULL, NULL, '', '', 1, '', '', '', '', '', '', 1, '', 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '', '', '', 1),
+(2, 1, 0, '2022-08-19', '2022-08-19', '2022-08-19', '2022-08-19', '2022-08-19', 'REGISTRO EM OUTRAS COLEÇÕES (CÓDIGO ORIGINAL)', 'REGISTRO EM OUTRAS COLEÇÕES (HISTÓRICO)', 1, 'ORIGEM GEOGRÁFICA', 'LATITUDE', 'LONGITUDE', 'DATUM', 'PRECISÃO', 'COMENTÁRIOS SOBRE ORIGEM', 1, 'info_isolamento', 1, 'COMENTÁRIO', 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 'CÓDIGO', 'SEQUÊNCIA', 'METADADOS', 2),
+(3, 1, 0, '2022-08-20', '2022-08-20', '2022-08-20', '2022-08-20', '2022-08-20', 'C001', 'R001', 1, 'G001', 'L001', 'L002', 'D001', 'P002', 'C001', 1, 'I002', 1, 'C002', 1, 1, 1, 1, 1, 1, 1, 2, 4, 2, 'C001', 'S002', 'M002', 3),
+(4, 1, 0, '2022-08-21', '2022-08-21', '2022-08-21', '2022-08-21', '2022-08-21', '', '', 1, '', '', '', '', '', '', 1, '', 1, '', 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, '', '', '', 4),
+(5, 1, 0, '2022-08-21', '2022-08-21', '2022-08-21', '2022-08-21', '2022-08-21', 'sfs', 'dfhdf', 1, 'dfh', 'dfh', 'dfhdf', 'dfhdfh', 'dfhdfh', 'dfhdfh', 1, 'dfhdf', 1, 'dfhdfh', 1, 1, 1, 1, 1, 2, 1, 2, 0, 2, 'dfhdf', 'dfhdf', 'dfhdfh', 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `microorganismo_has_anexos`
+-- Estrutura da tabela `microorganismo_has_anexos`
 --
 
 CREATE TABLE `microorganismo_has_anexos` (
@@ -468,10 +545,17 @@ CREATE TABLE `microorganismo_has_anexos` (
   `anexos_idanexos` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `microorganismo_has_anexos`
+--
+
+INSERT INTO `microorganismo_has_anexos` (`idmicroorganismo_has_anexos`, `microorganismo_idmicroorganismo`, `anexos_idanexos`) VALUES
+(1, 5, 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `microorganismo_has_carac_micromorfologica`
+-- Estrutura da tabela `microorganismo_has_carac_micromorfologica`
 --
 
 CREATE TABLE `microorganismo_has_carac_micromorfologica` (
@@ -481,16 +565,20 @@ CREATE TABLE `microorganismo_has_carac_micromorfologica` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `microorganismo_has_carac_micromorfologica`
+-- Extraindo dados da tabela `microorganismo_has_carac_micromorfologica`
 --
 
 INSERT INTO `microorganismo_has_carac_micromorfologica` (`idmicroorganismo_has_carac_micromorfologica`, `microorganismo_idmicroorganismo`, `carac_micromorfologica_idcarac_micromorfologica`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `microorganismo_has_imagem_macro`
+-- Estrutura da tabela `microorganismo_has_imagem_macro`
 --
 
 CREATE TABLE `microorganismo_has_imagem_macro` (
@@ -500,16 +588,18 @@ CREATE TABLE `microorganismo_has_imagem_macro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `microorganismo_has_imagem_macro`
+-- Extraindo dados da tabela `microorganismo_has_imagem_macro`
 --
 
 INSERT INTO `microorganismo_has_imagem_macro` (`idmicroorganismo_has_imagem_macro`, `microorganismo_idmicroorganismo`, `imagem_idimagem`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 4),
+(3, 4, 7);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `microorganismo_has_imagem_micro`
+-- Estrutura da tabela `microorganismo_has_imagem_micro`
 --
 
 CREATE TABLE `microorganismo_has_imagem_micro` (
@@ -519,16 +609,18 @@ CREATE TABLE `microorganismo_has_imagem_micro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `microorganismo_has_imagem_micro`
+-- Extraindo dados da tabela `microorganismo_has_imagem_micro`
 --
 
 INSERT INTO `microorganismo_has_imagem_micro` (`idmicroorganismo_has_imagem_micro`, `microorganismo_idmicroorganismo`, `imagem_idimagem`) VALUES
-(1, 1, 2);
+(1, 1, 2),
+(2, 2, 5),
+(3, 4, 8);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `microorganismo_has_referencia_taxa`
+-- Estrutura da tabela `microorganismo_has_referencia_taxa`
 --
 
 CREATE TABLE `microorganismo_has_referencia_taxa` (
@@ -537,10 +629,20 @@ CREATE TABLE `microorganismo_has_referencia_taxa` (
   `referencia_idreferencia` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `microorganismo_has_referencia_taxa`
+--
+
+INSERT INTO `microorganismo_has_referencia_taxa` (`idmicroorganismo_has_referencia_taxa`, `microorganismo_idmicroorganismo`, `referencia_idreferencia`) VALUES
+(1, 2, 1),
+(2, 3, 1),
+(3, 4, 1),
+(4, 5, 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `microorganismo_has_referencia_temp`
+-- Estrutura da tabela `microorganismo_has_referencia_temp`
 --
 
 CREATE TABLE `microorganismo_has_referencia_temp` (
@@ -549,10 +651,20 @@ CREATE TABLE `microorganismo_has_referencia_temp` (
   `referencia_idreferencia` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `microorganismo_has_referencia_temp`
+--
+
+INSERT INTO `microorganismo_has_referencia_temp` (`idmicroorganismo_has_referencia_temp`, `microorganismo_idmicroorganismo`, `referencia_idreferencia`) VALUES
+(1, 2, 1),
+(2, 3, 1),
+(3, 4, 1),
+(4, 5, 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ordem`
+-- Estrutura da tabela `ordem`
 --
 
 CREATE TABLE `ordem` (
@@ -562,7 +674,7 @@ CREATE TABLE `ordem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ordem`
+-- Extraindo dados da tabela `ordem`
 --
 
 INSERT INTO `ordem` (`idordem`, `ordem`, `classe_idclasse`) VALUES
@@ -571,7 +683,7 @@ INSERT INTO `ordem` (`idordem`, `ordem`, `classe_idclasse`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pesquisador`
+-- Estrutura da tabela `pesquisador`
 --
 
 CREATE TABLE `pesquisador` (
@@ -582,7 +694,7 @@ CREATE TABLE `pesquisador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pesquisador`
+-- Extraindo dados da tabela `pesquisador`
 --
 
 INSERT INTO `pesquisador` (`idpesquisador`, `nome`, `instituicao`, `email`) VALUES
@@ -591,7 +703,7 @@ INSERT INTO `pesquisador` (`idpesquisador`, `nome`, `instituicao`, `email`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pigmento`
+-- Estrutura da tabela `pigmento`
 --
 
 CREATE TABLE `pigmento` (
@@ -599,10 +711,17 @@ CREATE TABLE `pigmento` (
   `pigmento` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `pigmento`
+--
+
+INSERT INTO `pigmento` (`idpigmento`, `pigmento`) VALUES
+(1, 'PIG001');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `posicao`
+-- Estrutura da tabela `posicao`
 --
 
 CREATE TABLE `posicao` (
@@ -612,7 +731,7 @@ CREATE TABLE `posicao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `posicao`
+-- Extraindo dados da tabela `posicao`
 --
 
 INSERT INTO `posicao` (`idposicao`, `posicao`, `lote_idlote`) VALUES
@@ -621,7 +740,7 @@ INSERT INTO `posicao` (`idposicao`, `posicao`, `lote_idlote`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prateleira`
+-- Estrutura da tabela `prateleira`
 --
 
 CREATE TABLE `prateleira` (
@@ -631,7 +750,7 @@ CREATE TABLE `prateleira` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `prateleira`
+-- Extraindo dados da tabela `prateleira`
 --
 
 INSERT INTO `prateleira` (`idprateleira`, `prateleira`, `armario_idarmario`) VALUES
@@ -640,7 +759,7 @@ INSERT INTO `prateleira` (`idprateleira`, `prateleira`, `armario_idarmario`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `referencia`
+-- Estrutura da tabela `referencia`
 --
 
 CREATE TABLE `referencia` (
@@ -648,10 +767,17 @@ CREATE TABLE `referencia` (
   `referencia` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `referencia`
+--
+
+INSERT INTO `referencia` (`idreferencia`, `referencia`) VALUES
+(1, 'RF001');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reino`
+-- Estrutura da tabela `reino`
 --
 
 CREATE TABLE `reino` (
@@ -661,7 +787,7 @@ CREATE TABLE `reino` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reino`
+-- Extraindo dados da tabela `reino`
 --
 
 INSERT INTO `reino` (`idreino`, `reino`, `dominio_iddominio`) VALUES
@@ -670,7 +796,7 @@ INSERT INTO `reino` (`idreino`, `reino`, `dominio_iddominio`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `relevo`
+-- Estrutura da tabela `relevo`
 --
 
 CREATE TABLE `relevo` (
@@ -678,10 +804,17 @@ CREATE TABLE `relevo` (
   `relevo` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `relevo`
+--
+
+INSERT INTO `relevo` (`idrelevo`, `relevo`) VALUES
+(1, 'REL001');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `repique`
+-- Estrutura da tabela `repique`
 --
 
 CREATE TABLE `repique` (
@@ -699,16 +832,20 @@ CREATE TABLE `repique` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `repique`
+-- Extraindo dados da tabela `repique`
 --
 
 INSERT INTO `repique` (`idrepique`, `microorganismo_idmicroorganismo`, `unidade_idunidade`, `grupo_pesquisa_idgrupo_pesquisa`, `comentarios`, `disponivel`, `data_emission`, `data_preserv`, `posicao_idposicao`, `pesquisador_preserv`, `parent`) VALUES
-(1, 1, 1, 1, '', 0, NULL, '2022-08-03 00:00:00', 1, 1, NULL);
+(1, 1, 1, 1, '', 1, NULL, '2022-08-03 00:00:00', 1, 1, NULL),
+(2, 2, 1, 1, 'COMENTÁRIOS', 0, NULL, '2022-08-19 00:00:00', 1, 1, NULL),
+(3, 3, 1, 1, 'C003', 0, NULL, '2022-08-20 00:00:00', 1, 1, NULL),
+(4, 4, 1, 1, '', 0, NULL, '2022-08-21 00:00:00', 1, 1, NULL),
+(5, 5, 1, 1, 'SDA', 0, NULL, '2022-08-21 00:00:00', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `repique_has_imagem`
+-- Estrutura da tabela `repique_has_imagem`
 --
 
 CREATE TABLE `repique_has_imagem` (
@@ -718,16 +855,18 @@ CREATE TABLE `repique_has_imagem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `repique_has_imagem`
+-- Extraindo dados da tabela `repique_has_imagem`
 --
 
 INSERT INTO `repique_has_imagem` (`idrepique_has_imagem`, `repique_idrepique`, `imagem_idimagem`) VALUES
-(1, 1, 3);
+(1, 1, 3),
+(2, 2, 6),
+(3, 4, 9);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `repique_has_metodo_preservacao`
+-- Estrutura da tabela `repique_has_metodo_preservacao`
 --
 
 CREATE TABLE `repique_has_metodo_preservacao` (
@@ -737,16 +876,20 @@ CREATE TABLE `repique_has_metodo_preservacao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `repique_has_metodo_preservacao`
+-- Extraindo dados da tabela `repique_has_metodo_preservacao`
 --
 
 INSERT INTO `repique_has_metodo_preservacao` (`idrepique_has_metodo_preservacao`, `repique_idrepique`, `metodo_preservacao_idmetodo_preservacao`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `repique_has_referencia`
+-- Estrutura da tabela `repique_has_referencia`
 --
 
 CREATE TABLE `repique_has_referencia` (
@@ -755,10 +898,20 @@ CREATE TABLE `repique_has_referencia` (
   `referencia_idreferencia` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `repique_has_referencia`
+--
+
+INSERT INTO `repique_has_referencia` (`idrepique_has_referencia`, `repique_idrepique`, `referencia_idreferencia`) VALUES
+(1, 2, 1),
+(2, 3, 1),
+(3, 4, 1),
+(4, 5, 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sitio`
+-- Estrutura da tabela `sitio`
 --
 
 CREATE TABLE `sitio` (
@@ -766,10 +919,17 @@ CREATE TABLE `sitio` (
   `sitio` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `sitio`
+--
+
+INSERT INTO `sitio` (`idsitio`, `sitio`) VALUES
+(1, 'SA001');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `substrato`
+-- Estrutura da tabela `substrato`
 --
 
 CREATE TABLE `substrato` (
@@ -777,10 +937,17 @@ CREATE TABLE `substrato` (
   `substrato` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `substrato`
+--
+
+INSERT INTO `substrato` (`idsubstrato`, `substrato`) VALUES
+(1, 'SUB001');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub_colecao`
+-- Estrutura da tabela `sub_colecao`
 --
 
 CREATE TABLE `sub_colecao` (
@@ -789,7 +956,7 @@ CREATE TABLE `sub_colecao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sub_colecao`
+-- Extraindo dados da tabela `sub_colecao`
 --
 
 INSERT INTO `sub_colecao` (`idsub_colecao`, `sub_colecao`) VALUES
@@ -798,7 +965,7 @@ INSERT INTO `sub_colecao` (`idsub_colecao`, `sub_colecao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub_especie`
+-- Estrutura da tabela `sub_especie`
 --
 
 CREATE TABLE `sub_especie` (
@@ -809,7 +976,7 @@ CREATE TABLE `sub_especie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sub_especie`
+-- Extraindo dados da tabela `sub_especie`
 --
 
 INSERT INTO `sub_especie` (`idsub_especie`, `sub_especie`, `autor`, `especie_idespecie`) VALUES
@@ -818,7 +985,7 @@ INSERT INTO `sub_especie` (`idsub_especie`, `sub_especie`, `autor`, `especie_ide
 -- --------------------------------------------------------
 
 --
--- Table structure for table `textura`
+-- Estrutura da tabela `textura`
 --
 
 CREATE TABLE `textura` (
@@ -826,10 +993,17 @@ CREATE TABLE `textura` (
   `textura` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `textura`
+--
+
+INSERT INTO `textura` (`idtextura`, `textura`) VALUES
+(1, 'T001');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `unidade`
+-- Estrutura da tabela `unidade`
 --
 
 CREATE TABLE `unidade` (
@@ -838,7 +1012,7 @@ CREATE TABLE `unidade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `unidade`
+-- Extraindo dados da tabela `unidade`
 --
 
 INSERT INTO `unidade` (`idunidade`, `unidade`) VALUES
@@ -847,7 +1021,7 @@ INSERT INTO `unidade` (`idunidade`, `unidade`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estrutura da tabela `users`
 --
 
 CREATE TABLE `users` (
@@ -855,23 +1029,23 @@ CREATE TABLE `users` (
   `email` varchar(35) NOT NULL,
   `passwd` varchar(255) NOT NULL,
   `isMaster` tinyint(1) NOT NULL DEFAULT 0,
-  `instituicao` varchar(255) NOT NULL,
-  `nome` varchar(255) NOT NULL
+  `nome` varchar(255) NOT NULL,
+  `instituicao` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`iduser`, `email`, `passwd`, `isMaster`, `instituicao`, `nome`) VALUES
-(3, 'guilherme@mavennet.com', '$2b$06$im/.TkOYOzmWS13tvyU3UetXjKAVLaLB9o0FoZYEABNqksTjsxYGi', 0, 'Mavennet', 'Guilherme Guimarães'),
-(6, 'guilherme@agreewe.com', '$2b$06$3n5H6IFXKwIPsDdlwkTUAeQEA5NPgpZ.AUWSwGCOkW6gcNT8ShrES', 1, 'AgreeWe', 'Guilherme F Guimarães'),
-(7, 'fg.guilherme@gmail.com', '$2b$06$GWh.HXRZGELzVGLgRaVopeOL16czHQ84yJtVbO7pqS1lF6aptjoyW', 1, 'Google', 'Guilherme Freitas Guimarães');
+INSERT INTO `users` (`iduser`, `email`, `passwd`, `isMaster`, `nome`, `instituicao`) VALUES
+(3, 'guilherme@mavennet.com', '$2b$06$im/.TkOYOzmWS13tvyU3UetXjKAVLaLB9o0FoZYEABNqksTjsxYGi', 0, '', ''),
+(6, 'guilherme@agreewe.com', '$2b$06$7yCg3PyQLlv2k59hb3Lnie9xZRA43vcr2owHyRFa28MoAN.bn5htW', 1, '', ''),
+(7, 'agladejesus@gmail.com', '$2b$06$zG9qBZwvargzFSM6I2k2.e0ixLYZDnlg2GKKXPneQqnF5acWv7PrO', 1, 'Alexandre de Jesus Miranda', 'UEA');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `variedade`
+-- Estrutura da tabela `variedade`
 --
 
 CREATE TABLE `variedade` (
@@ -882,25 +1056,25 @@ CREATE TABLE `variedade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `variedade`
+-- Extraindo dados da tabela `variedade`
 --
 
 INSERT INTO `variedade` (`idvariedade`, `variedade`, `autor`, `sub_especie_idsub_especie`) VALUES
 (1, 'V001', 'AAA', 1);
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `anexos`
+-- Índices para tabela `anexos`
 --
 ALTER TABLE `anexos`
   ADD PRIMARY KEY (`idanexos`),
   ADD UNIQUE KEY `idanexos_UNIQUE` (`idanexos`);
 
 --
--- Indexes for table `armario`
+-- Índices para tabela `armario`
 --
 ALTER TABLE `armario`
   ADD PRIMARY KEY (`idarmario`),
@@ -908,14 +1082,20 @@ ALTER TABLE `armario`
   ADD KEY `fk_armario_sub_colecao1_idx` (`sub_colecao_idsub_colecao`);
 
 --
--- Indexes for table `borda`
+-- Índices para tabela `autenticacao`
+--
+ALTER TABLE `autenticacao`
+  ADD PRIMARY KEY (`idAutenticacao`);
+
+--
+-- Índices para tabela `borda`
 --
 ALTER TABLE `borda`
   ADD PRIMARY KEY (`idborda`),
   ADD UNIQUE KEY `idborda_UNIQUE` (`idborda`);
 
 --
--- Indexes for table `carac_micromorfologica`
+-- Índices para tabela `carac_micromorfologica`
 --
 ALTER TABLE `carac_micromorfologica`
   ADD PRIMARY KEY (`idcarac_micromorfologica`),
@@ -923,7 +1103,7 @@ ALTER TABLE `carac_micromorfologica`
   ADD UNIQUE KEY `carac_micromorfologica_UNIQUE` (`carac_micromorfologica`);
 
 --
--- Indexes for table `classe`
+-- Índices para tabela `classe`
 --
 ALTER TABLE `classe`
   ADD PRIMARY KEY (`idclasse`),
@@ -931,21 +1111,27 @@ ALTER TABLE `classe`
   ADD KEY `fk_classe_filo1_idx` (`filo_idfilo`);
 
 --
--- Indexes for table `cor`
+-- Índices para tabela `cor`
 --
 ALTER TABLE `cor`
   ADD PRIMARY KEY (`idcor`),
   ADD UNIQUE KEY `idcor_UNIQUE` (`idcor`);
 
 --
--- Indexes for table `dominio`
+-- Índices para tabela `doacao`
+--
+ALTER TABLE `doacao`
+  ADD PRIMARY KEY (`idDoacao`);
+
+--
+-- Índices para tabela `dominio`
 --
 ALTER TABLE `dominio`
   ADD PRIMARY KEY (`iddominio`),
   ADD UNIQUE KEY `iddominio_UNIQUE` (`iddominio`);
 
 --
--- Indexes for table `especie`
+-- Índices para tabela `especie`
 --
 ALTER TABLE `especie`
   ADD PRIMARY KEY (`idespecie`),
@@ -953,14 +1139,14 @@ ALTER TABLE `especie`
   ADD KEY `fk_especie_genero1_idx` (`genero_idgenero`);
 
 --
--- Indexes for table `exudato`
+-- Índices para tabela `exudato`
 --
 ALTER TABLE `exudato`
   ADD PRIMARY KEY (`idexudato`),
   ADD UNIQUE KEY `idexudato_UNIQUE` (`idexudato`);
 
 --
--- Indexes for table `familia`
+-- Índices para tabela `familia`
 --
 ALTER TABLE `familia`
   ADD PRIMARY KEY (`idfamilia`),
@@ -968,7 +1154,7 @@ ALTER TABLE `familia`
   ADD KEY `fk_familia_ordem1_idx` (`ordem_idordem`);
 
 --
--- Indexes for table `filo`
+-- Índices para tabela `filo`
 --
 ALTER TABLE `filo`
   ADD PRIMARY KEY (`idfilo`),
@@ -976,7 +1162,7 @@ ALTER TABLE `filo`
   ADD KEY `fk_filo_reino1_idx` (`reino_idreino`);
 
 --
--- Indexes for table `genero`
+-- Índices para tabela `genero`
 --
 ALTER TABLE `genero`
   ADD PRIMARY KEY (`idgenero`),
@@ -984,14 +1170,14 @@ ALTER TABLE `genero`
   ADD KEY `fk_genero_familia1_idx` (`familia_idfamilia`);
 
 --
--- Indexes for table `grupo_pesquisa`
+-- Índices para tabela `grupo_pesquisa`
 --
 ALTER TABLE `grupo_pesquisa`
   ADD PRIMARY KEY (`idgrupo_pesquisa`),
   ADD UNIQUE KEY `idgrupo_pesquisa_UNIQUE` (`idgrupo_pesquisa`);
 
 --
--- Indexes for table `habitat`
+-- Índices para tabela `habitat`
 --
 ALTER TABLE `habitat`
   ADD PRIMARY KEY (`idhabitat`),
@@ -1000,7 +1186,7 @@ ALTER TABLE `habitat`
   ADD KEY `fk_habitat_habitat_ani1_idx` (`habitat_ani_idhabitat_ani`);
 
 --
--- Indexes for table `habitat_ani`
+-- Índices para tabela `habitat_ani`
 --
 ALTER TABLE `habitat_ani`
   ADD PRIMARY KEY (`idhabitat_ani`),
@@ -1009,7 +1195,7 @@ ALTER TABLE `habitat_ani`
   ADD KEY `fk_habitat_ani_sitio1_idx` (`sitio_idsitio`);
 
 --
--- Indexes for table `habitat_veg`
+-- Índices para tabela `habitat_veg`
 --
 ALTER TABLE `habitat_veg`
   ADD PRIMARY KEY (`idhabitat_veg`),
@@ -1018,28 +1204,28 @@ ALTER TABLE `habitat_veg`
   ADD KEY `fk_habitat_veg_substrato1_idx` (`substrato_idsubstrato`);
 
 --
--- Indexes for table `hospedeiro`
+-- Índices para tabela `hospedeiro`
 --
 ALTER TABLE `hospedeiro`
   ADD PRIMARY KEY (`idhospedeiro`),
   ADD UNIQUE KEY `idhospedeiro_UNIQUE` (`idhospedeiro`);
 
 --
--- Indexes for table `imagem`
+-- Índices para tabela `imagem`
 --
 ALTER TABLE `imagem`
   ADD PRIMARY KEY (`idimagem`),
   ADD UNIQUE KEY `idimagem_UNIQUE` (`idimagem`);
 
 --
--- Indexes for table `laboratorio`
+-- Índices para tabela `laboratorio`
 --
 ALTER TABLE `laboratorio`
   ADD PRIMARY KEY (`idlaboratorio`),
   ADD UNIQUE KEY `idlaboratorio_UNIQUE` (`idlaboratorio`);
 
 --
--- Indexes for table `lote`
+-- Índices para tabela `lote`
 --
 ALTER TABLE `lote`
   ADD PRIMARY KEY (`idlote`),
@@ -1047,14 +1233,14 @@ ALTER TABLE `lote`
   ADD KEY `fk_lote_prateleira1_idx` (`prateleira_idprateleira`);
 
 --
--- Indexes for table `metodo_preservacao`
+-- Índices para tabela `metodo_preservacao`
 --
 ALTER TABLE `metodo_preservacao`
   ADD PRIMARY KEY (`idmetodo_preservacao`),
   ADD UNIQUE KEY `idmetodo_preservacao_UNIQUE` (`idmetodo_preservacao`);
 
 --
--- Indexes for table `microorganismo`
+-- Índices para tabela `microorganismo`
 --
 ALTER TABLE `microorganismo`
   ADD PRIMARY KEY (`idmicroorganismo`),
@@ -1075,7 +1261,7 @@ ALTER TABLE `microorganismo`
   ADD KEY `fk_microorganismo_habitat1_idx` (`habitat_idhabitat`);
 
 --
--- Indexes for table `microorganismo_has_anexos`
+-- Índices para tabela `microorganismo_has_anexos`
 --
 ALTER TABLE `microorganismo_has_anexos`
   ADD PRIMARY KEY (`idmicroorganismo_has_anexos`,`microorganismo_idmicroorganismo`,`anexos_idanexos`),
@@ -1083,7 +1269,7 @@ ALTER TABLE `microorganismo_has_anexos`
   ADD KEY `fk_microorganismo_has_anexos_microorganismo1_idx` (`microorganismo_idmicroorganismo`);
 
 --
--- Indexes for table `microorganismo_has_carac_micromorfologica`
+-- Índices para tabela `microorganismo_has_carac_micromorfologica`
 --
 ALTER TABLE `microorganismo_has_carac_micromorfologica`
   ADD PRIMARY KEY (`idmicroorganismo_has_carac_micromorfologica`,`microorganismo_idmicroorganismo`,`carac_micromorfologica_idcarac_micromorfologica`),
@@ -1091,7 +1277,7 @@ ALTER TABLE `microorganismo_has_carac_micromorfologica`
   ADD KEY `fk_microorganismo_has_carac_micromorfologica_microorganismo_idx` (`microorganismo_idmicroorganismo`);
 
 --
--- Indexes for table `microorganismo_has_imagem_macro`
+-- Índices para tabela `microorganismo_has_imagem_macro`
 --
 ALTER TABLE `microorganismo_has_imagem_macro`
   ADD PRIMARY KEY (`idmicroorganismo_has_imagem_macro`,`microorganismo_idmicroorganismo`,`imagem_idimagem`),
@@ -1099,7 +1285,7 @@ ALTER TABLE `microorganismo_has_imagem_macro`
   ADD KEY `fk_microorganismo_has_imagem_microorganismo1_idx` (`microorganismo_idmicroorganismo`);
 
 --
--- Indexes for table `microorganismo_has_imagem_micro`
+-- Índices para tabela `microorganismo_has_imagem_micro`
 --
 ALTER TABLE `microorganismo_has_imagem_micro`
   ADD PRIMARY KEY (`idmicroorganismo_has_imagem_micro`,`microorganismo_idmicroorganismo`,`imagem_idimagem`),
@@ -1107,7 +1293,7 @@ ALTER TABLE `microorganismo_has_imagem_micro`
   ADD KEY `fk_microorganismo_has_imagem_microorganismo2_idx` (`microorganismo_idmicroorganismo`);
 
 --
--- Indexes for table `microorganismo_has_referencia_taxa`
+-- Índices para tabela `microorganismo_has_referencia_taxa`
 --
 ALTER TABLE `microorganismo_has_referencia_taxa`
   ADD PRIMARY KEY (`idmicroorganismo_has_referencia_taxa`,`microorganismo_idmicroorganismo`,`referencia_idreferencia`),
@@ -1115,7 +1301,7 @@ ALTER TABLE `microorganismo_has_referencia_taxa`
   ADD KEY `fk_microorganismo_has_referencia_microorganismo1_idx` (`microorganismo_idmicroorganismo`);
 
 --
--- Indexes for table `microorganismo_has_referencia_temp`
+-- Índices para tabela `microorganismo_has_referencia_temp`
 --
 ALTER TABLE `microorganismo_has_referencia_temp`
   ADD PRIMARY KEY (`idmicroorganismo_has_referencia_temp`,`microorganismo_idmicroorganismo`,`referencia_idreferencia`),
@@ -1123,7 +1309,7 @@ ALTER TABLE `microorganismo_has_referencia_temp`
   ADD KEY `fk_microorganismo_has_referencia1_microorganismo1_idx` (`microorganismo_idmicroorganismo`);
 
 --
--- Indexes for table `ordem`
+-- Índices para tabela `ordem`
 --
 ALTER TABLE `ordem`
   ADD PRIMARY KEY (`idordem`),
@@ -1131,21 +1317,21 @@ ALTER TABLE `ordem`
   ADD KEY `fk_ordem_classe1_idx` (`classe_idclasse`);
 
 --
--- Indexes for table `pesquisador`
+-- Índices para tabela `pesquisador`
 --
 ALTER TABLE `pesquisador`
   ADD PRIMARY KEY (`idpesquisador`),
   ADD UNIQUE KEY `idpesquisador_UNIQUE` (`idpesquisador`);
 
 --
--- Indexes for table `pigmento`
+-- Índices para tabela `pigmento`
 --
 ALTER TABLE `pigmento`
   ADD PRIMARY KEY (`idpigmento`),
   ADD UNIQUE KEY `idpigmento_UNIQUE` (`idpigmento`);
 
 --
--- Indexes for table `posicao`
+-- Índices para tabela `posicao`
 --
 ALTER TABLE `posicao`
   ADD PRIMARY KEY (`idposicao`),
@@ -1153,7 +1339,7 @@ ALTER TABLE `posicao`
   ADD KEY `fk_posicao_lote1_idx` (`lote_idlote`);
 
 --
--- Indexes for table `prateleira`
+-- Índices para tabela `prateleira`
 --
 ALTER TABLE `prateleira`
   ADD PRIMARY KEY (`idprateleira`),
@@ -1161,14 +1347,14 @@ ALTER TABLE `prateleira`
   ADD KEY `fk_prateleira_armario1_idx` (`armario_idarmario`);
 
 --
--- Indexes for table `referencia`
+-- Índices para tabela `referencia`
 --
 ALTER TABLE `referencia`
   ADD PRIMARY KEY (`idreferencia`),
   ADD UNIQUE KEY `idreferencia_UNIQUE` (`idreferencia`);
 
 --
--- Indexes for table `reino`
+-- Índices para tabela `reino`
 --
 ALTER TABLE `reino`
   ADD PRIMARY KEY (`idreino`),
@@ -1176,14 +1362,14 @@ ALTER TABLE `reino`
   ADD KEY `fk_reino_dominio_idx` (`dominio_iddominio`);
 
 --
--- Indexes for table `relevo`
+-- Índices para tabela `relevo`
 --
 ALTER TABLE `relevo`
   ADD PRIMARY KEY (`idrelevo`),
   ADD UNIQUE KEY `idrelevo_UNIQUE` (`idrelevo`);
 
 --
--- Indexes for table `repique`
+-- Índices para tabela `repique`
 --
 ALTER TABLE `repique`
   ADD PRIMARY KEY (`idrepique`),
@@ -1195,7 +1381,7 @@ ALTER TABLE `repique`
   ADD KEY `fk_repique_pesquisador1_idx` (`pesquisador_preserv`);
 
 --
--- Indexes for table `repique_has_imagem`
+-- Índices para tabela `repique_has_imagem`
 --
 ALTER TABLE `repique_has_imagem`
   ADD PRIMARY KEY (`idrepique_has_imagem`,`repique_idrepique`,`imagem_idimagem`),
@@ -1203,7 +1389,7 @@ ALTER TABLE `repique_has_imagem`
   ADD KEY `fk_repique_has_imagem_repique1_idx` (`repique_idrepique`);
 
 --
--- Indexes for table `repique_has_metodo_preservacao`
+-- Índices para tabela `repique_has_metodo_preservacao`
 --
 ALTER TABLE `repique_has_metodo_preservacao`
   ADD PRIMARY KEY (`idrepique_has_metodo_preservacao`,`metodo_preservacao_idmetodo_preservacao`,`repique_idrepique`),
@@ -1211,7 +1397,7 @@ ALTER TABLE `repique_has_metodo_preservacao`
   ADD KEY `fk_repique_has_metodo_preservacao_repique1_idx` (`repique_idrepique`);
 
 --
--- Indexes for table `repique_has_referencia`
+-- Índices para tabela `repique_has_referencia`
 --
 ALTER TABLE `repique_has_referencia`
   ADD PRIMARY KEY (`idrepique_has_referencia`,`repique_idrepique`,`referencia_idreferencia`),
@@ -1219,28 +1405,28 @@ ALTER TABLE `repique_has_referencia`
   ADD KEY `fk_repique_has_referencia_repique1_idx` (`repique_idrepique`);
 
 --
--- Indexes for table `sitio`
+-- Índices para tabela `sitio`
 --
 ALTER TABLE `sitio`
   ADD PRIMARY KEY (`idsitio`),
   ADD UNIQUE KEY `idsitio_UNIQUE` (`idsitio`);
 
 --
--- Indexes for table `substrato`
+-- Índices para tabela `substrato`
 --
 ALTER TABLE `substrato`
   ADD PRIMARY KEY (`idsubstrato`),
   ADD UNIQUE KEY `idsubstrato_UNIQUE` (`idsubstrato`);
 
 --
--- Indexes for table `sub_colecao`
+-- Índices para tabela `sub_colecao`
 --
 ALTER TABLE `sub_colecao`
   ADD PRIMARY KEY (`idsub_colecao`),
   ADD UNIQUE KEY `idsub_colecao_UNIQUE` (`idsub_colecao`);
 
 --
--- Indexes for table `sub_especie`
+-- Índices para tabela `sub_especie`
 --
 ALTER TABLE `sub_especie`
   ADD PRIMARY KEY (`idsub_especie`),
@@ -1248,28 +1434,28 @@ ALTER TABLE `sub_especie`
   ADD KEY `fk_sub_especie_especie1_idx` (`especie_idespecie`);
 
 --
--- Indexes for table `textura`
+-- Índices para tabela `textura`
 --
 ALTER TABLE `textura`
   ADD PRIMARY KEY (`idtextura`),
   ADD UNIQUE KEY `idtextura_UNIQUE` (`idtextura`);
 
 --
--- Indexes for table `unidade`
+-- Índices para tabela `unidade`
 --
 ALTER TABLE `unidade`
   ADD PRIMARY KEY (`idunidade`),
   ADD UNIQUE KEY `idunidade_UNIQUE` (`idunidade`);
 
 --
--- Indexes for table `users`
+-- Índices para tabela `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`iduser`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `variedade`
+-- Índices para tabela `variedade`
 --
 ALTER TABLE `variedade`
   ADD PRIMARY KEY (`idvariedade`),
@@ -1277,366 +1463,378 @@ ALTER TABLE `variedade`
   ADD KEY `fk_variedade_sub_especie1_idx` (`sub_especie_idsub_especie`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `anexos`
+-- AUTO_INCREMENT de tabela `anexos`
 --
 ALTER TABLE `anexos`
-  MODIFY `idanexos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idanexos` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `armario`
+-- AUTO_INCREMENT de tabela `armario`
 --
 ALTER TABLE `armario`
   MODIFY `idarmario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `borda`
+-- AUTO_INCREMENT de tabela `autenticacao`
+--
+ALTER TABLE `autenticacao`
+  MODIFY `idAutenticacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `borda`
 --
 ALTER TABLE `borda`
   MODIFY `idborda` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `carac_micromorfologica`
+-- AUTO_INCREMENT de tabela `carac_micromorfologica`
 --
 ALTER TABLE `carac_micromorfologica`
   MODIFY `idcarac_micromorfologica` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `classe`
+-- AUTO_INCREMENT de tabela `classe`
 --
 ALTER TABLE `classe`
   MODIFY `idclasse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `cor`
+-- AUTO_INCREMENT de tabela `cor`
 --
 ALTER TABLE `cor`
   MODIFY `idcor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `dominio`
+-- AUTO_INCREMENT de tabela `doacao`
+--
+ALTER TABLE `doacao`
+  MODIFY `idDoacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `dominio`
 --
 ALTER TABLE `dominio`
   MODIFY `iddominio` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `especie`
+-- AUTO_INCREMENT de tabela `especie`
 --
 ALTER TABLE `especie`
   MODIFY `idespecie` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `exudato`
+-- AUTO_INCREMENT de tabela `exudato`
 --
 ALTER TABLE `exudato`
   MODIFY `idexudato` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `familia`
+-- AUTO_INCREMENT de tabela `familia`
 --
 ALTER TABLE `familia`
   MODIFY `idfamilia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `filo`
+-- AUTO_INCREMENT de tabela `filo`
 --
 ALTER TABLE `filo`
   MODIFY `idfilo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `genero`
+-- AUTO_INCREMENT de tabela `genero`
 --
 ALTER TABLE `genero`
   MODIFY `idgenero` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `grupo_pesquisa`
+-- AUTO_INCREMENT de tabela `grupo_pesquisa`
 --
 ALTER TABLE `grupo_pesquisa`
   MODIFY `idgrupo_pesquisa` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `habitat`
+-- AUTO_INCREMENT de tabela `habitat`
 --
 ALTER TABLE `habitat`
-  MODIFY `idhabitat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idhabitat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `habitat_ani`
+-- AUTO_INCREMENT de tabela `habitat_ani`
 --
 ALTER TABLE `habitat_ani`
-  MODIFY `idhabitat_ani` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idhabitat_ani` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `habitat_veg`
+-- AUTO_INCREMENT de tabela `habitat_veg`
 --
 ALTER TABLE `habitat_veg`
-  MODIFY `idhabitat_veg` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idhabitat_veg` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `hospedeiro`
+-- AUTO_INCREMENT de tabela `hospedeiro`
 --
 ALTER TABLE `hospedeiro`
   MODIFY `idhospedeiro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `imagem`
+-- AUTO_INCREMENT de tabela `imagem`
 --
 ALTER TABLE `imagem`
-  MODIFY `idimagem` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idimagem` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `laboratorio`
+-- AUTO_INCREMENT de tabela `laboratorio`
 --
 ALTER TABLE `laboratorio`
   MODIFY `idlaboratorio` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `lote`
+-- AUTO_INCREMENT de tabela `lote`
 --
 ALTER TABLE `lote`
   MODIFY `idlote` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `metodo_preservacao`
+-- AUTO_INCREMENT de tabela `metodo_preservacao`
 --
 ALTER TABLE `metodo_preservacao`
   MODIFY `idmetodo_preservacao` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `microorganismo`
+-- AUTO_INCREMENT de tabela `microorganismo`
 --
 ALTER TABLE `microorganismo`
-  MODIFY `idmicroorganismo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idmicroorganismo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `microorganismo_has_anexos`
+-- AUTO_INCREMENT de tabela `microorganismo_has_anexos`
 --
 ALTER TABLE `microorganismo_has_anexos`
-  MODIFY `idmicroorganismo_has_anexos` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idmicroorganismo_has_anexos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `microorganismo_has_carac_micromorfologica`
+-- AUTO_INCREMENT de tabela `microorganismo_has_carac_micromorfologica`
 --
 ALTER TABLE `microorganismo_has_carac_micromorfologica`
-  MODIFY `idmicroorganismo_has_carac_micromorfologica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idmicroorganismo_has_carac_micromorfologica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `microorganismo_has_imagem_macro`
+-- AUTO_INCREMENT de tabela `microorganismo_has_imagem_macro`
 --
 ALTER TABLE `microorganismo_has_imagem_macro`
-  MODIFY `idmicroorganismo_has_imagem_macro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idmicroorganismo_has_imagem_macro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `microorganismo_has_imagem_micro`
+-- AUTO_INCREMENT de tabela `microorganismo_has_imagem_micro`
 --
 ALTER TABLE `microorganismo_has_imagem_micro`
-  MODIFY `idmicroorganismo_has_imagem_micro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idmicroorganismo_has_imagem_micro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `microorganismo_has_referencia_taxa`
+-- AUTO_INCREMENT de tabela `microorganismo_has_referencia_taxa`
 --
 ALTER TABLE `microorganismo_has_referencia_taxa`
-  MODIFY `idmicroorganismo_has_referencia_taxa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idmicroorganismo_has_referencia_taxa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `microorganismo_has_referencia_temp`
+-- AUTO_INCREMENT de tabela `microorganismo_has_referencia_temp`
 --
 ALTER TABLE `microorganismo_has_referencia_temp`
-  MODIFY `idmicroorganismo_has_referencia_temp` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idmicroorganismo_has_referencia_temp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `ordem`
+-- AUTO_INCREMENT de tabela `ordem`
 --
 ALTER TABLE `ordem`
   MODIFY `idordem` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `pesquisador`
+-- AUTO_INCREMENT de tabela `pesquisador`
 --
 ALTER TABLE `pesquisador`
   MODIFY `idpesquisador` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `pigmento`
+-- AUTO_INCREMENT de tabela `pigmento`
 --
 ALTER TABLE `pigmento`
-  MODIFY `idpigmento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idpigmento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `posicao`
+-- AUTO_INCREMENT de tabela `posicao`
 --
 ALTER TABLE `posicao`
   MODIFY `idposicao` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `prateleira`
+-- AUTO_INCREMENT de tabela `prateleira`
 --
 ALTER TABLE `prateleira`
   MODIFY `idprateleira` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `referencia`
+-- AUTO_INCREMENT de tabela `referencia`
 --
 ALTER TABLE `referencia`
-  MODIFY `idreferencia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idreferencia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `reino`
+-- AUTO_INCREMENT de tabela `reino`
 --
 ALTER TABLE `reino`
   MODIFY `idreino` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `relevo`
+-- AUTO_INCREMENT de tabela `relevo`
 --
 ALTER TABLE `relevo`
-  MODIFY `idrelevo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idrelevo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `repique`
+-- AUTO_INCREMENT de tabela `repique`
 --
 ALTER TABLE `repique`
-  MODIFY `idrepique` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idrepique` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `repique_has_imagem`
+-- AUTO_INCREMENT de tabela `repique_has_imagem`
 --
 ALTER TABLE `repique_has_imagem`
-  MODIFY `idrepique_has_imagem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idrepique_has_imagem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `repique_has_metodo_preservacao`
+-- AUTO_INCREMENT de tabela `repique_has_metodo_preservacao`
 --
 ALTER TABLE `repique_has_metodo_preservacao`
-  MODIFY `idrepique_has_metodo_preservacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idrepique_has_metodo_preservacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `repique_has_referencia`
+-- AUTO_INCREMENT de tabela `repique_has_referencia`
 --
 ALTER TABLE `repique_has_referencia`
-  MODIFY `idrepique_has_referencia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idrepique_has_referencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `sitio`
+-- AUTO_INCREMENT de tabela `sitio`
 --
 ALTER TABLE `sitio`
-  MODIFY `idsitio` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idsitio` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `substrato`
+-- AUTO_INCREMENT de tabela `substrato`
 --
 ALTER TABLE `substrato`
-  MODIFY `idsubstrato` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idsubstrato` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `sub_colecao`
+-- AUTO_INCREMENT de tabela `sub_colecao`
 --
 ALTER TABLE `sub_colecao`
   MODIFY `idsub_colecao` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `sub_especie`
+-- AUTO_INCREMENT de tabela `sub_especie`
 --
 ALTER TABLE `sub_especie`
   MODIFY `idsub_especie` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `textura`
+-- AUTO_INCREMENT de tabela `textura`
 --
 ALTER TABLE `textura`
-  MODIFY `idtextura` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idtextura` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `unidade`
+-- AUTO_INCREMENT de tabela `unidade`
 --
 ALTER TABLE `unidade`
   MODIFY `idunidade` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `iduser` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `iduser` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `variedade`
+-- AUTO_INCREMENT de tabela `variedade`
 --
 ALTER TABLE `variedade`
   MODIFY `idvariedade` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Restrições para despejos de tabelas
 --
 
 --
--- Constraints for table `armario`
+-- Limitadores para a tabela `armario`
 --
 ALTER TABLE `armario`
   ADD CONSTRAINT `fk_armario_sub_colecao1` FOREIGN KEY (`sub_colecao_idsub_colecao`) REFERENCES `sub_colecao` (`idsub_colecao`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `classe`
+-- Limitadores para a tabela `classe`
 --
 ALTER TABLE `classe`
   ADD CONSTRAINT `fk_classe_filo1` FOREIGN KEY (`filo_idfilo`) REFERENCES `filo` (`idfilo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `especie`
+-- Limitadores para a tabela `especie`
 --
 ALTER TABLE `especie`
   ADD CONSTRAINT `fk_especie_genero1` FOREIGN KEY (`genero_idgenero`) REFERENCES `genero` (`idgenero`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `familia`
+-- Limitadores para a tabela `familia`
 --
 ALTER TABLE `familia`
   ADD CONSTRAINT `fk_familia_ordem1` FOREIGN KEY (`ordem_idordem`) REFERENCES `ordem` (`idordem`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `filo`
+-- Limitadores para a tabela `filo`
 --
 ALTER TABLE `filo`
   ADD CONSTRAINT `fk_filo_reino1` FOREIGN KEY (`reino_idreino`) REFERENCES `reino` (`idreino`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `genero`
+-- Limitadores para a tabela `genero`
 --
 ALTER TABLE `genero`
   ADD CONSTRAINT `fk_genero_familia1` FOREIGN KEY (`familia_idfamilia`) REFERENCES `familia` (`idfamilia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `habitat`
+-- Limitadores para a tabela `habitat`
 --
 ALTER TABLE `habitat`
   ADD CONSTRAINT `fk_habitat_habitat_ani1` FOREIGN KEY (`habitat_ani_idhabitat_ani`) REFERENCES `habitat_ani` (`idhabitat_ani`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_habitat_habitat_veg1` FOREIGN KEY (`habitat_veg_idhabitat_veg`) REFERENCES `habitat_veg` (`idhabitat_veg`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `habitat_ani`
+-- Limitadores para a tabela `habitat_ani`
 --
 ALTER TABLE `habitat_ani`
   ADD CONSTRAINT `fk_habitat_ani_hospedeiro1` FOREIGN KEY (`hospedeiro_idhospedeiro`) REFERENCES `hospedeiro` (`idhospedeiro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_habitat_ani_sitio1` FOREIGN KEY (`sitio_idsitio`) REFERENCES `sitio` (`idsitio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `habitat_veg`
+-- Limitadores para a tabela `habitat_veg`
 --
 ALTER TABLE `habitat_veg`
   ADD CONSTRAINT `fk_habitat_veg_hospedeiro1` FOREIGN KEY (`hospedeiro_idhospedeiro`) REFERENCES `hospedeiro` (`idhospedeiro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_habitat_veg_substrato1` FOREIGN KEY (`substrato_idsubstrato`) REFERENCES `substrato` (`idsubstrato`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `lote`
+-- Limitadores para a tabela `lote`
 --
 ALTER TABLE `lote`
   ADD CONSTRAINT `fk_lote_prateleira1` FOREIGN KEY (`prateleira_idprateleira`) REFERENCES `prateleira` (`idprateleira`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `microorganismo`
+-- Limitadores para a tabela `microorganismo`
 --
 ALTER TABLE `microorganismo`
   ADD CONSTRAINT `fk_microorganismo_borda1` FOREIGN KEY (`borda_idborda`) REFERENCES `borda` (`idborda`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -1655,73 +1853,73 @@ ALTER TABLE `microorganismo`
   ADD CONSTRAINT `fk_microorganismo_variedade1` FOREIGN KEY (`variedade_idvariedade`) REFERENCES `variedade` (`idvariedade`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `microorganismo_has_anexos`
+-- Limitadores para a tabela `microorganismo_has_anexos`
 --
 ALTER TABLE `microorganismo_has_anexos`
   ADD CONSTRAINT `fk_microorganismo_has_anexos_anexos1` FOREIGN KEY (`anexos_idanexos`) REFERENCES `anexos` (`idanexos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_microorganismo_has_anexos_microorganismo1` FOREIGN KEY (`microorganismo_idmicroorganismo`) REFERENCES `microorganismo` (`idmicroorganismo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `microorganismo_has_carac_micromorfologica`
+-- Limitadores para a tabela `microorganismo_has_carac_micromorfologica`
 --
 ALTER TABLE `microorganismo_has_carac_micromorfologica`
   ADD CONSTRAINT `fk_microorganismo_has_carac_micromorfologica_carac_micromorfo1` FOREIGN KEY (`carac_micromorfologica_idcarac_micromorfologica`) REFERENCES `carac_micromorfologica` (`idcarac_micromorfologica`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_microorganismo_has_carac_micromorfologica_microorganismo1` FOREIGN KEY (`microorganismo_idmicroorganismo`) REFERENCES `microorganismo` (`idmicroorganismo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `microorganismo_has_imagem_macro`
+-- Limitadores para a tabela `microorganismo_has_imagem_macro`
 --
 ALTER TABLE `microorganismo_has_imagem_macro`
   ADD CONSTRAINT `fk_microorganismo_has_imagem_imagem1` FOREIGN KEY (`imagem_idimagem`) REFERENCES `imagem` (`idimagem`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_microorganismo_has_imagem_microorganismo1` FOREIGN KEY (`microorganismo_idmicroorganismo`) REFERENCES `microorganismo` (`idmicroorganismo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `microorganismo_has_imagem_micro`
+-- Limitadores para a tabela `microorganismo_has_imagem_micro`
 --
 ALTER TABLE `microorganismo_has_imagem_micro`
   ADD CONSTRAINT `fk_microorganismo_has_imagem_imagem2` FOREIGN KEY (`imagem_idimagem`) REFERENCES `imagem` (`idimagem`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_microorganismo_has_imagem_microorganismo2` FOREIGN KEY (`microorganismo_idmicroorganismo`) REFERENCES `microorganismo` (`idmicroorganismo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `microorganismo_has_referencia_taxa`
+-- Limitadores para a tabela `microorganismo_has_referencia_taxa`
 --
 ALTER TABLE `microorganismo_has_referencia_taxa`
   ADD CONSTRAINT `fk_microorganismo_has_referencia_microorganismo1` FOREIGN KEY (`microorganismo_idmicroorganismo`) REFERENCES `microorganismo` (`idmicroorganismo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_microorganismo_has_referencia_referencia1` FOREIGN KEY (`referencia_idreferencia`) REFERENCES `referencia` (`idreferencia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `microorganismo_has_referencia_temp`
+-- Limitadores para a tabela `microorganismo_has_referencia_temp`
 --
 ALTER TABLE `microorganismo_has_referencia_temp`
   ADD CONSTRAINT `fk_microorganismo_has_referencia1_microorganismo1` FOREIGN KEY (`microorganismo_idmicroorganismo`) REFERENCES `microorganismo` (`idmicroorganismo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_microorganismo_has_referencia1_referencia1` FOREIGN KEY (`referencia_idreferencia`) REFERENCES `referencia` (`idreferencia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `ordem`
+-- Limitadores para a tabela `ordem`
 --
 ALTER TABLE `ordem`
   ADD CONSTRAINT `fk_ordem_classe1` FOREIGN KEY (`classe_idclasse`) REFERENCES `classe` (`idclasse`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `posicao`
+-- Limitadores para a tabela `posicao`
 --
 ALTER TABLE `posicao`
   ADD CONSTRAINT `fk_posicao_lote1` FOREIGN KEY (`lote_idlote`) REFERENCES `lote` (`idlote`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `prateleira`
+-- Limitadores para a tabela `prateleira`
 --
 ALTER TABLE `prateleira`
   ADD CONSTRAINT `fk_prateleira_armario1` FOREIGN KEY (`armario_idarmario`) REFERENCES `armario` (`idarmario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `reino`
+-- Limitadores para a tabela `reino`
 --
 ALTER TABLE `reino`
   ADD CONSTRAINT `fk_reino_dominio` FOREIGN KEY (`dominio_iddominio`) REFERENCES `dominio` (`iddominio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `repique`
+-- Limitadores para a tabela `repique`
 --
 ALTER TABLE `repique`
   ADD CONSTRAINT `fk_repique_grupo_pesquisa1` FOREIGN KEY (`grupo_pesquisa_idgrupo_pesquisa`) REFERENCES `grupo_pesquisa` (`idgrupo_pesquisa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -1731,34 +1929,34 @@ ALTER TABLE `repique`
   ADD CONSTRAINT `fk_repique_unidade1` FOREIGN KEY (`unidade_idunidade`) REFERENCES `unidade` (`idunidade`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `repique_has_imagem`
+-- Limitadores para a tabela `repique_has_imagem`
 --
 ALTER TABLE `repique_has_imagem`
   ADD CONSTRAINT `fk_repique_has_imagem_imagem1` FOREIGN KEY (`imagem_idimagem`) REFERENCES `imagem` (`idimagem`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_repique_has_imagem_repique1` FOREIGN KEY (`repique_idrepique`) REFERENCES `repique` (`idrepique`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `repique_has_metodo_preservacao`
+-- Limitadores para a tabela `repique_has_metodo_preservacao`
 --
 ALTER TABLE `repique_has_metodo_preservacao`
   ADD CONSTRAINT `fk_repique_has_metodo_preservacao_metodo_preservacao1` FOREIGN KEY (`metodo_preservacao_idmetodo_preservacao`) REFERENCES `metodo_preservacao` (`idmetodo_preservacao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_repique_has_metodo_preservacao_repique1` FOREIGN KEY (`repique_idrepique`) REFERENCES `repique` (`idrepique`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `repique_has_referencia`
+-- Limitadores para a tabela `repique_has_referencia`
 --
 ALTER TABLE `repique_has_referencia`
   ADD CONSTRAINT `fk_repique_has_referencia_referencia1` FOREIGN KEY (`referencia_idreferencia`) REFERENCES `referencia` (`idreferencia`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_repique_has_referencia_repique1` FOREIGN KEY (`repique_idrepique`) REFERENCES `repique` (`idrepique`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `sub_especie`
+-- Limitadores para a tabela `sub_especie`
 --
 ALTER TABLE `sub_especie`
   ADD CONSTRAINT `fk_sub_especie_especie1` FOREIGN KEY (`especie_idespecie`) REFERENCES `especie` (`idespecie`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `variedade`
+-- Limitadores para a tabela `variedade`
 --
 ALTER TABLE `variedade`
   ADD CONSTRAINT `fk_variedade_sub_especie1` FOREIGN KEY (`sub_especie_idsub_especie`) REFERENCES `sub_especie` (`idsub_especie`) ON DELETE NO ACTION ON UPDATE NO ACTION;

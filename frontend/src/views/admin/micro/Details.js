@@ -74,7 +74,7 @@ export default function Details() {
         <div className="w-full xl:w-4/12 px-4">
           {/* <CardBarChart /> */}
           <CardMicroOrigin microorg={location.item?.microorganismo_idmicroorganismo}/>
-          <CardMicroAuth microorg={location.item?.microorganismo_idmicroorganismo}/>
+          <CardMicroAuth repique={location.item?.microorganismo_idmicroorganismo?.idrepique}/>
           {/* <CardMicroArt /> */}
         </div>
       </div>

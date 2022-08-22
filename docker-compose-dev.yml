@@ -54,6 +54,24 @@ services:
       - ./backend:/app
     networks:
       microcollection:
+  api_v2:
+    restart: always
+    stdin_open: true
+    build:
+      context: "./backend2"
+      target: development
+    depends_on:
+      - mysql_db
+    links:
+      - mysql_db
+    environment:
+      <<: *common-variables
+    command: npm run start:dev
+    volumes:
+      - /app/node_modules
+      - ./backend2:/app
+    networks:
+      microcollection:
 
   client:
     restart: always

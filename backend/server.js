@@ -129,18 +129,18 @@ const multipleFileUpload = async (req, res) => {
 const multipleFileUploadNoPhoto = async (req, res) => {
   try {
     // Create public/images folder if not exist
-    await makeDir("public/images");
+    await makeDir("public/docs");
 
     let files = [];
     for (let [index, file] of req.files.entries()) {
       const t= Date.now()
-      const imageFile = `./public/images/${t}-${splitFileName(
+      const imageFile = `./public/docs/${t}-${splitFileName(
         file.originalname
       )}`;
 
       fs.writeFileSync(imageFile, file.buffer,'binary');
 
-      files[index] = `/api/public/images/${t}-${splitFileName(
+      files[index] = `/api/public/docs/${t}-${splitFileName(
         file.originalname
       )}`;
     }

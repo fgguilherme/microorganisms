@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _hospedeiro.deleteAll);
 
 
-  app.use('/hospedeiro', router);
+  app.use('/api/hospedeiro', router);
 
 }

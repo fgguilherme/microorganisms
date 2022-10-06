@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _familia.deleteAll);
 
 
-  app.use('/familia', router);
+  app.use('/api/familia', router);
 
 }

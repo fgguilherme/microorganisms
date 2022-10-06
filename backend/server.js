@@ -176,19 +176,19 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/public", express.static(path.join(__dirname, "public")));
+app.use("/api/public", express.static(path.join(__dirname, "public")));
 
 const db = require("./models");
 // db.sequelize.sync().then(()=>{
 // })
 
 // simple route
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
 // simple route
-app.post("/upload", upload.array('foto', maxFotos), (req, res) => {
+app.post("/api/upload", upload.array('foto', maxFotos), (req, res) => {
   // console.log(req.body)
   // console.log(req.file)
   // console.log(req.files)
@@ -202,7 +202,7 @@ app.post("/upload", upload.array('foto', maxFotos), (req, res) => {
  */
 // route: single file upload
 app.post(
-  "/simple-upload",
+  "/api/simple-upload",
   singleUpload("file"),
   validateFile,
   singleFileUpload
@@ -210,7 +210,7 @@ app.post(
 
 // route: multiple file upload
 app.post(
-  "/multiple-upload",
+  "/api/multiple-upload",
   multipleUpload("files"),
   validateFile,
   multipleFileUpload
@@ -218,7 +218,7 @@ app.post(
 
 // route: dropzone single file upload
 app.post(
-  "/single-dropzone",
+  "/api/single-dropzone",
   singleUpload("file"),
   validateFile,
   singleFileUpload
@@ -226,13 +226,13 @@ app.post(
 
 // route: dropzone multiple file upload
 app.post(
-  "/multiple-dropzone",
+  "/api/multiple-dropzone",
   multipleUpload("files"),
   validateFile,
   multipleFileUpload
 );
 app.post(
-  "/multiple-dropzone-pdf",
+  "/api/multiple-dropzone-pdf",
   multipleUpload("files"),
   validateFile,
   multipleFileUploadNoPhoto

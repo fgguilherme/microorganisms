@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _autenticacao.deleteAll);
 
 
-  app.use('/autenticacao', router);
+  app.use('/api/autenticacao', router);
 
 }

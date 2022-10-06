@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _especie.deleteAll);
 
 
-  app.use('/especie', router);
+  app.use('/api/especie', router);
 
 }

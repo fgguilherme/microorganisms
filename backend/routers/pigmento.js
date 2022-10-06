@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _pigmento.deleteAll);
 
 
-  app.use('/pigmento', router);
+  app.use('/api/pigmento', router);
 
 }

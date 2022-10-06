@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _imagem.deleteAll);
 
 
-  app.use('/imagem', router);
+  app.use('/api/imagem', router);
 
 }

@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _repique_has_referencia.deleteAll);
 
 
-  app.use('/repique_has_referencia', router);
+  app.use('/api/repique_has_referencia', router);
 
 }

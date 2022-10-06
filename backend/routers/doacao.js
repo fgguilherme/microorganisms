@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _doacao.deleteAll);
 
 
-  app.use('/doacao', router);
+  app.use('/api/doacao', router);
 
 }

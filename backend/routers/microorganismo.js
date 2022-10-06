@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _microorganismo.deleteAll);
 
 
-  app.use('/microorganismo', router);
+  app.use('/api/microorganismo', router);
 
 }

@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _armario.deleteAll);
 
 
-  app.use('/armario', router);
+  app.use('/api/armario', router);
 
 }

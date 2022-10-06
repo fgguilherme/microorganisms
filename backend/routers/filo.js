@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _filo.deleteAll);
 
 
-  app.use('/filo', router);
+  app.use('/api/filo', router);
 
 }

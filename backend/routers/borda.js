@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _borda.deleteAll);
 
 
-  app.use('/borda', router);
+  app.use('/api/borda', router);
 
 }

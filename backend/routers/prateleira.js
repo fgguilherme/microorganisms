@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _prateleira.deleteAll);
 
 
-  app.use('/prateleira', router);
+  app.use('/api/prateleira', router);
 
 }

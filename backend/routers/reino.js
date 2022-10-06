@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _reino.deleteAll);
 
 
-  app.use('/reino', router);
+  app.use('/api/reino', router);
 
 }

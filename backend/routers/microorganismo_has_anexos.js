@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _microorganismo_has_anexos.deleteAll);
 
 
-  app.use('/microorganismo_has_anexos', router);
+  app.use('/api/microorganismo_has_anexos', router);
 
 }

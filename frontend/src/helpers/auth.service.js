@@ -5,6 +5,8 @@ let user;
 class AuthService {
 
   login(username, password, remember) {
+    console.log("login")
+    console.log(API_URL + "login")
     return axios
       .post(API_URL + "login", {email:username,passwd:password})
       .then(response => {

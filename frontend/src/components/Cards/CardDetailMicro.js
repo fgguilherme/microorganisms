@@ -4,8 +4,9 @@ import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import axios, {AxiosError} from "axios";
 import Select from "react-select";
+import config from "../../config/config.json";
 // components
-const baseurl = window.location.origin.toString() + "/api/"
+const baseurl = config.API_URL;
 
 const customStyles = {
   content: {

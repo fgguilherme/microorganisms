@@ -13,7 +13,6 @@ export default function Repique() {
   if(location.item?.microorg === undefined){
     window.location.href = "/admin/m/tables"
   }
-  const baseurl = window.location.origin.toString() + "/api/"
   return (
     <>
       {/* Card stats */}

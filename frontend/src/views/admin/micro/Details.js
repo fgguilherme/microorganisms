@@ -9,13 +9,15 @@ import CardTableMicro from "components/Cards/CardTableMicroDetails"
 import CardMicroOrigin from "components/Cards/CardMicroOrigin"
 import CardMicroAuth from "components/Cards/CardMicroAuthentication";
 import CardDetailMicro from "components/Cards/CardDetailMicro";
+import config from "../../../config/config.json";
+// components
 export default function Details() {
   const location = useLocation()
   // const { from } = location.state
   if(location.item?.microorganismo_idmicroorganismo === undefined){
     window.location.href = "/admin/m/tables"
   }
-  const baseurl = window.location.origin.toString() + "/api/"
+  const baseurl = config.API_URL;
   const [variedadeContent, setVariedadeContent] = useState({});
   useEffect(() => {
     if (variedadeContent.length === 0) {

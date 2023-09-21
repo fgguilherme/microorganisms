@@ -5,7 +5,9 @@ import _ from "lodash";
 import Progress from "./Progress";
 import Message from "./Message";
 
-const baseurl = window.location.origin.toString() + "/api/"
+import config from "../../config/config.json";
+// components
+const baseurl = config.API_URL;
 export class MultipleDropzonePDF extends Component {
   state = {
     files: [],

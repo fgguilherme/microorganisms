@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const baseurl = window.location.origin.toString() + "/api/"
-const baseurlImg = window.location.origin.toString()
+import config from "../../config/config.json";
+// components
+const baseurl = config.API_URL;
+const baseurlImg = config.IMG_URL;
 //0habitat
 const habitatList = [
   {

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import {CSVDownload, CSVLink} from "react-csv";
+import config from "../../config/config.json";
 
 
 var tableheaderDetail = [
@@ -256,7 +257,8 @@ const doacaoList = [
     doacao: "Sob Consulta",
   },
 ];
-const baseurl = window.location.origin.toString() + "/api/"
+// components
+const baseurl = config.API_URL;
 let repiques
 export default function CardTable({ color }) {
   const [tableContent, setTableContent] = useState([]);

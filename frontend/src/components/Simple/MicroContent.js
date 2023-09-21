@@ -6,9 +6,10 @@ import axios, {AxiosError} from "axios";
 import MultipleDropzone from "components/Upload/MultipleDropzone";
 import MultipleDropzonePDF from "components/Upload/MultipleDropzonePDF";
 import { useAlert } from 'react-alert'
+import config from "../../config/config.json";
 // components
-const baseurl = window.location.origin.toString() + "/api/"
-const baseurlImg = window.location.origin.toString()
+const baseurl = config.API_URL;
+const baseurlImg = config.IMG_URL;
 const customStyles = {
   content: {
     top: "50%",

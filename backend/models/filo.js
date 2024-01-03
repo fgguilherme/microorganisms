@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     filo: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "filo_UNIQUE"
+      allowNull: false
     },
     reino_idreino: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -39,14 +38,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idfilo" },
-        ]
-      },
-      {
-        name: "filo_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "filo" },
         ]
       },
       {

@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     dominio: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "dominio_UNIQUE"
+      allowNull: false
     }
   }, {
     sequelize,
@@ -31,14 +30,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "iddominio" },
-        ]
-      },
-      {
-        name: "dominio_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "dominio" },
         ]
       },
     ]

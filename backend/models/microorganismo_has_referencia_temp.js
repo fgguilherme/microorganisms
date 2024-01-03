@@ -1,33 +1,33 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('repique_has_repique', {
-    idrepique_has_repique: {
+  return sequelize.define('microorganismo_has_referencia_temp', {
+    idmicroorganismo_has_referencia_temp: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    repique_idrepique: {
+    microorganismo_idmicroorganismo: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'repique',
-        key: 'idrepique'
+        model: 'microorganismo',
+        key: 'idmicroorganismo'
       }
     },
-    repique_idrepique1: {
+    referencia_idreferencia: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'repique',
-        key: 'idrepique'
+        model: 'referencia',
+        key: 'idreferencia'
       }
     }
   }, {
     sequelize,
-    tableName: 'repique_has_repique',
+    tableName: 'microorganismo_has_referencia_temp',
     timestamps: false,
     indexes: [
       {
@@ -35,23 +35,23 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "idrepique_has_repique" },
-          { name: "repique_idrepique" },
-          { name: "repique_idrepique1" },
+          { name: "idmicroorganismo_has_referencia_temp" },
+          { name: "microorganismo_idmicroorganismo" },
+          { name: "referencia_idreferencia" },
         ]
       },
       {
-        name: "fk_repique_has_repique_repique2_idx",
+        name: "fk_microorganismo_has_referencia1_referencia1_idx",
         using: "BTREE",
         fields: [
-          { name: "repique_idrepique1" },
+          { name: "referencia_idreferencia" },
         ]
       },
       {
-        name: "fk_repique_has_repique_repique1_idx",
+        name: "fk_microorganismo_has_referencia1_microorganismo1_idx",
         using: "BTREE",
         fields: [
-          { name: "repique_idrepique" },
+          { name: "microorganismo_idmicroorganismo" },
         ]
       },
     ]

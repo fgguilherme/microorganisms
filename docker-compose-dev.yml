@@ -1,0 +1,95 @@
+version: '3.8'
+
+x-common-variables: &common-variables
+  MYSQL_DATABASE: micro_collection
+  MYSQL_USER: micro_user
+  MYSQL_PASSWORD: micro_user
+  MYSQL_PORT: 3306
+  MYSQL_HOST: "db_micro"
+  BASE_URL: "localhost:4200"
+
+# sequelize-auto -o "./models_new" -d micro_collection -h db_micro -u micro_user -p 3306 -x micro_user -e mysql
+
+services:
+  mysql_db:
+    image: mariadb:10.3
+    container_name: db_micro
+    restart: always
+    environment:
+      <<: *common-variables
+      MYSQL_ROOT_PASSWORD: BDBD03C7E6D2A1BB01C7698E2BD1CC12
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./backend/init_db_dev.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      microcollection:
+
+  nginx:
+    depends_on:
+      - api
+      - client
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "4200:80"
+    networks:
+      microcollection:
+
+  api:
+    restart: always
+    stdin_open: true
+    build:
+      dockerfile: Dockerfile-dev
+      context: "./backend"
+    depends_on:
+      - mysql_db
+    links:
+      - mysql_db
+    environment:
+      <<: *common-variables
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    networks:
+      microcollection:
+
+  client:
+    restart: always
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - api
+    build:
+      dockerfile: Dockerfile-dev
+      context: ./frontend
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+    networks:
+      microcollection:
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma_micro
+    restart: always
+    links:
+      - mysql_db
+    environment:
+      PMA_HOST: db_micro
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 8082:80
+    networks:
+      microcollection:
+
+volumes:
+  dbdata:
+  
+networks:
+  microcollection:

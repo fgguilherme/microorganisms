@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     sub_especie: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "sub_especie_UNIQUE"
+      allowNull: false
     },
     autor: {
       type: DataTypes.STRING(145),
@@ -43,14 +42,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idsub_especie" },
-        ]
-      },
-      {
-        name: "sub_especie_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "sub_especie" },
         ]
       },
       {

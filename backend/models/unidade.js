@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     unidade: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "unidade_UNIQUE"
+      allowNull: false
     }
   }, {
     sequelize,
@@ -31,14 +30,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idunidade" },
-        ]
-      },
-      {
-        name: "unidade_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "unidade" },
         ]
       },
     ]

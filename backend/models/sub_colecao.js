@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     sub_colecao: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "sub_colecao_UNIQUE"
+      allowNull: false
     }
   }, {
     sequelize,
@@ -31,14 +30,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idsub_colecao" },
-        ]
-      },
-      {
-        name: "sub_colecao_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "sub_colecao" },
         ]
       },
     ]

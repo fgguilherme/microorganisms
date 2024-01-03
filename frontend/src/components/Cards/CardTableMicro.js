@@ -1,9 +1,9 @@
-import React from "react";
 import PropTypes from "prop-types";
-
-import TableDropdown from "components/Dropdowns/TableDropdownMicro";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import {CSVDownload, CSVLink} from "react-csv";
+import config from "../../config/config.json";
 
 
 var tableheaderDetail = [
@@ -94,347 +94,208 @@ var tableheader = [
 "Espécie",
 "Status",
 "Habitat",
-"Substrato",
+// "Substrato",
 "Data",
 "Disponibilidade",
 "Localização",
 ]
 
-var tableContentDetail = [[
-  "2/3/2021 11:16:12",
-  "alsc.bio18@uea.edu.br",
-  "MBT",
-  "Eukarya",
-  "Fungi",
-  "Ascomycota",
-  "Eurotiomycetes ",
-  "Eurotiales",
-  "Trichocomaceae",
-  "Aspergillus",
-  "Aspergillus niger",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "Ativo",
-  "Fitopatogêncio",
-  "Semente.",
-  "  ",
-  "  ",
-  "MBT_UEA/10001",
-  "  ",
-  "  ",
-  "1/12/07",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "10001",
-  "  ",
-  "  ",
-  "  ",
-  "Pulverulenta",
-  "Regular",
-  "Plano",
-  "Não",
-  "  ",
-  "Não",
-  "  ",
-  "26",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "Castellani",
-  "Os fungos encontram-se preservados em água destilada (castellani) e em BDA + óleo mineral.",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "TB",
-  "  ",
-  "Disponível para doação, sob consulta ao cientista responsável",
-  "https://drive.google.com/open?id=10BFaHNEgkPDdJt54R2XnV2s8fkQzB8oJ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  ",
-  "  "]
-]
+// var tableContentDetail = [[
+//   "2/3/2021 11:16:12",
+//   "alsc.bio18@uea.edu.br",
+//   "MBT",
+//   "Eukarya",
+//   "Fungi",
+//   "Ascomycota",
+//   "Eurotiomycetes ",
+//   "Eurotiales",
+//   "Trichocomaceae",
+//   "Aspergillus",
+//   "Aspergillus niger",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "Ativo",
+//   "Fitopatogêncio",
+//   "Semente.",
+//   "  ",
+//   "  ",
+//   "MBT_UEA/10001",
+//   "  ",
+//   "  ",
+//   "1/12/07",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "10001",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "Pulverulenta",
+//   "Regular",
+//   "Plano",
+//   "Não",
+//   "  ",
+//   "Não",
+//   "  ",
+//   "26",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "Castellani",
+//   "Os fungos encontram-se preservados em água destilada (castellani) e em BDA + óleo mineral.",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "TB",
+//   "  ",
+//   "Disponível para doação, sob consulta ao cientista responsável",
+//   "https://drive.google.com/open?id=10BFaHNEgkPDdJt54R2XnV2s8fkQzB8oJ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  ",
+//   "  "]
+// ]
 
-var tableContent = [[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],[
-  "CCM-001",
-  "MBT",
-  "Gênero",
-  "Espécie",
-  "Ativo",
-  "Habitat",
-  "Substrato",
-  "31/12/2000",
-  "Sim",
-  "Armario Amarelo - A - 12",
-],
-]
+// [
+//   "CCM-001",
+//   "MBT",
+//   "Gênero",
+//   "Espécie",
+//   "Ativo",
+//   "Habitat",
+//   "Substrato",
+//   "31/12/2000",
+//   "Sim",
+//   "Armario Amarelo - A - 12",
+// ]
 
+const habitatList = [
+  {
+    idHabitat: 0,
+    habitat: "Fitopatogênico",
+  },
+  {
+    idHabitat: 1,
+    habitat: "Endofítico",
+  },
+  {
+    idHabitat: 2,
+    habitat: "Epifítico",
+  },
+  {
+    idHabitat: 3,
+    habitat: "Clínico",
+  },
+  {
+    idHabitat: 4,
+    habitat: "Solo",
+  },
+  {
+    idHabitat: 5,
+    habitat: "Degradador de madeira",
+  },
+  {
+    idHabitat: 6,
+    habitat: "Hipógeo",
+  },
+  {
+    idHabitat: 7,
+    habitat: "Anemófilo",
+  },
+  {
+    idHabitat: 8,
+    habitat: "Outros",
+  },
+];
+const statusList = [
+  {
+    idStatus: 0,
+    status: "Ativo",
+  },
+  {
+    idStatus: 1,
+    status: "Inativo",
+  },
+  {
+    idStatus: 2,
+    status: "Pendente",
+  },
+];
+const doacaoList = [
+  {
+    idDoacao: 0,
+    doacao: "Sim",
+  },
+  {
+    idDoacao: 1,
+    doacao: "Não",
+  },
+  {
+    idDoacao: 2,
+    doacao: "Sob Consulta",
+  },
+];
+// components
+const baseurl = config.API_URL;
+let repiques
 export default function CardTable({ color }) {
+  const [tableContent, setTableContent] = useState([]);
+  const [tableContentDetail, setTableContentDetail] = useState([]);
+  useEffect(() => {
+    //0dominio
+    if (tableContent.length === 0) {
+      axios.get(baseurl+"repique/parents")
+        .then(response => {
+          let tmpContent = []
+          repiques = response.data
+          // console.log(JSON.stringify(repiques,null,2))
+          response.data.forEach(element => {
+            var e = []
+            var dt = new Date(element.data_preserv)
+            var posicao = element.posicao_idposicao_posicao.posicao;
+            var lote = element.posicao_idposicao_posicao.lote_idlote_lote.lote;
+            var prateleira = element.posicao_idposicao_posicao.lote_idlote_lote.prateleira_idprateleira_prateleira.prateleira;
+            var armario = element.posicao_idposicao_posicao.lote_idlote_lote.prateleira_idprateleira_prateleira.armario_idarmario_armario.armario;
+            e.push("CMM-UEA-F"+element.microorganismo_idmicroorganismo.toString().padStart(4,'0'))
+            e.push(element.posicao_idposicao_posicao.lote_idlote_lote.prateleira_idprateleira_prateleira.armario_idarmario_armario.sub_colecao_idsub_colecao_sub_colecao.sub_colecao)
+            e.push(element.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.genero_idgenero_genero.genero)//genero
+            e.push(element.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.sub_especie_idsub_especie_sub_especie.especie_idespecie_especie.especie)//especie
+            e.push(statusList[(element.microorganismo_idmicroorganismo_microorganismo.status)].status)//status
+            e.push(habitatList[(element.microorganismo_idmicroorganismo_microorganismo.habitat_idhabitat_habitat.habitat)].habitat)//habitat
+            // e.push(element.microorganismo_idmicroorganismo)//substrato
+            e.push(dt.toLocaleDateString())//data
+            e.push(doacaoList[element.disponivel].doacao)//disponibilidade
+            e.push(armario+" - "+prateleira+" - "+lote+" - "+posicao)//localização
+            tmpContent.push(e)
+          });
+          setTableContent(tmpContent);
+        }, error => {
+          console.log(error);
+        });
+    }
+  }, [])
   return (
     <>
       <div
@@ -446,14 +307,15 @@ export default function CardTable({ color }) {
         <div className="text-center flex justify-between rounded-t mb-0 px-4 py-3 border-0 ">
           <h3 className="text-blueGray-700 text-xl font-bold">Microrganismos</h3>
           <div>
-            <CSVLink data={tableContentDetail} headers={tableheaderDetail}>
+            {/* <CSVLink data={tableContentDetail} headers={tableheaderDetail}> */}
             <button
-              className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+              className="bg-lightBlue-300 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
+              disabled
             >
               Exportar
             </button>
-            </CSVLink>
+            {/* </CSVLink> */}
             <Link to="/admin/m/new">
               <button
                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -492,7 +354,7 @@ export default function CardTable({ color }) {
                   return(
                     <tr>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                        <Link to="/admin/m/details">
+                        <Link to={{pathname:"/admin/m/details",item: {microorganismo_idmicroorganismo: repiques[i]}}}>
                           <button
                             className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                             type="button"

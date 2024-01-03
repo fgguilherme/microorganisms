@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _anexos.deleteAll);
 
 
-  app.use('/api/anexos', router);
+  app.use('/anexos', router);
 
 }

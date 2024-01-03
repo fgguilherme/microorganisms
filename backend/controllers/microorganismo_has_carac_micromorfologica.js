@@ -1,4 +1,5 @@
 const db = require("../models");
+const models = db.models
 const Element = db.models.microorganismo_has_carac_micromorfologica;
 const Op = db.Sequelize.Op;
 // Create and Save a new Element
@@ -13,7 +14,7 @@ exports.create = (req, res) => {
 
   // Create a Element
   const element = req.body;
-  console.log(req.body)
+  // console.log(req.body)
 
   // Save Element in the database
   Element.create(element)
@@ -136,7 +137,9 @@ exports.deleteAll = (req, res) => {
 // Find all published Elements
 exports.findAllParam = (req, res) => {
     var p = req.query;
-    Element.findAll({ where: p })
+    Element.findAll({ where: p , include: [
+      { model: models.carac_micromorfologica, as: "carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologica"}
+    ]})
     .then(data => {
       res.send(data);
     })
@@ -144,6 +147,6 @@ exports.findAllParam = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving Elements."
-      });
     });
+  });
 };

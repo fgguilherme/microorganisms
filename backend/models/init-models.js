@@ -1,10 +1,12 @@
 var DataTypes = require("sequelize").DataTypes;
 var _anexos = require("./anexos");
 var _armario = require("./armario");
+var _autenticacao = require("./autenticacao");
 var _borda = require("./borda");
 var _carac_micromorfologica = require("./carac_micromorfologica");
 var _classe = require("./classe");
 var _cor = require("./cor");
+var _doacao = require("./doacao");
 var _dominio = require("./dominio");
 var _especie = require("./especie");
 var _exudato = require("./exudato");
@@ -25,6 +27,8 @@ var _microorganismo_has_anexos = require("./microorganismo_has_anexos");
 var _microorganismo_has_carac_micromorfologica = require("./microorganismo_has_carac_micromorfologica");
 var _microorganismo_has_imagem_macro = require("./microorganismo_has_imagem_macro");
 var _microorganismo_has_imagem_micro = require("./microorganismo_has_imagem_micro");
+var _microorganismo_has_referencia_taxa = require("./microorganismo_has_referencia_taxa");
+var _microorganismo_has_referencia_temp = require("./microorganismo_has_referencia_temp");
 var _ordem = require("./ordem");
 var _pesquisador = require("./pesquisador");
 var _pigmento = require("./pigmento");
@@ -37,22 +41,24 @@ var _repique = require("./repique");
 var _repique_has_imagem = require("./repique_has_imagem");
 var _repique_has_metodo_preservacao = require("./repique_has_metodo_preservacao");
 var _repique_has_referencia = require("./repique_has_referencia");
-var _repique_has_repique = require("./repique_has_repique");
 var _sitio = require("./sitio");
 var _sub_colecao = require("./sub_colecao");
 var _sub_especie = require("./sub_especie");
 var _substrato = require("./substrato");
 var _textura = require("./textura");
 var _unidade = require("./unidade");
+var _users = require("./users");
 var _variedade = require("./variedade");
 
 function initModels(sequelize) {
   var anexos = _anexos(sequelize, DataTypes);
   var armario = _armario(sequelize, DataTypes);
+  var autenticacao = _autenticacao(sequelize, DataTypes);
   var borda = _borda(sequelize, DataTypes);
   var carac_micromorfologica = _carac_micromorfologica(sequelize, DataTypes);
   var classe = _classe(sequelize, DataTypes);
   var cor = _cor(sequelize, DataTypes);
+  var doacao = _doacao(sequelize, DataTypes);
   var dominio = _dominio(sequelize, DataTypes);
   var especie = _especie(sequelize, DataTypes);
   var exudato = _exudato(sequelize, DataTypes);
@@ -73,6 +79,8 @@ function initModels(sequelize) {
   var microorganismo_has_carac_micromorfologica = _microorganismo_has_carac_micromorfologica(sequelize, DataTypes);
   var microorganismo_has_imagem_macro = _microorganismo_has_imagem_macro(sequelize, DataTypes);
   var microorganismo_has_imagem_micro = _microorganismo_has_imagem_micro(sequelize, DataTypes);
+  var microorganismo_has_referencia_taxa = _microorganismo_has_referencia_taxa(sequelize, DataTypes);
+  var microorganismo_has_referencia_temp = _microorganismo_has_referencia_temp(sequelize, DataTypes);
   var ordem = _ordem(sequelize, DataTypes);
   var pesquisador = _pesquisador(sequelize, DataTypes);
   var pigmento = _pigmento(sequelize, DataTypes);
@@ -85,13 +93,13 @@ function initModels(sequelize) {
   var repique_has_imagem = _repique_has_imagem(sequelize, DataTypes);
   var repique_has_metodo_preservacao = _repique_has_metodo_preservacao(sequelize, DataTypes);
   var repique_has_referencia = _repique_has_referencia(sequelize, DataTypes);
-  var repique_has_repique = _repique_has_repique(sequelize, DataTypes);
   var sitio = _sitio(sequelize, DataTypes);
   var sub_colecao = _sub_colecao(sequelize, DataTypes);
   var sub_especie = _sub_especie(sequelize, DataTypes);
   var substrato = _substrato(sequelize, DataTypes);
   var textura = _textura(sequelize, DataTypes);
   var unidade = _unidade(sequelize, DataTypes);
+  var users = _users(sequelize, DataTypes);
   var variedade = _variedade(sequelize, DataTypes);
 
   anexos.belongsToMany(microorganismo, { as: 'microorganismo_idmicroorganismo_microorganismos', through: microorganismo_has_anexos, foreignKey: "anexos_idanexos", otherKey: "microorganismo_idmicroorganismo" });
@@ -104,12 +112,14 @@ function initModels(sequelize) {
   microorganismo.belongsToMany(carac_micromorfologica, { as: 'carac_micromorfologica_idcarac_micromorfologica_carac_micromorfologicas', through: microorganismo_has_carac_micromorfologica, foreignKey: "microorganismo_idmicroorganismo", otherKey: "carac_micromorfologica_idcarac_micromorfologica" });
   microorganismo.belongsToMany(imagem, { as: 'imagem_idimagem_imagems', through: microorganismo_has_imagem_macro, foreignKey: "microorganismo_idmicroorganismo", otherKey: "imagem_idimagem" });
   microorganismo.belongsToMany(imagem, { as: 'imagem_idimagem_imagem_microorganismo_has_imagem_micros', through: microorganismo_has_imagem_micro, foreignKey: "microorganismo_idmicroorganismo", otherKey: "imagem_idimagem" });
+  microorganismo.belongsToMany(referencia, { as: 'referencia_idreferencia_referencia', through: microorganismo_has_referencia_taxa, foreignKey: "microorganismo_idmicroorganismo", otherKey: "referencia_idreferencia" });
+  microorganismo.belongsToMany(referencia, { as: 'referencia_idreferencia_referencia_microorganismo_has_referencia_temps', through: microorganismo_has_referencia_temp, foreignKey: "microorganismo_idmicroorganismo", otherKey: "referencia_idreferencia" });
+  referencia.belongsToMany(microorganismo, { as: 'microorganismo_idmicroorganismo_microorganismo_microorganismo_has_referencia_taxas', through: microorganismo_has_referencia_taxa, foreignKey: "referencia_idreferencia", otherKey: "microorganismo_idmicroorganismo" });
+  referencia.belongsToMany(microorganismo, { as: 'microorganismo_idmicroorganismo_microorganismo_microorganismo_has_referencia_temps', through: microorganismo_has_referencia_temp, foreignKey: "referencia_idreferencia", otherKey: "microorganismo_idmicroorganismo" });
   referencia.belongsToMany(repique, { as: 'repique_idrepique_repique_repique_has_referencia', through: repique_has_referencia, foreignKey: "referencia_idreferencia", otherKey: "repique_idrepique" });
   repique.belongsToMany(imagem, { as: 'imagem_idimagem_imagem_repique_has_imagems', through: repique_has_imagem, foreignKey: "repique_idrepique", otherKey: "imagem_idimagem" });
   repique.belongsToMany(metodo_preservacao, { as: 'metodo_preservacao_idmetodo_preservacao_metodo_preservacaos', through: repique_has_metodo_preservacao, foreignKey: "repique_idrepique", otherKey: "metodo_preservacao_idmetodo_preservacao" });
-  repique.belongsToMany(referencia, { as: 'referencia_idreferencia_referencia', through: repique_has_referencia, foreignKey: "repique_idrepique", otherKey: "referencia_idreferencia" });
-  repique.belongsToMany(repique, { as: 'repique_idrepique1_repiques', through: repique_has_repique, foreignKey: "repique_idrepique", otherKey: "repique_idrepique1" });
-  repique.belongsToMany(repique, { as: 'repique_idrepique_repique_repique_has_repiques', through: repique_has_repique, foreignKey: "repique_idrepique1", otherKey: "repique_idrepique" });
+  repique.belongsToMany(referencia, { as: 'referencia_idreferencia_referencia_repique_has_referencia', through: repique_has_referencia, foreignKey: "repique_idrepique", otherKey: "referencia_idreferencia" });
   microorganismo_has_anexos.belongsTo(anexos, { as: "anexos_idanexos_anexo", foreignKey: "anexos_idanexos"});
   anexos.hasMany(microorganismo_has_anexos, { as: "microorganismo_has_anexos", foreignKey: "anexos_idanexos"});
   prateleira.belongsTo(armario, { as: "armario_idarmario_armario", foreignKey: "armario_idarmario"});
@@ -170,6 +180,10 @@ function initModels(sequelize) {
   microorganismo.hasMany(microorganismo_has_imagem_macro, { as: "microorganismo_has_imagem_macros", foreignKey: "microorganismo_idmicroorganismo"});
   microorganismo_has_imagem_micro.belongsTo(microorganismo, { as: "microorganismo_idmicroorganismo_microorganismo", foreignKey: "microorganismo_idmicroorganismo"});
   microorganismo.hasMany(microorganismo_has_imagem_micro, { as: "microorganismo_has_imagem_micros", foreignKey: "microorganismo_idmicroorganismo"});
+  microorganismo_has_referencia_taxa.belongsTo(microorganismo, { as: "microorganismo_idmicroorganismo_microorganismo", foreignKey: "microorganismo_idmicroorganismo"});
+  microorganismo.hasMany(microorganismo_has_referencia_taxa, { as: "microorganismo_has_referencia_taxas", foreignKey: "microorganismo_idmicroorganismo"});
+  microorganismo_has_referencia_temp.belongsTo(microorganismo, { as: "microorganismo_idmicroorganismo_microorganismo", foreignKey: "microorganismo_idmicroorganismo"});
+  microorganismo.hasMany(microorganismo_has_referencia_temp, { as: "microorganismo_has_referencia_temps", foreignKey: "microorganismo_idmicroorganismo"});
   repique.belongsTo(microorganismo, { as: "microorganismo_idmicroorganismo_microorganismo", foreignKey: "microorganismo_idmicroorganismo"});
   microorganismo.hasMany(repique, { as: "repiques", foreignKey: "microorganismo_idmicroorganismo"});
   familia.belongsTo(ordem, { as: "ordem_idordem_ordem", foreignKey: "ordem_idordem"});
@@ -188,10 +202,10 @@ function initModels(sequelize) {
   posicao.hasMany(repique, { as: "repiques", foreignKey: "posicao_idposicao"});
   lote.belongsTo(prateleira, { as: "prateleira_idprateleira_prateleira", foreignKey: "prateleira_idprateleira"});
   prateleira.hasMany(lote, { as: "lotes", foreignKey: "prateleira_idprateleira"});
-  microorganismo.belongsTo(referencia, { as: "referencia_taxa_referencium", foreignKey: "referencia_taxa"});
-  referencia.hasMany(microorganismo, { as: "microorganismos", foreignKey: "referencia_taxa"});
-  microorganismo.belongsTo(referencia, { as: "referencia_temp_referencium", foreignKey: "referencia_temp"});
-  referencia.hasMany(microorganismo, { as: "referencia_temp_microorganismos", foreignKey: "referencia_temp"});
+  microorganismo_has_referencia_taxa.belongsTo(referencia, { as: "referencia_idreferencia_referencium", foreignKey: "referencia_idreferencia"});
+  referencia.hasMany(microorganismo_has_referencia_taxa, { as: "microorganismo_has_referencia_taxas", foreignKey: "referencia_idreferencia"});
+  microorganismo_has_referencia_temp.belongsTo(referencia, { as: "referencia_idreferencia_referencium", foreignKey: "referencia_idreferencia"});
+  referencia.hasMany(microorganismo_has_referencia_temp, { as: "microorganismo_has_referencia_temps", foreignKey: "referencia_idreferencia"});
   repique_has_referencia.belongsTo(referencia, { as: "referencia_idreferencia_referencium", foreignKey: "referencia_idreferencia"});
   referencia.hasMany(repique_has_referencia, { as: "repique_has_referencia", foreignKey: "referencia_idreferencia"});
   filo.belongsTo(reino, { as: "reino_idreino_reino", foreignKey: "reino_idreino"});
@@ -204,10 +218,6 @@ function initModels(sequelize) {
   repique.hasMany(repique_has_metodo_preservacao, { as: "repique_has_metodo_preservacaos", foreignKey: "repique_idrepique"});
   repique_has_referencia.belongsTo(repique, { as: "repique_idrepique_repique", foreignKey: "repique_idrepique"});
   repique.hasMany(repique_has_referencia, { as: "repique_has_referencia", foreignKey: "repique_idrepique"});
-  repique_has_repique.belongsTo(repique, { as: "repique_idrepique_repique", foreignKey: "repique_idrepique"});
-  repique.hasMany(repique_has_repique, { as: "repique_has_repiques", foreignKey: "repique_idrepique"});
-  repique_has_repique.belongsTo(repique, { as: "repique_idrepique1_repique", foreignKey: "repique_idrepique1"});
-  repique.hasMany(repique_has_repique, { as: "repique_idrepique1_repique_has_repiques", foreignKey: "repique_idrepique1"});
   habitat_ani.belongsTo(sitio, { as: "sitio_idsitio_sitio", foreignKey: "sitio_idsitio"});
   sitio.hasMany(habitat_ani, { as: "habitat_anis", foreignKey: "sitio_idsitio"});
   armario.belongsTo(sub_colecao, { as: "sub_colecao_idsub_colecao_sub_colecao", foreignKey: "sub_colecao_idsub_colecao"});
@@ -226,10 +236,12 @@ function initModels(sequelize) {
   return {
     anexos,
     armario,
+    autenticacao,
     borda,
     carac_micromorfologica,
     classe,
     cor,
+    doacao,
     dominio,
     especie,
     exudato,
@@ -250,6 +262,8 @@ function initModels(sequelize) {
     microorganismo_has_carac_micromorfologica,
     microorganismo_has_imagem_macro,
     microorganismo_has_imagem_micro,
+    microorganismo_has_referencia_taxa,
+    microorganismo_has_referencia_temp,
     ordem,
     pesquisador,
     pigmento,
@@ -262,13 +276,13 @@ function initModels(sequelize) {
     repique_has_imagem,
     repique_has_metodo_preservacao,
     repique_has_referencia,
-    repique_has_repique,
     sitio,
     sub_colecao,
     sub_especie,
     substrato,
     textura,
     unidade,
+    users,
     variedade,
   };
 }

@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     variedade: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "variedade_UNIQUE"
+      allowNull: false
     },
     autor: {
       type: DataTypes.STRING(145),
@@ -43,14 +42,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idvariedade" },
-        ]
-      },
-      {
-        name: "variedade_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "variedade" },
         ]
       },
       {

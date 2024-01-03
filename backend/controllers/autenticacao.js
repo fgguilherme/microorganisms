@@ -1,19 +1,19 @@
 const db = require("../models");
-const Element = db.models.repique_has_repique;
+const Element = db.models.autenticacao;
 const Op = db.Sequelize.Op;
 // Create and Save a new Element
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.repique_idrepique || !req.body.repique_idrepique1) {
-    res.status(400).send({
-      message: "Content missing mandatory data!"
-    });
-    return;
-  }
+  // if (!req.body.imagem) {
+  //   res.status(400).send({
+  //     message: "Content missing mandatory data!"
+  //   });
+  //   return;
+  // }
 
   // Create a Element
   const element = req.body;
-  console.log(req.body)
+  // console.log(req.body)
 
   // Save Element in the database
   Element.create(element)
@@ -71,7 +71,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     Element.update(req.body, {
-      where: {idrepique_has_repique: id }
+      where: {idAutenticacao: id }
     })
       .then(num => {
         if (num == 1) {
@@ -96,7 +96,7 @@ exports.delete = (req, res) => {
     const id = req.params.id;
 
     Element.destroy({
-      where: {idrepique_has_repique: id }
+      where: {idAutenticacao: id }
     })
       .then(num => {
         if (num == 1) {

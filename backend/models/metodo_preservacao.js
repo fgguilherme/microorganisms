@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     metodo: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "metodo_UNIQUE"
+      allowNull: false
     }
   }, {
     sequelize,
@@ -31,14 +30,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idmetodo_preservacao" },
-        ]
-      },
-      {
-        name: "metodo_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "metodo" },
         ]
       },
     ]

@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     classe: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "classe_UNIQUE"
+      allowNull: false
     },
     filo_idfilo: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -39,14 +38,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idclasse" },
-        ]
-      },
-      {
-        name: "classe_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "classe" },
         ]
       },
       {

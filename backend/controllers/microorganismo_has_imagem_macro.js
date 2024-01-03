@@ -1,6 +1,7 @@
 const db = require("../models");
 const Element = db.models.microorganismo_has_imagem_macro;
 const Op = db.Sequelize.Op;
+const models = db.models
 // Create and Save a new Element
 exports.create = (req, res) => {
   // Validate request
@@ -13,7 +14,7 @@ exports.create = (req, res) => {
 
   // Create a Element
   const element = req.body;
-  console.log(req.body)
+  // console.log(req.body)
 
   // Save Element in the database
   Element.create(element)
@@ -136,11 +137,12 @@ exports.deleteAll = (req, res) => {
 // Find all published Elements
 exports.findAllParam = (req, res) => {
     var p = req.query;
-    Element.findAll({ where: p })
+    Element.findAll({ where: p , include: [{model:  models.imagem, as:"imagem_idimagem_imagem"}]})
     .then(data => {
       res.send(data);
     })
     .catch(err => {
+      // console.log(err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving Elements."

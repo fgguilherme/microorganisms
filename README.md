@@ -6,7 +6,7 @@ Project designed to run on AWS.
 
 ## Frontend
 
-* React based on free version of Notus-react template - https://www.creative-tim.com/product/notus-react
+* React based on free version of Notus-react template - <https://www.creative-tim.com/product/notus-react>
 
 ## Backend
 
@@ -14,4 +14,10 @@ Project designed to run on AWS.
 
 ## Deploy instructions
 
-@TODO
+### Build DEV environment
+
+* docker-compose -f docker-compose-dev.yml up -d --build
+
+### Build PROD environment
+
+* docker-compose up -d --build

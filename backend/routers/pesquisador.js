@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _pesquisador.deleteAll);
 
 
-  app.use('/api/pesquisador', router);
+  app.use('/pesquisador', router);
 
 }

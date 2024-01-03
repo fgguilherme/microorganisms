@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     link: {
       type: DataTypes.STRING(145),
-      allowNull: false,
-      unique: "link_UNIQUE"
+      allowNull: false
     }
   }, {
     sequelize,
@@ -31,14 +30,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idanexos" },
-        ]
-      },
-      {
-        name: "link_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "link" },
         ]
       },
     ]

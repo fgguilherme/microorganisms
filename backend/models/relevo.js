@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     relevo: {
       type: DataTypes.STRING(45),
-      allowNull: false,
-      unique: "relevo_UNIQUE"
+      allowNull: false
     }
   }, {
     sequelize,
@@ -31,14 +30,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "idrelevo" },
-        ]
-      },
-      {
-        name: "relevo_UNIQUE",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "relevo" },
         ]
       },
     ]

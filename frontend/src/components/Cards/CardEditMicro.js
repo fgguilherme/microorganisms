@@ -1,7 +1,8 @@
 import React from "react";
 import MicroContent from "components/Simple/MicroContent";
 // components
-export default function CardDetailMicro() {
+export default function CardDetailMicro(props) {
+  console.log(props)
   
   return (
     <>
@@ -11,7 +12,7 @@ export default function CardDetailMicro() {
             <h6 className="text-blueGray-700 text-xl font-bold">Editar</h6>
           </div>
         </div>
-        <MicroContent isRepique={false} showOnly={false} returnto={"details"}/>
+        <MicroContent isRepique={false} showOnly={false} returnto={"details"} micro={props.micro}/> 
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 const db = require("../models");
 const Element = db.models.referencia;
+const models = db.models
 const Op = db.Sequelize.Op;
 // Create and Save a new Element
 exports.create = (req, res) => {
@@ -13,7 +14,7 @@ exports.create = (req, res) => {
 
   // Create a Element
   const element = req.body;
-  console.log(req.body)
+  // console.log(req.body)
 
   // Save Element in the database
   Element.create(element)
@@ -134,16 +135,29 @@ exports.deleteAll = (req, res) => {
 };
 
 // Find all published Elements
-exports.findAllParam = (req, res) => {
+exports.findAllParam = async (req, res) => {
     var p = req.query;
-    Element.findAll({ where: p })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving Elements."
-      });
-    });
+    // console.log("===========================")
+    // console.log(p)
+    const mic = {"microorganismo_idmicroorganismo":p?.idmicroorganismo}
+    const rep = {"repique_idrepique":p?.idrepique}
+    // console.log("===========================")
+    const repq_ref = await models.repique_has_referencia.findAll({ where: rep, include: [
+      { model: models.referencia, as: "referencia_idreferencia_referencium"}
+    ]})
+    const taxa_ref = await models.microorganismo_has_referencia_taxa.findAll({ where: mic, include: [
+      { model: models.referencia, as: "referencia_idreferencia_referencium"}
+    ]})
+    const temp_ref = await models.microorganismo_has_referencia_temp.findAll({ where: mic, include: [
+      { model: models.referencia, as: "referencia_idreferencia_referencium"}
+    ]})
+    // console.log(repq_ref)
+    // console.log(taxa_ref)
+    // console.log(temp_ref)
+    r = {
+      "repq_ref":repq_ref,
+      "taxa_ref":taxa_ref,
+      "temp_ref":temp_ref
+    }
+    res.send(r);
 };

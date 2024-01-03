@@ -1,4 +1,5 @@
 const db = require("../models");
+const models = db.models
 const Element = db.models.repique_has_metodo_preservacao;
 const Op = db.Sequelize.Op;
 // Create and Save a new Element
@@ -13,7 +14,7 @@ exports.create = (req, res) => {
 
   // Create a Element
   const element = req.body;
-  console.log(req.body)
+  // console.log(req.body)
 
   // Save Element in the database
   Element.create(element)
@@ -136,11 +137,17 @@ exports.deleteAll = (req, res) => {
 // Find all published Elements
 exports.findAllParam = (req, res) => {
     var p = req.query;
-    Element.findAll({ where: p })
+    // console.log("=================================")
+    // console.log(req.query)
+    // console.log("=================================")
+    Element.findAll({ where: p, include: [
+      { model: models.metodo_preservacao, as: "metodo_preservacao_idmetodo_preservacao_metodo_preservacao"}
+    ]})
     .then(data => {
       res.send(data);
     })
     .catch(err => {
+      // console.log(err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving Elements."

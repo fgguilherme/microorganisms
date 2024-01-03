@@ -1,14 +1,40 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom'
 import CardStats from "components/Cards/CardStats.js";
+import axios from "axios";
 
 // components
 
-import CardDetail from "components/Cards/CardDetailMicro"
 import CardTableMicro from "components/Cards/CardTableMicroDetails"
 import CardMicroOrigin from "components/Cards/CardMicroOrigin"
-import CardMicroArt from "components/Cards/CardMicroArt"
 import CardMicroAuth from "components/Cards/CardMicroAuthentication";
+import CardDetailMicro from "components/Cards/CardDetailMicro";
+import config from "../../../config/config.json";
+// components
 export default function Details() {
+  const location = useLocation()
+  // const { from } = location.state
+  if(location.item?.microorganismo_idmicroorganismo === undefined){
+    window.location.href = "/admin/m/tables"
+  }
+  else{ 
+    console.log(location.item?.microorganismo_idmicroorganismo)
+  }
+  const baseurl = config.API_URL;
+  const [variedadeContent, setVariedadeContent] = useState({});
+  useEffect(() => {
+    if (variedadeContent.length === 0) {
+      axios.get(baseurl+"variedade/"+location.item?.microorganismo_idmicroorganismo.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade)
+        .then(response => {
+          // console.log(response)
+          // setVariedadeContent(response.data)
+          // console.log(variedadeContent)
+        }, error => {
+          console.log(error);
+        });
+    }
+  }, [])
   return (
     <>
       {/* Card stats */}
@@ -41,17 +67,25 @@ export default function Details() {
           
         </div>
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-          <CardDetail/>
+          <CardDetailMicro microorg={location.item?.microorganismo_idmicroorganismo}/>
+          {/* <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+            <div className="rounded-t bg-white mb-0 px-6 py-6">
+              <div className="text-center flex justify-between">
+                <h6 className="text-blueGray-700 text-xl font-bold">Detalhes</h6>
+              </div>
+            </div>
+              <MicroContentDetail microorg={location.item?.microorganismo_idmicroorganismo}/>
+          </div> */}
         </div>
         <div className="w-full xl:w-4/12 px-4">
           {/* <CardBarChart /> */}
-          <CardMicroOrigin />
-          <CardMicroAuth />
-          <CardMicroArt />
+          <CardMicroOrigin microorg={location.item?.microorganismo_idmicroorganismo}/>
+          <CardMicroAuth repique={location.item?.microorganismo_idmicroorganismo?.idrepique}/>
+          {/* <CardMicroArt /> */}
         </div>
       </div>
       <div className="flex flex-wrap mt-4">
-        <CardTableMicro />
+        <CardTableMicro  microorgid={location.item?.microorganismo_idmicroorganismo.microorganismo_idmicroorganismo} microorg={location.item?.microorganismo_idmicroorganismo}/>
       </div>
     </>
   );

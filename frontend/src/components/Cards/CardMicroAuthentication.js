@@ -1,6 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios, {AxiosError} from "axios";
 
-export default function CardMicroAuth() {
+import config from "../../config/config.json";
+// components
+const baseurl = config.API_URL;
+
+
+export default function CardMicroAuth(props) {
+  const [pesquisador, setPesquisador] = useState([])
+  const [dataAuth, setDataAuth] = useState('')
+
+  useEffect(() => {
+    axios.get(baseurl+"autenticacao/search", {
+      params: {
+        "idRepique": props.repique
+      }
+    })
+      .then(response => {
+        console.log(response.data);
+        if(response.data[0]){
+        setDataAuth(response.data[0].data_autenticacao)
+        axios.get(baseurl+"pesquisador/"+response.data[0].idPesquisador)
+          .then(response => {
+            console.log(response.data);
+            setPesquisador(response.data)
+            // setReinoList(response.data); 
+          }, error => {
+            // console.log(error);
+          });
+        // setReinoList(response.data);
+       }
+      }, error => {
+        // console.log(error);
+      });
+
+  }, [])
+
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
@@ -11,25 +47,25 @@ export default function CardMicroAuth() {
                 Autenticado por:
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-                Fulano da Silva
+                {pesquisador.nome?pesquisador.nome:"-"}
               </h2>
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
                 E-Mail:
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-                fulano@uea.edu.br
+                {pesquisador.email?pesquisador.email:"-"}
               </h2>
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
                 data de Autenticação':
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-                01/10/2012
+                {dataAuth?dataAuth:"-"}
               </h2>
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
                 Instituição do autenticador:
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-                UEA
+                {pesquisador.instituicao?pesquisador.instituicao:"-"}
               </h2>
             </div>
           </div>

@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     herbario: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {

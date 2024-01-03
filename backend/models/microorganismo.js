@@ -20,15 +20,23 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
-    referencia_taxa: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
-      references: {
-        model: 'referencia',
-        key: 'idreferencia'
-      }
-    },
     data_reg_col_orig: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    data_colet: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    data_isol: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    data_ident: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    data_mol: {
       type: DataTypes.DATEONLY,
       allowNull: true
     },
@@ -42,14 +50,14 @@ module.exports = function(sequelize, DataTypes) {
     },
     pesquisador_coleta: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'pesquisador',
         key: 'idpesquisador'
       }
     },
     origem_geo: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     lat: {
@@ -72,41 +80,33 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(245),
       allowNull: true
     },
-    data_isol: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
-    },
     pesquisador_isolamento: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'pesquisador',
         key: 'idpesquisador'
       }
     },
     info_isolamento: {
-      type: DataTypes.STRING(145),
-      allowNull: true
-    },
-    data_ident: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     pesquisador_ident: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'pesquisador',
         key: 'idpesquisador'
       }
     },
     coment_isolamento: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     cor_colonia: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'cor',
         key: 'idcor'
@@ -114,7 +114,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     textura_idtextura: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'textura',
         key: 'idtextura'
@@ -122,7 +122,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     borda_idborda: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'borda',
         key: 'idborda'
@@ -130,7 +130,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     relevo_idrelevo: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'relevo',
         key: 'idrelevo'
@@ -138,7 +138,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     exudato_idexudato: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'exudato',
         key: 'idexudato'
@@ -146,7 +146,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     cor_exudato: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'cor',
         key: 'idcor'
@@ -154,7 +154,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     pigmento_idpigmento: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'pigmento',
         key: 'idpigmento'
@@ -162,7 +162,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     cor_pigmento: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'cor',
         key: 'idcor'
@@ -172,25 +172,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.FLOAT,
       allowNull: true
     },
-    referencia_temp: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
-      references: {
-        model: 'referencia',
-        key: 'idreferencia'
-      }
-    },
     laboratorio_mol: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'laboratorio',
         key: 'idlaboratorio'
       }
-    },
-    data_mol: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
     },
     cod_mol: {
       type: DataTypes.STRING(45),
@@ -238,13 +226,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "variedade_idvariedade" },
-        ]
-      },
-      {
-        name: "fk_microorganismo_referencia1_idx",
-        using: "BTREE",
-        fields: [
-          { name: "referencia_taxa" },
         ]
       },
       {
@@ -322,13 +303,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "cor_pigmento" },
-        ]
-      },
-      {
-        name: "fk_microorganismo_referencia2_idx",
-        using: "BTREE",
-        fields: [
-          { name: "referencia_temp" },
         ]
       },
       {

@@ -1,6 +1,7 @@
 const db = require("../models");
 const Element = db.models.variedade;
 const Op = db.Sequelize.Op;
+const models = db.models
 // Create and Save a new Element
 exports.create = (req, res) => {
   // Validate request
@@ -13,7 +14,7 @@ exports.create = (req, res) => {
 
   // Create a Element
   const element = req.body;
-  console.log(req.body)
+  // console.log(req.body)
 
   // Save Element in the database
   Element.create(element)
@@ -48,8 +49,27 @@ exports.findAll = (req, res) => {
 // Find a single Element with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
+    Element.findByPk(id, {include: [
+      { model: models.sub_especie, as: "sub_especie_idsub_especie_sub_especie",  include: { 
+        model: models.especie, as: "especie_idespecie_especie", include:{
+          model: models.genero, as: "genero_idgenero_genero", include: {
+            model: models.familia, as: "familia_idfamilia_familium", include: {
+              model: models.ordem, as: "ordem_idordem_ordem", include: {
+                model: models.classe, as: "classe_idclasse_classe", include: {
+                  model: models.filo, as: "filo_idfilo_filo", include: {
+                    model: models.reino, as: "reino_idreino_reino", include: {
+                      model: models.dominio, as: "dominio_iddominio_dominio"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      }
 
-    Element.findByPk(id)
+    ]})
       .then(data => {
         if (data) {
           res.send(data);

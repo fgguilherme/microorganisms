@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _sitio.deleteAll);
 
 
-  app.use('/api/sitio', router);
+  app.use('/sitio', router);
 
 }

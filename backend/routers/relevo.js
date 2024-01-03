@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _relevo.deleteAll);
 
 
-  app.use('/api/relevo', router);
+  app.use('/relevo', router);
 
 }

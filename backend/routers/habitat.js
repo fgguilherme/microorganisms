@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _habitat.deleteAll);
 
 
-  app.use('/api/habitat', router);
+  app.use('/habitat', router);
 
 }

@@ -10,12 +10,16 @@ const ElementImagem = db.models.imagem;
 const ElementHasImagem_micro = db.models.microorganismo_has_imagem_micro;
 const ElementHas_anexos = db.models.microorganismo_has_anexos;
 const ElementAnexos = db.models.anexos;
+const ElementHabitat = db.models.habitat;
+const ElementHabitatAN = db.models.habitat_ani;
+const ElementHabitatVG = db.models.habitat_veg;
+const ElementHospedeiro = db.models.hospedeiro;
 
 const Op = db.Sequelize.Op;
 // Create and Save a new Element
 exports.create = async (req, res) => {
   // Validate request
-  if (!req.body.variedade_idvariedade || !req.body.status || !req.body.referencia_taxa || !req.body.data_reg_col_orig || !req.body.cod_orig || !req.body.hist_orig || !req.body.pesquisador_coleta || !req.body.origem_geo || !req.body.lat || !req.body.lon || !req.body.datum || !req.body.precisao || !req.body.coment_orig || !req.body.data_isol || !req.body.pesquisador_isolamento || !req.body.info_isolamento || !req.body.data_ident || !req.body.pesquisador_ident || !req.body.data_preserv || !req.body.pesquisador_preserv || !req.body.coment_isolamento || !req.body.cor_colonia || !req.body.textura_idtextura || !req.body.borda_idborda || !req.body.relevo_idrelevo || !req.body.exudato_idexudato || !req.body.cor_exudato || !req.body.pigmento_idpigmento || !req.body.cor_pigmento || !req.body.temp_crescimento || !req.body.referencia_temp || !req.body.laboratorio_mol || !req.body.data_mol || !req.body.cod_mol || !req.body.sequencia_mol || !req.body.meta_mol || !req.body.habitat_idhabitat || !req.body.metodo_preservacao_idmetodo_preservacao || !req.body.carac_micromorfologica_idcarac_micromorfologica || !req.body.imagem_idimagem || !req.body.anexos_idanexos) {
+  if (!req.body.variedade_idvariedade || !req.body.status || !req.body.data_reg_col_orig || !req.body.cod_orig || !req.body.hist_orig || !req.body.pesquisador_coleta || !req.body.origem_geo || !req.body.lat || !req.body.lon || !req.body.datum || !req.body.precisao || !req.body.coment_orig || !req.body.data_isol || !req.body.pesquisador_isolamento || !req.body.info_isolamento || !req.body.data_ident || !req.body.pesquisador_ident || !req.body.data_preserv || !req.body.pesquisador_preserv || !req.body.coment_isolamento || !req.body.cor_colonia || !req.body.textura_idtextura || !req.body.borda_idborda || !req.body.relevo_idrelevo || !req.body.exudato_idexudato || !req.body.cor_exudato || !req.body.pigmento_idpigmento || !req.body.cor_pigmento || !req.body.temp_crescimento || !req.body.laboratorio_mol || !req.body.data_mol || !req.body.cod_mol || !req.body.sequencia_mol || !req.body.meta_mol || !req.body.habitat_idhabitat || !req.body.microorganismo_has_referencia_taxa || !req.body.carac_micromorfologica_idcarac_micromorfologica || !req.body.imagem_idimagem || !req.body.anexos_idanexos) {
     res.status(400).send({
       message: "Content missing mandatory data!"
     });
@@ -77,18 +81,45 @@ exports.create = async (req, res) => {
   // Create a Element
   const element = req.body;
   var needWait = 0;
-  console.log(req.body)
+  // console.log(req.body)
+
+  //INICIO HABITAT
+
+  const habitat = {
+    habitat: req.body.habitat,
+    info: req.body.habitat_info
+  };
+  const habitat_an = {
+    hospedeiro_idhospedeiro: req.body.hospedeiro_idhospedeiro,
+    substrato_idsubstrato: req.body.idsubstrato,
+    registro : req.body.reg_exidata,
+    codigo: req.body.cod_herb,
+    herbario: req.body.herb_deposit
+  }
+  const habitat_veg = {
+    hospedeiro_idhospedeiro: req.body.hospedeiro_idhospedeiro,
+    sitio_idsitio: req.body.sitio_anatomico
+  }
+
+  const hosp = await ElementHospedeiro.findByPk(req.body.hospedeiro_idhospedeiro)
+  let hab
+  if (hosp.isAnimal) {
+    hab = await ElementHabitatAN.create(habitat_an)
+  }else{
+    hab = await ElementHabitatVG.create(habitat_veg)
+  }
+  const habit = await ElementHabitat.create(hab)
+
+  //FIM HABITAT
 
   // Save Element in the database
   Element.create(element)
   .then(data => {
-
-    console.log("------------");
-    console.log(data.dataValues);
-    console.log("------------");
-
+    // console.log("------------");
+    // console.log(data.dataValues);
+    // console.log("------------");
     if (req.body.metodo_preservacao_idmetodo_preservacao) {
-      console.log("has Metodo_preservacao");
+      // console.log("has Metodo_preservacao");
       needWait++;
       var elementHasMetodo_preservacao = {
         "metodo_preservacao_idmetodo_preservacao": req.body.metodo_preservacao_idmetodo_preservacao,
@@ -96,7 +127,7 @@ exports.create = async (req, res) => {
       }
       ElementHasMetodo_preservacao.create(elementHasMetodo_preservacao)
         .then(d => {
-          console.log("done_Metodo_preservacao");
+          // console.log("done_Metodo_preservacao");
           needWait--;
           if (needWait == 0) {
             res.send(data);
@@ -110,14 +141,14 @@ exports.create = async (req, res) => {
         });
     };
     if (req.body.carac_micromorfologica_idcarac_micromorfologica) {
-      console.log("has Carac_micromorfologica");
+      // console.log("has Carac_micromorfologica");
       needWait++;
       var elementHasCarac_micromorfologica = {
         "carac_micromorfologica_idcarac_micromorfologica": req.body.carac_micromorfologica_idcarac_micromorfologica,
         "microorganismo_idmicroorganismo": data.dataValues.idmicroorganismo
       }
       ElementHasCarac_micromorfologica.create(elementHasCarac_micromorfologica).then(d => {
-        console.log("done_Carac_micromorfologica");
+        // console.log("done_Carac_micromorfologica");
         needWait--;
         if (needWait == 0) {
           res.send(data);
@@ -131,14 +162,14 @@ exports.create = async (req, res) => {
         });
     };
     if (req.body.microorganismo_has_imagem_macro) {
-      console.log("has imagem_macro");
+      // console.log("has imagem_macro");
       needWait++;
       var elementHasImagem_macro = {
         "microorganismo_has_imagem_macro": req.body.microorganismo_has_imagem_macro,
         "microorganismo_idmicroorganismo": data.dataValues.idmicroorganismo
       }
       ElementHasImagem_macro.create(elementHasImagem_macro).then(d => {
-        console.log("done_imagem_macro");
+        // console.log("done_imagem_macro");
         needWait--;
         if (needWait == 0) {
           res.send(data);
@@ -152,14 +183,14 @@ exports.create = async (req, res) => {
         });
     };
     if (req.body.microorganismo_has_imagem_micro) {
-      console.log("has imagem_micro");
+      // console.log("has imagem_micro");
       needWait++;
       var elementHasImagem_micro = {
         "microorganismo_has_imagem_micro": req.body.microorganismo_has_imagem_micro,
         "microorganismo_idmicroorganismo": data.dataValues.idmicroorganismo
       }
       ElementHasImagem_micro.create(elementHasImagem_micro).then(d => {
-        console.log("done_imagem_macro");
+        // console.log("done_imagem_macro");
         needWait--;
         if (needWait == 0) {
           res.send(data);
@@ -173,14 +204,14 @@ exports.create = async (req, res) => {
         });
     };
     if (req.body.microorganismo_has_anexos) {
-      console.log("has anexos");
+      // console.log("has anexos");
       needWait++;
       var elementHasAnexos = {
         "microorganismo_has_anexos": req.body.microorganismo_has_anexos,
         "microorganismo_idmicroorganismo": data.dataValues.idmicroorganismo
       }
       ElementHas_anexos.create(elementHasAnexos).then(d => {
-        console.log("done_anexos");
+        // console.log("done_anexos");
         needWait--;
         if (needWait == 0) {
           res.send(data);

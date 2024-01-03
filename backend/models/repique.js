@@ -32,13 +32,21 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     comentarios: {
-      type: DataTypes.STRING(145),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     disponivel: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       defaultValue: 0
+    },
+    data_emission: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    data_preserv: {
+      type: DataTypes.DATE,
+      allowNull: true
     },
     posicao_idposicao: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -48,20 +56,16 @@ module.exports = function(sequelize, DataTypes) {
         key: 'idposicao'
       }
     },
-    data_emission: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
-    },
     pesquisador_preserv: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'pesquisador',
         key: 'idpesquisador'
       }
     },
-    data_preserv: {
-      type: DataTypes.DATE,
+    parent: {
+      type: DataTypes.INTEGER,
       allowNull: true
     }
   }, {

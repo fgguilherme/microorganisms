@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _dominio.deleteAll);
 
 
-  app.use('/api/el', router);
+  app.use('/el', router);
 
 }

@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _repique_has_imagem.deleteAll);
 
 
-  app.use('/api/imagem_repique', router);
+  app.use('/imagem_repique', router);
 
 }

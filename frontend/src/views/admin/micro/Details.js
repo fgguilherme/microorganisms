@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom'
 import CardStats from "components/Cards/CardStats.js";
@@ -17,13 +18,16 @@ export default function Details() {
   if(location.item?.microorganismo_idmicroorganismo === undefined){
     window.location.href = "/admin/m/tables"
   }
+  else{ 
+    console.log(location.item?.microorganismo_idmicroorganismo)
+  }
   const baseurl = config.API_URL;
   const [variedadeContent, setVariedadeContent] = useState({});
   useEffect(() => {
     if (variedadeContent.length === 0) {
       axios.get(baseurl+"variedade/"+location.item?.microorganismo_idmicroorganismo.microorganismo_idmicroorganismo_microorganismo.variedade_idvariedade_variedade.idvariedade)
         .then(response => {
-          console.log(response)
+          // console.log(response)
           // setVariedadeContent(response.data)
           // console.log(variedadeContent)
         }, error => {

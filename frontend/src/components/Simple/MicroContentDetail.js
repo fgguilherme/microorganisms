@@ -108,6 +108,7 @@ export default function MicroContentDetail(props) {
       }})
         .then(response => {
           let img = []
+          console.log(response.data)
           response.data.map(i => {
             img.push(baseurlImg+i.imagem_idimagem_imagem.imagem)
           })

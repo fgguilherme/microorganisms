@@ -91,7 +91,7 @@ const singleFileUpload = async (req, res) => {
       }
     });*/
 
-    return res.json({ file: `/api/public/images/${file}` });
+    return res.json({ file: `/public/images/${file}` });
   } catch (err) {
     return res.status(422).json({ err });
   }
@@ -113,7 +113,7 @@ const multipleFileUpload = async (req, res) => {
       await sharp(file.buffer)
         .toFile(imageFile);
 
-      files[index] = `/api/public/images/${t}-${splitFileName(
+      files[index] = `/public/images/${t}-${splitFileName(
         file.originalname
       )}`;
     }
@@ -140,7 +140,7 @@ const multipleFileUploadNoPhoto = async (req, res) => {
 
       fs.writeFileSync(imageFile, file.buffer,'binary');
 
-      files[index] = `/api/public/docs/${t}-${splitFileName(
+      files[index] = `/public/docs/${t}-${splitFileName(
         file.originalname
       )}`;
     }
@@ -176,19 +176,19 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/public", express.static(path.join(__dirname, "public")));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 const db = require("./models");
 // db.sequelize.sync().then(()=>{
 // })
 
 // simple route
-app.get("/api/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to MICRO application." });
 });
 
 // simple route
-app.post("/api/upload", upload.array('foto', maxFotos), (req, res) => {
+app.post("/upload", upload.array('foto', maxFotos), (req, res) => {
   // console.log(req.body)
   // console.log(req.file)
   // console.log(req.files)
@@ -202,7 +202,7 @@ app.post("/api/upload", upload.array('foto', maxFotos), (req, res) => {
  */
 // route: single file upload
 app.post(
-  "/api/simple-upload",
+  "/simple-upload",
   singleUpload("file"),
   validateFile,
   singleFileUpload
@@ -210,7 +210,7 @@ app.post(
 
 // route: multiple file upload
 app.post(
-  "/api/multiple-upload",
+  "/multiple-upload",
   multipleUpload("files"),
   validateFile,
   multipleFileUpload
@@ -218,7 +218,7 @@ app.post(
 
 // route: dropzone single file upload
 app.post(
-  "/api/single-dropzone",
+  "/single-dropzone",
   singleUpload("file"),
   validateFile,
   singleFileUpload
@@ -226,13 +226,13 @@ app.post(
 
 // route: dropzone multiple file upload
 app.post(
-  "/api/multiple-dropzone",
+  "/multiple-dropzone",
   multipleUpload("files"),
   validateFile,
   multipleFileUpload
 );
 app.post(
-  "/api/multiple-dropzone-pdf",
+  "/multiple-dropzone-pdf",
   multipleUpload("files"),
   validateFile,
   multipleFileUploadNoPhoto

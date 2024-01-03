@@ -26,6 +26,6 @@ module.exports = app => {
   router.delete("/", _microorganismo_has_referencia_temp.deleteAll);
 
 
-  app.use('/api/microorganismo_has_referencia_temp', router);
+  app.use('/microorganismo_has_referencia_temp', router);
 
 }

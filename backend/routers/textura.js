@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _textura.deleteAll);
 
 
-  app.use('/api/textura', router);
+  app.use('/textura', router);
 
 }

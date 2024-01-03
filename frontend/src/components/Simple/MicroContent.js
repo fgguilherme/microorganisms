@@ -521,8 +521,8 @@ export default function MicroContent(props) {
       axios.put(baseurl+ "repique", newMicro)
       .then((response) => {
         // console.log(response)
-        //return to main table
-        // window.location.href = "/admin/m/" + props.returnto
+        // return to main table
+        window.location.href = "/admin/m/" + props.returnto
       }, (error) => {
         // console.log(error);
       });
@@ -535,7 +535,7 @@ export default function MicroContent(props) {
       .then((response) => {
         // console.log(response)
         //return to main table
-        // window.location.href = "/admin/m/" + props.returnto
+        window.location.href = "/admin/m/" + props.returnto
       }, (error) => {
         // console.log(error);
       });

@@ -18,6 +18,8 @@ services:
     environment:
       <<: *common-variables
       MYSQL_ROOT_PASSWORD: BDBD03C7E6D2A1BB01C7698E2BD1CC12
+    ports:
+      - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
       - ./backend/init_db_dev.sql:/docker-entrypoint-initdb.d/init.sql
@@ -33,7 +35,7 @@ services:
       dockerfile: Dockerfile
       context: ./nginx
     ports:
-      - "3100:80"
+      - "4200:80"
     networks:
       microcollection:
 
@@ -52,24 +54,6 @@ services:
     volumes:
       - /app/node_modules
       - ./backend:/app
-    networks:
-      microcollection:
-  api_v2:
-    restart: always
-    stdin_open: true
-    build:
-      context: "./backend2"
-      target: development
-    depends_on:
-      - mysql_db
-    links:
-      - mysql_db
-    environment:
-      <<: *common-variables
-    command: npm run start:dev
-    volumes:
-      - /app/node_modules
-      - ./backend2:/app
     networks:
       microcollection:
 

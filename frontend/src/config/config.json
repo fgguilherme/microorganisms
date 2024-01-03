@@ -1,6 +1,8 @@
 {
-    "API_URL":"http://127.0.0.1:8080/api/",
-    "IMG_URL":"http://127.0.0.1:8080",
+    "API_URL":"http://localhost:4200/api/",
+    "IMG_URL":"http://localhost:4200",
+    "API_URL_DOCKER":"http://localhost:4200/api/",
+    "IMG_URL_DOCKER":"http://localhost:4200",
     "API_URL_PROD":"http://3.93.23.130:8080/api/",
     "IMG_URL_PROD":"http://3.93.23.130:8080",
     "API_URL_LOCAL":"http://127.0.0.1:8080/api/",

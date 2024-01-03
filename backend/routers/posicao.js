@@ -28,6 +28,6 @@ module.exports = app => {
   router.delete("/", _posicao.deleteAll);
 
 
-  app.use('/api/posicao', router);
+  app.use('/posicao', router);
 
 }

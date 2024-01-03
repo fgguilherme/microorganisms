@@ -31,6 +31,6 @@ module.exports = app => {
   router.delete("/", _repique.deleteAll);
 
 
-  app.use('/api/repique', router);
+  app.use('/repique', router);
 
 }

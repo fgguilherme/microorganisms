@@ -4,24 +4,24 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node --watch server.js",
+    "start": "node --watch --stack-size=512 server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "body-parser": "^1.20.0",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.1",
-    "google-auth-library": "^8.0.1",
-    "jsonwebtoken": "^8.5.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "google-auth-library": "^9.11.0",
+    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
-    "make-dir": "^3.1.0",
+    "make-dir": "^5.0.0",
     "multer": "^1.4.4",
-    "mysql2": "^2.3.3",
-    "sequelize": "^6.20.0",
-    "sharp": "^0.30.4"
+    "mysql2": "^3.10.1",
+    "sequelize": "^6.37.3",
+    "sharp": "^0.33.4"
   }
 }

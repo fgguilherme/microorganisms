@@ -21,3 +21,7 @@ Project designed to run on AWS.
 ### Build PROD environment
 
 * docker-compose up -d --build
+
+## Backend V2 (Under development)
+
+* Node + TypeORM + NestJS project

@@ -364,7 +364,7 @@ export default function MicroContentDetail(props) {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             htmlFor="grid-password"
                           >
-                            {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.reino_idreino_reino.dominio_iddominio_dominio.dominio}
+                            {variedade?.sub_especie_idsub_especie_sub_especie?.especie_idespecie_especie.genero_idgenero_genero.familia_idfamilia_familium.ordem_idordem_ordem.classe_idclasse_classe.filo_idfilo_filo.reino_idreino_reino.dominio_iddominio_dominio?.dominio}
                           </label>
                         </div>
                       </div>
